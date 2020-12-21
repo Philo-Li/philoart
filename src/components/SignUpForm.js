@@ -18,7 +18,7 @@ const SignUpForm = () => {
     try {
       signUp({ username: username.value, password: password.value });
       // eslint-disable-next-line no-alert
-      if (window.confirm('账号注册成功，现在登录？')) {
+      if (window.confirm('login now?')) {
         history.push('/signin');
       }
     } catch (e) {
@@ -33,18 +33,18 @@ const SignUpForm = () => {
       <Form id="signupform" onSubmit={submit}>
         <Form.Group>
           <div>
-            <Form.Label>用户名或邮箱:</Form.Label>
+            <Form.Label>username:</Form.Label>
             <Form.Control {...username} />
           </div>
           <div>
-            <Form.Label>密码:</Form.Label>
+            <Form.Label>password:</Form.Label>
             <Form.Control {...password} />
           </div>
           <div>
-            <Form.Label>密码确认:</Form.Label>
+            <Form.Label>password confirm:</Form.Label>
             <Form.Control {...passwordConfirm} />
           </div>
-          <Button variant="primary" id="login-button" type="submit">注册</Button>
+          <Button variant="primary" id="login-button" type="submit">sign up</Button>
         </Form.Group>
       </Form>
     </div>

@@ -29,11 +29,11 @@ const SignInForm = () => {
       <Form id="signinform" onSubmit={submit}>
         <Form.Group>
           <div>
-            <Form.Label>用户名或邮箱:</Form.Label>
+            <Form.Label>username:</Form.Label>
             <Form.Control {...username} />
           </div>
           <div>
-            <Form.Label>密码:</Form.Label>
+            <Form.Label>password:</Form.Label>
             <Form.Control {...password} />
           </div>
           <Button variant="primary" id="login-button" type="submit">登录</Button>

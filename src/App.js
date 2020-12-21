@@ -1,28 +1,27 @@
+/* eslint-disable object-curly-newline */
 import React from 'react';
 import { useApolloClient } from '@apollo/client';
 import {
   BrowserRouter as Router,
-  Switch, Route, Link, Redirect,
+  Switch, Route, Redirect,
 } from 'react-router-dom';
-import { Nav, Button } from 'react-bootstrap';
+import { Nav, Form, FormControl, Button } from 'react-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
 
 import Home from './components/Home';
-import PublicLettersList from './components/PublicLettersList';
+import Discover from './components/Discover';
 import Footer from './components/Footer';
 import SignInForm from './components/SignInForm';
 import SignUpForm from './components/SignUpForm';
+import DailyCover from './components/DailyCover';
 import useAuthorizedUser from './hooks/useAuthorizedUser';
+import logo from './logo.png';
 
 const App = () => {
   const client = useApolloClient();
   const { authorizedUser } = useAuthorizedUser();
 
   const Menu = () => {
-    const padding = {
-      paddingRight: 5,
-    };
-
     const handleLogout = async (event) => {
       event.preventDefault();
       localStorage.clear();
@@ -30,41 +29,51 @@ const App = () => {
     };
 
     return (
-      <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mr-auto">
-            <Nav.Link href="/" as="span">
-              <Link style={padding} to="/">首页</Link>
-            </Nav.Link>
-            <Nav.Link href="/blogs" as="span">
-              <Link style={padding} to="/public_letters">公开信件</Link>
-            </Nav.Link>
-            {!authorizedUser && (
-              <Nav.Link href="/signup" as="span">
-                <Link style={padding} to="/signup">注册</Link>
-              </Nav.Link>
-            )}
-            {!authorizedUser && (
-              <Nav.Link href="/signin" as="span">
-                <Link style={padding} to="/signin">登录</Link>
-              </Nav.Link>
-            )}
-            {authorizedUser && <Button variant="secondary" type="submit" onClick={handleLogout}>登出</Button>}
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
+      <div>
+        <Navbar expand="lg" bg="white" variant="light" sticky="top">
+          <Navbar.Brand href="/">
+            <img
+              src={logo}
+              width="30"
+              height="30"
+              className="d-inline-block align-top"
+              alt="Free Stock Photos"
+            />
+            Picky
+          </Navbar.Brand>
+          <Form inline xs="auto">
+            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+          </Form>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+            <Nav className="justify-content-end">
+              <Nav.Link href="/discover">Discover</Nav.Link>
+              <Nav.Link href="/license">License</Nav.Link>
+              <Nav.Link href="/signin">Login</Nav.Link>
+              <Nav.Link href="/signup">Sign Up</Nav.Link>
+              <Nav.Link href="/faq">FAQ</Nav.Link>
+              {authorizedUser && <Button variant="outline-primary" type="submit" onClick={handleLogout}>logout</Button>}
+            </Nav>
+            <Nav>
+              <Button href="/join" variant="primary" type="submit">Join</Button>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+      </div>
     );
   };
 
   return (
     <Router>
-      <div className="container">
+      <div>
         <Menu />
-        <div>
+        <div className="container">
           <Switch>
-            <Route path="/public_letters" exact>
-              <PublicLettersList />
+            <Route path="/discover" exact>
+              <Discover />
+            </Route>
+            <Route path="/license" exact>
+              <Home />
             </Route>
             <Route path="/signin" exact>
               <SignInForm />
@@ -72,7 +81,10 @@ const App = () => {
             <Route path="/signup" exact>
               <SignUpForm />
             </Route>
-            <Route path="/user/:id" exact>
+            <Route path="/FAQ" exact>
+              <SignInForm />
+            </Route>
+            <Route path="/join" exact>
               <SignInForm />
             </Route>
             <Route path="/" exact>
@@ -81,6 +93,7 @@ const App = () => {
             <Redirect to="/" />
           </Switch>
         </div>
+        <DailyCover />
         <Footer />
       </div>
     </Router>

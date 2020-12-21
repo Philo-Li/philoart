@@ -6,13 +6,8 @@ export const GET_AUTHORIZED_USER = gql`
     authorizedUser {
       id
       username
-        pageInfo {
-          endCursor
-          startCursor
-          totalCount
-          hasNextPage
-        }
-      }
     }
   }
 `;
+
+export default GET_AUTHORIZED_USER;
