@@ -1,19 +1,19 @@
 /* eslint-disable object-curly-newline */
-import React from 'react';
+import React, { useState } from 'react';
 import { useApolloClient } from '@apollo/client';
 import {
   BrowserRouter as Router,
   Switch, Route, Redirect,
 } from 'react-router-dom';
-import { Nav, Form, FormControl, Button } from 'react-bootstrap';
+import { Nav, Form, FormControl, Button, NavDropdown } from 'react-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
 
 import Home from './components/Home';
 import Discover from './components/Discover';
+import DailyCover from './components/DailyCover';
 import Footer from './components/Footer';
 import SignInForm from './components/SignInForm';
 import SignUpForm from './components/SignUpForm';
-import DailyCover from './components/DailyCover';
 import useAuthorizedUser from './hooks/useAuthorizedUser';
 import logo from './logo.png';
 
@@ -22,6 +22,14 @@ const App = () => {
   const { authorizedUser } = useAuthorizedUser();
 
   const Menu = () => {
+    const [show, setShow] = useState(false);
+    const showDropdown = () => {
+      setShow(!show);
+    };
+    const hideDropdown = () => {
+      setShow(false);
+    };
+
     const handleLogout = async (event) => {
       event.preventDefault();
       localStorage.clear();
@@ -52,6 +60,19 @@ const App = () => {
               <Nav.Link href="/signin">Login</Nav.Link>
               <Nav.Link href="/signup">Sign Up</Nav.Link>
               <Nav.Link href="/faq">FAQ</Nav.Link>
+              <NavDropdown
+                title="Dropdown"
+                id="nav-dropdown"
+                show={show}
+                onMouseEnter={showDropdown}
+                onMouseLeave={hideDropdown}
+              >
+                <NavDropdown.Item href="/signin">Login</NavDropdown.Item>
+                <NavDropdown.Item href="/signup">Sign Up</NavDropdown.Item>
+                <NavDropdown.Item href="/faq">FAQ</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="/faq">Partnerships</NavDropdown.Item>
+              </NavDropdown>
               {authorizedUser && <Button variant="outline-primary" type="submit" onClick={handleLogout}>logout</Button>}
             </Nav>
             <Nav>

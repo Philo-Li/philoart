@@ -9,10 +9,13 @@
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.3.0",
     "apollo-link-context": "^1.0.20",
-    "bootstrap": "^4.5.3",
+    "bootstrap": "^5.0.0-beta1",
+    "bootstrap-icons": "^1.2.1",
     "date-fns": "^2.16.1",
     "dotenv": "^8.2.0",
+    "glamor": "^2.20.40",
     "graphql": "^15.3.0",
+    "mdbreact": "^5.0.1",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",
     "react-date-picker": "^8.0.5",
@@ -49,7 +52,9 @@
   },
   "proxy": "http://localhost:5002",
   "devDependencies": {
+    "@typescript-eslint/parser": "^4.10.0",
     "eslint": "^7.14.0",
-    "eslint-config-airbnb": "^18.2.1"
+    "eslint-config-airbnb": "^18.2.1",
+    "typescript": "^4.1.3"
   }
 }
