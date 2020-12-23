@@ -38,8 +38,8 @@ const App = () => {
 
     return (
       <div>
-        <Navbar expand="lg" bg="white" variant="light" sticky="top">
-          <Navbar.Brand href="/">
+        <Navbar expand="lg" bg="dark" variant="dark" sticky="top">
+          <Navbar.Brand className="text-light" href="/">
             <img
               src={logo}
               width="30"
@@ -53,13 +53,13 @@ const App = () => {
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
           </Form>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+          <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end light">
             <Nav className="justify-content-end">
-              <Nav.Link href="/discover">Discover</Nav.Link>
-              <Nav.Link href="/license">License</Nav.Link>
-              <Nav.Link href="/signin">Login</Nav.Link>
-              <Nav.Link href="/signup">Sign Up</Nav.Link>
-              <Nav.Link href="/faq">FAQ</Nav.Link>
+              <Nav.Link className="text-light" href="/discover">Discover</Nav.Link>
+              <Nav.Link className="text-light" href="/license">License</Nav.Link>
+              <Nav.Link className="text-light" href="/signin">Login</Nav.Link>
+              <Nav.Link className="text-light" href="/signup">Sign Up</Nav.Link>
+              <Nav.Link className="text-light" href="/faq">FAQ</Nav.Link>
               <NavDropdown
                 title="Dropdown"
                 id="nav-dropdown"
