@@ -71,7 +71,7 @@ const Footer = () => {
               Picky
             </Navbar.Brand>
             <Card.Text className="text-light">
-              — Pick the best free stock photos for you.
+              — Select the best free stock photos for you.
             </Card.Text>
             <Nav className="justify-content-end">
               <Nav.Link className="text-light" href="/discover">Terms of Use</Nav.Link>

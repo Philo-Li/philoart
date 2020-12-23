@@ -13,8 +13,8 @@ const DailyCover = () => {
         <Card.ImgOverlay className="sm my-2 my-lg-5">
           <Container className="sm my-2 my-lg-5">
             <Col>
-              <Card.Title className="display-4 font-weight-bold mb-15 pt-md-10">Pick the best free stock photos for you.</Card.Title>
-              <Card.Text className="display-7 subtext-header">
+              <Card.Title className="display-4 font-weight-bold mb-15 pt-md-10">Select the best free stock photos for you.</Card.Title>
+              <Card.Text className="display-6 subtext-header">
                 Free to use. Redirect to download.
               </Card.Text>
               <Container className="sm my-2 my-lg-5">

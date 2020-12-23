@@ -88,6 +88,7 @@ const App = () => {
     <Router>
       <div>
         <Menu />
+        <DailyCover />
         <div className="container">
           <Switch>
             <Route path="/discover" exact>
@@ -114,7 +115,6 @@ const App = () => {
             <Redirect to="/" />
           </Switch>
         </div>
-        <DailyCover />
         <Footer />
       </div>
     </Router>
