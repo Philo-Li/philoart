@@ -16,3 +16,45 @@ export const CREATE_USER = gql`
     }
   }
 `;
+
+export const CREATE_PHOTO = gql`
+  mutation createPhoto(
+    $width: Int
+    $height: Int
+    $small: String
+    $large: String
+    $downloadPage: String
+    $creditWeb: String
+    $creditId: String
+    $photographer: String
+    $description: String
+    $tags: String
+    ) {
+    createPhoto(photo: {
+      width: $width
+      height: $height
+      small: $small
+      large: $large
+      creditWeb: $creditWeb
+      creditId: $creditId
+      photographer: $photographer
+      downloadPage: $downloadPage
+      description: $description
+      tags: $tags
+    } ) {
+      id
+      width
+      height
+      small
+      large
+      creditWeb
+      creditId
+      photographer
+      downloadPage
+      description
+      tags
+      likeCount
+      downloadCount
+    }
+  }
+`;

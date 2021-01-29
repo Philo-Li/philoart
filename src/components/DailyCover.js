@@ -7,27 +7,29 @@ const Cover = 'https://kaboompics.com/cache/7/3/7/1/b/7371b7a8de0b38d8906cdae62a
 // eslint-disable-next-line arrow-body-style
 const DailyCover = () => {
   return (
-    <div>
-      <Card className="bg-dark text-white text-center" border="light">
-        <Card.Img src={Cover} alt="Card image" />
-        <Card.ImgOverlay className="sm my-2 my-lg-5">
-          <Container className="sm my-2 my-lg-5">
-            <Col>
-              <Card.Title className="display-4 font-weight-bold mb-15 pt-md-10">Select the best free stock photos for you.</Card.Title>
-              <Card.Text className="display-6 subtext-header">
-                Free to use. Redirect to download.
-              </Card.Text>
-              <Container className="sm my-2 my-lg-5">
-                <Row className="justify-content-center xs-6 xl-8">
-                  <Form class="form-inline my-2 my-lg-5 ml-auto">
-                    <FormControl type="text" placeholder="Search for free photos" className="mr-sm-10" />
-                  </Form>
-                </Row>
-              </Container>
-            </Col>
-          </Container>
-        </Card.ImgOverlay>
-      </Card>
+    <div className="daily-cover-container">
+      <div className="daily-cover">
+        <Card className="bg-dark text-white text-center" border="light">
+          <Card.Img src={Cover} height="auto" display="block" alt="Card image" />
+          <Card.ImgOverlay className="">
+            <Container className="p-3">
+              <Col>
+                <Container className="text-center p-5 my-lg-5">
+                  <h2>Select the best free stock photos for you.</h2>
+                  <p>
+                    Free to use. Redirect to download.
+                  </p>
+                  <Row className="justify-content-center p-3" md={{ span: 6, offset: 3 }}>
+                    <Form className="form-inline p3">
+                      <FormControl type="text" placeholder="Search for free photos" />
+                    </Form>
+                  </Row>
+                </Container>
+              </Col>
+            </Container>
+          </Card.ImgOverlay>
+        </Card>
+      </div>
     </div>
   );
 };

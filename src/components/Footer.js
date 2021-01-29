@@ -12,11 +12,11 @@ const Footer = () => {
 
   return (
     <div style={footerStyle}>
-      <Card className="text-center text-light bg-dark" fluid>
+      <Card className="text-left text-light bg-dark" fluid="true">
         <Card.Body>
           <Container className="sm my-2 my-lg-5">
             <Row className="justify-content-center xs-6 xl-8">
-              <Col class="inline my-2 ml-auto">
+              <Col className="inline my-2 ml-auto">
                 <Card.Title className="text-left text-light  my-lg-0 mb-2"> Picky </Card.Title>
                 <Card.Text className="text-left text-light  my-lg-0 mb-2">
                   <Card.Link className="text-left text-muted my-lg-0 mb-2" href="#">About</Card.Link>
@@ -31,7 +31,7 @@ const Footer = () => {
                   <Card.Link className="text-left text-muted my-lg-0 mb-2" href="#">Partner with Picky</Card.Link>
                 </Card.Text>
               </Col>
-              <Col class="inline my-2 ml-auto">
+              <Col className="inline my-2 ml-auto">
                 <Card.Title className="text-left text-light  my-lg-0 mb-2"> Free Stock Photos </Card.Title>
                 <Card.Text className="text-left text-light  my-lg-0 mb-2">
                   <Card.Link className="text-left text-muted my-lg-0 mb-2" href="#">Popular searches</Card.Link>
@@ -46,7 +46,7 @@ const Footer = () => {
                   <Card.Link className="text-left text-muted my-lg-0 mb-2" href="#">Best wallpapers</Card.Link>
                 </Card.Text>
               </Col>
-              <Col class="inline my-2 ml-auto">
+              <Col className="inline my-2 ml-auto">
                 <Card.Title className="text-left text-light  my-lg-0 mb-2"> Contact us </Card.Title>
                 <Card.Text className="text-left text-light  my-lg-0 mb-2">
                   <Card.Link className="text-left text-muted my-lg-0 mb-2" href="#">Submit website</Card.Link>
@@ -58,7 +58,7 @@ const Footer = () => {
             </Row>
           </Container>
         </Card.Body>
-        <Card.Footer className="text-light">
+        <Card.Footer className="text-center text-light">
           <Row>
             <Navbar.Brand href="/" className="text-light">
               <img

@@ -11,7 +11,7 @@ const useAuthorizedUser = (variables) => {
   });
 
   const handleFetchMore = () => {
-    const canFetchMore = !loading && data && data.authorizedUser.reviews.pageInfo.hasNextPage;
+    const canFetchMore = !loading && data && data.authorizedUser.likes.pageInfo.hasNextPage;
 
     if (!canFetchMore) {
       return;
@@ -20,7 +20,7 @@ const useAuthorizedUser = (variables) => {
     fetchMore({
       query: GET_AUTHORIZED_USER,
       variables: {
-        after: data.authorizedUser.reviews.pageInfo.endCursor,
+        after: data.authorizedUser.likes.pageInfo.endCursor,
         ...variables,
       },
       updateQuery: (previousResult, { fetchMoreResult }) => {
@@ -28,8 +28,8 @@ const useAuthorizedUser = (variables) => {
           authorizedUser: {
             ...fetchMoreResult.authorizedUser,
             edges: [
-              ...previousResult.authorizedUser.reviews.edges,
-              ...fetchMoreResult.authorizedUser.reviews.edges,
+              ...previousResult.authorizedUser.likes.edges,
+              ...fetchMoreResult.authorizedUser.likes.edges,
             ],
           },
         };

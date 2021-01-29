@@ -1,0 +1,30 @@
+.wrapper {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.daily-cover-container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  max-block-size: 60rem;
+}
+
+.daily-cover {
+  order: 0;
+  flex-grow: 0;
+  flex-shrink: 0;
+  align-self: stretch;
+  
+}
+
+.button-0 {
+  align-self: flex-end;
+}
+
+.item-0 {
+  flex-grow: 1;
+  flex-shrink: 0;
+}

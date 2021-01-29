@@ -38,7 +38,7 @@ const App = () => {
 
     return (
       <div>
-        <Navbar expand="lg" bg="dark" variant="dark" sticky="top">
+        <Navbar expand="lg" bg="dark" variant="dark" fixed="sticky">
           <Navbar.Brand className="text-light" href="/">
             <img
               src={logo}
@@ -88,8 +88,7 @@ const App = () => {
     <Router>
       <div>
         <Menu />
-        <DailyCover />
-        <div className="container">
+        <div>
           <Switch>
             <Route path="/discover" exact>
               <Discover />
@@ -107,9 +106,10 @@ const App = () => {
               <SignInForm />
             </Route>
             <Route path="/join" exact>
-              <SignInForm />
+              <SignUpForm />
             </Route>
             <Route path="/" exact>
+              <DailyCover />
               <Home />
             </Route>
             <Redirect to="/" />
