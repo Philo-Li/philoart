@@ -36,11 +36,11 @@ const Home = () => {
       <CardColumns className="sm my-2 my-lg-5">
         {allPhotos.map((photo) => (
           <Card key={photo.id}>
-            <Card.Img src={photo.small} alt="Card image" fluid />
+            <Card.Img src={photo.small} alt="Card image" />
             <Card.ImgOverlay className="sm" ref={target} onEntered={showDropdown} onExit={hideDropdown}>
               <div className="wrapper">
-                <div className="button-0">
-                  <Button variant="light">
+                <div id={photo.id} className="button-0">
+                  <Button variant="light" onClick={() => window.open(photo.downloadPage)}>
                     <i className="bi bi-download" />
                   </Button>
                 </div>
