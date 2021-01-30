@@ -58,3 +58,21 @@ export const CREATE_PHOTO = gql`
     }
   }
 `;
+
+export const LIKE_PHOTO = gql`
+  mutation likePhoto( $photoId: ID! ) {
+    likePhoto(like: { photoId: $photoId } ) {
+      id
+      user{
+        id
+        username
+      }
+      photo{
+        id
+        width
+        description
+        likeCount
+      }
+    }
+  }
+`;

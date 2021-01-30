@@ -1,66 +1,36 @@
 /* eslint-disable react/style-prop-object */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable object-curly-newline */
-import React, { useState, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
+import React from 'react';
 import { Card, CardColumns, Button } from 'react-bootstrap';
 import '../index.css';
 
-import usePhotos from '../hooks/usePhotos';
-import useLikePhoto from '../hooks/useLikePhoto';
+import useUserLikes from '../hooks/useUserLikes';
 import useAuthorizedUser from '../hooks/useAuthorizedUser';
 
 // eslint-disable-next-line react/prefer-stateless-function
-const Home = () => {
-  const { photos } = usePhotos();
-  const [show, setShow] = useState(false);
-  const target = useRef(null);
+const UserLikes = () => {
   const { authorizedUser } = useAuthorizedUser();
-  const [likePhoto] = useLikePhoto();
-  const history = useHistory();
+  const { likes } = useUserLikes();
 
-  if (!photos) return null;
+  if (!likes) return null;
 
-  const showDropdown = () => {
-    setShow(!show);
-  };
-  const hideDropdown = () => {
-    setShow(false);
-  };
-
-  const collectPhoto = async (id) => {
-    if (!authorizedUser) {
-      history.push('/signin');
-    } else {
-      console.log('collect photo', id);
-    }
-  };
-
-  const likeSinglePhoto = async (id) => {
-    if (!authorizedUser) {
-      history.push('/signin');
-    } else {
-      console.log('like photo', id);
-      await likePhoto({ photoId: id });
-    }
-  };
-
-  const allPhotos = photos.edges
-    ? photos.edges.map((edge) => edge.node)
+  const allPhotos = likes.edges
+    ? likes.edges.map((edge) => edge.node.photo)
     : [];
 
-  console.log('photos', allPhotos);
+  console.log('like', likes);
+  console.log('authorizedUser', authorizedUser);
 
   return (
     <div className="p-3">
       <>
-        <h1>hey</h1>
       </>
       <CardColumns className="sm my-2 my-lg-5">
         {allPhotos.map((photo) => (
           <Card key={photo.id}>
             <Card.Img src={photo.small} alt="Card image" />
-            <Card.ImgOverlay className="sm" ref={target} onEntered={showDropdown} onExit={hideDropdown}>
+            <Card.ImgOverlay className="sm">
               <div className="wrapper">
                 <div id={photo.id} className="button-0">
                   <Button variant="light" onClick={() => window.open(photo.downloadPage)}>
@@ -68,12 +38,12 @@ const Home = () => {
                   </Button>
                 </div>
                 <div className="button-0">
-                  <Button variant="light" onClick={() => collectPhoto(photo.id)}>
+                  <Button variant="light">
                     <i className="bi bi-plus-square" />
                   </Button>
                 </div>
                 <div className="button-0">
-                  <Button variant="light" onClick={() => likeSinglePhoto(photo.id)}>
+                  <Button variant="light">
                     <i className="bi bi-heart" />
                   </Button>
                 </div>
@@ -86,4 +56,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default UserLikes;

@@ -12,6 +12,9 @@ import Home from './components/Home';
 import Discover from './components/Discover';
 import DailyCover from './components/DailyCover';
 import Footer from './components/Footer';
+import Profile from './components/Profile';
+import UserLikes from './components/UserLikes';
+import UserCollections from './components/UserCollections';
 import SignInForm from './components/SignInForm';
 import SignUpForm from './components/SignUpForm';
 import useAuthorizedUser from './hooks/useAuthorizedUser';
@@ -36,6 +39,9 @@ const App = () => {
       client.resetStore();
     };
 
+    let userPage;
+    if (authorizedUser) userPage = `${authorizedUser.id}`;
+
     return (
       <div>
         <Navbar expand="lg" bg="dark" variant="dark" fixed="sticky">
@@ -57,6 +63,7 @@ const App = () => {
             <Nav className="justify-content-end">
               <Nav.Link className="text-light" href="/discover">Discover</Nav.Link>
               <Nav.Link className="text-light" href="/license">License</Nav.Link>
+              {authorizedUser && <Nav.Link className="text-light" href={userPage}>Profile</Nav.Link>}
               <Nav.Link className="text-light" href="/signin">Login</Nav.Link>
               <Nav.Link className="text-light" href="/signup">Sign Up</Nav.Link>
               <Nav.Link className="text-light" href="/faq">FAQ</Nav.Link>
@@ -95,6 +102,14 @@ const App = () => {
             </Route>
             <Route path="/license" exact>
               <Home />
+            </Route>
+            <Route path="/:id" exact>
+              <Profile />
+              <UserLikes />
+            </Route>
+            <Route path="/:id/collections" exact>
+              <Profile />
+              <UserCollections />
             </Route>
             <Route path="/signin" exact>
               <SignInForm />

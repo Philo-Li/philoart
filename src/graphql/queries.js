@@ -45,21 +45,6 @@ const PHOTO_DETAILS = gql`
   }
 `;
 
-const LIKE_DETAILS = gql`
-  fragment likeDetails on Like {
-    id
-    createdAt
-    user {
-      id
-      username
-    }
-    photo {
-      ...photoDetails
-    }
-  }
-  ${PHOTO_DETAILS}
-`;
-
 export const GET_PHOTOS = gql`
   query getPhotos(
     $orderBy: AllPhotosOrderBy
@@ -93,25 +78,97 @@ export const GET_PHOTOS = gql`
 `;
 
 export const GET_AUTHORIZED_USER = gql`
-  query getAuthorizedUser($includeLikes: Boolean = false, $first: Int, $after: String) {
+  query getAuthorizedUser {
     authorizedUser {
       id
       username
-      likes (first: $first, after: $after) {
-        edges @include(if: $includeLikes) {
-          node {
-            ...likeDetails
+      profileImage
+    }
+  }
+`;
+
+export const GET_USER_LIKES = gql`
+  query getLikes(
+    $orderBy: AllLikesOrderBy
+    $orderDirection: OrderDirection
+    $first: Int
+    $after: String
+  ) {
+    likes(
+      orderBy: $orderBy
+      orderDirection: $orderDirection
+      first: $first
+      after: $after
+    ) {
+      edges {
+        node {
+          id
+          user{
+            id
           }
-          cursor
+          photo{
+            ...photoDetails
+          }
         }
-        pageInfo {
-          endCursor
-          startCursor
-          totalCount
-          hasNextPage
-        }
+        cursor
+      }
+      pageInfo {
+        endCursor
+        startCursor
+        totalCount
+        hasNextPage
       }
     }
   }
-  ${LIKE_DETAILS}
+  ${PHOTO_DETAILS}
+`;
+
+export const GET_COLLECTIONS = gql`
+  query getCollections(
+    $orderBy: AllCollectionsOrderBy
+    $orderDirection: OrderDirection
+    $searchKeyword: String
+    $first: Int
+    $after: String
+  ) {
+    collections(
+      orderBy: $orderBy
+      orderDirection: $orderDirection
+      searchKeyword: $searchKeyword
+      first: $first
+      after: $after
+    ) {
+      edges {
+        node {
+          id
+        user{
+          id
+          username
+        }
+        reviews{
+          edges{
+            node{
+              id
+              text
+            }
+          }
+        }
+        reviewCount
+        title
+        description
+        photoCount
+        createdAt
+        public
+        cover
+        }
+        cursor
+      }
+      pageInfo {
+        endCursor
+        startCursor
+        totalCount
+        hasNextPage
+      }
+    }
+  }
 `;
