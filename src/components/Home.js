@@ -1,11 +1,10 @@
-/* eslint-disable react/style-prop-object */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable object-curly-newline */
 import React, { useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Card, CardColumns, Button } from 'react-bootstrap';
 import '../index.css';
-
+import PhotoDetailsModal from './PhotoDetailsModal';
 import usePhotos from '../hooks/usePhotos';
 import useLikePhoto from '../hooks/useLikePhoto';
 import useAuthorizedUser from '../hooks/useAuthorizedUser';
@@ -51,6 +50,10 @@ const Home = () => {
 
   console.log('photos', allPhotos);
 
+  // const photoPage = (url) => {
+  //   console.log('open photopage', url);
+  // };
+
   return (
     <div className="p-3">
       <>
@@ -76,6 +79,9 @@ const Home = () => {
                   <Button variant="light" onClick={() => likeSinglePhoto(photo.id)}>
                     <i className="bi bi-heart" />
                   </Button>
+                </div>
+                <div className="button-0">
+                  <PhotoDetailsModal photo={photo} />
                 </div>
               </div>
             </Card.ImgOverlay>

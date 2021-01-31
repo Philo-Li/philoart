@@ -9,7 +9,6 @@
   display: flex;
   flex-direction: column;
   align-content: center;
-  max-block-size: 60rem;
 }
 
 .daily-cover {
@@ -40,4 +39,61 @@
 .item-0 {
   flex-grow: 1;
   flex-shrink: 0;
+}
+
+.container-col-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.col-item-0 {
+  margin: 0.5rem;
+}
+
+.container-row-0 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-row-1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.row-item-0 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+}
+
+.row-item-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10;
+}
+
+.subtitle {
+  color: #5860699c;
+  font-size: 16;
+  font-weight: bold;
+}
+
+.header {
+  color: white;
+}
+
+.jumbotron {
+  background-image: url("https://kaboompics.com/cache/7/3/7/1/b/7371b7a8de0b38d8906cdae62a3374526d4109d0.jpeg");
+  background-size: cover;
+  height: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

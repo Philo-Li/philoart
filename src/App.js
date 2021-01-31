@@ -1,11 +1,11 @@
 /* eslint-disable object-curly-newline */
-import React, { useState } from 'react';
+import React from 'react';
 import { useApolloClient } from '@apollo/client';
 import {
   BrowserRouter as Router,
   Switch, Route, Redirect,
 } from 'react-router-dom';
-import { Nav, Form, FormControl, Button, NavDropdown } from 'react-bootstrap';
+import { Nav, Form, FormControl, Button } from 'react-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
 
 import Home from './components/Home';
@@ -15,6 +15,7 @@ import Footer from './components/Footer';
 import Profile from './components/Profile';
 import UserLikes from './components/UserLikes';
 import UserCollections from './components/UserCollections';
+import PhotoDetails from './components/PhotoDetails';
 import SignInForm from './components/SignInForm';
 import SignUpForm from './components/SignUpForm';
 import useAuthorizedUser from './hooks/useAuthorizedUser';
@@ -25,14 +26,6 @@ const App = () => {
   const { authorizedUser } = useAuthorizedUser();
 
   const Menu = () => {
-    const [show, setShow] = useState(false);
-    const showDropdown = () => {
-      setShow(!show);
-    };
-    const hideDropdown = () => {
-      setShow(false);
-    };
-
     const handleLogout = async (event) => {
       event.preventDefault();
       localStorage.clear();
@@ -67,23 +60,10 @@ const App = () => {
               <Nav.Link className="text-light" href="/signin">Login</Nav.Link>
               <Nav.Link className="text-light" href="/signup">Sign Up</Nav.Link>
               <Nav.Link className="text-light" href="/faq">FAQ</Nav.Link>
-              <NavDropdown
-                title="Dropdown"
-                id="nav-dropdown"
-                show={show}
-                onMouseEnter={showDropdown}
-                onMouseLeave={hideDropdown}
-              >
-                <NavDropdown.Item href="/signin">Login</NavDropdown.Item>
-                <NavDropdown.Item href="/signup">Sign Up</NavDropdown.Item>
-                <NavDropdown.Item href="/faq">FAQ</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="/faq">Partnerships</NavDropdown.Item>
-              </NavDropdown>
               {authorizedUser && <Button variant="outline-primary" type="submit" onClick={handleLogout}>logout</Button>}
             </Nav>
             <Nav>
-              <Button href="/join" variant="primary" type="submit">Join</Button>
+              {!authorizedUser && <Button href="/join" variant="primary" type="submit">Join</Button>}
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -110,6 +90,9 @@ const App = () => {
             <Route path="/:id/collections" exact>
               <Profile />
               <UserCollections />
+            </Route>
+            <Route path="photo/:id" exact>
+              <PhotoDetails />
             </Route>
             <Route path="/signin" exact>
               <SignInForm />
