@@ -86,6 +86,13 @@
   margin-right: 10;
 }
 
+.row-item-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
 .subtitle {
   color: #5860699c;
   font-size: 16;

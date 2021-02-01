@@ -1,11 +1,12 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable object-curly-newline */
-import React from 'react';
+import React, { useState } from 'react';
 import { useApolloClient } from '@apollo/client';
 import {
   BrowserRouter as Router,
   Switch, Route, Redirect,
 } from 'react-router-dom';
-import { Nav, Form, FormControl, Button } from 'react-bootstrap';
+import { Nav, Button } from 'react-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
 
 import Home from './components/Home';
@@ -18,11 +19,15 @@ import PhotoDetails from './components/PhotoDetails';
 import SignInForm from './components/SignInForm';
 import SignUpForm from './components/SignUpForm';
 import useAuthorizedUser from './hooks/useAuthorizedUser';
+import useField from './hooks/useField';
+import SearchBar from './components/SearchBar';
 import logo from './logo.png';
 
 const App = () => {
   const client = useApolloClient();
   const { authorizedUser } = useAuthorizedUser();
+  const searchValue = useField('searchValue');
+  const [newSearchValue, setNewSearchValue] = useState('');
 
   const Menu = () => {
     const handleLogout = async (event) => {
@@ -47,9 +52,10 @@ const App = () => {
             />
             Picky
           </Navbar.Brand>
-          <Form inline xs="auto">
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          </Form>
+          <SearchBar
+            searchValue={searchValue}
+            setNewSearchValue={setNewSearchValue}
+          />
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end light">
             <Nav className="justify-content-end">
@@ -106,7 +112,11 @@ const App = () => {
               <SignUpForm />
             </Route>
             <Route path="/" exact>
-              <Home />
+              <Home
+                searchValue={searchValue}
+                newSearchValue={newSearchValue}
+                setNewSearchValue={setNewSearchValue}
+              />
             </Route>
             <Redirect to="/" />
           </Switch>

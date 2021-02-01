@@ -1,33 +1,26 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable object-curly-newline */
-import React, { useState } from 'react';
-import { Button, Jumbotron, Form, FormControl } from 'react-bootstrap';
+import React from 'react';
+import { Jumbotron, Button } from 'react-bootstrap';
 import '../index.css';
 import usePhotos from '../hooks/usePhotos';
-import useField from '../hooks/useField';
 import PhotoList from './PhotoList';
+import SearchBar from './SearchBar';
 
 // eslint-disable-next-line react/prefer-stateless-function
-const Home = () => {
-  const searchValue = useField('searchValue');
-  const [newSearchValue, setNewSearchValue] = useState('');
+const Home = ({ searchValue, newSearchValue, setNewSearchValue }) => {
+  console.log('searchValue, newSearchValue', searchValue, newSearchValue);
 
-  const submit = async (event) => {
-    event.preventDefault();
-    try {
-      await setNewSearchValue(searchValue.value);
-      // eslint-disable-next-line no-alert
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.log(e);
-    }
-  };
   const variables = {
     searchKeyword: newSearchValue,
-    first: 30,
+    first: 15,
   };
 
-  const { photos } = usePhotos(variables);
+  const { photos, fetchMore } = usePhotos(variables);
+
+  const clickFetchMore = () => {
+    fetchMore();
+  };
 
   return (
     <div>
@@ -37,22 +30,19 @@ const Home = () => {
           <p className="header">
             Free to use. Redirect to download.
           </p>
-          <div className="container-row-0">
-            <Form onSubmit={submit}>
-              <div className="container-row-0">
-                <FormControl {...searchValue} placeholder="Search for free photos" />
-                <Button variant="light" type="submit">
-                  <i className="bi bi-search" />
-                </Button>
-              </div>
-            </Form>
-          </div>
+          <SearchBar searchValue={searchValue} setNewSearchValue={setNewSearchValue} />
         </Jumbotron>
       </div>
       <div className="p-3">
         <h1>hey</h1>
       </div>
       <PhotoList photos={photos} />
+      <div className="row-item-2">
+        <Button variant="outline-secondary" onClick={clickFetchMore}>
+          <i className="bi bi-three-dots" />
+          More photos
+        </Button>
+      </div>
     </div>
   );
 };
