@@ -10,7 +10,6 @@ import Navbar from 'react-bootstrap/Navbar';
 
 import Home from './components/Home';
 import Discover from './components/Discover';
-import DailyCover from './components/DailyCover';
 import Footer from './components/Footer';
 import Profile from './components/Profile';
 import UserLikes from './components/UserLikes';
@@ -107,7 +106,6 @@ const App = () => {
               <SignUpForm />
             </Route>
             <Route path="/" exact>
-              <DailyCover />
               <Home />
             </Route>
             <Redirect to="/" />

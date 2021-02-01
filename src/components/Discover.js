@@ -28,7 +28,7 @@ const Discover = () => {
         creditId: `${photo.id}`,
         photographer: photo.photographer,
         description: '',
-        tags: 'pexels',
+        tags: 'pexels cake',
       };
       console.log('photonow', photo, 'variables', variables);
 

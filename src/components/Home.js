@@ -1,93 +1,58 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable object-curly-newline */
-import React, { useState, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
-import { Card, CardColumns, Button } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Button, Jumbotron, Form, FormControl } from 'react-bootstrap';
 import '../index.css';
-import PhotoDetailsModal from './PhotoDetailsModal';
 import usePhotos from '../hooks/usePhotos';
-import useLikePhoto from '../hooks/useLikePhoto';
-import useAuthorizedUser from '../hooks/useAuthorizedUser';
+import useField from '../hooks/useField';
+import PhotoList from './PhotoList';
 
 // eslint-disable-next-line react/prefer-stateless-function
 const Home = () => {
-  const { photos } = usePhotos();
-  const [show, setShow] = useState(false);
-  const target = useRef(null);
-  const { authorizedUser } = useAuthorizedUser();
-  const [likePhoto] = useLikePhoto();
-  const history = useHistory();
+  const searchValue = useField('searchValue');
+  const [newSearchValue, setNewSearchValue] = useState('');
 
-  if (!photos) return null;
-
-  const showDropdown = () => {
-    setShow(!show);
-  };
-  const hideDropdown = () => {
-    setShow(false);
-  };
-
-  const collectPhoto = async (id) => {
-    if (!authorizedUser) {
-      history.push('/signin');
-    } else {
-      console.log('collect photo', id);
+  const submit = async (event) => {
+    event.preventDefault();
+    try {
+      await setNewSearchValue(searchValue.value);
+      // eslint-disable-next-line no-alert
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.log(e);
     }
   };
-
-  const likeSinglePhoto = async (id) => {
-    if (!authorizedUser) {
-      history.push('/signin');
-    } else {
-      console.log('like photo', id);
-      await likePhoto({ photoId: id });
-    }
+  const variables = {
+    searchKeyword: newSearchValue,
+    first: 30,
   };
 
-  const allPhotos = photos.edges
-    ? photos.edges.map((edge) => edge.node)
-    : [];
-
-  console.log('photos', allPhotos);
-
-  // const photoPage = (url) => {
-  //   console.log('open photopage', url);
-  // };
+  const { photos } = usePhotos(variables);
 
   return (
-    <div className="p-3">
-      <>
-        <h1>hey</h1>
-      </>
-      <CardColumns className="sm my-2 my-lg-5">
-        {allPhotos.map((photo) => (
-          <Card key={photo.id}>
-            <Card.Img src={photo.small} alt="Card image" />
-            <Card.ImgOverlay className="sm" ref={target} onEntered={showDropdown} onExit={hideDropdown}>
-              <div className="wrapper">
-                <div id={photo.id} className="button-0">
-                  <Button variant="light" onClick={() => window.open(photo.downloadPage)}>
-                    <i className="bi bi-download" />
-                  </Button>
-                </div>
-                <div className="button-0">
-                  <Button variant="light" onClick={() => collectPhoto(photo.id)}>
-                    <i className="bi bi-plus-square" />
-                  </Button>
-                </div>
-                <div className="button-0">
-                  <Button variant="light" onClick={() => likeSinglePhoto(photo.id)}>
-                    <i className="bi bi-heart" />
-                  </Button>
-                </div>
-                <div className="button-0">
-                  <PhotoDetailsModal photo={photo} />
-                </div>
+    <div>
+      <div>
+        <Jumbotron className="jumbotron">
+          <h1 className="header">Select the best free stock photos for you.</h1>
+          <p className="header">
+            Free to use. Redirect to download.
+          </p>
+          <div className="container-row-0">
+            <Form onSubmit={submit}>
+              <div className="container-row-0">
+                <FormControl {...searchValue} placeholder="Search for free photos" />
+                <Button variant="light" type="submit">
+                  <i className="bi bi-search" />
+                </Button>
               </div>
-            </Card.ImgOverlay>
-          </Card>
-        ))}
-      </CardColumns>
+            </Form>
+          </div>
+        </Jumbotron>
+      </div>
+      <div className="p-3">
+        <h1>hey</h1>
+      </div>
+      <PhotoList photos={photos} />
     </div>
   );
 };
