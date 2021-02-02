@@ -172,3 +172,11 @@ export const GET_COLLECTIONS = gql`
     }
   }
 `;
+
+export const IS_LIKED_PHOTO = gql`
+  query isLikedPhoto {
+    isLikedPhoto {
+      id
+    }
+  }
+`;

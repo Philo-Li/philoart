@@ -4,7 +4,7 @@ import React from 'react';
 import { Jumbotron, Button } from 'react-bootstrap';
 import '../index.css';
 import usePhotos from '../hooks/usePhotos';
-import PhotoList from './PhotoList';
+import HomePhotoList from './HomePhotoList';
 import SearchBar from './SearchBar';
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -36,7 +36,7 @@ const Home = ({ searchValue, newSearchValue, setNewSearchValue }) => {
       <div className="p-3">
         <h1>hey</h1>
       </div>
-      <PhotoList photos={photos} />
+      <HomePhotoList photos={photos} />
       <div className="row-item-2">
         <Button variant="outline-secondary" onClick={clickFetchMore}>
           <i className="bi bi-three-dots" />
