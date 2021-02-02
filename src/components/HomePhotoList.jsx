@@ -3,7 +3,7 @@ import '../index.css';
 import PhotoListContainer from './PhotoListContainer';
 
 // eslint-disable-next-line react/prefer-stateless-function
-const HomePhotoList = ({ photos }) => {
+const HomePhotoList = ({ photos, fetchMore }) => {
   if (photos === undefined) return null;
 
   const allPhotos = photos.edges
@@ -14,7 +14,7 @@ const HomePhotoList = ({ photos }) => {
 
   return (
     <div className="p-3">
-      <PhotoListContainer allPhotos={allPhotos} />
+      <PhotoListContainer allPhotos={allPhotos} fetchMore={fetchMore} />
     </div>
   );
 };

@@ -7,7 +7,7 @@ import PhotoDetailsModal from './PhotoDetailsModal';
 import '../index.css';
 
 // eslint-disable-next-line react/prefer-stateless-function
-const PhotoCard = ({ photo, collectPhoto, likeSinglePhoto, showHeart }) => {
+const PhotoCard = ({ photo, collectPhoto, likeSinglePhoto }) => {
   if (!photo) return null;
 
   return (
@@ -27,8 +27,8 @@ const PhotoCard = ({ photo, collectPhoto, likeSinglePhoto, showHeart }) => {
               </Button>
             </div>
             <div className="button-0">
-              <Button variant="light" onClick={() => likeSinglePhoto(photo.id)}>
-                <i className={showHeart(photo.id)} />
+              <Button variant="light" onClick={() => likeSinglePhoto(photo)}>
+                <i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />
               </Button>
             </div>
             <div className="button-0">

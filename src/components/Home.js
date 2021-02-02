@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable object-curly-newline */
 import React from 'react';
-import { Jumbotron, Button } from 'react-bootstrap';
+import { Jumbotron } from 'react-bootstrap';
 import '../index.css';
 import usePhotos from '../hooks/usePhotos';
 import HomePhotoList from './HomePhotoList';
@@ -18,10 +18,6 @@ const Home = ({ searchValue, newSearchValue, setNewSearchValue }) => {
 
   const { photos, fetchMore } = usePhotos(variables);
 
-  const clickFetchMore = () => {
-    fetchMore();
-  };
-
   return (
     <div>
       <div>
@@ -36,13 +32,7 @@ const Home = ({ searchValue, newSearchValue, setNewSearchValue }) => {
       <div className="p-3">
         <h1>hey</h1>
       </div>
-      <HomePhotoList photos={photos} />
-      <div className="row-item-2">
-        <Button variant="outline-secondary" onClick={clickFetchMore}>
-          <i className="bi bi-three-dots" />
-          More photos
-        </Button>
-      </div>
+      <HomePhotoList photos={photos} fetchMore={fetchMore} />
     </div>
   );
 };
