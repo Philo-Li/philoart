@@ -5,7 +5,7 @@ import React from 'react';
 import '../index.css';
 
 import useUserLikes from '../hooks/useUserLikes';
-import PhotoListContainer from './PhotoListContainer';
+import UserLikesListContainer from './UserLikesListContainer';
 
 // eslint-disable-next-line react/prefer-stateless-function
 const UserLikes = () => {
@@ -21,7 +21,7 @@ const UserLikes = () => {
 
   return (
     <div className="p-3">
-      <PhotoListContainer allPhotos={allPhotos} />
+      <UserLikesListContainer allPhotos={allPhotos} />
     </div>
   );
 };

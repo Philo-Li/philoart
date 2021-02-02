@@ -1,15 +1,17 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable object-curly-newline */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Jumbotron } from 'react-bootstrap';
 import '../index.css';
 import usePhotos from '../hooks/usePhotos';
 import HomePhotoList from './HomePhotoList';
 import SearchBar from './SearchBar';
+import useAuthorizedUser from '../hooks/useAuthorizedUser';
 
 // eslint-disable-next-line react/prefer-stateless-function
 const Home = ({ searchValue, newSearchValue, setNewSearchValue }) => {
-  console.log('searchValue, newSearchValue', searchValue, newSearchValue);
+  const [allPhotos, setAllPhotos] = useState();
+  const { authorizedUser } = useAuthorizedUser();
 
   const variables = {
     searchKeyword: newSearchValue,
@@ -17,6 +19,32 @@ const Home = ({ searchValue, newSearchValue, setNewSearchValue }) => {
   };
 
   const { photos, fetchMore } = usePhotos(variables);
+
+  useEffect(() => {
+    if (photos) {
+      const temp = photos && photos.edges
+        ? photos.edges.map((edge) => edge.node)
+        : [];
+
+      const updatedAllPhotos = temp.map((photo) => {
+        const photoLikes = photo.likes && photo.likes.edges
+          ? photo.likes.edges.map((edge) => edge.node)
+          : [];
+
+        const findUser = photoLikes.find((like) => like.user.id === authorizedUser.id);
+        return findUser ? { ...photo, isLiked: true } : { ...photo, isLiked: false };
+      });
+      console.log('updatedAllPhotos', updatedAllPhotos);
+
+      setAllPhotos(updatedAllPhotos);
+    }
+  }, [photos]);
+
+  const clickFetchMore = () => {
+    fetchMore();
+    console.log('now photos', photos);
+    console.log('now all photos', allPhotos);
+  };
 
   return (
     <div>
@@ -32,7 +60,11 @@ const Home = ({ searchValue, newSearchValue, setNewSearchValue }) => {
       <div className="p-3">
         <h1>hey</h1>
       </div>
-      <HomePhotoList photos={photos} fetchMore={fetchMore} />
+      <HomePhotoList
+        allPhotos={allPhotos}
+        setAllPhotos={setAllPhotos}
+        clickFetchMore={clickFetchMore}
+      />
     </div>
   );
 };

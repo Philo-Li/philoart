@@ -8,7 +8,7 @@ import useAuthorizedUser from '../hooks/useAuthorizedUser';
 import PhotoCard from './PhotoCard';
 
 // eslint-disable-next-line react/prefer-stateless-function
-const PhotoListContainer = ({ allPhotos, fetchMore }) => {
+const UserLikesListContainer = ({ allPhotos, fetchMore }) => {
   const { authorizedUser } = useAuthorizedUser();
   const [likePhoto] = useLikePhoto();
   const history = useHistory();
@@ -79,4 +79,4 @@ const PhotoListContainer = ({ allPhotos, fetchMore }) => {
   );
 };
 
-export default PhotoListContainer;
+export default UserLikesListContainer;
