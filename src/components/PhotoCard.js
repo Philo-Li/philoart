@@ -32,7 +32,11 @@ const PhotoCard = ({ photo, collectPhoto, likeSinglePhoto }) => {
               </Button>
             </div>
             <div className="button-0">
-              <PhotoDetailsModal photo={photo} />
+              <PhotoDetailsModal
+                photo={photo}
+                collectPhoto={collectPhoto}
+                likeSinglePhoto={likeSinglePhoto}
+              />
             </div>
           </div>
         </Card.ImgOverlay>

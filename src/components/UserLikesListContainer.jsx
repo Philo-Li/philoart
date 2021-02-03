@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { CardColumns, Button } from 'react-bootstrap';
 import '../index.css';
 import useLikePhoto from '../hooks/useLikePhoto';
+import useUnlikePhoto from '../hooks/useUnlikePhoto';
 import useAuthorizedUser from '../hooks/useAuthorizedUser';
 import PhotoCard from './PhotoCard';
 
@@ -10,6 +11,7 @@ import PhotoCard from './PhotoCard';
 const UserLikesListContainer = ({ allPhotos, setAllPhotos, clickFetchMore }) => {
   const { authorizedUser } = useAuthorizedUser();
   const [likePhoto] = useLikePhoto();
+  const [unlikePhoto] = useUnlikePhoto();
   const history = useHistory();
 
   if (!allPhotos === undefined) return null;
@@ -26,12 +28,22 @@ const UserLikesListContainer = ({ allPhotos, setAllPhotos, clickFetchMore }) => 
     if (!authorizedUser) {
       history.push('/signin');
     } else {
-      console.log('like photo', photo.id);
       const updatedPhoto = { ...photo, isLiked: !photo.isLiked };
       console.log('updatedPhoto', updatedPhoto);
       const temp = allPhotos.map((obj) => (obj.id === photo.id ? updatedPhoto : obj));
       setAllPhotos(temp);
-      await likePhoto({ photoId: photo.id });
+      if (photo.isLiked) {
+        const photoLikes = photo.likes && photo.likes.edges
+          ? photo.likes.edges.map((edge) => edge.node)
+          : [];
+
+        const likedId = photoLikes.find((like) => like.user.id === authorizedUser.id);
+        console.log('unlike photo', photo.id);
+        await unlikePhoto({ id: likedId.id });
+      } else {
+        console.log('like photo', photo.id);
+        await likePhoto({ photoId: photo.id });
+      }
     }
   };
 

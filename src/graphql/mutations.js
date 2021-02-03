@@ -76,3 +76,9 @@ export const LIKE_PHOTO = gql`
     }
   }
 `;
+
+export const UNLIKE_PHOTO = gql`
+  mutation unlikePhoto( $id: ID! ) {
+    unlikePhoto( id: $id )
+  }
+`;

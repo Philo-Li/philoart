@@ -2,35 +2,12 @@
 /* eslint-disable no-alert */
 /* eslint-disable arrow-body-style */
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { Modal, Button, Image, Card } from 'react-bootstrap';
-import useLikePhoto from '../hooks/useLikePhoto';
 import PhotoMoreDetailsModal from './PhotoMoreDetailsModal';
-import useAuthorizedUser from '../hooks/useAuthorizedUser';
 import '../index.css';
 
-const PhotoDetailsModal = ({ photo }) => {
+const PhotoDetailsModal = ({ photo, collectPhoto, likeSinglePhoto }) => {
   const [show, setShow] = useState(false);
-  const { authorizedUser } = useAuthorizedUser();
-  const [likePhoto] = useLikePhoto();
-  const history = useHistory();
-
-  const collectPhoto = async (id) => {
-    if (!authorizedUser) {
-      history.push('/signin');
-    } else {
-      console.log('collect photo', id);
-    }
-  };
-
-  const likeSinglePhoto = async (id) => {
-    if (!authorizedUser) {
-      history.push('/signin');
-    } else {
-      console.log('like photo', id);
-      await likePhoto({ photoId: id });
-    }
-  };
 
   return (
     <>
@@ -71,7 +48,7 @@ const PhotoDetailsModal = ({ photo }) => {
                     </Button>
                   </div>
                   <div className="button-0">
-                    <Button variant="light" size="lg" onClick={() => likeSinglePhoto(photo.id)}>
+                    <Button variant="light" size="lg" onClick={() => likeSinglePhoto(photo)}>
                       <i className="bi bi-heart" />
                     </Button>
                   </div>
