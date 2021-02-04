@@ -4,10 +4,11 @@
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 import PhotoDetailsModal from './PhotoDetailsModal';
+import SaveToCollectionsModal from './SaveToCollectionsModal';
 import '../index.css';
 
 // eslint-disable-next-line react/prefer-stateless-function
-const PhotoCard = ({ photo, collectPhoto, likeSinglePhoto }) => {
+const PhotoCard = ({ photo, allCollections, setAllCollections, likeSinglePhoto }) => {
   if (!photo) return null;
 
   return (
@@ -22,19 +23,27 @@ const PhotoCard = ({ photo, collectPhoto, likeSinglePhoto }) => {
               </Button>
             </div>
             <div className="button-0">
-              <Button variant="light" onClick={() => collectPhoto(photo.id)}>
-                <i className="bi bi-plus-square" />
-              </Button>
+              <SaveToCollectionsModal
+                photo={photo}
+                allCollections={allCollections}
+                setAllCollections={setAllCollections}
+              />
             </div>
             <div className="button-0">
               <Button variant="light" onClick={() => likeSinglePhoto(photo)}>
-                <i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />
+                {!photo.isLiked && (<i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />)}
+                {photo.isLiked && (
+                  <div className="red-icon">
+                    <i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />
+                  </div>
+                )}
               </Button>
             </div>
             <div className="button-0">
               <PhotoDetailsModal
                 photo={photo}
-                collectPhoto={collectPhoto}
+                allCollections={allCollections}
+                setAllcollections={setAllCollections}
                 likeSinglePhoto={likeSinglePhoto}
               />
             </div>

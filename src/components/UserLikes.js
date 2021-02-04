@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable react/style-prop-object */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable object-curly-newline */
@@ -6,11 +7,15 @@ import '../index.css';
 
 import useUserLikes from '../hooks/useUserLikes';
 import UserLikesListContainer from './UserLikesListContainer';
+import useAuthorizedUser from '../hooks/useAuthorizedUser';
 
 // eslint-disable-next-line react/prefer-stateless-function
 const UserLikes = () => {
-  const { likes, fetchMore } = useUserLikes({ first: 15 });
-  const [allPhotos, setAllPhotos] = useState();
+  const [allLikedPhotos, setAllLikedPhotos] = useState();
+  const { authorizedUser } = useAuthorizedUser();
+
+  const { likes, fetchMore } = useUserLikes({ userId: authorizedUser && authorizedUser.id, first: 15 });
+  console.log('likeslikes', likes);
 
   useEffect(() => {
     if (likes) {
@@ -21,23 +26,23 @@ const UserLikes = () => {
       const updatedAllPhotos = temp.map((photo) => ({ ...photo, isLiked: true }));
       console.log('updatedAllPhotos', updatedAllPhotos);
 
-      setAllPhotos(updatedAllPhotos);
+      setAllLikedPhotos(updatedAllPhotos);
     }
   }, [likes]);
 
-  console.log('user likes list', likes);
+  console.log('user likes list + user', likes, authorizedUser);
 
   const clickFetchMore = () => {
     fetchMore();
   };
 
-  if (!allPhotos) return null;
+  if (!allLikedPhotos) return null;
 
   return (
     <div className="p-3">
       <UserLikesListContainer
-        allPhotos={allPhotos}
-        setAllPhotos={setAllPhotos}
+        allPhotos={allLikedPhotos}
+        setAllPhotos={setAllLikedPhotos}
         clickFetchMore={clickFetchMore}
       />
     </div>

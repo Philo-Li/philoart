@@ -3,10 +3,11 @@
 /* eslint-disable arrow-body-style */
 import React, { useState } from 'react';
 import { Modal, Button, Image, Card } from 'react-bootstrap';
+import SaveToCollectionsModal from './SaveToCollectionsModal';
 import PhotoMoreDetailsModal from './PhotoMoreDetailsModal';
 import '../index.css';
 
-const PhotoDetailsModal = ({ photo, collectPhoto, likeSinglePhoto }) => {
+const PhotoDetailsModal = ({ photo, allCollections, setAllCollections, likeSinglePhoto }) => {
   const [show, setShow] = useState(false);
 
   return (
@@ -43,13 +44,20 @@ const PhotoDetailsModal = ({ photo, collectPhoto, likeSinglePhoto }) => {
                     </Button>
                   </div>
                   <div className="button-0">
-                    <Button variant="light" size="lg" onClick={() => collectPhoto(photo.id)}>
-                      <i className="bi bi-plus-square" />
-                    </Button>
+                    <SaveToCollectionsModal
+                      photo={photo}
+                      allCollections={allCollections}
+                      setAllCollections={setAllCollections}
+                    />
                   </div>
                   <div className="button-0">
                     <Button variant="light" size="lg" onClick={() => likeSinglePhoto(photo)}>
-                      <i className="bi bi-heart" />
+                      {!photo.isLiked && (<i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />)}
+                      {photo.isLiked && (
+                        <div className="red-icon">
+                          <i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />
+                        </div>
+                      )}
                     </Button>
                   </div>
                   <div className="button-0">

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable object-curly-newline */
 import React from 'react';
 import { useHistory } from 'react-router-dom';
@@ -9,19 +10,11 @@ import PhotoCard from './PhotoCard';
 import useUnlikePhoto from '../hooks/useUnlikePhoto';
 
 // eslint-disable-next-line react/prefer-stateless-function
-const HomePhotoListContainer = ({ allPhotos, setAllPhotos, clickFetchMore }) => {
+const HomePhotoListContainer = ({ allPhotos, setAllPhotos, clickFetchMore, allCollections, setAllCollections }) => {
   const { authorizedUser } = useAuthorizedUser();
   const [likePhoto] = useLikePhoto();
   const [unlikePhoto] = useUnlikePhoto();
   const history = useHistory();
-
-  const collectPhoto = async (id) => {
-    if (!authorizedUser) {
-      history.push('/signin');
-    } else {
-      console.log('collect photo', id);
-    }
-  };
 
   const likeSinglePhoto = async (photo) => {
     if (!authorizedUser) {
@@ -53,7 +46,8 @@ const HomePhotoListContainer = ({ allPhotos, setAllPhotos, clickFetchMore }) => 
           <PhotoCard
             key={photo.id}
             photo={photo}
-            collectPhoto={collectPhoto}
+            allCollections={allCollections}
+            setAllCollections={setAllCollections}
             likeSinglePhoto={likeSinglePhoto}
           />
         ))}

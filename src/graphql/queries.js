@@ -96,12 +96,14 @@ export const GET_USER_LIKES = gql`
     $orderDirection: OrderDirection
     $first: Int
     $after: String
+    $userId: String
   ) {
     likes(
       orderBy: $orderBy
       orderDirection: $orderDirection
       first: $first
       after: $after
+      userId: $userId
     ) {
       edges {
         node {

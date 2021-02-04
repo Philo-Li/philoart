@@ -36,6 +36,12 @@
   align-self: flex-end;
 }
 
+.button-1 {
+  display: flex;
+  justify-content: center;
+  margin-right: 1rem;
+}
+
 .item-0 {
   flex-grow: 1;
   flex-shrink: 0;
@@ -93,6 +99,20 @@
   margin-bottom: 2rem;
 }
 
+.row-item-3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.green-icon {
+  color:yellowgreen;
+}
+
+.red-icon {
+  color:crimson;
+}
+
 .subtitle {
   color: #5860699c;
   font-size: 16;
@@ -118,4 +138,9 @@
   font-size: 20px;
   border-radius: 10px;
   width:50%;
+}
+
+.cover1 {
+  background-image: url('https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-gallery-vector-icon-png-image_470660.jpg');
+  background-size: cover;
 }

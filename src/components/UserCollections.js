@@ -8,8 +8,9 @@ import '../index.css';
 import useCollections from '../hooks/useCollections';
 import useAuthorizedUser from '../hooks/useAuthorizedUser';
 
+const cover = 'https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-gallery-vector-icon-png-image_470660.jpg';
 // eslint-disable-next-line react/prefer-stateless-function
-const UserLikes = () => {
+const UserCollections = () => {
   const { authorizedUser } = useAuthorizedUser();
   const { collections } = useCollections();
 
@@ -29,8 +30,10 @@ const UserLikes = () => {
       <CardColumns className="sm my-2 my-lg-5">
         {allCollections.map((collection) => (
           <Card key={collection.id}>
-            <Card.Title>{collection.title}</Card.Title>
-            <Card.Img src={collection.cover} alt="Card image" />
+            <Card.Img src={collection.cover ? collection.cover : cover} alt="Card image" />
+            <Card.Title>
+              <p className="row-item-0">{collection.title}</p>
+            </Card.Title>
           </Card>
         ))}
       </CardColumns>
@@ -38,4 +41,4 @@ const UserLikes = () => {
   );
 };
 
-export default UserLikes;
+export default UserCollections;
