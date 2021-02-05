@@ -85,12 +85,6 @@ const App = () => {
             <Route path="/discover" exact>
               <Discover />
             </Route>
-            <Route path="/signin" exact>
-              <SignInForm />
-            </Route>
-            <Route path="/signup" exact>
-              <SignUpForm />
-            </Route>
             <Route path="/license" exact>
               <Home />
             </Route>
@@ -104,6 +98,12 @@ const App = () => {
             </Route>
             <Route path="photo/:id" exact>
               <PhotoDetails />
+            </Route>
+            <Route path="/signin" exact>
+              <SignInForm />
+            </Route>
+            <Route path="/signup" exact>
+              <SignUpForm />
             </Route>
             <Route path="/FAQ" exact>
               <SignInForm />

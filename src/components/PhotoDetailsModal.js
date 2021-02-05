@@ -12,7 +12,7 @@ const PhotoDetailsModal = ({ photo, allCollections, setAllCollections, likeSingl
 
   return (
     <>
-      <Button className="button1" variant="info" onClick={() => setShow(true)}>
+      <Button size="sm" className="button1" variant="info" onClick={() => setShow(true)}>
         Details
       </Button>
 

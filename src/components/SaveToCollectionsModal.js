@@ -1,11 +1,12 @@
+/* eslint-disable max-len */
 /* eslint-disable object-curly-newline */
 /* eslint-disable no-alert */
 /* eslint-disable arrow-body-style */
 import React, { useState } from 'react';
 // import { useHistory } from 'react-router-dom';
-import { Modal, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Modal, Button, OverlayTrigger, Tooltip, Card, Accordion } from 'react-bootstrap';
+import '../MDB-Free_4.19.2/css/mdb.css';
 import UserCollectionsList from './UserCollectionsList';
-// import useAuthorizedUser from '../hooks/useAuthorizedUser';
 import '../index.css';
 
 const SaveToCollectionsModal = ({ photo, allCollections, setAllCollections }) => {
@@ -50,7 +51,7 @@ const SaveToCollectionsModal = ({ photo, allCollections, setAllCollections }) =>
 
   return (
     <>
-      <Button className="button1" variant="light" onClick={() => handleShowModal()}>
+      <Button size="sm" className="button1" variant="light" onClick={() => handleShowModal()}>
         <i className="bi bi-plus-square" />
       </Button>
 
@@ -81,9 +82,30 @@ const SaveToCollectionsModal = ({ photo, allCollections, setAllCollections }) =>
                 <div id={photo.id}>
                   <OverlayTrigger overlay={<Tooltip id="tooltip-create-collection">Create collection</Tooltip>}>
                     <span className="d-inline-block">
-                      <Button variant="info" size="lg" onClick={() => createNewCollection()}>
-                        <i className="bi bi-plus-circle" />
-                      </Button>
+                      <Accordion>
+                        <Card>
+                          <Card.Header>
+                            <Accordion.Toggle as={Card.Header} eventKey="0" onClick={() => createNewCollection()}>
+                              <i className="bi bi-plus-circle" />
+                            </Accordion.Toggle>
+                          </Card.Header>
+                          <Accordion.Collapse eventKey="0">
+                            <div>
+                              <div className="view zoom overlay">
+                                <img src={photo.small} className="card-img-100" alt="smaple" />
+                                <div className="mask flex-center rgba-blue-light white-text">
+                                  <i size="lg" className="bi bi-check-square" />
+                                </div>
+                              </div>
+                              <Card.Title>
+                                <div className="flex-center">
+                                  title
+                                </div>
+                              </Card.Title>
+                            </div>
+                          </Accordion.Collapse>
+                        </Card>
+                      </Accordion>
                     </span>
                   </OverlayTrigger>
                 </div>

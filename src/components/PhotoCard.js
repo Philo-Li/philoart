@@ -17,8 +17,8 @@ const PhotoCard = ({ photo, allCollections, setAllCollections, likeSinglePhoto }
         <Card.Img src={photo.small} alt="Card image" />
         <Card.ImgOverlay className="sm">
           <div className="wrapper">
-            <div id={photo.id} className="button-0">
-              <Button variant="light" onClick={() => window.open(photo.downloadPage)}>
+            <div id={photo.id} className="wrapper">
+              <Button variant="light" size="sm" onClick={() => window.open(photo.downloadPage)}>
                 <i className="bi bi-download" />
               </Button>
             </div>
@@ -30,7 +30,7 @@ const PhotoCard = ({ photo, allCollections, setAllCollections, likeSinglePhoto }
               />
             </div>
             <div className="button-0">
-              <Button variant="light" onClick={() => likeSinglePhoto(photo)}>
+              <Button variant="light" size="sm" onClick={() => likeSinglePhoto(photo)}>
                 {!photo.isLiked && (<i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />)}
                 {photo.isLiked && (
                   <div className="red-icon">
