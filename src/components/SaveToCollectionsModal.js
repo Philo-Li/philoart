@@ -7,17 +7,15 @@ import React, { useState } from 'react';
 import { Modal, Button, OverlayTrigger, Tooltip, Card, Accordion } from 'react-bootstrap';
 import '../MDB-Free_4.19.2/css/mdb.css';
 import UserCollectionsList from './UserCollectionsList';
-// import useCollectPhoto from '../hooks/useCollectPhoto';
 import '../index.css';
 
-const SaveToCollectionsModal = ({ photo, allCollections, collectSinglePhoto }) => {
+const SaveToCollectionsModal = ({ photo, collectSinglePhoto }) => {
   const [show, setShow] = useState(false);
   const [collectionsToShow, setCollectionsToShow] = useState();
-  // const [collectPhoto] = useCollectPhoto();
 
   const handleShowModal = () => {
     setShow(true);
-    const updatedAllCollections = allCollections.map((collection) => {
+    const updatedAllCollections = photo.allCollectionsToShow.map((collection) => {
       const collectedPhotos = collection.photos && collection.photos.edges
         ? collection.photos.edges.map((edge) => edge.node)
         : [];
@@ -28,26 +26,6 @@ const SaveToCollectionsModal = ({ photo, allCollections, collectSinglePhoto }) =
     setCollectionsToShow(updatedAllCollections);
     console.log('updatedAllCollections', updatedAllCollections);
   };
-
-  // const collectSinglePhoto = async (photoToCollect, collection) => {
-  //   const updatedCollection = { ...collection, isCollected: !collection.isCollected };
-  //   console.log('updatedCollection', updatedCollection);
-  //   const temp = allCollections.map((obj) => (obj.id === collection.id ? updatedCollection : obj));
-  //   setAllCollections(temp);
-  //   if (collection.isCollected) {
-  //     // const photoLikes = photo.likes && photo.likes.edges
-  //     //   ? photo.likes.edges.map((edge) => edge.node)
-  //     //   : [];
-
-  //     // const likedId = photoLikes.find((like) => like.user.id === authorizedUser.id);
-  //     console.log('uncollect photo', photoToCollect.id, collection.id);
-  //     // await uncollectPhoto({ id: likedId.id });
-  //   } else {
-  //     const collectedPhoto = await collectPhoto({ photoId: photo.id, collectionId: collection.id });
-  //     console.log('collect photo', photoToCollect.id, collection.id);
-  //     console.log('result', collectedPhoto);
-  //   }
-  // };
 
   const createNewCollection = () => {
     console.log('create new collection');

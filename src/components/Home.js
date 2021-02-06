@@ -72,6 +72,7 @@ const Home = ({ searchValue, newSearchValue, setNewSearchValue }) => {
         : [];
       setAllCollections(temp);
     }
+    console.log('first effect collections', allCollections);
   }, [collections]);
 
   return (
@@ -93,8 +94,6 @@ const Home = ({ searchValue, newSearchValue, setNewSearchValue }) => {
         setAllPhotos={setAllPhotos}
         clickFetchMore={clickFetchMore}
         authorizedUser={authorizedUser}
-        allCollections={allCollections}
-        setAllCollections={setAllCollections}
       />
     </div>
   );

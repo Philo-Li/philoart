@@ -10,8 +10,7 @@ import PhotoCard from './PhotoCard';
 import useUnlikePhoto from '../hooks/useUnlikePhoto';
 import useCollectPhoto from '../hooks/useCollectPhoto';
 
-// eslint-disable-next-line react/prefer-stateless-function
-const HomePhotoListContainer = ({ allPhotos, setAllPhotos, clickFetchMore, allCollections, setAllCollections }) => {
+const HomePhotoListContainer = ({ allPhotos, setAllPhotos, clickFetchMore }) => {
   const { authorizedUser } = useAuthorizedUser();
   const [likePhoto] = useLikePhoto();
   const [unlikePhoto] = useUnlikePhoto();
@@ -22,9 +21,7 @@ const HomePhotoListContainer = ({ allPhotos, setAllPhotos, clickFetchMore, allCo
     if (!authorizedUser) {
       history.push('/signin');
     } else {
-      const updatedPhoto = { ...photo, isLiked: !photo.isLiked };
-      console.log('updatedPhoto', updatedPhoto);
-      const temp = allPhotos.map((obj) => (obj.id === photo.id ? updatedPhoto : obj));
+      const temp = allPhotos.map((obj) => (obj.id === photo.id ? { ...obj, isLiked: !obj.isLiked } : obj));
       setAllPhotos(temp);
       if (photo.isLiked) {
         const photoLikes = photo.likes && photo.likes.edges
@@ -44,8 +41,8 @@ const HomePhotoListContainer = ({ allPhotos, setAllPhotos, clickFetchMore, allCo
   const collectSinglePhoto = async (photo, collection) => {
     const updatedCollection = { ...collection, isCollected: !collection.isCollected };
     console.log('updatedCollection', updatedCollection);
-    const temp = allCollections.map((obj) => (obj.id === collection.id ? updatedCollection : obj));
-    setAllCollections(temp);
+    // const temp = allCollections.map((obj) => (obj.id === collection.id ? updatedCollection : obj));
+    // setAllCollections(temp);
     if (collection.isCollected) {
       // const photoLikes = photo.likes && photo.likes.edges
       //   ? photo.likes.edges.map((edge) => edge.node)
@@ -68,8 +65,6 @@ const HomePhotoListContainer = ({ allPhotos, setAllPhotos, clickFetchMore, allCo
           <PhotoCard
             key={photo.id}
             photo={photo}
-            allCollections={allCollections}
-            setAllCollections={setAllCollections}
             likeSinglePhoto={likeSinglePhoto}
             collectSinglePhoto={collectSinglePhoto}
           />
