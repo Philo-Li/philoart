@@ -1,6 +1,4 @@
 /* eslint-disable max-len */
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable object-curly-newline */
 import React, { useState, useEffect } from 'react';
 import { Jumbotron } from 'react-bootstrap';
 import '../index.css';
@@ -10,7 +8,6 @@ import HomePhotoList from './HomePhotoList';
 import SearchBar from './SearchBar';
 import useAuthorizedUser from '../hooks/useAuthorizedUser';
 
-// eslint-disable-next-line react/prefer-stateless-function
 const Home = ({ searchValue, newSearchValue, setNewSearchValue }) => {
   const [allPhotos, setAllPhotos] = useState();
   const [allCollections, setAllCollections] = useState();
@@ -22,9 +19,13 @@ const Home = ({ searchValue, newSearchValue, setNewSearchValue }) => {
   };
 
   const { photos, fetchMore } = usePhotos(variables);
+  const { collections } = useCollections({
+    userId: authorizedUser && authorizedUser.id,
+    first: 30,
+  });
 
   useEffect(() => {
-    if (photos) {
+    if (photos && allCollections) {
       const temp = photos && photos.edges
         ? photos.edges.map((edge) => edge.node)
         : [];
@@ -37,42 +38,41 @@ const Home = ({ searchValue, newSearchValue, setNewSearchValue }) => {
             ? photo.likes.edges.map((edge) => edge.node)
             : [];
 
-          const findUser = photoLikes && photoLikes.find((like) => like.user.id === authorizedUser.id);
-          return findUser ? { ...photo, isLiked: true } : { ...photo, isLiked: false };
+          const findUserLike = photoLikes && photoLikes.find((like) => like.user.id === authorizedUser.id);
+          const photoInCollections = photo.collections && photo.collections.edges
+            ? photo.collections.edges.map((edge) => edge.node)
+            : [];
+          const collectionsToShow = allCollections.map((collection) => {
+            const findCollected = photoInCollections.find((obj) => obj.id === collection.id);
+            return findCollected ? { ...collection, isCollected: true } : { ...collection, isCollected: false };
+          });
+          const updatedPhoto = {
+            ...photo,
+            isLiked: findUserLike != null,
+            allCollectionsToShow: collectionsToShow,
+          };
+          return updatedPhoto;
         });
-        console.log('updatedAllPhotos', updatedAllPhotos);
         setAllPhotos(updatedAllPhotos);
       }
-      console.log('updatedAllPhotos', allPhotos);
     }
-  }, [photos]);
-
-  const { collections } = useCollections({ userId: authorizedUser && authorizedUser.id, first: 15 });
-
-  useEffect(() => {
-    if (collections) {
-      const temp = collections && collections.edges
-        ? collections.edges.map((edge) => edge.node)
-        : [];
-      // const updatedAllCollections = temp.map((collection) => {
-      //   const collectedPhotos = collection.photos && collection.photos.edges
-      //     ? collection.photos.edges.map((edge) => edge.node)
-      //     : [];
-
-      //   const findPhoto = collectedPhotos.find((obj) => obj.id === photo.id);
-      //   return findPhoto ? { ...collection, isCollected: true } : { ...collection, isCollected: false };
-      // });
-      // console.log('updatedAllCollections', updatedAllCollections);
-      console.log('collections', temp);
-      setAllCollections(temp);
-    }
-  }, [collections]);
+    console.log('first photos', photos);
+    console.log('updatedAllPhotos', allPhotos);
+    console.log('first collections', allCollections);
+  }, [photos, allCollections]);
 
   const clickFetchMore = () => {
     fetchMore();
-    console.log('now photos', photos);
-    console.log('now all photos', allPhotos);
   };
+
+  useEffect(() => {
+    if (authorizedUser && collections) {
+      const temp = collections && collections.edges
+        ? collections.edges.map((edge) => edge.node)
+        : [];
+      setAllCollections(temp);
+    }
+  }, [collections]);
 
   return (
     <div>
@@ -92,6 +92,7 @@ const Home = ({ searchValue, newSearchValue, setNewSearchValue }) => {
         allPhotos={allPhotos}
         setAllPhotos={setAllPhotos}
         clickFetchMore={clickFetchMore}
+        authorizedUser={authorizedUser}
         allCollections={allCollections}
         setAllCollections={setAllCollections}
       />

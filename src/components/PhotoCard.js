@@ -8,7 +8,7 @@ import SaveToCollectionsModal from './SaveToCollectionsModal';
 import '../index.css';
 
 // eslint-disable-next-line react/prefer-stateless-function
-const PhotoCard = ({ photo, allCollections, setAllCollections, likeSinglePhoto }) => {
+const PhotoCard = ({ photo, allCollections, likeSinglePhoto, collectSinglePhoto }) => {
   if (!photo) return null;
 
   return (
@@ -26,7 +26,7 @@ const PhotoCard = ({ photo, allCollections, setAllCollections, likeSinglePhoto }
               <SaveToCollectionsModal
                 photo={photo}
                 allCollections={allCollections}
-                setAllCollections={setAllCollections}
+                collectSinglePhoto={collectSinglePhoto}
               />
             </div>
             <div className="button-0">
@@ -43,7 +43,7 @@ const PhotoCard = ({ photo, allCollections, setAllCollections, likeSinglePhoto }
               <PhotoDetailsModal
                 photo={photo}
                 allCollections={allCollections}
-                setAllcollections={setAllCollections}
+                collectSinglePhoto={collectSinglePhoto}
                 likeSinglePhoto={likeSinglePhoto}
               />
             </div>

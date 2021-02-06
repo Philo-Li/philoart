@@ -9,15 +9,15 @@ import '../index.css';
 
 const cover = galleryIcon;
 // eslint-disable-next-line react/prefer-stateless-function
-const UserCollectionsList = ({ photo, allCollections, collectSinglePhoto }) => {
-  if (!allCollections) return null;
+const UserCollectionsList = ({ photo, collectionsToShow, collectSinglePhoto }) => {
+  if (!collectionsToShow) return null;
 
   return (
     <div className="p-3">
       <>
       </>
       <CardColumns className="sm my-2 my-lg-5">
-        {allCollections.map((collection) => (
+        {collectionsToShow.map((collection) => (
           <Card key={collection.id}>
             <div
               className="view zoom overlay"

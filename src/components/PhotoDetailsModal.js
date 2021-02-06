@@ -3,11 +3,11 @@
 /* eslint-disable arrow-body-style */
 import React, { useState } from 'react';
 import { Modal, Button, Image, Card } from 'react-bootstrap';
-import SaveToCollectionsModal from './SaveToCollectionsModal';
+import SaveToCollectionsModal2 from './SaveToCollectionsModal2';
 import PhotoMoreDetailsModal from './PhotoMoreDetailsModal';
 import '../index.css';
 
-const PhotoDetailsModal = ({ photo, allCollections, setAllCollections, likeSinglePhoto }) => {
+const PhotoDetailsModal = ({ photo, allCollections, collectSinglePhoto, likeSinglePhoto }) => {
   const [show, setShow] = useState(false);
 
   return (
@@ -44,10 +44,10 @@ const PhotoDetailsModal = ({ photo, allCollections, setAllCollections, likeSingl
                     </Button>
                   </div>
                   <div className="button-0">
-                    <SaveToCollectionsModal
+                    <SaveToCollectionsModal2
                       photo={photo}
                       allCollections={allCollections}
-                      setAllCollections={setAllCollections}
+                      collectSinglePhoto={collectSinglePhoto}
                     />
                   </div>
                   <div className="button-0">

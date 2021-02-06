@@ -9,7 +9,7 @@ const PhotoMoreDetailsModal = ({ photo }) => {
 
   return (
     <>
-      <Button className="button1" variant="info" onClick={() => setShow(true)}>
+      <Button size="sm" className="button1" variant="info" onClick={() => setShow(true)}>
         Info
       </Button>
 

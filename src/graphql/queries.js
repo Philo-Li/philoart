@@ -158,6 +158,16 @@ export const GET_COLLECTIONS = gql`
             }
           }
         }
+        photos{
+          edges{
+            node{
+              id
+              photo{
+                ...photoDetails
+              }
+            }
+          }
+        }
         reviewCount
         title
         description
@@ -176,6 +186,7 @@ export const GET_COLLECTIONS = gql`
       }
     }
   }
+  ${PHOTO_DETAILS}
 `;
 
 export const IS_LIKED_PHOTO = gql`

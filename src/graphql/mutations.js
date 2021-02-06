@@ -1,5 +1,52 @@
 import { gql } from '@apollo/react-hooks';
 
+const PHOTO_DETAILS = gql`
+  fragment photoDetails on Photo {
+    id
+    width
+    height
+    small
+    large
+    downloadPage
+    creditWeb
+    creditId
+    photographer
+    description
+    tags
+    likes{
+      edges{
+        node{
+          id
+          user{
+            id
+          }
+        }
+      }
+    }
+    reviews{
+      edges{
+        node{
+          id
+          text
+        }
+      }
+    }
+    reviewCount
+    collections{
+      edges{
+        node{
+          id
+        }
+      }
+    }
+    likeCount
+    collectionCount
+    downloadCount
+    reviewCount
+    createdAt
+  }
+`;
+
 // eslint-disable-next-line import/prefer-default-export
 export const AUTHORIZE = gql`
   mutation authorize($username: String!, $password: String!) {
@@ -68,17 +115,35 @@ export const LIKE_PHOTO = gql`
         username
       }
       photo{
-        id
-        width
-        description
-        likeCount
+        ...photoDetails
       }
     }
   }
+  ${PHOTO_DETAILS}
 `;
 
 export const UNLIKE_PHOTO = gql`
   mutation unlikePhoto( $id: ID! ) {
     unlikePhoto( id: $id )
   }
+`;
+
+export const COLLECT_PHOTO = gql`
+  mutation collectPhoto( $photoId: ID!,  $collectionId: ID! ) {
+    collectPhoto(collect: { photoId: $photoId, collectionId: $collectionId } ) {
+      id
+      user{
+        id
+        username
+      }
+      collection{
+        id
+        title
+      }
+      photo{
+        ...photoDetails
+      }
+    }
+  }
+  ${PHOTO_DETAILS}
 `;

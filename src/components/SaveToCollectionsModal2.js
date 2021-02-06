@@ -7,13 +7,10 @@ import React, { useState } from 'react';
 import { Modal, Button, OverlayTrigger, Tooltip, Card, Accordion } from 'react-bootstrap';
 import '../MDB-Free_4.19.2/css/mdb.css';
 import UserCollectionsList from './UserCollectionsList';
-// import useCollectPhoto from '../hooks/useCollectPhoto';
 import '../index.css';
 
-const SaveToCollectionsModal = ({ photo, allCollections, collectSinglePhoto }) => {
+const SaveToCollectionsModal2 = ({ photo, allCollections, setAllCollections }) => {
   const [show, setShow] = useState(false);
-  const [collectionsToShow, setCollectionsToShow] = useState();
-  // const [collectPhoto] = useCollectPhoto();
 
   const handleShowModal = () => {
     setShow(true);
@@ -22,32 +19,31 @@ const SaveToCollectionsModal = ({ photo, allCollections, collectSinglePhoto }) =
         ? collection.photos.edges.map((edge) => edge.node)
         : [];
 
-      const find = collectedPhotos.find((obj) => obj.photo.id === photo.id);
+      const find = collectedPhotos.find((obj) => obj.id === photo.id);
       return find ? { ...collection, isCollected: true } : { ...collection, isCollected: false };
     });
-    setCollectionsToShow(updatedAllCollections);
+    setAllCollections(updatedAllCollections);
     console.log('updatedAllCollections', updatedAllCollections);
   };
 
-  // const collectSinglePhoto = async (photoToCollect, collection) => {
-  //   const updatedCollection = { ...collection, isCollected: !collection.isCollected };
-  //   console.log('updatedCollection', updatedCollection);
-  //   const temp = allCollections.map((obj) => (obj.id === collection.id ? updatedCollection : obj));
-  //   setAllCollections(temp);
-  //   if (collection.isCollected) {
-  //     // const photoLikes = photo.likes && photo.likes.edges
-  //     //   ? photo.likes.edges.map((edge) => edge.node)
-  //     //   : [];
+  const collectSinglePhoto = async (photoToCollect, collection) => {
+    const updatedCollection = { ...collection, isCollected: !collection.isCollected };
+    console.log('updatedCollection', updatedCollection);
+    const temp = allCollections.map((obj) => (obj.id === collection.id ? updatedCollection : obj));
+    setAllCollections(temp);
+    if (collection.isCollected) {
+      // const photoLikes = photo.likes && photo.likes.edges
+      //   ? photo.likes.edges.map((edge) => edge.node)
+      //   : [];
 
-  //     // const likedId = photoLikes.find((like) => like.user.id === authorizedUser.id);
-  //     console.log('uncollect photo', photoToCollect.id, collection.id);
-  //     // await uncollectPhoto({ id: likedId.id });
-  //   } else {
-  //     const collectedPhoto = await collectPhoto({ photoId: photo.id, collectionId: collection.id });
-  //     console.log('collect photo', photoToCollect.id, collection.id);
-  //     console.log('result', collectedPhoto);
-  //   }
-  // };
+      // const likedId = photoLikes.find((like) => like.user.id === authorizedUser.id);
+      console.log('uncollect photo', photoToCollect.id, collection.id);
+      // await uncollectPhoto({ id: likedId.id });
+    } else {
+      console.log('collect photo', photoToCollect.id, collection.id);
+      // await collectPhoto({ photoId: photo.id });
+    }
+  };
 
   const createNewCollection = () => {
     console.log('create new collection');
@@ -55,7 +51,7 @@ const SaveToCollectionsModal = ({ photo, allCollections, collectSinglePhoto }) =
 
   return (
     <>
-      <Button size="sm" className="button1" variant="light" onClick={() => handleShowModal()}>
+      <Button size="lg" className="button1" variant="light" onClick={() => handleShowModal()}>
         <i className="bi bi-plus-square" />
       </Button>
 
@@ -77,7 +73,7 @@ const SaveToCollectionsModal = ({ photo, allCollections, collectSinglePhoto }) =
               <UserCollectionsList
                 show={show}
                 photo={photo}
-                collectionsToShow={collectionsToShow}
+                allCollections={allCollections}
                 collectSinglePhoto={collectSinglePhoto}
               />
             </div>
@@ -122,4 +118,4 @@ const SaveToCollectionsModal = ({ photo, allCollections, collectSinglePhoto }) =
   );
 };
 
-export default SaveToCollectionsModal;
+export default SaveToCollectionsModal2;
