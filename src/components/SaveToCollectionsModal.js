@@ -11,7 +11,7 @@ import '../index.css';
 
 const SaveToCollectionsModal = ({ photo, collectSinglePhoto }) => {
   const [show, setShow] = useState(false);
-  const [collectionsToShow, setCollectionsToShow] = useState();
+  // const [collectionsToShow, setCollectionsToShow] = useState();
 
   const handleShowModal = () => {
     setShow(true);
@@ -23,8 +23,8 @@ const SaveToCollectionsModal = ({ photo, collectSinglePhoto }) => {
       const find = collectedPhotos.find((obj) => obj.photo.id === photo.id);
       return find ? { ...collection, isCollected: true } : { ...collection, isCollected: false };
     });
-    setCollectionsToShow(updatedAllCollections);
     console.log('updatedAllCollections', updatedAllCollections);
+    console.log('photo.allCollectionsToShow', photo.allCollectionsToShow);
   };
 
   const createNewCollection = () => {
@@ -55,7 +55,6 @@ const SaveToCollectionsModal = ({ photo, collectSinglePhoto }) => {
               <UserCollectionsList
                 show={show}
                 photo={photo}
-                collectionsToShow={collectionsToShow}
                 collectSinglePhoto={collectSinglePhoto}
               />
             </div>

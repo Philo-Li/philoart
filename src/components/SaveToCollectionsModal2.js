@@ -9,40 +9,21 @@ import '../MDB-Free_4.19.2/css/mdb.css';
 import UserCollectionsList from './UserCollectionsList';
 import '../index.css';
 
-const SaveToCollectionsModal2 = ({ photo, allCollections, setAllCollections }) => {
+const SaveToCollectionsModal2 = ({ photo, collectSinglePhoto }) => {
   const [show, setShow] = useState(false);
 
   const handleShowModal = () => {
     setShow(true);
-    const updatedAllCollections = allCollections.map((collection) => {
+    const updatedAllCollections = photo.allCollectionsToShow.map((collection) => {
       const collectedPhotos = collection.photos && collection.photos.edges
         ? collection.photos.edges.map((edge) => edge.node)
         : [];
 
-      const find = collectedPhotos.find((obj) => obj.id === photo.id);
+      const find = collectedPhotos.find((obj) => obj.photo.id === photo.id);
       return find ? { ...collection, isCollected: true } : { ...collection, isCollected: false };
     });
-    setAllCollections(updatedAllCollections);
     console.log('updatedAllCollections', updatedAllCollections);
-  };
-
-  const collectSinglePhoto = async (photoToCollect, collection) => {
-    const updatedCollection = { ...collection, isCollected: !collection.isCollected };
-    console.log('updatedCollection', updatedCollection);
-    const temp = allCollections.map((obj) => (obj.id === collection.id ? updatedCollection : obj));
-    setAllCollections(temp);
-    if (collection.isCollected) {
-      // const photoLikes = photo.likes && photo.likes.edges
-      //   ? photo.likes.edges.map((edge) => edge.node)
-      //   : [];
-
-      // const likedId = photoLikes.find((like) => like.user.id === authorizedUser.id);
-      console.log('uncollect photo', photoToCollect.id, collection.id);
-      // await uncollectPhoto({ id: likedId.id });
-    } else {
-      console.log('collect photo', photoToCollect.id, collection.id);
-      // await collectPhoto({ photoId: photo.id });
-    }
+    console.log('photo.allCollectionsToShow', photo.allCollectionsToShow);
   };
 
   const createNewCollection = () => {
@@ -73,7 +54,6 @@ const SaveToCollectionsModal2 = ({ photo, allCollections, setAllCollections }) =
               <UserCollectionsList
                 show={show}
                 photo={photo}
-                allCollections={allCollections}
                 collectSinglePhoto={collectSinglePhoto}
               />
             </div>

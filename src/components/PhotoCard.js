@@ -22,7 +22,7 @@ const PhotoCard = ({ photo, likeSinglePhoto, collectSinglePhoto }) => {
                 <i className="bi bi-download" />
               </Button>
             </div>
-            <div className="button-0">
+            <div id={photo.id} className="button-0">
               <SaveToCollectionsModal
                 photo={photo}
                 collectSinglePhoto={collectSinglePhoto}

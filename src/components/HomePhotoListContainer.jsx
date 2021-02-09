@@ -8,6 +8,7 @@ import useLikePhoto from '../hooks/useLikePhoto';
 import useAuthorizedUser from '../hooks/useAuthorizedUser';
 import PhotoCard from './PhotoCard';
 import useUnlikePhoto from '../hooks/useUnlikePhoto';
+import useUncollectPhoto from '../hooks/useUncollectPhoto';
 import useCollectPhoto from '../hooks/useCollectPhoto';
 
 const HomePhotoListContainer = ({ allPhotos, setAllPhotos, clickFetchMore }) => {
@@ -15,6 +16,7 @@ const HomePhotoListContainer = ({ allPhotos, setAllPhotos, clickFetchMore }) => 
   const [likePhoto] = useLikePhoto();
   const [unlikePhoto] = useUnlikePhoto();
   const [collectPhoto] = useCollectPhoto();
+  const [uncollectPhoto] = useUncollectPhoto();
   const history = useHistory();
 
   const likeSinglePhoto = async (photo) => {
@@ -40,27 +42,27 @@ const HomePhotoListContainer = ({ allPhotos, setAllPhotos, clickFetchMore }) => 
 
   const collectSinglePhoto = async (photo, collection) => {
     const updatedCollection = { ...collection, isCollected: !collection.isCollected };
-    console.log('updatedCollection', updatedCollection);
-    // const temp = allCollections.map((obj) => (obj.id === collection.id ? updatedCollection : obj));
-    // setAllCollections(temp);
+    const updatedCollections = photo.allCollectionsToShow.map((obj) => (obj.id === collection.id ? updatedCollection : obj));
+    const updatedPhoto = { ...photo, allCollectionsToShow: updatedCollections };
+    const updatedAllPhotos = allPhotos.map((obj) => (obj.id === photo.id ? updatedPhoto : obj));
+    setAllPhotos(updatedAllPhotos);
     if (collection.isCollected) {
-      // const photoLikes = photo.likes && photo.likes.edges
-      //   ? photo.likes.edges.map((edge) => edge.node)
-      //   : [];
+      const photoCollections = photo.collections && photo.collections.edges
+        ? photo.collections.edges.map((edge) => edge.node)
+        : [];
 
-      // const likedId = photoLikes.find((like) => like.user.id === authorizedUser.id);
-      console.log('uncollect photo', photo.id, collection.id);
-      // await uncollectPhoto({ id: likedId.id });
+      const collectedPhoto = photoCollections.find((collected) => collected.photo.id === photo.id);
+      console.log('uncollect photo', photo.id, collection.id, collectedPhoto);
+      await uncollectPhoto({ id: collectedPhoto.id });
     } else {
-      const collectedPhoto = await collectPhoto({ photoId: photo.id, collectionId: collection.id });
+      await collectPhoto({ photoId: photo.id, collectionId: collection.id });
       console.log('collect photo', photo.id, collection.id);
-      console.log('result', collectedPhoto);
     }
   };
 
   return (
     <div className="p-3">
-      <CardColumns className="sm my-2 my-lg-5">
+      <CardColumns key="homePhotoList" className="sm my-2 my-lg-5">
         {allPhotos.map((photo) => (
           <PhotoCard
             key={photo.id}

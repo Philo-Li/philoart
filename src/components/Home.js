@@ -40,11 +40,11 @@ const Home = ({ searchValue, newSearchValue, setNewSearchValue }) => {
 
           const findUserLike = photoLikes && photoLikes.find((like) => like.user.id === authorizedUser.id);
           const photoInCollections = photo.collections && photo.collections.edges
-            ? photo.collections.edges.map((edge) => edge.node)
+            ? photo.collections.edges.map((edge) => edge.node.collection)
             : [];
           const collectionsToShow = allCollections.map((collection) => {
             const findCollected = photoInCollections.find((obj) => obj.id === collection.id);
-            return findCollected ? { ...collection, isCollected: true } : { ...collection, isCollected: false };
+            return findCollected != null ? { ...collection, isCollected: true } : { ...collection, isCollected: false };
           });
           const updatedPhoto = {
             ...photo,
@@ -56,9 +56,6 @@ const Home = ({ searchValue, newSearchValue, setNewSearchValue }) => {
         setAllPhotos(updatedAllPhotos);
       }
     }
-    console.log('first photos', photos);
-    console.log('updatedAllPhotos', allPhotos);
-    console.log('first collections', allCollections);
   }, [photos, allCollections]);
 
   const clickFetchMore = () => {
@@ -72,8 +69,11 @@ const Home = ({ searchValue, newSearchValue, setNewSearchValue }) => {
         : [];
       setAllCollections(temp);
     }
-    console.log('first effect collections', allCollections);
   }, [collections]);
+
+  // console.log('picky: photos', photos);
+  // console.log('picky: updatedAllPhotos', allPhotos);
+  // console.log('picky: collections', allCollections);
 
   return (
     <div>

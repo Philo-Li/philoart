@@ -37,6 +37,12 @@ const PHOTO_DETAILS = gql`
       edges{
         node{
           id
+          collection{
+            id
+          }
+          photo{
+            id
+          }
         }
       }
     }

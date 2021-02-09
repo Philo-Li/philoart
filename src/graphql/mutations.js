@@ -147,3 +147,9 @@ export const COLLECT_PHOTO = gql`
   }
   ${PHOTO_DETAILS}
 `;
+
+export const UNCOLLECT_PHOTO = gql`
+  mutation deleteCollectedPhoto( $id: ID! ) {
+    deleteCollectedPhoto( id: $id )
+  }
+`;
