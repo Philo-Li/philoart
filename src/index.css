@@ -58,6 +58,16 @@
   margin: 0.5rem;
 }
 
+.col-item-1 {
+  margin-top: 1rem;
+}
+
+.col-item-2 {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+}
+
 .container-row-0 {
   display: flex;
   justify-content: center;
@@ -143,4 +153,14 @@
 .cover1 {
   background-image: url('https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-gallery-vector-icon-png-image_470660.jpg');
   background-size: cover;
+}
+
+.container-col-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 10rem;
+  margin-bottom: 10rem;
+  margin-left: 20%;
+  margin-right: 20%;
 }

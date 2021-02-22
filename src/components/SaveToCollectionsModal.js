@@ -1,39 +1,46 @@
-/* eslint-disable max-len */
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable object-curly-newline */
-/* eslint-disable no-alert */
-/* eslint-disable arrow-body-style */
 import React, { useState } from 'react';
-// import { useHistory } from 'react-router-dom';
-import { Modal, Button, OverlayTrigger, Tooltip, Card, Accordion } from 'react-bootstrap';
-import '../MDB-Free_4.19.2/css/mdb.css';
+import { Modal, Button, Card, Form } from 'react-bootstrap';
 import UserCollectionsList from './UserCollectionsList';
+import useCreateCollection from '../hooks/useCreateCollection';
+import useField from '../hooks/useField';
+import '../MDB-Free_4.19.2/css/mdb.css';
 import '../index.css';
 
 const SaveToCollectionsModal = ({ photo, collectSinglePhoto }) => {
   const [show, setShow] = useState(false);
-  // const [collectionsToShow, setCollectionsToShow] = useState();
+  const title = useField('title');
+  const [createCollection] = useCreateCollection();
 
-  const handleShowModal = () => {
-    setShow(true);
-    const updatedAllCollections = photo.allCollectionsToShow.map((collection) => {
-      const collectedPhotos = collection.photos && collection.photos.edges
-        ? collection.photos.edges.map((edge) => edge.node)
-        : [];
+  const createNewCollection = async () => {
+    // const variables = {
+    //   title: title.value,
+    //   description: '',
+    //   public: true,
+    // };
+    // console.log('variables', variables);
 
-      const find = collectedPhotos.find((obj) => obj.photo.id === photo.id);
-      return find ? { ...collection, isCollected: true } : { ...collection, isCollected: false };
-    });
-    console.log('updatedAllCollections', updatedAllCollections);
-    console.log('photo.allCollectionsToShow', photo.allCollectionsToShow);
-  };
+    // await createCollection(variables);
+    try {
+      const variables = {
+        title: title.value,
+        description: '',
+        public: true,
+      };
+      console.log('variables', variables);
 
-  const createNewCollection = () => {
-    console.log('create new collection');
+      await createCollection(variables);
+      // eslint-disable-next-line no-alert
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.log(e);
+    }
   };
 
   return (
     <>
-      <Button size="sm" className="button1" variant="light" onClick={() => handleShowModal()}>
+      <Button size="sm" className="button1" variant="light" onClick={() => setShow(true)}>
         <i className="bi bi-plus-square" />
       </Button>
 
@@ -61,34 +68,36 @@ const SaveToCollectionsModal = ({ photo, collectSinglePhoto }) => {
             <div className="profile-item">
               <div className="button-1">
                 <div id={photo.id}>
-                  <OverlayTrigger overlay={<Tooltip id="tooltip-create-collection">Create collection</Tooltip>}>
-                    <span className="d-inline-block">
-                      <Accordion>
-                        <Card>
-                          <Card.Header>
-                            <Accordion.Toggle as={Card.Header} eventKey="0" onClick={() => createNewCollection()}>
-                              <i className="bi bi-plus-circle" />
-                            </Accordion.Toggle>
-                          </Card.Header>
-                          <Accordion.Collapse eventKey="0">
-                            <div>
-                              <div className="view zoom overlay">
-                                <img src={photo.small} className="card-img-100" alt="smaple" />
-                                <div className="mask flex-center rgba-blue-light white-text">
-                                  <i size="lg" className="bi bi-check-square" />
-                                </div>
-                              </div>
-                              <Card.Title>
-                                <div className="flex-center">
-                                  title
-                                </div>
-                              </Card.Title>
-                            </div>
-                          </Accordion.Collapse>
-                        </Card>
-                      </Accordion>
-                    </span>
-                  </OverlayTrigger>
+                  <div>
+                    <button className="view zoom overlay" onClick={() => console.log('create')} type="button">
+                      <img
+                        src={photo.small}
+                        className="card-img-100"
+                        alt="createCollection"
+                      />
+                      <div className="mask flex-center rgba-blue-light white-text">
+                        <i size="lg" className="bi bi-check-square" />
+                      </div>
+                    </button>
+                    <Card.Title>
+                      <div className="flex-center">
+                        Create new Collection
+                      </div>
+                      <Form id="signinform" onSubmit={() => createNewCollection()}>
+                        <div>
+                          <Form.Label>title:</Form.Label>
+                          <Form.Control {...title} />
+                        </div>
+                      </Form>
+                    </Card.Title>
+                    <Form id="signinform" onSubmit={() => createNewCollection()}>
+                      <div>
+                        <Form.Label>title:</Form.Label>
+                        <Form.Control {...title} />
+                      </div>
+                      <Button variant="primary" id="create-button" type="submit">登录</Button>
+                    </Form>
+                  </div>
                 </div>
               </div>
             </div>

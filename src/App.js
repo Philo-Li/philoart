@@ -68,7 +68,7 @@ const App = () => {
               {authorizedUser && <Button variant="outline-primary" type="submit" onClick={handleLogout}>logout</Button>}
             </Nav>
             <Nav>
-              {!authorizedUser && <Button href="/signin" variant="primary" type="submit">Join</Button>}
+              {!authorizedUser && <Button href="/signup" variant="primary" type="submit">Join</Button>}
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -88,6 +88,12 @@ const App = () => {
             <Route path="/license" exact>
               <Home />
             </Route>
+            <Route path="/signin" exact>
+              <SignInForm />
+            </Route>
+            <Route path="/signup" exact>
+              <SignUpForm />
+            </Route>
             <Route path="/:id" exact>
               <Profile />
               <UserLikes />
@@ -99,17 +105,11 @@ const App = () => {
             <Route path="photo/:id" exact>
               <PhotoDetails />
             </Route>
-            <Route path="/signin" exact>
-              <SignInForm />
-            </Route>
             <Route path="/signup" exact>
               <SignUpForm />
             </Route>
             <Route path="/FAQ" exact>
               <SignInForm />
-            </Route>
-            <Route path="/join" exact>
-              <SignUpForm />
             </Route>
             <Route path="/" exact>
               <Home

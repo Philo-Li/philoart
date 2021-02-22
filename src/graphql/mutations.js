@@ -153,3 +153,28 @@ export const UNCOLLECT_PHOTO = gql`
     deleteCollectedPhoto( id: $id )
   }
 `;
+
+export const CREATE_COLLECTION = gql`
+  mutation createCollection(
+    $title: String!
+    $description: String
+    $public: Boolean!
+    ) {
+    createCollection(collection: {
+      title: $title
+      description: $description
+      public: $public
+    } ) {
+      id
+      user{
+        id
+        username
+      }
+      title
+      description
+      public
+      createdAt
+      cover
+    }
+  }
+`;

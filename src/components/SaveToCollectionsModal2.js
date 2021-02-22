@@ -32,7 +32,7 @@ const SaveToCollectionsModal2 = ({ photo, collectSinglePhoto }) => {
 
   return (
     <>
-      <Button size="lg" className="button1" variant="light" onClick={() => handleShowModal()}>
+      <Button className="button1" variant="light" onClick={() => handleShowModal()}>
         <i className="bi bi-plus-square" />
       </Button>
 

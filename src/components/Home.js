@@ -25,7 +25,7 @@ const Home = ({ searchValue, newSearchValue, setNewSearchValue }) => {
   });
 
   useEffect(() => {
-    if (photos && allCollections) {
+    if (photos) {
       const temp = photos && photos.edges
         ? photos.edges.map((edge) => edge.node)
         : [];
@@ -42,7 +42,7 @@ const Home = ({ searchValue, newSearchValue, setNewSearchValue }) => {
           const photoInCollections = photo.collections && photo.collections.edges
             ? photo.collections.edges.map((edge) => edge.node.collection)
             : [];
-          const collectionsToShow = allCollections.map((collection) => {
+          const collectionsToShow = allCollections && allCollections.map((collection) => {
             const findCollected = photoInCollections.find((obj) => obj.id === collection.id);
             return findCollected != null ? { ...collection, isCollected: true } : { ...collection, isCollected: false };
           });
@@ -54,6 +54,7 @@ const Home = ({ searchValue, newSearchValue, setNewSearchValue }) => {
           return updatedPhoto;
         });
         setAllPhotos(updatedAllPhotos);
+        console.log('picky: photos', photos);
       }
     }
   }, [photos, allCollections]);
@@ -71,9 +72,9 @@ const Home = ({ searchValue, newSearchValue, setNewSearchValue }) => {
     }
   }, [collections]);
 
-  // console.log('picky: photos', photos);
-  // console.log('picky: updatedAllPhotos', allPhotos);
-  // console.log('picky: collections', allCollections);
+  console.log('picky: photos', photos);
+  console.log('picky: updatedAllPhotos', allPhotos);
+  console.log('picky: collections', allCollections);
 
   return (
     <div>

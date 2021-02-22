@@ -13,9 +13,8 @@ const PhotoDetailsModal = ({ photo, allCollections, collectSinglePhoto, likeSing
   return (
     <>
       <Button size="sm" className="button1" variant="info" onClick={() => setShow(true)}>
-        Details
+        <i className="bi bi-search" />
       </Button>
-
       <Modal
         show={show}
         onHide={() => setShow(false)}
@@ -39,7 +38,7 @@ const PhotoDetailsModal = ({ photo, allCollections, collectSinglePhoto, likeSing
               <div className="container-col">
                 <div className="container-col">
                   <div id={photo.id}>
-                    <Button variant="light" size="lg" onClick={() => window.open(photo.downloadPage)}>
+                    <Button variant="light" onClick={() => window.open(photo.downloadPage)}>
                       <i className="bi bi-download" />
                     </Button>
                   </div>
@@ -51,7 +50,7 @@ const PhotoDetailsModal = ({ photo, allCollections, collectSinglePhoto, likeSing
                     />
                   </div>
                   <div className="button-0">
-                    <Button variant="light" size="lg" onClick={() => likeSinglePhoto(photo)}>
+                    <Button variant="light" onClick={() => likeSinglePhoto(photo)}>
                       {!photo.isLiked && (<i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />)}
                       {photo.isLiked && (
                         <div className="red-icon">

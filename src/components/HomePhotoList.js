@@ -8,7 +8,7 @@ const HomePhotoList = ({ allPhotos, setAllPhotos, clickFetchMore }) => {
   if (allPhotos === undefined) return null;
 
   return (
-    <div className="p-3">
+    <div>
       <HomePhotoListContainer
         allPhotos={allPhotos}
         setAllPhotos={setAllPhotos}
