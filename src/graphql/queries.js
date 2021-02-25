@@ -92,8 +92,58 @@ export const GET_AUTHORIZED_USER = gql`
       id
       username
       profileImage
+      likes{
+        edges{
+          node{
+            id
+            photo{
+              ...photoDetails
+            }
+            createdAt
+          }
+        }
+      }
+      collections{
+        edges{
+          node{
+            id
+            user{
+              id
+              username
+            }
+            reviews{
+              edges{
+                node{
+                  id
+                  text
+                }
+              }
+            }
+            photos{
+              edges{
+                node{
+                  id
+                  photo{
+                    ...photoDetails
+                  }
+                }
+              }
+            }
+            reviewCount
+            title
+            description
+            photoCount
+            createdAt
+            public
+            cover
+          }
+        }
+      }
+      likeCount
+      collectionCount
     }
   }
+  ${PHOTO_DETAILS}
 `;
 
 export const GET_USER_LIKES = gql`

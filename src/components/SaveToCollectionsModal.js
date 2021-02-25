@@ -1,17 +1,29 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable object-curly-newline */
 import React, { useState } from 'react';
-import { Modal, Button, Card, Form } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
+import { Modal, Button, Form } from 'react-bootstrap';
 import UserCollectionsList from './UserCollectionsList';
 import useCreateCollection from '../hooks/useCreateCollection';
 import useField from '../hooks/useField';
+import useAuthorizedUser from '../hooks/useAuthorizedUser';
 import '../MDB-Free_4.19.2/css/mdb.css';
 import '../index.css';
 
 const SaveToCollectionsModal = ({ photo, collectSinglePhoto }) => {
   const [show, setShow] = useState(false);
   const title = useField('title');
-  const [createCollection] = useCreateCollection();
+  const { authorizedUser } = useAuthorizedUser();
+  const history = useHistory();
+  const [createCollection, result] = useCreateCollection();
+
+  const openCollectModal = async () => {
+    if (!authorizedUser) {
+      history.push('/signin');
+    } else {
+      setShow(true);
+    }
+  };
 
   const createNewCollection = async () => {
     // const variables = {
@@ -31,6 +43,7 @@ const SaveToCollectionsModal = ({ photo, collectSinglePhoto }) => {
       console.log('variables', variables);
 
       await createCollection(variables);
+      await console.log('result', result);
       // eslint-disable-next-line no-alert
     } catch (e) {
       // eslint-disable-next-line no-console
@@ -40,7 +53,7 @@ const SaveToCollectionsModal = ({ photo, collectSinglePhoto }) => {
 
   return (
     <>
-      <Button size="sm" className="button1" variant="light" onClick={() => setShow(true)}>
+      <Button size="sm" className="button1" variant="light" onClick={() => openCollectModal()}>
         <i className="bi bi-plus-square" />
       </Button>
 
@@ -57,49 +70,26 @@ const SaveToCollectionsModal = ({ photo, collectSinglePhoto }) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className="container-profile">
-            <div className="profile-item">
+          <div className="container-col">
+            <div className="container-row-3">
+              <Form id="createCollectionform" onSubmit={() => createNewCollection()}>
+                <div className="container-row-3">
+                  <div className="row-item-3">
+                    <Form.Label>New collection title:</Form.Label>
+                  </div>
+                  <div className="row-item-0">
+                    <Form.Control {...title} />
+                    <Button variant="primary" id="create-button" type="submit">Save</Button>
+                  </div>
+                </div>
+              </Form>
+            </div>
+            <div className="col-item-0">
               <UserCollectionsList
                 show={show}
                 photo={photo}
                 collectSinglePhoto={collectSinglePhoto}
               />
-            </div>
-            <div className="profile-item">
-              <div className="button-1">
-                <div id={photo.id}>
-                  <div>
-                    <button className="view zoom overlay" onClick={() => console.log('create')} type="button">
-                      <img
-                        src={photo.small}
-                        className="card-img-100"
-                        alt="createCollection"
-                      />
-                      <div className="mask flex-center rgba-blue-light white-text">
-                        <i size="lg" className="bi bi-check-square" />
-                      </div>
-                    </button>
-                    <Card.Title>
-                      <div className="flex-center">
-                        Create new Collection
-                      </div>
-                      <Form id="signinform" onSubmit={() => createNewCollection()}>
-                        <div>
-                          <Form.Label>title:</Form.Label>
-                          <Form.Control {...title} />
-                        </div>
-                      </Form>
-                    </Card.Title>
-                    <Form id="signinform" onSubmit={() => createNewCollection()}>
-                      <div>
-                        <Form.Label>title:</Form.Label>
-                        <Form.Control {...title} />
-                      </div>
-                      <Button variant="primary" id="create-button" type="submit">登录</Button>
-                    </Form>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </Modal.Body>

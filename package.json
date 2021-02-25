@@ -15,6 +15,7 @@
     "glamor": "^2.20.40",
     "graphql": "^15.3.0",
     "mdbreact": "^4.11.1",
+    "packery": "^2.1.2",
     "react": "^16.14.0",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^16.14.0",

@@ -10,7 +10,6 @@ import useAuthorizedUser from '../hooks/useAuthorizedUser';
 
 const Home = ({ searchValue, newSearchValue, setNewSearchValue }) => {
   const [allPhotos, setAllPhotos] = useState();
-  const [allCollections, setAllCollections] = useState();
   const { authorizedUser } = useAuthorizedUser();
 
   const variables = {
@@ -42,7 +41,10 @@ const Home = ({ searchValue, newSearchValue, setNewSearchValue }) => {
           const photoInCollections = photo.collections && photo.collections.edges
             ? photo.collections.edges.map((edge) => edge.node.collection)
             : [];
-          const collectionsToShow = allCollections && allCollections.map((collection) => {
+          const userCollections = authorizedUser.collections && authorizedUser.collections.edges
+            ? collections.edges.map((edge) => edge.node)
+            : [];
+          const collectionsToShow = userCollections && userCollections.map((collection) => {
             const findCollected = photoInCollections.find((obj) => obj.id === collection.id);
             return findCollected != null ? { ...collection, isCollected: true } : { ...collection, isCollected: false };
           });
@@ -54,27 +56,17 @@ const Home = ({ searchValue, newSearchValue, setNewSearchValue }) => {
           return updatedPhoto;
         });
         setAllPhotos(updatedAllPhotos);
-        console.log('picky: photos', photos);
       }
     }
-  }, [photos, allCollections]);
+  }, [photos, authorizedUser]);
 
   const clickFetchMore = () => {
     fetchMore();
   };
 
-  useEffect(() => {
-    if (authorizedUser && collections) {
-      const temp = collections && collections.edges
-        ? collections.edges.map((edge) => edge.node)
-        : [];
-      setAllCollections(temp);
-    }
-  }, [collections]);
-
   console.log('picky: photos', photos);
   console.log('picky: updatedAllPhotos', allPhotos);
-  console.log('picky: collections', allCollections);
+  console.log('picky: authorizedUser', authorizedUser);
 
   return (
     <div>

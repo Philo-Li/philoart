@@ -12,16 +12,16 @@ const cover = 'https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-gall
 // eslint-disable-next-line react/prefer-stateless-function
 const UserCollections = () => {
   const { authorizedUser } = useAuthorizedUser();
-  const { collections } = useCollections();
+  const { collections } = useCollections({
+    userId: authorizedUser && authorizedUser.id,
+    first: 30,
+  });
 
   if (!collections) return null;
 
   const allCollections = collections.edges
     ? collections.edges.map((edge) => edge.node)
     : [];
-
-  console.log('collections', allCollections);
-  console.log('authorizedUser', authorizedUser);
 
   return (
     <div className="p-3">

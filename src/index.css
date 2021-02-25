@@ -80,6 +80,12 @@
   align-items: center;
 }
 
+.container-row-3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .container-row-2 {
   display: flex;
   justify-content: center;
@@ -111,8 +117,8 @@
 
 .row-item-3 {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 .green-icon {
