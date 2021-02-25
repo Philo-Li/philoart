@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Modal, Button, Form } from 'react-bootstrap';
 import UserCollectionsList from './UserCollectionsList';
-import useCreateCollection from '../hooks/useCreateCollection';
+import useCreateCollectionAndCollectPhoto from '../hooks/useCreateCollectionAndCollectPhoto';
 import useField from '../hooks/useField';
 import useAuthorizedUser from '../hooks/useAuthorizedUser';
 import '../MDB-Free_4.19.2/css/mdb.css';
@@ -15,7 +15,7 @@ const SaveToCollectionsModal = ({ photo, collectSinglePhoto }) => {
   const title = useField('title');
   const { authorizedUser } = useAuthorizedUser();
   const history = useHistory();
-  const [createCollection, result] = useCreateCollection();
+  const [createCollectionAndCollectPhoto] = useCreateCollectionAndCollectPhoto();
 
   const openCollectModal = async () => {
     if (!authorizedUser) {
@@ -26,24 +26,16 @@ const SaveToCollectionsModal = ({ photo, collectSinglePhoto }) => {
   };
 
   const createNewCollection = async () => {
-    // const variables = {
-    //   title: title.value,
-    //   description: '',
-    //   public: true,
-    // };
-    // console.log('variables', variables);
-
-    // await createCollection(variables);
     try {
       const variables = {
         title: title.value,
         description: '',
         public: true,
+        photoId: photo.id,
       };
       console.log('variables', variables);
 
-      await createCollection(variables);
-      await console.log('result', result);
+      await createCollectionAndCollectPhoto(variables);
       // eslint-disable-next-line no-alert
     } catch (e) {
       // eslint-disable-next-line no-console
@@ -75,10 +67,10 @@ const SaveToCollectionsModal = ({ photo, collectSinglePhoto }) => {
               <Form id="createCollectionform" onSubmit={() => createNewCollection()}>
                 <div className="container-row-3">
                   <div className="row-item-3">
-                    <Form.Label>New collection title:</Form.Label>
+                    <Form.Label>New collection:</Form.Label>
                   </div>
                   <div className="row-item-0">
-                    <Form.Control {...title} />
+                    <Form.Control {...title} placeholder="title" />
                     <Button variant="primary" id="create-button" type="submit">Save</Button>
                   </div>
                 </div>

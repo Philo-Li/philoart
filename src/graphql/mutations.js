@@ -178,3 +178,33 @@ export const CREATE_COLLECTION = gql`
     }
   }
 `;
+
+export const CREATE_COLLECTION_AND_COLLECT_PHOTO = gql`
+  mutation createCollectionAndCollectPhoto(
+    $title: String!
+    $description: String
+    $public: Boolean!
+    $photoId: ID!
+    ) {
+      createCollectionAndCollectPhoto(collection: {
+      title: $title
+      description: $description
+      public: $public
+      photoId: $photoId
+    } ) {
+      id
+      user{
+        id
+        username
+      }
+      collection{
+        id
+        title
+      }
+      photo{
+        ...photoDetails
+      }
+    }
+  }
+  ${PHOTO_DETAILS}
+`;

@@ -27,8 +27,8 @@ const UserCollectionsList = ({ photo, collectSinglePhoto }) => {
               tabIndex="0"
             >
               <img
-                src={collection.cover ? collection.cover : cover}
-                className="card-img-100"
+                src={collection.cover != null ? collection.cover : cover}
+                className="max-height"
                 alt="smaple"
               />
               <div className="mask flex-center rgba-blue-light white-text">

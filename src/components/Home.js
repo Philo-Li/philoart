@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { Jumbotron } from 'react-bootstrap';
 import '../index.css';
 import usePhotos from '../hooks/usePhotos';
-import useCollections from '../hooks/useCollections';
 import HomePhotoList from './HomePhotoList';
 import SearchBar from './SearchBar';
 import useAuthorizedUser from '../hooks/useAuthorizedUser';
@@ -18,10 +17,6 @@ const Home = ({ searchValue, newSearchValue, setNewSearchValue }) => {
   };
 
   const { photos, fetchMore } = usePhotos(variables);
-  const { collections } = useCollections({
-    userId: authorizedUser && authorizedUser.id,
-    first: 30,
-  });
 
   useEffect(() => {
     if (photos) {
@@ -41,12 +36,15 @@ const Home = ({ searchValue, newSearchValue, setNewSearchValue }) => {
           const photoInCollections = photo.collections && photo.collections.edges
             ? photo.collections.edges.map((edge) => edge.node.collection)
             : [];
-          const userCollections = authorizedUser.collections && authorizedUser.collections.edges
-            ? collections.edges.map((edge) => edge.node)
+          const userCollections = authorizedUser.collectionCount !== 0
+            ? authorizedUser.collections.edges.map((edge) => edge.node)
             : [];
           const collectionsToShow = userCollections && userCollections.map((collection) => {
             const findCollected = photoInCollections.find((obj) => obj.id === collection.id);
-            return findCollected != null ? { ...collection, isCollected: true } : { ...collection, isCollected: false };
+            let newCover;
+            if (collection.photoCount !== 0) newCover = collection.photos.edges[0].node.photo.small;
+            else newCover = null;
+            return findCollected != null ? { ...collection, isCollected: true, cover: newCover } : { ...collection, isCollected: false, cover: newCover };
           });
           const updatedPhoto = {
             ...photo,

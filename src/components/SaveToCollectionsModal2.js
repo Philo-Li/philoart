@@ -29,14 +29,6 @@ const SaveToCollectionsModal2 = ({ photo, collectSinglePhoto }) => {
   };
 
   const createNewCollection = async () => {
-    // const variables = {
-    //   title: title.value,
-    //   description: '',
-    //   public: true,
-    // };
-    // console.log('variables', variables);
-
-    // await createCollection(variables);
     try {
       const variables = {
         title: title.value,
