@@ -115,6 +115,12 @@
   margin-bottom: 2rem;
 }
 
+.row-item-4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .row-item-3 {
   display: flex;
   justify-content: flex-end;
@@ -169,6 +175,13 @@
   margin-bottom: 10rem;
   margin-left: 20%;
   margin-right: 20%;
+}
+
+.container-row-searchbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .max-height {

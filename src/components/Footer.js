@@ -59,25 +59,27 @@ const Footer = () => {
           </Container>
         </Card.Body>
         <Card.Footer className="text-center text-light">
-          <Row>
-            <Navbar.Brand href="/" className="text-light">
-              <img
-                src={logo}
-                width="40"
-                height="40"
-                className="d-inline-block align-top"
-                alt="Free Stock Photos"
-              />
-              Picky
-            </Navbar.Brand>
-            <Card.Text className="text-light">
-              — Select the best free stock photos for you.
-            </Card.Text>
+          <div className="container-row-1">
+            <div className="container-row-1">
+              <Navbar.Brand href="/" className="text-light container-row-0">
+                <img
+                  src={logo}
+                  width="40"
+                  height="40"
+                  className="d-inline-block align-top"
+                  alt="Free Stock Photos"
+                />
+                Picky
+              </Navbar.Brand>
+              <Card.Text className="text-light">
+                — Select the best free stock photos for you.
+              </Card.Text>
+            </div>
             <Nav className="justify-content-end">
               <Nav.Link className="text-light" href="/discover">Terms of Use</Nav.Link>
               <Nav.Link className="text-light" href="/license">License</Nav.Link>
             </Nav>
-          </Row>
+          </div>
         </Card.Footer>
       </Card>
     </div>

@@ -2,7 +2,7 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 
-const SearchBar = ({ searchValue, setNewSearchValue }) => {
+const NavSearchBar = ({ searchValue, setNewSearchValue }) => {
   const handleSearch = async (event) => {
     event.preventDefault();
     try {
@@ -17,8 +17,8 @@ const SearchBar = ({ searchValue, setNewSearchValue }) => {
   return (
     <div>
       <Form onSubmit={handleSearch}>
-        <div className="container-row-searchbar">
-          <Form.Control {...searchValue} placeholder="Search for free photos" fluid />
+        <div className="container-row-0">
+          <Form.Control {...searchValue} placeholder="Search for free photos" />
           <Button variant="light" type="submit">
             <i className="bi bi-search" />
           </Button>
@@ -28,4 +28,4 @@ const SearchBar = ({ searchValue, setNewSearchValue }) => {
   );
 };
 
-export default SearchBar;
+export default NavSearchBar;

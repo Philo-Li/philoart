@@ -21,7 +21,7 @@ import SignInForm from './components/SignInForm';
 import SignUpForm from './components/SignUpForm';
 import useAuthorizedUser from './hooks/useAuthorizedUser';
 import useField from './hooks/useField';
-import SearchBar from './components/SearchBar';
+import NavSearchBar from './components/NavSearchBar';
 import UserPage from './components/UserPage';
 import logo from './logo.png';
 
@@ -44,7 +44,7 @@ const App = () => {
     return (
       <div>
         <Navbar expand="lg" bg="dark" variant="dark" fixed="sticky">
-          <Navbar.Brand className="text-light" href="/">
+          <Navbar.Brand className="text-light container-row-0" href="/">
             <img
               src={logo}
               width="30"
@@ -54,13 +54,13 @@ const App = () => {
             />
             Picky
           </Navbar.Brand>
-          <SearchBar
+          <NavSearchBar
             searchValue={searchValue}
             setNewSearchValue={setNewSearchValue}
           />
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end light">
-            <Nav className="justify-content-end">
+            <Nav className="justify-content-end container-row-0">
               <Nav.Link className="text-light" href="/discover">Discover</Nav.Link>
               <Nav.Link className="text-light" href="/license">License</Nav.Link>
               {authorizedUser && <Nav.Link className="text-light" href={userPage}>Profile</Nav.Link>}
