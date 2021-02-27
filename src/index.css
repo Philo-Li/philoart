@@ -68,6 +68,13 @@
   align-items: center;
 }
 
+.col-item-3 {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .container-row-0 {
   display: flex;
   justify-content: center;
@@ -91,6 +98,13 @@
   justify-content: center;
   align-items: flex-end;
   margin-top: 100%;
+}
+
+.container-row-4 {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: flex-end;
 }
 
 
@@ -127,6 +141,11 @@
   align-items: flex-end;
 }
 
+.row-item-5 {
+  justify-content: center;
+  align-items: center;
+}
+
 .green-icon {
   color:yellowgreen;
 }
@@ -145,6 +164,15 @@
   color: white;
 }
 
+.header-bold {
+  font-weight: bold;
+}
+
+.header-bold-white {
+  font-weight: bold;
+  color: white;
+}
+
 .jumbotron {
   background-image: url("https://kaboompics.com/cache/7/3/7/1/b/7371b7a8de0b38d8906cdae62a3374526d4109d0.jpeg");
   background-size: cover;
@@ -159,6 +187,20 @@
   padding: 10px 20px;
   font-size: 20px;
   border-radius: 10px;
+  width:50%;
+}
+
+.icon-check {
+  padding: 10px 20px;
+  font-size: 2rem;
+  color: cornflowerblue;
+  width:50%;
+}
+
+.icon-x {
+  padding: 10px 20px;
+  font-size: 2rem;
+  color: crimson;
   width:50%;
 }
 

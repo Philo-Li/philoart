@@ -64,10 +64,10 @@ const App = () => {
             <Nav className="justify-content-end container-row-0">
               <Nav.Link className="text-light" href="/discover">Discover</Nav.Link>
               <Nav.Link className="text-light" href="/license">License</Nav.Link>
+              <Nav.Link className="text-light" href="/about">About</Nav.Link>
               {authorizedUser && <Nav.Link className="text-light" href={userPage}>Profile</Nav.Link>}
-              <Nav.Link className="text-light" href="/signin">Login</Nav.Link>
-              <Nav.Link className="text-light" href="/signup">Sign Up</Nav.Link>
-              <Nav.Link className="text-light" href="/faq">FAQ</Nav.Link>
+              {!authorizedUser && <Nav.Link className="text-light" href="/signin">Login</Nav.Link>}
+              {!authorizedUser && <Nav.Link className="text-light" href="/signup">Sign Up</Nav.Link>}
               {authorizedUser && <Button variant="outline-primary" type="submit" onClick={handleLogout}>logout</Button>}
             </Nav>
             <Nav>
@@ -89,6 +89,12 @@ const App = () => {
               <Discover />
             </Route>
             <Route path="/license" exact>
+              <License />
+            </Route>
+            <Route path="/faq" exact>
+              <License />
+            </Route>
+            <Route path="/about" exact>
               <License />
             </Route>
             <Route path="/signin" exact>
@@ -113,12 +119,6 @@ const App = () => {
             </Route>
             <Route path="collection/:id" exact>
               <CollectionDetails />
-            </Route>
-            <Route path="/signup" exact>
-              <SignUpForm />
-            </Route>
-            <Route path="/FAQ" exact>
-              <SignInForm />
             </Route>
             <Route path="/" exact>
               <Home
