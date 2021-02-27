@@ -1,0 +1,92 @@
+/* eslint-disable no-undef */
+/* eslint-disable react/jsx-one-expression-per-line */
+import React, { useState } from 'react';
+import { Card, Button, Row } from 'react-bootstrap';
+import { createClient } from 'pexels';
+import useCreatePhoto from '../hooks/useCreatePhoto';
+import config from '../config';
+import db from '../out';
+
+// eslint-disable-next-line arrow-body-style
+const AddNewPhotoPanel = () => {
+  const [photoNow, setPhotoNow] = useState(0);
+  const [photosPool, setPhotosPool] = useState();
+  const [createPhoto] = useCreatePhoto();
+  const allPhotos = db.photos;
+
+  if (!allPhotos) return null;
+
+  const getPhotos = () => {
+    const client = createClient(config.pexelApi);
+
+    client.photos.curated({ per_page: 80, page: 21 }).then((photos) => {
+      setPhotosPool(photos.photos);
+      console.log('photos pexels', photos, photosPool);
+    });
+  };
+
+  // console.log(photosPool);
+
+  const createNewPhoto = async () => {
+    try {
+      const photo = photosPool[photoNow];
+
+      // const variables = createNormalPhoto(photo, `Pexels_${photo.id}`);
+      const variables = {
+        width: photo.width,
+        height: photo.height,
+        tiny: photo.src.small,
+        small: photo.src.large,
+        large: photo.src.original,
+        downloadPage: photo.url,
+        creditWeb: 'Pexels',
+        creditId: `${photo.id}`,
+        photographer: photo.photographer,
+        description: '',
+        tags: 'pexels',
+      };
+      console.log('photonow', photo, 'variables', variables);
+
+      await createPhoto(variables);
+      // eslint-disable-next-line no-alert
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.log(e);
+    }
+  };
+
+  const previousPhoto = () => {
+    if ((photoNow - 1) < 0) window.alert('ending');
+    else setPhotoNow(photoNow - 1);
+  };
+
+  const nextPhoto = () => {
+    if ((photoNow + 1) > allPhotos.length) window.alert('ending');
+    else setPhotoNow(photoNow + 1);
+  };
+
+  console.log(allPhotos[photoNow]);
+  return (
+    <div>
+      <h1>Discover</h1>
+      <Row className="sm my-2 my-lg-5">
+        <Card style={{ width: '28rem' }}>
+          <Card.Body key={allPhotos[photoNow].id}>
+            {photosPool && <Card.Img src={photosPool[photoNow].src.large} alt="Card image" />}
+          </Card.Body>
+        </Card>
+        <Card style={{ width: '18rem' }}>
+          <Card.Body>
+            <Card.Title>{photoNow} / {allPhotos.length} </Card.Title>
+            <Button variant="primary" onClick={() => previousPhoto()}>Pre</Button>
+            <Button variant="primary" onClick={() => nextPhoto()}>Next</Button>
+            <Button variant="primary" onClick={() => createNewPhoto()}>添加</Button>
+            <Button variant="primary" onClick={() => getPhotos()}>setPhotoPool</Button>
+          </Card.Body>
+        </Card>
+      </Row>
+    </div>
+  );
+};
+
+export default AddNewPhotoPanel;

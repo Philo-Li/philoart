@@ -5,6 +5,7 @@ const PHOTO_DETAILS = gql`
     id
     width
     height
+    tiny
     small
     large
     downloadPage
@@ -68,6 +69,7 @@ export const CREATE_PHOTO = gql`
   mutation createPhoto(
     $width: Int
     $height: Int
+    $tiny: String
     $small: String
     $large: String
     $downloadPage: String
@@ -80,6 +82,7 @@ export const CREATE_PHOTO = gql`
     createPhoto(photo: {
       width: $width
       height: $height
+      tiny: $tiny
       small: $small
       large: $large
       creditWeb: $creditWeb
@@ -92,6 +95,7 @@ export const CREATE_PHOTO = gql`
       id
       width
       height
+      tiny
       small
       large
       creditWeb

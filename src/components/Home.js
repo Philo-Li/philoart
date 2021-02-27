@@ -5,11 +5,13 @@ import '../index.css';
 import usePhotos from '../hooks/usePhotos';
 import HomePhotoList from './HomePhotoList';
 import SearchBar from './SearchBar';
-import useAuthorizedUser from '../hooks/useAuthorizedUser';
+// import useAuthorizedUser from '../hooks/useAuthorizedUser';
 
-const Home = ({ searchValue, newSearchValue, setNewSearchValue }) => {
+const Home = ({
+  authorizedUser, searchValue, newSearchValue, setNewSearchValue,
+}) => {
   const [allPhotos, setAllPhotos] = useState();
-  const { authorizedUser } = useAuthorizedUser();
+  // const { authorizedUser } = useAuthorizedUser();
 
   const variables = {
     searchKeyword: newSearchValue,
@@ -56,7 +58,7 @@ const Home = ({ searchValue, newSearchValue, setNewSearchValue }) => {
         setAllPhotos(updatedAllPhotos);
       }
     }
-  }, [photos, authorizedUser]);
+  }, [photos]);
 
   const clickFetchMore = () => {
     fetchMore();

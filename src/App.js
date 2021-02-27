@@ -16,11 +16,13 @@ import Profile from './components/Profile';
 import UserLikes from './components/UserLikes';
 import UserCollections from './components/UserCollections';
 import PhotoDetails from './components/PhotoDetails';
+import CollectionDetails from './components/CollectionDetails';
 import SignInForm from './components/SignInForm';
 import SignUpForm from './components/SignUpForm';
 import useAuthorizedUser from './hooks/useAuthorizedUser';
 import useField from './hooks/useField';
 import SearchBar from './components/SearchBar';
+import UserPage from './components/UserPage';
 import logo from './logo.png';
 
 const App = () => {
@@ -37,7 +39,7 @@ const App = () => {
     };
 
     let userPage;
-    if (authorizedUser) userPage = `${authorizedUser.id}`;
+    if (authorizedUser) userPage = `/user/${authorizedUser.id}`;
 
     return (
       <div>
@@ -94,6 +96,9 @@ const App = () => {
             <Route path="/signup" exact>
               <SignUpForm />
             </Route>
+            <Route path="/user" exact>
+              <UserPage />
+            </Route>
             <Route path="/:id" exact>
               <Profile />
               <UserLikes />
@@ -105,6 +110,9 @@ const App = () => {
             <Route path="photo/:id" exact>
               <PhotoDetails />
             </Route>
+            <Route path="collection/:id" exact>
+              <CollectionDetails />
+            </Route>
             <Route path="/signup" exact>
               <SignUpForm />
             </Route>
@@ -113,6 +121,7 @@ const App = () => {
             </Route>
             <Route path="/" exact>
               <Home
+                authorizedUser={authorizedUser}
                 searchValue={searchValue}
                 newSearchValue={newSearchValue}
                 setNewSearchValue={setNewSearchValue}

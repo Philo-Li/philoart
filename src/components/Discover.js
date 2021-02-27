@@ -1,74 +1,67 @@
-/* eslint-disable no-undef */
-/* eslint-disable react/jsx-one-expression-per-line */
-import React, { useState } from 'react';
-import { Card, Button, Row } from 'react-bootstrap';
-import useCreatePhoto from '../hooks/useCreatePhoto';
-import db from '../out';
+/* eslint-disable react/style-prop-object */
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable object-curly-newline */
+import React from 'react';
+import { Card, CardColumns } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
+import config from '../config';
+import '../index.css';
 
-// eslint-disable-next-line arrow-body-style
+import useCollections from '../hooks/useCollections';
+
+const cover = 'https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-gallery-vector-icon-png-image_470660.jpg';
+// eslint-disable-next-line react/prefer-stateless-function
 const Discover = () => {
-  const [photoNow, setPhotoNow] = useState(0);
-  const [createPhoto] = useCreatePhoto();
-  const allPhotos = db.photos;
+  const history = useHistory();
+  const { collections } = useCollections({
+    userId: config.pickyAdmin,
+    first: 30,
+  });
 
-  if (!allPhotos) return null;
+  if (!collections) return null;
 
-  const createNewPhoto = async () => {
-    try {
-      const photo = allPhotos[photoNow];
+  const allCollections = collections.edges
+    ? collections.edges.map((edge) => edge.node)
+    : [];
 
-      // const variables = createNormalPhoto(photo, `Pexels_${photo.id}`);
-      const variables = {
-        width: photo.width,
-        height: photo.height,
-        small: photo.src.large,
-        large: photo.src.original,
-        downloadPage: photo.url,
-        creditWeb: 'Pexels',
-        creditId: `${photo.id}`,
-        photographer: photo.photographer,
-        description: '',
-        tags: 'pexels cake',
-      };
-      console.log('photonow', photo, 'variables', variables);
-
-      await createPhoto(variables);
-      // eslint-disable-next-line no-alert
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.log(e);
-    }
+  const openCollection = () => {
+    console.log('hey');
+    history.push('/collection/:id');
   };
 
-  const previousPhoto = () => {
-    if ((photoNow - 1) < 0) window.alert('ending');
-    else setPhotoNow(photoNow - 1);
-  };
+  const getCover = (collection) => (collection.photoCount === 0
+    ? cover
+    : collection.photos.edges[0].node.photo.small);
 
-  const nextPhoto = () => {
-    if ((photoNow + 1) > allPhotos.length) window.alert('ending');
-    else setPhotoNow(photoNow + 1);
-  };
-
-  console.log(allPhotos[photoNow]);
   return (
-    <div>
-      <h1>Discover</h1>
-      <Row className="sm my-2 my-lg-5">
-        <Card style={{ width: '28rem' }}>
-          <Card.Body key={allPhotos[photoNow].id}>
-            <Card.Img src={allPhotos[photoNow].src.large} alt="Card image" />
-          </Card.Body>
-        </Card>
-        <Card style={{ width: '18rem' }}>
-          <Card.Body>
-            <Card.Title>{photoNow} / {allPhotos.length} </Card.Title>
-            <Button variant="primary" onClick={() => previousPhoto()}>Pre</Button>
-            <Button variant="primary" onClick={() => nextPhoto()}>Next</Button>
-            <Button variant="primary" onClick={() => createNewPhoto()}>添加</Button>
-          </Card.Body>
-        </Card>
-      </Row>
+    <div className="p-3">
+      <>
+      </>
+      <CardColumns className="sm my-2 my-lg-5">
+        {allCollections.map((collection) => (
+          <Card key={collection.id}>
+            <div
+              className="view zoom overlay"
+              onClick={() => { openCollection(); }}
+              onKeyPress={() => openCollection()}
+              role="button"
+              tabIndex="0"
+            >
+              <img
+                src={getCover(collection)}
+                className="max-height-100"
+                alt="smaple"
+              />
+              <div className="mask flex-center rgba-blue-light white-text">
+                <i size="lg" className="bi bi-search" />
+              </div>
+            </div>
+            <Card.Title>
+              <p className="row-item-0">{collection.title}</p>
+            </Card.Title>
+          </Card>
+        ))}
+      </CardColumns>
     </div>
   );
 };

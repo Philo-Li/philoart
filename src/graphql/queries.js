@@ -6,6 +6,7 @@ const PHOTO_DETAILS = gql`
     id
     width
     height
+    tiny
     small
     large
     downloadPage
