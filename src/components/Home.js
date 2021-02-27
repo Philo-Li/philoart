@@ -1,17 +1,15 @@
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
-import { Jumbotron } from 'react-bootstrap';
+import { Jumbotron, Button } from 'react-bootstrap';
 import '../index.css';
 import usePhotos from '../hooks/usePhotos';
 import HomePhotoList from './HomePhotoList';
 import SearchBar from './SearchBar';
-// import useAuthorizedUser from '../hooks/useAuthorizedUser';
 
 const Home = ({
   authorizedUser, searchValue, newSearchValue, setNewSearchValue,
 }) => {
   const [allPhotos, setAllPhotos] = useState();
-  // const { authorizedUser } = useAuthorizedUser();
 
   const variables = {
     searchKeyword: newSearchValue,
@@ -58,7 +56,7 @@ const Home = ({
         setAllPhotos(updatedAllPhotos);
       }
     }
-  }, [photos]);
+  }, [photos, newSearchValue]);
 
   const clickFetchMore = () => {
     fetchMore();
@@ -67,6 +65,7 @@ const Home = ({
   console.log('picky: photos', photos);
   console.log('picky: updatedAllPhotos', allPhotos);
   console.log('picky: authorizedUser', authorizedUser);
+  const tags = ['wallpaper', 'nature', 'animals', 'people', 'travel', 'food', 'sea', 'texture', 'interiors', 'Art'];
 
   return (
     <div>
@@ -80,7 +79,13 @@ const Home = ({
         </Jumbotron>
       </div>
       <div className="p-3">
-        <h1>hey</h1>
+        {tags.map((tag) => (
+          <>
+            <Button variant="outline-dark" size="sm" onClick={() => setNewSearchValue(tag)}>
+              {tag}
+            </Button>
+          </>
+        ))}
       </div>
       <HomePhotoList
         allPhotos={allPhotos}

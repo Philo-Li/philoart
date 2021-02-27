@@ -23,6 +23,7 @@ import useAuthorizedUser from './hooks/useAuthorizedUser';
 import useField from './hooks/useField';
 import NavSearchBar from './components/NavSearchBar';
 import UserPage from './components/UserPage';
+import License from './components/License';
 import logo from './logo.png';
 
 const App = () => {
@@ -88,7 +89,7 @@ const App = () => {
               <Discover />
             </Route>
             <Route path="/license" exact>
-              <Home />
+              <License />
             </Route>
             <Route path="/signin" exact>
               <SignInForm />

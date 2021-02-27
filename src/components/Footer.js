@@ -19,40 +19,40 @@ const Footer = () => {
               <Col className="inline my-2 ml-auto">
                 <Card.Title className="text-left text-light  my-lg-0 mb-2"> Picky </Card.Title>
                 <Card.Text className="text-left text-light  my-lg-0 mb-2">
-                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="#">About</Card.Link>
+                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="/about">About</Card.Link>
                 </Card.Text>
                 <Card.Text className="text-left text-light  my-lg-0 mb-2">
-                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="#">FAQ</Card.Link>
+                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="/faq">FAQ</Card.Link>
                 </Card.Text>
                 <Card.Text className="text-left text-light  my-lg-0 mb-2">
-                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="#">Join</Card.Link>
+                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="/signup">Sign up</Card.Link>
                 </Card.Text>
                 <Card.Text className="text-left text-light  my-lg-0 mb-2">
-                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="#">Partner with Picky</Card.Link>
+                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="/partner">Partner with Picky</Card.Link>
                 </Card.Text>
               </Col>
               <Col className="inline my-2 ml-auto">
                 <Card.Title className="text-left text-light  my-lg-0 mb-2"> Free Stock Photos </Card.Title>
                 <Card.Text className="text-left text-light  my-lg-0 mb-2">
-                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="#">Popular searches</Card.Link>
+                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="/">Popular searches</Card.Link>
                 </Card.Text>
                 <Card.Text className="text-left text-light  my-lg-0 mb-2">
-                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="#">Black and white photography</Card.Link>
+                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="/black&white">Black and white photography</Card.Link>
                 </Card.Text>
                 <Card.Text className="text-left text-light  my-lg-0 mb-2">
-                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="#">Inspiring photos</Card.Link>
+                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="/inspiring">Inspiring photos</Card.Link>
                 </Card.Text>
                 <Card.Text className="text-left text-light  my-lg-0 mb-2">
-                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="#">Best wallpapers</Card.Link>
+                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="/wallpaper">Best wallpapers</Card.Link>
                 </Card.Text>
               </Col>
               <Col className="inline my-2 ml-auto">
                 <Card.Title className="text-left text-light  my-lg-0 mb-2"> Contact us </Card.Title>
                 <Card.Text className="text-left text-light  my-lg-0 mb-2">
-                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="#">Submit website</Card.Link>
+                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="/submit">Submit website</Card.Link>
                 </Card.Text>
                 <Card.Text className="text-left text-light  my-lg-0 mb-2">
-                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="#">Social media</Card.Link>
+                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="/">Social media</Card.Link>
                 </Card.Text>
               </Col>
             </Row>
