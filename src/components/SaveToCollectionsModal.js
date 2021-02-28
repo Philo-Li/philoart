@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable object-curly-newline */
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Modal, Button, Form } from 'react-bootstrap';
@@ -7,7 +6,6 @@ import UserCollectionsList from './UserCollectionsList';
 import useCreateCollectionAndCollectPhoto from '../hooks/useCreateCollectionAndCollectPhoto';
 import useField from '../hooks/useField';
 import useAuthorizedUser from '../hooks/useAuthorizedUser';
-import '../MDB-Free_4.19.2/css/mdb.css';
 import '../index.css';
 
 const SaveToCollectionsModal = ({ photo, collectSinglePhoto }) => {
@@ -45,7 +43,7 @@ const SaveToCollectionsModal = ({ photo, collectSinglePhoto }) => {
 
   return (
     <>
-      <Button size="sm" className="button1" variant="light" onClick={() => openCollectModal()}>
+      <Button size="sm" className="button1" variant="apparent" onClick={() => openCollectModal()}>
         <i className="bi bi-plus-square" />
       </Button>
 

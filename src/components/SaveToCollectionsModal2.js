@@ -1,8 +1,4 @@
 /* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable max-len */
-/* eslint-disable object-curly-newline */
-/* eslint-disable no-alert */
-/* eslint-disable arrow-body-style */
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Modal, Button, Form } from 'react-bootstrap';
@@ -10,7 +6,6 @@ import UserCollectionsList from './UserCollectionsList';
 import useCreateCollection from '../hooks/useCreateCollection';
 import useField from '../hooks/useField';
 import useAuthorizedUser from '../hooks/useAuthorizedUser';
-import '../MDB-Free_4.19.2/css/mdb.css';
 import '../index.css';
 
 const SaveToCollectionsModal2 = ({ photo, collectSinglePhoto }) => {

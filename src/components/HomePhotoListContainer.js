@@ -1,8 +1,9 @@
+/* eslint-disable react/void-dom-elements-no-children */
 /* eslint-disable max-len */
 /* eslint-disable object-curly-newline */
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { CardColumns, Button } from 'react-bootstrap';
+import { Button, CardColumns } from 'react-bootstrap';
 import '../index.css';
 import useLikePhoto from '../hooks/useLikePhoto';
 import useAuthorizedUser from '../hooks/useAuthorizedUser';
@@ -62,7 +63,7 @@ const HomePhotoListContainer = ({ allPhotos, setAllPhotos, clickFetchMore }) => 
 
   return (
     <div className="p-3">
-      <CardColumns key="homePhotoList" className="sm my-2 my-lg-5">
+      <CardColumns className="sm my-2 my-lg-5">
         {allPhotos.map((photo) => (
           <PhotoCard
             key={photo.id}

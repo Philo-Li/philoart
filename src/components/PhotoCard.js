@@ -12,24 +12,24 @@ const PhotoCard = ({ photo, likeSinglePhoto, collectSinglePhoto }) => {
   if (!photo) return null;
 
   return (
-    <div>
+    <div className="">
       <Card key={photo.id}>
         <Card.Img src={photo.small} alt="Card image" />
         <Card.ImgOverlay className="sm">
           <div className="wrapper">
-            <div id={photo.id} className="wrapper">
-              <Button variant="light" size="sm" onClick={() => window.open(photo.downloadPage)}>
+            <div id={photo.id} className="wrapper text-white">
+              <Button variant="apparent" size="sm" onClick={() => window.open(photo.downloadPage)}>
                 <i className="bi bi-download" />
               </Button>
             </div>
-            <div id={photo.id} className="button-0">
+            <div id={photo.id} className="button-0  text-white">
               <SaveToCollectionsModal
                 photo={photo}
                 collectSinglePhoto={collectSinglePhoto}
               />
             </div>
-            <div className="button-0">
-              <Button variant="light" size="sm" onClick={() => likeSinglePhoto(photo)}>
+            <div className="button-0 text-white">
+              <Button variant="apparent" size="sm" onClick={() => likeSinglePhoto(photo)}>
                 {!photo.isLiked && (<i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />)}
                 {photo.isLiked && (
                   <div className="red-icon">

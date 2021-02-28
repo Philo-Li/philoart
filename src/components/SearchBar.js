@@ -18,7 +18,7 @@ const SearchBar = ({ searchValue, setNewSearchValue }) => {
     <div>
       <Form onSubmit={handleSearch}>
         <div className="container-row-searchbar">
-          <Form.Control {...searchValue} placeholder="Search for free photos" fluid />
+          <Form.Control {...searchValue} placeholder="Search for free photos" />
           <Button variant="light" type="submit">
             <i className="bi bi-search" />
           </Button>

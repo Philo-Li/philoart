@@ -106,18 +106,18 @@ const App = () => {
             <Route path="/user" exact>
               <UserPage />
             </Route>
-            <Route path="/:id" exact>
+            <Route path="/user/:id" exact>
               <Profile />
               <UserLikes />
             </Route>
-            <Route path="/:id/collections" exact>
+            <Route path="/user/:id/collections" exact>
               <Profile />
               <UserCollections />
             </Route>
-            <Route path="photo/:id" exact>
+            <Route path="/photo/:id" exact>
               <PhotoDetails />
             </Route>
-            <Route path="collection/:id" exact>
+            <Route path="/collection/:id" exact>
               <CollectionDetails />
             </Route>
             <Route path="/" exact>

@@ -25,9 +25,8 @@ const UserCollections = () => {
     ? collections.edges.map((edge) => edge.node)
     : [];
 
-  const openCollection = () => {
-    console.log('hey');
-    history.push('/collection/:id');
+  const openCollection = (id) => {
+    history.push(`/collection/${id}`);
   };
 
   const getCover = (collection) => (collection.photoCount === 0
@@ -43,8 +42,8 @@ const UserCollections = () => {
           <Card key={collection.id}>
             <div
               className="view zoom overlay"
-              onClick={() => { openCollection(); }}
-              onKeyPress={() => openCollection()}
+              onClick={() => { openCollection(collection.id); }}
+              onKeyPress={() => openCollection(collection.id)}
               role="button"
               tabIndex="0"
             >

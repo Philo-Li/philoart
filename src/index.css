@@ -240,6 +240,11 @@
   object-fit: cover;
 }
 
+.max-width {
+  width:10%;
+  overflow:visible;
+}
+
 .licence {
   background-image: url("https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1500&q=80");
   background-size: cover;
@@ -248,4 +253,36 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+
+
+@media (min-width: 500px) {
+  .parent-masonry {
+    -webkit-column-count: 2;
+
+    -moz-column-count: 2;
+
+    column-count: 2;
+  }
+}
+
+@media (min-width: 900px) {
+  .parent-masonry {
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+  }
+}
+
+.masonry { 
+  display: flex;
+  flex-flow: column wrap;
+  margin-left: 10px; /* Adjustment for the gutter */
+  width: 100%;
+}
+
+.masonry-brick {
+  margin: 0 15px 15px 0; /* Some gutter */
+  width: 100%;
 }

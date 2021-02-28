@@ -20,6 +20,8 @@ const Profile = () => {
     ? authorizedUser.profileImage
     : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
 
+  const userPage = `/user/${authorizedUser.id}`;
+  const userPageCollections = `/user/${authorizedUser.id}/collections`;
   return (
     <div className="p-3">
       <div className="container-profile">
@@ -32,10 +34,10 @@ const Profile = () => {
       </div>
       <Nav variant="tabs" defaultActiveKey={history.location.pathname}>
         <Nav.Item>
-          <Nav.Link href="/:id">Likes</Nav.Link>
+          <Nav.Link href={userPage}>Likes</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link href="/:id/collections" eventKey="/:id/collections">Collections</Nav.Link>
+          <Nav.Link href={userPageCollections} eventKey={userPageCollections}>Collections</Nav.Link>
         </Nav.Item>
       </Nav>
     </div>

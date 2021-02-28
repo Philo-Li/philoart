@@ -20,6 +20,9 @@ const CollectionDetails = ({ photo }) => {
 
   return (
     <div className="p-3">
+      <div className="profile-item">
+        <h1>{authorizedUser.username}</h1>
+      </div>
       <div className="container-profile">
         <div className="profile-item">
           <Image src={photo.small} magin={10} />

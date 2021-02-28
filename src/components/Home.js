@@ -13,7 +13,7 @@ const Home = ({
 
   const variables = {
     searchKeyword: newSearchValue,
-    first: 15,
+    first: 30,
   };
 
   const { photos, fetchMore } = usePhotos(variables);
