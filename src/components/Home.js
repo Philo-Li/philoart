@@ -91,7 +91,6 @@ const Home = ({
         allPhotos={allPhotos}
         setAllPhotos={setAllPhotos}
         clickFetchMore={clickFetchMore}
-        authorizedUser={authorizedUser}
       />
     </div>
   );

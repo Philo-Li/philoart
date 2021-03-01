@@ -253,3 +253,48 @@ export const IS_LIKED_PHOTO = gql`
     }
   }
 `;
+
+export const GET_COLLECTION_PHOTOS = gql`
+  query getCollectionPhotos(
+    $orderBy: AllColletedPhotosOrderBy
+    $orderDirection: OrderDirection
+    $id: ID!
+    $first: Int
+    $after: String
+  ) {
+    photosInCollection(
+      orderBy: $orderBy
+      orderDirection: $orderDirection
+      id: $id
+      first: $first
+      after: $after
+    ) {
+      edges {
+        node {
+          id
+          user{
+            id
+            username
+          }
+          photo{
+            ...photoDetails
+          }
+          collection{
+            id
+            title
+            photoCount
+            cover
+          }
+        }
+        cursor
+      }
+      pageInfo {
+        endCursor
+        startCursor
+        totalCount
+        hasNextPage
+      }
+    }
+  }
+  ${PHOTO_DETAILS}
+`;

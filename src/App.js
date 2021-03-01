@@ -118,7 +118,7 @@ const App = () => {
               <PhotoDetails />
             </Route>
             <Route path="/collection/:id" exact>
-              <CollectionDetails />
+              <CollectionDetails authorizedUser={authorizedUser} />
             </Route>
             <Route path="/" exact>
               <Home
