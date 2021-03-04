@@ -56,7 +56,7 @@ const Home = ({
         setAllPhotos(updatedAllPhotos);
       }
     }
-  }, [photos, newSearchValue]);
+  }, [photos]);
 
   const clickFetchMore = () => {
     fetchMore();
@@ -78,13 +78,13 @@ const Home = ({
           <SearchBar searchValue={searchValue} setNewSearchValue={setNewSearchValue} />
         </Jumbotron>
       </div>
-      <div className="p-3">
+      <div className="p-3 container-row-0">
         {tags.map((tag) => (
-          <>
+          <div className="" key={tag}>
             <Button variant="outline-dark" size="sm" onClick={() => setNewSearchValue(tag)}>
               {tag}
             </Button>
-          </>
+          </div>
         ))}
       </div>
       <HomePhotoList

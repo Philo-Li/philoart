@@ -24,6 +24,7 @@ import useField from './hooks/useField';
 import NavSearchBar from './components/NavSearchBar';
 import UserPage from './components/UserPage';
 import License from './components/License';
+import About from './components/About';
 import logo from './logo.png';
 
 const App = () => {
@@ -95,7 +96,7 @@ const App = () => {
               <License />
             </Route>
             <Route path="/about" exact>
-              <License />
+              <About />
             </Route>
             <Route path="/signin" exact>
               <SignInForm />

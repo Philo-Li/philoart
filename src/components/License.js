@@ -10,7 +10,7 @@ const License = () => {
     <div>
       <div>
         <Jumbotron className="licence">
-          <h1 className="header-bold-white">Legal Simplicity</h1>
+          <h1 className="header-bold-white">CC0 Licence</h1>
           <h3 className="header">
             All photos can be downloaded and used for free.
           </h3>
