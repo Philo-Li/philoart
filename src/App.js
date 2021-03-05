@@ -25,6 +25,7 @@ import NavSearchBar from './components/NavSearchBar';
 import UserPage from './components/UserPage';
 import License from './components/License';
 import About from './components/About';
+import AboutZh from './components/AboutZh';
 import logo from './logo.png';
 
 const App = () => {
@@ -97,6 +98,9 @@ const App = () => {
             </Route>
             <Route path="/about" exact>
               <About />
+            </Route>
+            <Route path="/about/zh" exact>
+              <AboutZh />
             </Route>
             <Route path="/signin" exact>
               <SignInForm />

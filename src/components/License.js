@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import React from 'react';
-import { Jumbotron } from 'react-bootstrap';
+import { Jumbotron, Card } from 'react-bootstrap';
 import '../index.css';
 
 const License = () => {
@@ -18,19 +18,12 @@ const License = () => {
       </div>
       <div className="container-col-login">
         <div className="col-item-3">
-          <h1>
-            The original website
-            {'\''}
-            s licenses are almost the same and like this:
-          </h1>
-        </div>
-      </div>
-      <div className="container-col-login">
-        <div className="col-item-3">
           <h1 className="header-bold">What is allowed?</h1>
         </div>
+        <Card.Link href="/license/zh" className="col-item-3">中文</Card.Link>
+        <Card.Link href="https://creativecommons.org/publicdomain/zero/1.0/" className="col-item-3">CC0 Licence</Card.Link>
         {allowed.map((msg) => (
-          <div className="col-item-1">
+          <div className="col-item-1" key={msg}>
             <div className="container-row-4">
               <div className="row-item-5">
                 <i className="bi bi-check2 icon-check" />
@@ -47,7 +40,7 @@ const License = () => {
           <h1 className="header-bold">What is not allowed?</h1>
         </div>
         {notallowed.map((msg) => (
-          <div className="col-item-1">
+          <div className="col-item-1" key={msg}>
             <div className="container-row-4">
               <div className="row-item-5">
                 <i className="bi bi-x icon-x" />
