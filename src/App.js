@@ -24,6 +24,7 @@ import useField from './hooks/useField';
 import NavSearchBar from './components/NavSearchBar';
 import UserPage from './components/UserPage';
 import License from './components/License';
+import LicenseZh from './components/LicenseZh';
 import About from './components/About';
 import AboutZh from './components/AboutZh';
 import logo from './logo.png';
@@ -92,6 +93,9 @@ const App = () => {
             </Route>
             <Route path="/license" exact>
               <License />
+            </Route>
+            <Route path="/license/zh" exact>
+              <LicenseZh />
             </Route>
             <Route path="/faq" exact>
               <License />

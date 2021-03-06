@@ -6,6 +6,7 @@ import { Card, Button } from 'react-bootstrap';
 import PhotoDetailsModal from './PhotoDetailsModal';
 import SaveToCollectionsModal from './SaveToCollectionsModal';
 import '../index.css';
+import '../MDB-Free_4.19.2/css/mdb.css';
 
 // eslint-disable-next-line react/prefer-stateless-function
 const PhotoCard = ({ photo, likeSinglePhoto, collectSinglePhoto }) => {
@@ -14,39 +15,47 @@ const PhotoCard = ({ photo, likeSinglePhoto, collectSinglePhoto }) => {
   return (
     <div className="">
       <Card key={photo.id}>
-        <Card.Img src={photo.small} alt="Card image" />
-        <Card.ImgOverlay className="sm">
-          <div className="wrapper">
-            <div id={photo.id} className="wrapper text-white">
-              <Button variant="apparent" size="sm" onClick={() => window.open(photo.downloadPage)}>
-                <i className="bi bi-download" />
-              </Button>
-            </div>
-            <div id={photo.id} className="button-0  text-white">
-              <SaveToCollectionsModal
-                photo={photo}
-                collectSinglePhoto={collectSinglePhoto}
-              />
-            </div>
-            <div className="button-0 text-white">
-              <Button variant="apparent" size="sm" onClick={() => likeSinglePhoto(photo)}>
-                {!photo.isLiked && (<i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />)}
-                {photo.isLiked && (
-                  <div className="red-icon">
-                    <i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />
-                  </div>
-                )}
-              </Button>
-            </div>
-            <div className="button-0">
-              <PhotoDetailsModal
-                photo={photo}
-                collectSinglePhoto={collectSinglePhoto}
-                likeSinglePhoto={likeSinglePhoto}
-              />
+        <div
+          className="bg-image view overlay"
+        >
+          <img
+            src={photo.small}
+            width="100%"
+            alt="smaple"
+          />
+          <div className="mask flex-start white-text hover-overlay">
+            <div className="wrapper">
+              <div id={photo.id} className="wrapper text-white">
+                <Button variant="apparent" size="sm" onClick={() => window.open(photo.downloadPage)}>
+                  <i className="bi bi-download" />
+                </Button>
+              </div>
+              <div id={photo.id} className="button-0  text-white">
+                <SaveToCollectionsModal
+                  photo={photo}
+                  collectSinglePhoto={collectSinglePhoto}
+                />
+              </div>
+              <div className="button-0 text-white">
+                <Button variant="apparent" size="sm" onClick={() => likeSinglePhoto(photo)}>
+                  {!photo.isLiked && (<i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />)}
+                  {photo.isLiked && (
+                    <div className="red-icon">
+                      <i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />
+                    </div>
+                  )}
+                </Button>
+              </div>
+              <div className="button-0">
+                <PhotoDetailsModal
+                  photo={photo}
+                  collectSinglePhoto={collectSinglePhoto}
+                  likeSinglePhoto={likeSinglePhoto}
+                />
+              </div>
             </div>
           </div>
-        </Card.ImgOverlay>
+        </div>
       </Card>
     </div>
   );
