@@ -4,8 +4,8 @@ import { Jumbotron, Card } from 'react-bootstrap';
 import '../index.css';
 
 const LicenseZh = () => {
-  const allowed = ['All photos are free to use.', 'Commercial and non-commercial purposes', 'Attribution is not required. Giving credit to the photographer is not necessary but always appreciated.', 'You can modify the photos. Be creative and edit them as you like.'];
-  const notallowed = ['Identifiable people may not appear in a bad light or in a way that is offensive.', 'Don\'t sell unaltered copies of a photo or video, e.g. as a poster, print or on a physical product without modifying it first.', 'Don\'t imply endorsement of your product by people or brands on the imagery.', 'Don\'t redistribute or sell the photos and videos on other stock photo or wallpaper platforms.'];
+  const allowed = ['所有照片均可免费使用。', '包括商业和非商业用途。', '不需要注明出处。标注摄影师不是必须的，但总是值得赞赏。', '你可以使用、复制、编辑或分享该照片。欢迎按照你喜欢的方式用其进行创造。'];
+  const notallowed = ['照片中可识别的人不能以恶意或令人反感的方式出现。', '在没有修改之前，不要销售未经修改的照片或视频副本，例如作为海报、印刷品或实物产品。', '不要暗示图片上的人或品牌对你的产品有认可。', '不要将照片直接作为您自己的作品进行宣传，或宣称自己是照片作者。'];
   return (
     <div>
       <div>
@@ -55,9 +55,7 @@ const LicenseZh = () => {
       <div className="container-col-login">
         <div className="col-item-3">
           <h1>
-            You can read the original website
-            {'\''}
-            s licenses for more purpose.
+            除了上述提到的之外，如果你还想将图片用于其他用途，请仔细阅读原图片站点的用户协议。
           </h1>
         </div>
       </div>

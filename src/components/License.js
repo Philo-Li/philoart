@@ -4,8 +4,8 @@ import { Jumbotron, Card } from 'react-bootstrap';
 import '../index.css';
 
 const License = () => {
-  const allowed = ['All photos are free to use.', 'Commercial and non-commercial purposes', 'Attribution is not required. Giving credit to the photographer is not necessary but always appreciated.', 'You can modify the photos. Be creative and edit them as you like.'];
-  const notallowed = ['Identifiable people may not appear in a bad light or in a way that is offensive.', 'Don\'t sell unaltered copies of a photo or video, e.g. as a poster, print or on a physical product without modifying it first.', 'Don\'t imply endorsement of your product by people or brands on the imagery.', 'Don\'t redistribute or sell the photos and videos on other stock photo or wallpaper platforms.'];
+  const allowed = ['All photos are free to use.', 'Commercial and non-commercial purposes.', 'Attribution is not required. Giving credit to the photographer is not necessary but always appreciated.', 'You can use, copy, edit, or share that photo. Be creative and edit them as you like.'];
+  const notallowed = ['Identifiable people may not appear in a bad light or in a way that is offensive.', 'Don\'t sell unaltered copies of a photo or video, e.g. as a poster, print or on a physical product without modifying it first.', 'Don\'t imply endorsement of your product by people or brands on the imagery.', 'Never to advertise the photograph as your own work or portray yourself as the author of said work.'];
   return (
     <div>
       <div>

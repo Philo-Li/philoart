@@ -1,10 +1,11 @@
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
-import { Jumbotron, Button } from 'react-bootstrap';
+import { Jumbotron } from 'react-bootstrap';
 import '../index.css';
 import usePhotos from '../hooks/usePhotos';
 import HomePhotoList from './HomePhotoList';
 import SearchBar from './SearchBar';
+import TagBar from './TagBar';
 
 const Home = ({
   authorizedUser, searchValue, newSearchValue, setNewSearchValue,
@@ -65,7 +66,7 @@ const Home = ({
   console.log('picky: photos', photos);
   console.log('picky: updatedAllPhotos', allPhotos);
   console.log('picky: authorizedUser', authorizedUser);
-  const tags = ['wallpaper', 'nature', 'animals', 'people', 'travel', 'food', 'sea', 'texture', 'interiors', 'Art'];
+  // const tags = ['wallpaper', 'nature', 'animals', 'people', 'travel', 'food', 'sea', 'texture', 'interiors', 'Art'];
 
   return (
     <div>
@@ -78,15 +79,7 @@ const Home = ({
           <SearchBar searchValue={searchValue} setNewSearchValue={setNewSearchValue} />
         </Jumbotron>
       </div>
-      <div className="p-3 container-row-0">
-        {tags.map((tag) => (
-          <div className="" key={tag}>
-            <Button variant="outline-dark" size="sm" onClick={() => setNewSearchValue(tag)}>
-              {tag}
-            </Button>
-          </div>
-        ))}
-      </div>
+      <TagBar setNewSearchValue={setNewSearchValue} />
       <HomePhotoList
         allPhotos={allPhotos}
         setAllPhotos={setAllPhotos}

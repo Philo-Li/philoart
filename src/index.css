@@ -315,3 +315,28 @@
   margin: 0 15px 15px 0; /* Some gutter */
   width: 100%;
 }
+
+div.scrollmenu {
+  background-color: white;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.scrollmenu a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+div.scrollmenu a:hover {
+  background-color: #777;
+}
+
+.container-row-tag {
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  margin-right: 5%;
+}
