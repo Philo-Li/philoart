@@ -87,6 +87,15 @@ export const GET_PHOTOS = gql`
   ${PHOTO_DETAILS}
 `;
 
+export const GET_PHOTO = gql`
+  query getPhoto($id: ID!) {
+    photo(id: $id) {
+      ...photoDetails
+    }
+  }
+  ${PHOTO_DETAILS}
+`;
+
 export const GET_AUTHORIZED_USER = gql`
   query getAuthorizedUser {
     authorizedUser {

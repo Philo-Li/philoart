@@ -114,6 +114,13 @@
   align-items: flex-end;
 }
 
+.container-row-5 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
 
 .row-item-0 {
   display: flex;
@@ -205,6 +212,13 @@
   padding: 10px 20px;
   font-size: 2rem;
   color: cornflowerblue;
+  width:50%;
+}
+
+.icon-download {
+  padding: 10px 20px;
+  font-size: 2rem;
+  color: white;
   width:50%;
 }
 

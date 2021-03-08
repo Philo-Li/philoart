@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Modal, Button, Form } from 'react-bootstrap';
 import UserCollectionsList from './UserCollectionsList';
-import useCreateCollection from '../hooks/useCreateCollection';
+import useCreateCollectionAndCollectPhoto from '../hooks/useCreateCollectionAndCollectPhoto';
 import useField from '../hooks/useField';
 import useAuthorizedUser from '../hooks/useAuthorizedUser';
 import '../index.css';
@@ -13,7 +13,7 @@ const SaveToCollectionsModal2 = ({ photo, collectSinglePhoto }) => {
   const title = useField('title');
   const { authorizedUser } = useAuthorizedUser();
   const history = useHistory();
-  const [createCollection] = useCreateCollection();
+  const [createCollectionAndCollectPhoto] = useCreateCollectionAndCollectPhoto();
 
   const openCollectModal = async () => {
     if (!authorizedUser) {
@@ -29,10 +29,11 @@ const SaveToCollectionsModal2 = ({ photo, collectSinglePhoto }) => {
         title: title.value,
         description: '',
         public: true,
+        photoId: photo.id,
       };
       console.log('variables', variables);
 
-      await createCollection(variables);
+      await createCollectionAndCollectPhoto(variables);
       // eslint-disable-next-line no-alert
     } catch (e) {
       // eslint-disable-next-line no-console

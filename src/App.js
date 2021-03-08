@@ -43,7 +43,7 @@ const App = () => {
     };
 
     let userPage;
-    if (authorizedUser) userPage = `/user/${authorizedUser.id}`;
+    if (authorizedUser) userPage = `/user/@${authorizedUser.username}`;
 
     return (
       <div>
@@ -124,7 +124,7 @@ const App = () => {
               <UserCollections />
             </Route>
             <Route path="/photo/:id" exact>
-              <PhotoDetails />
+              <PhotoDetails authorizedUser={authorizedUser} />
             </Route>
             <Route path="/collection/:id" exact>
               <CollectionDetails authorizedUser={authorizedUser} />
