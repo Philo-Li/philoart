@@ -23,6 +23,7 @@ import useAuthorizedUser from './hooks/useAuthorizedUser';
 import useField from './hooks/useField';
 import NavSearchBar from './components/NavSearchBar';
 import UserPage from './components/UserPage';
+import SearchPage from './components/SearchPage';
 import License from './components/License';
 import LicenseZh from './components/LicenseZh';
 import About from './components/About';
@@ -111,6 +112,9 @@ const App = () => {
             </Route>
             <Route path="/signup" exact>
               <SignUpForm />
+            </Route>
+            <Route path="/search/:id" exact>
+              <SearchPage authorizedUser={authorizedUser} />
             </Route>
             <Route path="/user" exact>
               <UserPage />

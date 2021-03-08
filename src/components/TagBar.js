@@ -3,9 +3,7 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import '../index.css';
 
-const TagBar = ({
-  setNewSearchValue,
-}) => {
+const TagBar = () => {
   const tags = ['wallpaper', 'nature', 'animals', 'people', 'travel', 'food', 'sea', 'texture', 'interiors', 'Art'];
 
   return (
@@ -14,7 +12,7 @@ const TagBar = ({
         <div className="p-3 container-row-tag">
           {tags.map((tag) => (
             <div className="" key={tag}>
-              <Button variant="outline-dark" size="sm" onClick={() => setNewSearchValue(tag)}>
+              <Button variant="outline-dark" size="sm" href={`/search/${tag}`}>
                 {tag}
               </Button>
             </div>
