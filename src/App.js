@@ -113,19 +113,19 @@ const App = () => {
             <Route path="/signup" exact>
               <SignUpForm />
             </Route>
-            <Route path="/search/:id" exact>
+            <Route path="/search">
               <SearchPage authorizedUser={authorizedUser} />
             </Route>
             <Route path="/user" exact>
               <UserPage />
             </Route>
-            <Route path="/user/:id" exact>
-              <Profile />
-              <UserLikes />
+            <Route path="/user/:userId" exact>
+              <Profile authorizedUser={authorizedUser} />
+              <UserLikes authorizedUser={authorizedUser} />
             </Route>
-            <Route path="/user/:id/collections" exact>
-              <Profile />
-              <UserCollections />
+            <Route path="/user/:userId/collections" exact>
+              <Profile authorizedUser={authorizedUser} />
+              <UserCollections authorizedUser={authorizedUser} />
             </Route>
             <Route path="/photo/:id" exact>
               <PhotoDetails authorizedUser={authorizedUser} />

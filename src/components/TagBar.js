@@ -12,7 +12,7 @@ const TagBar = () => {
         <div className="p-3 container-row-tag">
           {tags.map((tag) => (
             <div className="" key={tag}>
-              <Button variant="outline-dark" size="sm" href={`/search/${tag}`}>
+              <Button variant="outline-dark" size="sm" href={`/search?q=${tag}`}>
                 {tag}
               </Button>
             </div>

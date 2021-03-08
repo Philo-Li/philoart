@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import queryString from 'query-string';
 import '../index.css';
 import usePhotos from '../hooks/usePhotos';
 import HomePhotoList from './HomePhotoList';
@@ -8,10 +9,11 @@ import TagBar from './TagBar';
 
 const SearchPage = ({ authorizedUser }) => {
   const [allPhotos, setAllPhotos] = useState();
-  const { id } = useParams();
+  const location = useLocation();
+  const parsed = queryString.parse(location.search);
 
   const variables = {
-    searchKeyword: id,
+    searchKeyword: parsed.q,
     first: 30,
   };
 
@@ -64,7 +66,6 @@ const SearchPage = ({ authorizedUser }) => {
   console.log('picky: photos', photos);
   console.log('picky: updatedAllPhotos', allPhotos);
   console.log('picky: authorizedUser', authorizedUser);
-  // const tags = ['wallpaper', 'nature', 'animals', 'people', 'travel', 'food', 'sea', 'texture', 'interiors', 'Art'];
 
   return (
     <div>
@@ -73,7 +74,7 @@ const SearchPage = ({ authorizedUser }) => {
           <h1>Search:</h1>
         </div>
         <div className="profile-item">
-          <h1>{id}</h1>
+          <h1>{parsed.q}</h1>
         </div>
       </div>
       <TagBar />

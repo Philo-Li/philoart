@@ -4,18 +4,13 @@
 /* eslint-disable object-curly-newline */
 import React, { useState, useEffect } from 'react';
 import '../index.css';
-
 import useUserLikes from '../hooks/useUserLikes';
 import UserLikesListContainer from './UserLikesListContainer';
-import useAuthorizedUser from '../hooks/useAuthorizedUser';
 
-// eslint-disable-next-line react/prefer-stateless-function
-const UserLikes = () => {
+const UserLikes = ({ authorizedUser }) => {
   const [allLikedPhotos, setAllLikedPhotos] = useState();
-  const { authorizedUser } = useAuthorizedUser();
 
   const { likes, fetchMore } = useUserLikes({ userId: authorizedUser && authorizedUser.id, first: 15 });
-  console.log('likeslikes', likes);
 
   useEffect(() => {
     if (likes) {
@@ -24,7 +19,6 @@ const UserLikes = () => {
         : [];
 
       const updatedAllPhotos = temp.map((photo) => ({ ...photo, isLiked: true }));
-      console.log('updatedAllPhotos', updatedAllPhotos);
 
       setAllLikedPhotos(updatedAllPhotos);
     }

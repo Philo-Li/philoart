@@ -158,6 +158,12 @@ export const UNCOLLECT_PHOTO = gql`
   }
 `;
 
+export const DELETE_COLLECTION = gql`
+  mutation deleteCollection( $id: ID! ) {
+    deleteCollection( id: $id )
+  }
+`;
+
 export const CREATE_COLLECTION = gql`
   mutation createCollection(
     $title: String!

@@ -34,6 +34,7 @@ const SaveToCollectionsModal = ({ photo, collectSinglePhoto }) => {
       console.log('variables', variables);
 
       await createCollectionAndCollectPhoto(variables);
+      history.push('/home');
       // eslint-disable-next-line no-alert
     } catch (e) {
       // eslint-disable-next-line no-console

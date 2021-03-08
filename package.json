@@ -19,6 +19,7 @@
     "mdbreact": "^4.11.1",
     "packery": "^2.1.2",
     "pexels": "^1.0.1",
+    "query-string": "^6.14.1",
     "react": "^16.14.0",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^16.14.0",

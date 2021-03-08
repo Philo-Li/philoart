@@ -4,10 +4,11 @@
 /* eslint-disable object-curly-newline */
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-// import { Image } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import '../index.css';
 import HomePhotoList from './HomePhotoList';
 import useCollectionPhotos from '../hooks/useCollectionPhotos';
+import useDeleteCollection from '../hooks/useDeleteCollection';
 
 // eslint-disable-next-line react/prefer-stateless-function
 const CollectionDetails = ({ authorizedUser }) => {
@@ -15,6 +16,7 @@ const CollectionDetails = ({ authorizedUser }) => {
   const { id } = useParams();
   const [allPhotos, setAllPhotos] = useState();
   const [collectionNow, setCollectionNow] = useState();
+  const [deleteCollection] = useDeleteCollection();
 
   const variables = {
     id,
@@ -70,11 +72,25 @@ const CollectionDetails = ({ authorizedUser }) => {
     fetchMore();
   };
 
+  const deleteSingleCollection = async (collectionId) => {
+    if (window.confirm('delete this collection?')) {
+      await deleteCollection({ id: collectionId });
+      history.push(`/user/${authorizedUser.id}/collections`);
+    }
+  };
+
   return (
     <div>
       <div>
         <div className="col-item-4">
           { collectionNow && <h1 className="header-bold">{collectionNow.title}</h1> }
+        </div>
+      </div>
+      <div className="container-collection-title">
+        <div className="item-1-collection-title">
+          <Button variant="apparent" size="sm" onClick={() => deleteSingleCollection(collectionNow.id)}>
+            <i className="bi bi-trash-fill icon-delete" />
+          </Button>
         </div>
       </div>
       <HomePhotoList

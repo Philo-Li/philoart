@@ -1,32 +1,37 @@
 /* eslint-disable react/style-prop-object */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable object-curly-newline */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card, CardColumns } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import '../index.css';
-
 import useCollections from '../hooks/useCollections';
-import useAuthorizedUser from '../hooks/useAuthorizedUser';
 
 const cover = 'https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-gallery-vector-icon-png-image_470660.jpg';
-// eslint-disable-next-line react/prefer-stateless-function
+
 const UserCollections = () => {
-  const { authorizedUser } = useAuthorizedUser();
   const history = useHistory();
+  const { userId } = useParams();
   const { collections } = useCollections({
-    userId: authorizedUser && authorizedUser.id,
+    userId,
     first: 30,
   });
 
-  if (!collections) return null;
+  useEffect(() => {
+    if (collections) {
+      const temp = collections.edges
+        ? collections.edges.map((edge) => edge.node.photo)
+        : [];
+      console.log(temp, collections);
+    }
+  }, [collections]);
 
-  const allCollections = collections.edges
+  const allCollections = collections && collections.edges
     ? collections.edges.map((edge) => edge.node)
     : [];
 
-  const openCollection = (id) => {
-    history.push(`/collection/${id}`);
+  const openCollection = (collectionId) => {
+    history.push(`/collection/${collectionId}`);
   };
 
   const getCover = (collection) => (collection.photoCount === 0
@@ -57,7 +62,16 @@ const UserCollections = () => {
               </div>
             </div>
             <Card.Title>
-              <p className="row-item-0">{collection.title}</p>
+              <div className="container-collection-title">
+                <div className="item-0-collection-title">
+                  <p className="row-item-0">
+                    {collection.title}
+                    (
+                    {collection.photoCount}
+                    )
+                  </p>
+                </div>
+              </div>
             </Card.Title>
           </Card>
         ))}

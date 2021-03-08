@@ -293,6 +293,9 @@ export const GET_COLLECTION_PHOTOS = gql`
             title
             photoCount
             cover
+            user{
+              username
+            }
           }
         }
         cursor

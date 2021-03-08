@@ -36,10 +36,10 @@ const UserPage = () => {
       </div>
       <Nav variant="tabs" defaultActiveKey={history.location.pathname}>
         <Nav.Item>
-          <Nav.Link href={`${url}/:id`}>Likes</Nav.Link>
+          <Nav.Link href={`${url}/:userId`}>Likes</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link href="/:id/collections" eventKey="/:id/collections">Collections</Nav.Link>
+          <Nav.Link href="/:userId/collections" eventKey="/:userId/collections">Collections</Nav.Link>
         </Nav.Item>
       </Nav>
 
@@ -47,7 +47,7 @@ const UserPage = () => {
         <Route exact path={path}>
           <h3>Please select a topic.</h3>
         </Route>
-        <Route path={`${path}/:id`}>
+        <Route path={`${path}/:userId`}>
           <Profile />
         </Route>
       </Switch>

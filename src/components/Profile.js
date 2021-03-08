@@ -5,17 +5,12 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Nav, Image } from 'react-bootstrap';
 import '../index.css';
-import useAuthorizedUser from '../hooks/useAuthorizedUser';
 
-// eslint-disable-next-line react/prefer-stateless-function
-const Profile = () => {
-  const { authorizedUser } = useAuthorizedUser();
+const Profile = ({ authorizedUser }) => {
   const history = useHistory();
 
   if (!authorizedUser) return null;
 
-  console.log('authorizedUser', authorizedUser);
-  console.log('history', history.location.pathname);
   const profileImage = authorizedUser.profileImage
     ? authorizedUser.profileImage
     : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';

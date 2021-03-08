@@ -57,7 +57,7 @@ const Home = ({
         setAllPhotos(updatedAllPhotos);
       }
     }
-  }, [photos]);
+  }, [photos, authorizedUser]);
 
   const clickFetchMore = () => {
     fetchMore();
@@ -66,7 +66,6 @@ const Home = ({
   console.log('picky: photos', photos);
   console.log('picky: updatedAllPhotos', allPhotos);
   console.log('picky: authorizedUser', authorizedUser);
-  // const tags = ['wallpaper', 'nature', 'animals', 'people', 'travel', 'food', 'sea', 'texture', 'interiors', 'Art'];
 
   return (
     <div>
