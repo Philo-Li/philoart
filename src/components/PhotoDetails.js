@@ -1,23 +1,17 @@
 /* eslint-disable max-len */
 /* eslint-disable react/style-prop-object */
 /* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable object-curly-newline */
 import React, { useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import '../index.css';
-// import useAuthorizedUser from '../hooks/useAuthorizedUser';
 import usePhoto from '../hooks/usePhoto';
 import PhotoDetailsContainer from './PhotoDetailsContainer';
 
-// eslint-disable-next-line react/prefer-stateless-function
 const PhotoDetails = ({ authorizedUser }) => {
   const [photoToShow, setPhotoToShow] = useState();
-  // const { authorizedUser } = useAuthorizedUser();
   const { id } = useParams();
   const { photo } = usePhoto({ id });
-  const history = useHistory();
 
-  // eslint-disable-next-line consistent-return
   useEffect(() => {
     if (photo) {
       if (!authorizedUser) {
@@ -54,7 +48,6 @@ const PhotoDetails = ({ authorizedUser }) => {
 
   console.log('authorizedUser', authorizedUser);
   console.log('photo', photoToShow);
-  console.log('history', history.location.pathname, id);
 
   return (
     <div className="p-3">

@@ -10,12 +10,16 @@ const usePhotos = (variables) => {
     variables,
   });
 
+  console.log('here var', variables);
+
   const handleFetchMore = () => {
     const canFetchMore = !loading && data && data.photos.pageInfo.hasNextPage;
 
     if (!canFetchMore) {
       return;
     }
+
+    console.log('data.photos.pageInfo.endCursor', data.photos.pageInfo.endCursor);
 
     fetchMore({
       query: GET_PHOTOS,
@@ -33,6 +37,10 @@ const usePhotos = (variables) => {
             ],
           },
         };
+
+        console.log('previousResultt', previousResult);
+        console.log('fetchMoreResult', fetchMoreResult);
+        console.log('nextResult', nextResult);
 
         return nextResult;
       },

@@ -1,12 +1,17 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
+import useField from '../hooks/useField';
 
-const SearchBar = ({ searchValue, setNewSearchValue }) => {
+const SearchBar = () => {
+  const searchKeyword = useField('searchKeyword');
+  const history = useHistory();
+
   const handleSearch = async (event) => {
     event.preventDefault();
     try {
-      await setNewSearchValue(searchValue.value);
+      history.push(`/search?q=${searchKeyword.value}`);
       // eslint-disable-next-line no-alert
     } catch (e) {
       // eslint-disable-next-line no-console
@@ -14,11 +19,13 @@ const SearchBar = ({ searchValue, setNewSearchValue }) => {
     }
   };
 
+  console.log('search', searchKeyword);
+
   return (
     <div>
       <Form onSubmit={handleSearch}>
         <div className="container-row-searchbar">
-          <Form.Control {...searchValue} placeholder="Search for free photos" />
+          <input {...searchKeyword} placeholder="Search for free photos" />
           <Button variant="light" type="submit">
             <i className="bi bi-search" />
           </Button>
