@@ -207,6 +207,12 @@
   font-weight: bold;
 }
 
+.header-home {
+  font-size: 3rem;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+}
+
 .search-box-font {
   font-size: 70;
 }
@@ -350,7 +356,7 @@ div.scrollmenu a:hover {
 
 .container-row-tag {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: flex-start;
   margin-right: 5%;
 }

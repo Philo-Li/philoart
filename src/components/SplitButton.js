@@ -42,7 +42,7 @@ export default function SplitButton({ setSearchRange }) {
         <ButtonGroup variant="contained" color="default" ref={anchorRef} aria-label="split button">
           <Button
             color="default"
-            size="small"
+            size="large"
             aria-controls={open ? 'split-button-menu' : undefined}
             aria-expanded={open ? 'true' : undefined}
             aria-label="select merge strategy"
