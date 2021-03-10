@@ -1,5 +1,4 @@
 /* eslint-disable max-len */
-/* eslint-disable react/style-prop-object */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -46,8 +45,8 @@ const PhotoDetails = ({ authorizedUser }) => {
     }
   }, [photo]);
 
-  console.log('authorizedUser', authorizedUser);
-  console.log('photo', photoToShow);
+  // console.log('authorizedUser', authorizedUser);
+  // console.log('photo', photoToShow);
 
   return (
     <div className="p-3">

@@ -31,7 +31,7 @@ const SaveToCollectionsModal = ({ photo, collectSinglePhoto }) => {
         public: true,
         photoId: photo.id,
       };
-      console.log('variables', variables);
+      // console.log('variables', variables);
 
       await createCollectionAndCollectPhoto(variables);
       history.push('/home');

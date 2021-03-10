@@ -7,7 +7,6 @@ import useUnlikePhoto from '../hooks/useUnlikePhoto';
 import useAuthorizedUser from '../hooks/useAuthorizedUser';
 import PhotoCard from './PhotoCard';
 
-// eslint-disable-next-line react/prefer-stateless-function
 const UserLikesListContainer = ({ allPhotos, setAllPhotos, clickFetchMore }) => {
   const { authorizedUser } = useAuthorizedUser();
   const [likePhoto] = useLikePhoto();
@@ -29,7 +28,7 @@ const UserLikesListContainer = ({ allPhotos, setAllPhotos, clickFetchMore }) => 
       history.push('/signin');
     } else {
       const updatedPhoto = { ...photo, isLiked: !photo.isLiked };
-      console.log('updatedPhoto', updatedPhoto);
+      // console.log('updatedPhoto', updatedPhoto);
       const temp = allPhotos.map((obj) => (obj.id === photo.id ? updatedPhoto : obj));
       setAllPhotos(temp);
       if (photo.isLiked) {
@@ -38,10 +37,10 @@ const UserLikesListContainer = ({ allPhotos, setAllPhotos, clickFetchMore }) => 
           : [];
 
         const likedId = photoLikes.find((like) => like.user.id === authorizedUser.id);
-        console.log('unlike photo', photo.id);
+        // console.log('unlike photo', photo.id);
         await unlikePhoto({ id: likedId.id });
       } else {
-        console.log('like photo', photo.id);
+        // console.log('like photo', photo.id);
         await likePhoto({ photoId: photo.id });
       }
     }

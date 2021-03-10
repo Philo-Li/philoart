@@ -1,7 +1,5 @@
 /* eslint-disable max-len */
-/* eslint-disable react/style-prop-object */
 /* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable object-curly-newline */
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
@@ -24,8 +22,8 @@ const CollectionDetails = ({ authorizedUser }) => {
   };
   const { photosInCollection, fetchMore } = useCollectionPhotos(variables);
 
-  console.log('photosInCollection', photosInCollection, id, collectionNow);
-  console.log('history', history.location.pathname);
+  // console.log('photosInCollection', photosInCollection, id, collectionNow);
+  // console.log('history', history.location.pathname);
 
   useEffect(() => {
     if (photosInCollection) {
@@ -73,6 +71,7 @@ const CollectionDetails = ({ authorizedUser }) => {
   };
 
   const deleteSingleCollection = async (collectionId) => {
+    // eslint-disable-next-line no-alert
     if (window.confirm('delete this collection?')) {
       await deleteCollection({ id: collectionId });
       history.push(`/user/${authorizedUser.id}/collections`);

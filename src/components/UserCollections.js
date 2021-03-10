@@ -1,7 +1,7 @@
 /* eslint-disable react/style-prop-object */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable object-curly-newline */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Card, CardColumns } from 'react-bootstrap';
 import { useHistory, useParams } from 'react-router-dom';
 import '../index.css';
@@ -16,15 +16,6 @@ const UserCollections = () => {
     userId,
     first: 30,
   });
-
-  useEffect(() => {
-    if (collections) {
-      const temp = collections.edges
-        ? collections.edges.map((edge) => edge.node.photo)
-        : [];
-      console.log(temp, collections);
-    }
-  }, [collections]);
 
   const allCollections = collections && collections.edges
     ? collections.edges.map((edge) => edge.node)

@@ -25,7 +25,6 @@ const Discover = () => {
     : [];
 
   const openCollection = () => {
-    console.log('hey');
     history.push('/collection/:id');
   };
 

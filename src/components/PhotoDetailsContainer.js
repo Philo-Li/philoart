@@ -7,15 +7,15 @@ import { Button, Image, Card } from 'react-bootstrap';
 import '../index.css';
 import useLikePhoto from '../hooks/useLikePhoto';
 import useUnlikePhoto from '../hooks/useUnlikePhoto';
-// import useUncollectPhoto from '../hooks/useUncollectPhoto';
-// import useCollectPhoto from '../hooks/useCollectPhoto';
+import useUncollectPhoto from '../hooks/useUncollectPhoto';
+import useCollectPhoto from '../hooks/useCollectPhoto';
 import SaveToCollectionsModal2 from './SaveToCollectionsModal2';
 
 const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) => {
   const [likePhoto] = useLikePhoto();
   const [unlikePhoto] = useUnlikePhoto();
-  // const [collectPhoto] = useCollectPhoto();
-  // const [uncollectPhoto] = useUncollectPhoto();
+  const [collectPhoto] = useCollectPhoto();
+  const [uncollectPhoto] = useUncollectPhoto();
   const history = useHistory();
 
   if (!photoToShow) return null;
@@ -50,11 +50,11 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
         : [];
 
       const collectedPhoto = photoCollections.find((collected) => collected.photo.id === photo.id);
-      console.log('uncollect photo', photo.id, collection.id, collectedPhoto);
-      // await uncollectPhoto({ id: collectedPhoto.id });
+      // console.log('uncollect photo', photo.id, collection.id, collectedPhoto);
+      await uncollectPhoto({ id: collectedPhoto.id });
     } else {
-      // await collectPhoto({ photoId: photo.id, collectionId: collection.id });
-      console.log('collect photo', photo.id, collection.id);
+      await collectPhoto({ photoId: photo.id, collectionId: collection.id });
+      // console.log('collect photo', photo.id, collection.id);
     }
   };
 

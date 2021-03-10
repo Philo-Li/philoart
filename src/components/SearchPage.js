@@ -63,9 +63,9 @@ const SearchPage = ({ authorizedUser }) => {
     fetchMore();
   };
 
-  console.log('picky: photos', photos);
-  console.log('picky: updatedAllPhotos', allPhotos);
-  console.log('picky: authorizedUser', authorizedUser);
+  // console.log('picky: photos', photos);
+  // console.log('picky: updatedAllPhotos', allPhotos);
+  // console.log('picky: authorizedUser', authorizedUser);
 
   return (
     <div>

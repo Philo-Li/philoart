@@ -1,18 +1,23 @@
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
-import { Jumbotron } from 'react-bootstrap';
+import { useLocation } from 'react-router-dom';
+import queryString from 'query-string';
 import '../index.css';
 import usePhotos from '../hooks/usePhotos';
 import HomePhotoList from './HomePhotoList';
-import SearchBar from './SearchBar';
 import TagBar from './TagBar';
 
-const Home = ({
-  authorizedUser,
-}) => {
+const BroadSearchPage = ({ authorizedUser }) => {
   const [allPhotos, setAllPhotos] = useState();
+  const location = useLocation();
+  const parsed = queryString.parse(location.search);
 
-  const { photos, fetchMore } = usePhotos({ first: 30 });
+  const variables = {
+    searchKeyword: parsed.q,
+    first: 30,
+  };
+
+  const { photos, fetchMore } = usePhotos(variables);
 
   useEffect(() => {
     if (photos) {
@@ -52,7 +57,7 @@ const Home = ({
         setAllPhotos(updatedAllPhotos);
       }
     }
-  }, [photos, authorizedUser]);
+  }, [photos]);
 
   const clickFetchMore = () => {
     fetchMore();
@@ -64,14 +69,13 @@ const Home = ({
 
   return (
     <div>
-      <div>
-        <Jumbotron className="jumbotron">
-          <h1 className="header">Select the best free stock photos for you.</h1>
-          <p className="header">
-            Free to use. Redirect to download.
-          </p>
-          <SearchBar />
-        </Jumbotron>
+      <div className="p-3 container-profile">
+        <div className="profile-item">
+          <h1>Search:</h1>
+        </div>
+        <div className="profile-item">
+          <h1>{parsed.q}</h1>
+        </div>
       </div>
       <TagBar />
       <HomePhotoList
@@ -83,4 +87,4 @@ const Home = ({
   );
 };
 
-export default Home;
+export default BroadSearchPage;

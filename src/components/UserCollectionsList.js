@@ -8,7 +8,7 @@ import '../MDB-Free_4.19.2/css/mdb.css';
 import '../index.css';
 
 const cover = galleryIcon;
-// eslint-disable-next-line react/prefer-stateless-function
+
 const UserCollectionsList = ({ photo, collectSinglePhoto }) => {
   if (!photo.allCollectionsToShow) return null;
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable no-undef */
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useState } from 'react';
@@ -21,7 +22,7 @@ const AddNewPhotoPanel = () => {
 
     client.photos.curated({ per_page: 80, page: 21 }).then((photos) => {
       setPhotosPool(photos.photos);
-      console.log('photos pexels', photos, photosPool);
+      // console.log('photos pexels', photos, photosPool);
     });
   };
 
@@ -45,7 +46,7 @@ const AddNewPhotoPanel = () => {
         description: '',
         tags: 'pexels',
       };
-      console.log('photonow', photo, 'variables', variables);
+      // console.log('photonow', photo, 'variables', variables);
 
       await createPhoto(variables);
       // eslint-disable-next-line no-alert
@@ -65,7 +66,7 @@ const AddNewPhotoPanel = () => {
     else setPhotoNow(photoNow + 1);
   };
 
-  console.log(allPhotos[photoNow]);
+  // console.log(allPhotos[photoNow]);
   return (
     <div>
       <h1>Discover</h1>

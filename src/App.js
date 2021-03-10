@@ -24,6 +24,7 @@ import useField from './hooks/useField';
 import NavSearchBar from './components/NavSearchBar';
 import UserPage from './components/UserPage';
 import SearchPage from './components/SearchPage';
+import BroadSearchPage from './components/BroadSearchPage';
 import License from './components/License';
 import LicenseZh from './components/LicenseZh';
 import About from './components/About';
@@ -59,10 +60,7 @@ const App = () => {
             />
             Picky
           </Navbar.Brand>
-          <NavSearchBar
-            searchValue={searchValue}
-            setNewSearchValue={setNewSearchValue}
-          />
+          <NavSearchBar />
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end light">
             <Nav className="justify-content-end container-row-0">
@@ -115,6 +113,9 @@ const App = () => {
             </Route>
             <Route path="/search">
               <SearchPage authorizedUser={authorizedUser} />
+            </Route>
+            <Route path="/broadsearch">
+              <BroadSearchPage />
             </Route>
             <Route path="/user" exact>
               <UserPage />

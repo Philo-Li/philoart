@@ -1,6 +1,4 @@
-/* eslint-disable react/style-prop-object */
 /* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable object-curly-newline */
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 import PhotoDetailsModal from './PhotoDetailsModal';

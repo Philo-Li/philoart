@@ -32,10 +32,10 @@ const HomePhotoListContainer = ({ allPhotos, setAllPhotos, clickFetchMore }) => 
           : [];
 
         const likedId = photoLikes.find((like) => like.user.id === authorizedUser.id);
-        console.log('unlike photo', photo.id);
+        // console.log('unlike photo', photo.id);
         await unlikePhoto({ id: likedId.id });
       } else {
-        console.log('like photo', photo.id);
+        // console.log('like photo', photo.id);
         await likePhoto({ photoId: photo.id });
       }
     }
@@ -53,11 +53,11 @@ const HomePhotoListContainer = ({ allPhotos, setAllPhotos, clickFetchMore }) => 
         : [];
 
       const collectedPhoto = photoCollections.find((collected) => collected.photo.id === photo.id);
-      console.log('uncollect photo', photo.id, collection.id, collectedPhoto);
+      // console.log('uncollect photo', photo.id, collection.id, collectedPhoto);
       await uncollectPhoto({ id: collectedPhoto.id });
     } else {
       await collectPhoto({ photoId: photo.id, collectionId: collection.id });
-      console.log('collect photo', photo.id, collection.id);
+      // console.log('collect photo', photo.id, collection.id);
     }
   };
 

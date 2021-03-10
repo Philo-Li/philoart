@@ -1,7 +1,5 @@
 /* eslint-disable max-len */
-/* eslint-disable react/style-prop-object */
 /* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable object-curly-newline */
 import React, { useState, useEffect } from 'react';
 import '../index.css';
 import useUserLikes from '../hooks/useUserLikes';
@@ -23,8 +21,6 @@ const UserLikes = ({ authorizedUser }) => {
       setAllLikedPhotos(updatedAllPhotos);
     }
   }, [likes]);
-
-  console.log('user likes list + user', likes, authorizedUser);
 
   const clickFetchMore = () => {
     fetchMore();

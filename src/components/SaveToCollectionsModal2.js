@@ -31,7 +31,7 @@ const SaveToCollectionsModal2 = ({ photo, collectSinglePhoto }) => {
         public: true,
         photoId: photo.id,
       };
-      console.log('variables', variables);
+      // console.log('variables', variables);
 
       await createCollectionAndCollectPhoto(variables);
       // eslint-disable-next-line no-alert
