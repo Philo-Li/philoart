@@ -28,7 +28,7 @@ const Footer = () => {
                   <Card.Link className="text-left text-muted my-lg-0 mb-2" href="/signup">Sign up</Card.Link>
                 </Card.Text>
                 <Card.Text className="text-left text-light  my-lg-0 mb-2">
-                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="/partner">Free photo stock Website</Card.Link>
+                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="/partner">Free photo stock website</Card.Link>
                 </Card.Text>
               </Col>
               <Col className="inline my-2 ml-auto">
@@ -72,7 +72,7 @@ const Footer = () => {
                 Picky
               </Navbar.Brand>
               <Card.Text className="text-light">
-                — Select the best free stock photos for you.
+                — Discover best free stock photos.
               </Card.Text>
             </div>
             <Nav className="justify-content-end">

@@ -1,14 +1,27 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Button, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
+import { makeStyles } from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton';
+import SearchIcon from '@material-ui/icons/Search';
 import SplitButton from './SplitButton';
 import useField from '../hooks/useField';
+
+const useStyles = makeStyles((theme) => ({
+  margin: {
+    margin: theme.spacing(1),
+  },
+  extendedIcon: {
+    marginRight: theme.spacing(1),
+  },
+}));
 
 const SearchBar = () => {
   const searchKeyword = useField('text');
   const [searchRange, setSearchRange] = useState('picky');
   const history = useHistory();
+  const classes = useStyles();
 
   const handleSearch = async (event) => {
     event.preventDefault();
@@ -29,13 +42,11 @@ const SearchBar = () => {
     <div className="topnav">
       <Form onSubmit={handleSearch}>
         <div className="topnav container-row-1">
-          <SplitButton setSearchRange={setSearchRange} />
+          <SplitButton className={classes.margin} setSearchRange={setSearchRange} />
           <input {...searchKeyword} placeholder="Search..." aria-label="Search" />
-          <Button variant="transparent" className="search-button" type="submit">
-            <div className="icon-search">
-              <i className="bi bi-search" />
-            </div>
-          </Button>
+          <IconButton aria-label="search" className={classes.margin} type="submit">
+            <SearchIcon fontSize="large" />
+          </IconButton>
         </div>
       </Form>
     </div>

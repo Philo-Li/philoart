@@ -83,7 +83,7 @@ const App = () => {
 
   return (
     <Router>
-      <div>
+      <div className="daily-cover-container">
         <Menu />
         <div>
           <Switch>
