@@ -193,6 +193,22 @@
   font-size: 1rem;
 }
 
+.photo-card-btn-icon {
+  font-size: 1.5rem;
+  margin-top: 10%;
+  font-weight: bold;
+  color: white;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  width: auto;
+  height: auto;
+}
+
+.photo-card-btn-icon:hover {
+  color: rgb(201, 199, 199);
+}
+
 .subtitle {
   color: #5860699c;
   font-size: 16;
@@ -409,6 +425,10 @@ div.scrollmenu a:hover {
   text-decoration: none;
   font-size: 17px;
   margin-right: 16px;
+}
+
+.select-button {
+  background-color: white;
 }
 
 /* Change the color of links on hover */

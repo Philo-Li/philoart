@@ -26,7 +26,7 @@ const SearchBar = () => {
   const handleSearch = async (event) => {
     event.preventDefault();
     try {
-      if (searchRange === 'Multi Website') {
+      if (searchRange === 'All') {
         history.push(`/broadsearch?q=${searchKeyword.value}`);
       } else {
         history.push(`/search?q=${searchKeyword.value}`);

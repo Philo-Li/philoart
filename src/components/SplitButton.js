@@ -11,7 +11,7 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 
-const options = ['Picky only', 'Multi Website'];
+const options = ['Picky only', 'All'];
 
 export default function SplitButton({ setSearchRange }) {
   const [open, setOpen] = React.useState(false);
@@ -39,9 +39,9 @@ export default function SplitButton({ setSearchRange }) {
   return (
     <Grid container direction="column" alignItems="center">
       <Grid item xs={12} className="topnav">
-        <ButtonGroup variant="contained" color="default" ref={anchorRef} aria-label="split button">
+        <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
           <Button
-            color="default"
+            className="select-button"
             size="large"
             aria-controls={open ? 'split-button-menu' : undefined}
             aria-expanded={open ? 'true' : undefined}
