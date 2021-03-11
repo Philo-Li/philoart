@@ -2,11 +2,17 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable object-curly-newline */
 import React from 'react';
-import { Card, CardColumns } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
+import Masonry from 'react-masonry-css';
 import galleryIcon from '../img/galleryIcon.jpg';
 import '../MDB-Free_4.19.2/css/mdb.css';
 import '../index.css';
 
+const breakpointColumnsObj = {
+  default: 3,
+  800: 2,
+  500: 1,
+};
 const cover = galleryIcon;
 
 const UserCollectionsList = ({ photo, collectSinglePhoto }) => {
@@ -16,7 +22,11 @@ const UserCollectionsList = ({ photo, collectSinglePhoto }) => {
     <div className="p-3">
       <>
       </>
-      <CardColumns className="sm my-2 my-lg-5">
+      <Masonry
+        breakpointCols={breakpointColumnsObj}
+        className="my-masonry-grid"
+        columnClassName="my-masonry-grid_column"
+      >
         {photo.allCollectionsToShow.map((collection) => (
           <Card key={collection.id}>
             <div
@@ -45,7 +55,7 @@ const UserCollectionsList = ({ photo, collectSinglePhoto }) => {
             </Card.Title>
           </Card>
         ))}
-      </CardColumns>
+      </Masonry>
     </div>
   );
 };

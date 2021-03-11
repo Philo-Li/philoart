@@ -1,11 +1,17 @@
-/* eslint-disable react/style-prop-object */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable object-curly-newline */
 import React from 'react';
-import { Card, CardColumns } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import { useHistory, useParams } from 'react-router-dom';
+import Masonry from 'react-masonry-css';
 import '../index.css';
 import useCollections from '../hooks/useCollections';
+
+const breakpointColumnsObj = {
+  default: 3,
+  800: 2,
+  500: 1,
+};
 
 const cover = 'https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-gallery-vector-icon-png-image_470660.jpg';
 
@@ -33,7 +39,11 @@ const UserCollections = () => {
     <div className="p-3">
       <>
       </>
-      <CardColumns className="sm my-2 my-lg-5">
+      <Masonry
+        breakpointCols={breakpointColumnsObj}
+        className="my-masonry-grid"
+        columnClassName="my-masonry-grid_column"
+      >
         {allCollections.map((collection) => (
           <Card key={collection.id}>
             <div
@@ -66,7 +76,7 @@ const UserCollections = () => {
             </Card.Title>
           </Card>
         ))}
-      </CardColumns>
+      </Masonry>
     </div>
   );
 };
