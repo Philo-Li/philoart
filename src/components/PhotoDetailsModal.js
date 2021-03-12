@@ -12,9 +12,9 @@ const PhotoDetailsModal = ({ photo, allCollections, collectSinglePhoto, likeSing
 
   return (
     <>
-      <Button size="sm" className="button1" variant="info" onClick={() => setShow(true)}>
+      <button type="button" className="photo-card-btn-icon photo-card-btn4" onClick={() => setShow(true)}>
         <i className="bi bi-search" />
-      </Button>
+      </button>
       <Modal
         show={show}
         onHide={() => setShow(false)}

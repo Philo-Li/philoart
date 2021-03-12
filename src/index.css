@@ -429,6 +429,10 @@ div.scrollmenu a:hover {
 
 .select-button {
   background-color: white;
+  height: 100%;
+  border: none;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
 }
 
 /* Change the color of links on hover */
@@ -540,6 +544,15 @@ div.scrollmenu a:hover {
   transition: opacity .5s ease;
 }
 
+.photo-card-btn4 {
+  position: absolute;
+  text-align: center;
+  top: -2rem;
+  right: 8rem;
+  opacity: 0;
+  transition: opacity .5s ease;
+}
+
 .photo-card:hover .photo-card-btn1 {
   opacity: 1;
 }
@@ -549,6 +562,10 @@ div.scrollmenu a:hover {
 }
 
 .photo-card:hover .photo-card-btn3 {
+  opacity: 1;
+}
+
+.photo-card:hover .photo-card-btn4 {
   opacity: 1;
 }
 

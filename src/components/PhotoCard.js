@@ -1,9 +1,8 @@
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-// import { Button } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
-// import PhotoDetailsModal from './PhotoDetailsModal';
+import PhotoDetailsModal from './PhotoDetailsModal';
 import SaveToCollectionsModal from './SaveToCollectionsModal';
 import '../index.css';
 import '../MDB-Free_4.19.2/css/mdb.css';
@@ -32,7 +31,7 @@ const PhotoCard = ({ photo, likeSinglePhoto, collectSinglePhoto }) => {
         </Link>
         <div>
           <div id={photo.id} className="text-white">
-            <button type="button" className="photo-card-btn-icon photo-card-btn3" onClick={() => window.open(photo.downloadPage)}>
+            <button type="button" className="photo-card-btn-icon photo-card-btn1" onClick={() => window.open(photo.downloadPage)}>
               <i className="bi bi-download" />
             </button>
           </div>
@@ -43,7 +42,7 @@ const PhotoCard = ({ photo, likeSinglePhoto, collectSinglePhoto }) => {
             />
           </div>
           <div className="text-white">
-            <button type="button" className="photo-card-btn-icon photo-card-btn1" onClick={() => likeSinglePhoto(photo)}>
+            <button type="button" className="photo-card-btn-icon photo-card-btn2" onClick={() => likeSinglePhoto(photo)}>
               {!photo.isLiked && (<i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />)}
               {photo.isLiked && (
                 <div className="red-icon">
@@ -51,6 +50,13 @@ const PhotoCard = ({ photo, likeSinglePhoto, collectSinglePhoto }) => {
                 </div>
               )}
             </button>
+          </div>
+          <div className="button-0">
+            <PhotoDetailsModal
+              photo={photo}
+              collectSinglePhoto={collectSinglePhoto}
+              likeSinglePhoto={likeSinglePhoto}
+            />
           </div>
         </div>
       </div>

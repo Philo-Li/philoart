@@ -44,7 +44,7 @@ const SaveToCollectionsModal = ({ photo, collectSinglePhoto }) => {
 
   return (
     <>
-      <button type="button" className="photo-card-btn-icon photo-card-btn2" onClick={() => openCollectModal()}>
+      <button type="button" className="photo-card-btn-icon photo-card-btn3" onClick={() => openCollectModal()}>
         <i className="bi bi-plus-square" />
       </button>
 
