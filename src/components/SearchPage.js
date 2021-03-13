@@ -5,7 +5,7 @@ import queryString from 'query-string';
 import '../index.css';
 import usePhotos from '../hooks/usePhotos';
 import HomePhotoList from './HomePhotoList';
-import TagBar from './TagBar';
+import RelatedTagBar from './RelatedTagBar';
 
 const SearchPage = ({ authorizedUser }) => {
   const [allPhotos, setAllPhotos] = useState();
@@ -77,7 +77,7 @@ const SearchPage = ({ authorizedUser }) => {
           <h1>{parsed.q}</h1>
         </div>
       </div>
-      <TagBar />
+      <RelatedTagBar allPhotos={allPhotos} />
       <HomePhotoList
         allPhotos={allPhotos}
         setAllPhotos={setAllPhotos}

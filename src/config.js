@@ -3,7 +3,7 @@ import path from 'path';
 
 dotenv.config({ path: path.resolve(__dirname, '..', '/.env') });
 
-console.log(process.env, process.env.REACT_APP_ABC);
+// console.log(process.env, process.env.REACT_APP_ABC);
 
 export default {
   port: process.env.REACT_APP_PORT,

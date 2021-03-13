@@ -78,6 +78,7 @@ const AddNewPhotoPanel = () => {
       const tags = JSON.parse(temp[i].tags);
       let getlabels = [];
 
+      // eslint-disable-next-line no-unused-vars
       const temp2 = tags.map((node) => {
         if (node.confidence > 20) {
           getlabels = [...getlabels, node.tag.en];
@@ -85,7 +86,7 @@ const AddNewPhotoPanel = () => {
         return true;
       });
       editPhotoLabels({ photoId: temp[i].id });
-      console.log(getlabels, temp2.length);
+      // console.log(getlabels, temp2.length);
     }
   };
 

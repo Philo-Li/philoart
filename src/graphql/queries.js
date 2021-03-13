@@ -14,6 +14,7 @@ const PHOTO_DETAILS = gql`
     creditId
     photographer
     description
+    labels
     tags
     likes{
       edges{
