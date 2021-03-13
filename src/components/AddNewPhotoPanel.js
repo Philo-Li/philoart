@@ -7,26 +7,29 @@ import { createClient } from 'pexels';
 import useCreatePhoto from '../hooks/useCreatePhoto';
 import config from '../config';
 import db from '../out';
+import usePhotos from '../hooks/usePhotos';
+import useEditPhotoLabels from '../hooks/useEditPhotoLabels';
 
 // eslint-disable-next-line arrow-body-style
 const AddNewPhotoPanel = () => {
   const [photoNow, setPhotoNow] = useState(0);
   const [photosPool, setPhotosPool] = useState();
   const [createPhoto] = useCreatePhoto();
+  const [editPhotoLabels] = useEditPhotoLabels();
   const allPhotos = db.photos;
 
-  if (!allPhotos) return null;
+  const { photos, fetchMore } = usePhotos({ first: 30, searchKeyword: 'dog,cat' });
+
+  if (!allPhotos || !photos) return null;
 
   const getPhotos = () => {
     const client = createClient(config.pexelApi);
 
-    client.photos.curated({ per_page: 80, page: 21 }).then((photos) => {
-      setPhotosPool(photos.photos);
+    client.photos.curated({ per_page: 80, page: 21 }).then((thisphotos) => {
+      setPhotosPool(thisphotos.photos);
       // console.log('photos pexels', photos, photosPool);
     });
   };
-
-  // console.log(photosPool);
 
   const createNewPhoto = async () => {
     try {
@@ -66,17 +69,57 @@ const AddNewPhotoPanel = () => {
     else setPhotoNow(photoNow + 1);
   };
 
-  // console.log(allPhotos[photoNow]);
+  let temp = photos && photos.edges
+    ? photos.edges.map((edge) => edge.node)
+    : [];
+
+  const updatePhotoLabels = async () => {
+    for (let i = 0; i < temp.length; i += 1) {
+      const tags = JSON.parse(temp[i].tags);
+      let getlabels = [];
+
+      const temp2 = tags.map((node) => {
+        if (node.confidence > 20) {
+          getlabels = [...getlabels, node.tag.en];
+        }
+        return true;
+      });
+      editPhotoLabels({ photoId: temp[i].id });
+      console.log(getlabels, temp2.length);
+    }
+  };
+
+  const getMorePhotos = () => {
+    fetchMore();
+    temp = photos && photos.edges
+      ? photos.edges.map((edge) => edge.node)
+      : [];
+    setPhotosPool(temp);
+  };
+
   return (
     <div>
       <h1>Discover</h1>
-      <Row className="sm my-2 my-lg-5">
+      <Row className="sm my-2 my-lg-5 flex-end">
+        <Card style={{ width: '18rem' }}>
+          <Card.Title>Edit Photo Labels</Card.Title>
+          <Card.Body>
+            <Card.Title>{photoNow} / {allPhotos.length} </Card.Title>
+            <Button variant="primary" onClick={() => previousPhoto()}>Pre</Button>
+            <Button variant="primary" onClick={() => nextPhoto()}>Next</Button>
+            <Button variant="primary" onClick={() => updatePhotoLabels()}>添加</Button>
+            <Button variant="primary" onClick={() => getMorePhotos()}>setPhotoPool</Button>
+          </Card.Body>
+        </Card>
+      </Row>
+      <Row className="sm my-2 my-lg-5 flex-end">
         <Card style={{ width: '28rem' }}>
           <Card.Body key={allPhotos[photoNow].id}>
             {photosPool && <Card.Img src={photosPool[photoNow].src.large} alt="Card image" />}
           </Card.Body>
         </Card>
         <Card style={{ width: '18rem' }}>
+          <Card.Title>Create New Photo</Card.Title>
           <Card.Body>
             <Card.Title>{photoNow} / {allPhotos.length} </Card.Title>
             <Button variant="primary" onClick={() => previousPhoto()}>Pre</Button>
