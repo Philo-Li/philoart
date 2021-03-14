@@ -5,7 +5,7 @@ import { Form } from 'react-bootstrap';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
-import SplitButton from './SplitButton';
+import DropdownButton from './DropdownButton';
 import useField from '../hooks/useField';
 
 const useStyles = makeStyles((theme) => ({
@@ -42,7 +42,7 @@ const SearchBar = () => {
     <div className="topnav">
       <Form onSubmit={handleSearch}>
         <div className="topnav container-row-1">
-          <SplitButton className={classes.margin} setSearchRange={setSearchRange} />
+          <DropdownButton className={classes.margin} setSearchRange={setSearchRange} />
           <input {...searchKeyword} placeholder="Search..." aria-label="Search" />
           <IconButton aria-label="search" className={classes.margin} type="submit">
             <SearchIcon fontSize="large" />

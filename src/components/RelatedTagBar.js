@@ -6,6 +6,14 @@ import '../index.css';
 const RelatedTagBar = ({ allPhotos }) => {
   if (allPhotos === undefined) return null;
 
+  if (allPhotos.length === 0) {
+    return (
+      <div className="p-3 flex-center">
+        <h3>No result</h3>
+      </div>
+    );
+  }
+
   const photo = allPhotos[0];
   const tags1 = photo.labels;
 

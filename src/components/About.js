@@ -50,12 +50,16 @@ const AboutZh = () => {
           </div>
         </Col>
         <Col>
-          <Image src={img1} width="100%" />
+          <Card>
+            <Image src={img1} width="100%" />
+          </Card>
         </Col>
       </Row>
       <Row className="p-3 container-about">
         <Col>
-          <Image src={img2} width="100%" />
+          <Card>
+            <Image src={img2} width="100%" />
+          </Card>
         </Col>
         <Col>
           <div className="container-col-login">
@@ -146,12 +150,16 @@ const AboutZh = () => {
           </div>
         </Col>
         <Col>
-          <Image src={img3} width="100%" />
+          <Card>
+            <Image src={img3} width="100%" />
+          </Card>
         </Col>
       </Row>
       <Row className="p-3 container-about">
         <Col>
-          <Image src={img4} width="100%" />
+          <Card>
+            <Image src={img4} width="100%" />
+          </Card>
         </Col>
         <Col>
           <div className="container-col-login">
