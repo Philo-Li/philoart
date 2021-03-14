@@ -126,6 +126,12 @@
   flex-direction: row;
 }
 
+.container-row-signup {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 
 .row-item-0 {
   display: flex;

@@ -5,8 +5,10 @@ import { CREATE_USER } from '../graphql/mutations';
 const useSignUp = () => {
   const [mutate, result] = useMutation(CREATE_USER);
 
-  const signUp = async ({ username, password }) => {
-    mutate({ variables: { username, password } });
+  const signUp = async (variables) => {
+    await mutate({
+      variables,
+    });
   };
 
   return [signUp, result];

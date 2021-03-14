@@ -57,8 +57,20 @@ export const AUTHORIZE = gql`
 `;
 
 export const CREATE_USER = gql`
-  mutation createUser($username: String!, $password: String!) {
-    createUser(user: { username: $username, password: $password }) {
+  mutation createUser(
+    $username: String!
+    $password: String!
+    $firstName: String!
+    $lastName: String
+    $email: String!
+    ) {
+    createUser(user: {
+      username: $username
+      password: $password
+      firstName: $firstName
+      lastName: $lastName
+      email:$email
+    }) {
       username
     }
   }
