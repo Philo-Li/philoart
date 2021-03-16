@@ -82,6 +82,55 @@
   align-items: center;
 }
 
+.container-col-signup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.col-item-signup {
+  margin: 0.5rem;
+  width: 100%;
+}
+
+input {
+  width: 100%;
+  padding: 8px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+input:invalid {
+  border: 1px solid red;
+}
+
+/* 
+input[type=email] {
+  width: 100%;
+  padding: 8px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+input[type=username] {
+  width: 100%;
+  padding: 8px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+input[type=password] {
+  width: 100%;
+  padding: 8px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+} */
+
+.error {
+  color: red;
+}
+
 .container-row-0 {
   display: flex;
   justify-content: center;

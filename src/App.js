@@ -17,8 +17,8 @@ import UserLikes from './components/UserLikes';
 import UserCollections from './components/UserCollections';
 import PhotoDetails from './components/PhotoDetails';
 import CollectionDetails from './components/CollectionDetails';
-import SignInForm from './components/SignInForm';
-import SignUpForm from './components/SignUpForm';
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
 import useAuthorizedUser from './hooks/useAuthorizedUser';
 import useField from './hooks/useField';
 import NavSearchBar from './components/NavSearchBar';
@@ -107,10 +107,10 @@ const App = () => {
               <AboutZh />
             </Route>
             <Route path="/signin" exact>
-              <SignInForm />
+              <SignIn />
             </Route>
             <Route path="/signup" exact>
-              <SignUpForm />
+              <SignUp />
             </Route>
             <Route path="/addphoto" exact>
               <AddNewPhotoPanel />
