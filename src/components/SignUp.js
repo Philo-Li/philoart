@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
-
+import { useHistory } from 'react-router-dom';
 import useSignUp from '../hooks/useSignUp';
 import SignUpContainer from './SignUpContainer';
 
@@ -12,23 +13,25 @@ const initialValues = {
 };
 
 const SignUp = () => {
-  // eslint-disable-next-line no-unused-vars
   const [signUp] = useSignUp();
-  // const onSubmit = async (values) => {
-  //   const { username, password } = values;
+  const history = useHistory();
 
-  //   try {
-  //     await signUp({ username, password });
-  //   } catch (e) {
-  //     // eslint-disable-next-line no-console
-  //     console.log(e);
-  //   }
-  // };
-  const onSubmit = (values, { setSubmitting }) => {
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, 400);
+  const onSubmit = async (values) => {
+    const variables = {
+      firstName: values.firstName,
+      lastName: values.lastName,
+      email: values.email,
+      username: values.username,
+      password: values.password,
+    };
+
+    try {
+      await signUp(variables);
+      history.push('/');
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.log(e);
+    }
   };
 
   return (

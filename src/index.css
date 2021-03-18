@@ -105,6 +105,12 @@ input:invalid {
   border: 1px solid red;
 }
 
+.search-input {
+  width: 100%;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
 /* 
 input[type=email] {
   width: 100%;
@@ -454,8 +460,8 @@ div.scrollmenu a:hover {
 }
 
 .topnav2 {
+  margin-left: 16px;
   overflow: visible;
-  background-color: white;
 }
 
 /* Style the links inside the navigation bar */

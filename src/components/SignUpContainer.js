@@ -27,7 +27,7 @@ const validationSchema = Yup.object({
     .oneOf([Yup.ref('password'), null], 'Passwords must match'),
 });
 
-const SignUpContainer = ({ initialValues }) => (
+const SignUpContainer = ({ initialValues, onSubmit }) => (
   <div className="container-col-login">
     <div className="container-profile">
       <div className="profile-item">
@@ -45,12 +45,7 @@ const SignUpContainer = ({ initialValues }) => (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
-      }}
+      onSubmit={onSubmit}
     >
       {({ handleSubmit }) => <SignUpForm onSubmit={handleSubmit} />}
     </Formik>

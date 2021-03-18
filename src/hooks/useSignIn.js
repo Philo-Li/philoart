@@ -7,9 +7,14 @@ const useSignIn = () => {
   const apolloClient = useApolloClient();
 
   const signIn = async ({ username, password }) => {
-    await mutate({ variables: { username, password } });
-    localStorage.setItem('picky-user-token', result.data.authorize.accessToken);
-    apolloClient.resetStore();
+    const payload = await mutate({ variables: { username, password } });
+    const { data } = payload;
+
+    if (data && data.authorize) {
+      await localStorage.setItem('picky-user-token', data.authorize.accessToken);
+      apolloClient.resetStore();
+    }
+    return payload;
   };
 
   return [signIn, result];
