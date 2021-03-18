@@ -1,57 +1,14 @@
 import { gql } from '@apollo/react-hooks';
-
-const PHOTO_DETAILS = gql`
-  fragment photoDetails on Photo {
-    id
-    width
-    height
-    tiny
-    small
-    large
-    downloadPage
-    creditWeb
-    creditId
-    photographer
-    description
-    tags
-    likes{
-      edges{
-        node{
-          id
-          user{
-            id
-          }
-        }
-      }
-    }
-    reviews{
-      edges{
-        node{
-          id
-          text
-        }
-      }
-    }
-    reviewCount
-    collections{
-      edges{
-        node{
-          id
-        }
-      }
-    }
-    likeCount
-    collectionCount
-    downloadCount
-    reviewCount
-    createdAt
-  }
-`;
+import PHOTO_DETAILS from './fragment';
 
 export const AUTHORIZE = gql`
   mutation authorize($username: String!, $password: String!) {
     authorize(credentials: { username: $username, password: $password }) {
       accessToken
+      user{
+        id
+        username
+      }
     }
   }
 `;

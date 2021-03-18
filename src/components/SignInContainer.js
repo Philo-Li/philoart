@@ -1,6 +1,6 @@
 import React from 'react';
 import { Formik } from 'formik';
-import { Image, Card } from 'react-bootstrap';
+import { Image, Card, Alert } from 'react-bootstrap';
 import * as Yup from 'yup';
 
 import SignInForm from './SignInForm';
@@ -16,7 +16,7 @@ const validationSchema = Yup.object().shape({
     .required('Password is required'),
 });
 
-const SignInContainer = ({ initialValues, onSubmit }) => (
+const SignInContainer = ({ initialValues, onSubmit, errorInfo }) => (
   <div className="container-col-login">
     <div className="container-profile">
       <div className="profile-item">
@@ -26,6 +26,11 @@ const SignInContainer = ({ initialValues, onSubmit }) => (
         <Image src={logo} width={150} height={150} magin={10} roundedCircle />
       </div>
     </div>
+    {errorInfo && (
+    <Alert variant="danger">
+      {errorInfo}
+    </Alert>
+    )}
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}

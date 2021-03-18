@@ -30,6 +30,7 @@ import License from './components/License';
 import LicenseZh from './components/LicenseZh';
 import About from './components/About';
 import AboutZh from './components/AboutZh';
+import TopWebsites from './components/TopWebsites';
 import logo from './logo.png';
 
 const App = () => {
@@ -105,6 +106,9 @@ const App = () => {
             </Route>
             <Route path="/about/zh" exact>
               <AboutZh />
+            </Route>
+            <Route path="/partner" exact>
+              <TopWebsites />
             </Route>
             <Route path="/signin" exact>
               <SignIn />

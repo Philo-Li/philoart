@@ -290,6 +290,12 @@ input[type=password] {
   color: white;
 }
 
+.website-link {
+  color: #5860699c;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
 .search-box-font {
   font-size: 70;
 }

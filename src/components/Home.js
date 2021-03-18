@@ -66,7 +66,7 @@ const Home = ({
     <div>
       <div>
         <Jumbotron className="jumbotron">
-          <h1 className="header-home">Discover best free stock photos.</h1>
+          <h1 className="header-home">Discover the best free stock photos.</h1>
           <p className="header">
             Free to use. Redirect to download.
           </p>
