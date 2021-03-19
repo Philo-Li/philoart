@@ -266,8 +266,44 @@ input[type=password] {
   height: auto;
 }
 
+.search-photo-card-btn-icon {
+  font-size: 1.5rem;
+  margin-top: 5%;
+  font-weight: lighter;
+  color: white;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  width: auto;
+  height: auto;
+}
+
 .photo-card-btn-icon:hover {
   color: rgb(201, 199, 199);
+}
+
+.search-photo-card-btn-icon:hover {
+  color: rgb(201, 199, 199);
+}
+
+.containter-search-photo-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-photo-card-btn-item1 {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 1.5rem;
+  margin-right: 1rem;
+}
+
+.search-photo-card-btn-item2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .subtitle {

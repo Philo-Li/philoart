@@ -19,19 +19,19 @@ const useStyles = makeStyles((theme) => ({
 
 const SearchBar = () => {
   const searchKeyword = useField('text');
-  const [searchRange, setSearchRange] = useState('picky');
+  const [searchRange, setSearchRange] = useState('Picky only');
   const history = useHistory();
   const classes = useStyles();
 
   const handleSearch = async (event) => {
     event.preventDefault();
     try {
+      // console.log('searchRange', searchRange);
       if (searchRange === 'All') {
         history.push(`/broadsearch?q=${searchKeyword.value}`);
       } else {
         history.push(`/search?q=${searchKeyword.value}`);
       }
-      // eslint-disable-next-line no-alert
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log(e);

@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 const options = ['Picky only', 'All'];
 
 export default function DropdownButton({ setSearchRange }) {
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  useEffect(() => {
+    setSearchRange(options[selectedIndex]);
+  }, [selectedIndex]);
 
   const handleToggle = () => {
     setSelectedIndex(selectedIndex === 0 ? 1 : 0);
-    setSearchRange(options[selectedIndex]);
   };
 
   return (

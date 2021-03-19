@@ -1,71 +1,51 @@
-/* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import queryString from 'query-string';
-import '../index.css';
-import usePhotos from '../hooks/usePhotos';
-import HomePhotoList from './HomePhotoList';
+import { createClient } from 'pexels';
+import config from '../config';
+import SearchPagePhotoList from './SearchPagePhotoList';
 import TagBar from './TagBar';
 
-const BroadSearchPage = ({ authorizedUser }) => {
-  const [allPhotos, setAllPhotos] = useState();
+const BroadSearchPage = () => {
+  const [pageNow, setPageNow] = useState(1);
+  const [photosToShow, setPhotosToShow] = useState();
   const location = useLocation();
   const parsed = queryString.parse(location.search);
 
-  const variables = {
-    searchKeyword: parsed.q,
-    first: 30,
-  };
+  const getPhotos = () => {
+    const client = createClient(config.pexelApi);
 
-  const { photos, fetchMore } = usePhotos(variables);
+    client.photos.search({ query: parsed.q, per_page: 30, page: pageNow })
+      .then(async (thisphotos) => {
+        if (photosToShow === undefined) {
+          setPhotosToShow(thisphotos.photos);
+        } else {
+          const filterPhotos = thisphotos.photos
+            .filter((photo) => {
+              const res = photosToShow.filter((temp) => temp.id === photo.id);
+              if (res.length === 1) return false;
+              return true;
+            });
+
+          const updatedPhotosToShow = [...photosToShow, ...filterPhotos];
+          setPhotosToShow(updatedPhotosToShow);
+        }
+      });
+  };
 
   useEffect(() => {
-    if (photos) {
-      const temp = photos && photos.edges
-        ? photos.edges.map((edge) => edge.node)
-        : [];
-      if (!authorizedUser) {
-        const updatedAllPhotos = temp.map((photo) => ({ ...photo, isLiked: false }));
-        setAllPhotos(updatedAllPhotos);
-      } else {
-        const updatedAllPhotos = temp.map((photo) => {
-          const photoLikes = photo.likes && photo.likes.edges
-            ? photo.likes.edges.map((edge) => edge.node)
-            : [];
-
-          const findUserLike = photoLikes && photoLikes.find((like) => like.user.id === authorizedUser.id);
-          const photoInCollections = photo.collections && photo.collections.edges
-            ? photo.collections.edges.map((edge) => edge.node.collection)
-            : [];
-          const userCollections = authorizedUser.collectionCount !== 0
-            ? authorizedUser.collections.edges.map((edge) => edge.node)
-            : [];
-          const collectionsToShow = userCollections && userCollections.map((collection) => {
-            const findCollected = photoInCollections.find((obj) => obj.id === collection.id);
-            let newCover;
-            if (collection.photoCount !== 0) newCover = collection.photos.edges[0].node.photo.small;
-            else newCover = null;
-            return findCollected != null ? { ...collection, isCollected: true, cover: newCover } : { ...collection, isCollected: false, cover: newCover };
-          });
-          const updatedPhoto = {
-            ...photo,
-            isLiked: findUserLike != null,
-            allCollectionsToShow: collectionsToShow,
-          };
-          return updatedPhoto;
-        });
-        setAllPhotos(updatedAllPhotos);
-      }
+    if (location) {
+      getPhotos();
     }
-  }, [photos]);
+  }, [pageNow]);
+
+  console.log('photosToShow', photosToShow);
 
   const clickFetchMore = () => {
-    fetchMore();
+    setPageNow(pageNow + 1);
   };
 
-  // console.log('picky: photos', photos);
-  // console.log('picky: updatedAllPhotos', allPhotos);
-  // console.log('picky: authorizedUser', authorizedUser);
+  if (!photosToShow) return null;
 
   return (
     <div>
@@ -78,9 +58,8 @@ const BroadSearchPage = ({ authorizedUser }) => {
         </div>
       </div>
       <TagBar />
-      <HomePhotoList
-        allPhotos={allPhotos}
-        setAllPhotos={setAllPhotos}
+      <SearchPagePhotoList
+        allPhotos={photosToShow}
         clickFetchMore={clickFetchMore}
       />
     </div>
