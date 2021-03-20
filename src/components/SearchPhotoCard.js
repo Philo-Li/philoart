@@ -6,6 +6,8 @@ import '../MDB-Free_4.19.2/css/mdb.css';
 const SearchPhotoCard = ({ photo }) => {
   if (!photo) return null;
 
+  const urls = { pexels: 'https://www.pexels.com/', unsplash: 'https://unsplash.com/' };
+
   return (
     <div className="grid-item">
       <div className="photo-card overlay">
@@ -27,11 +29,11 @@ const SearchPhotoCard = ({ photo }) => {
             <button
               type="button"
               className="search-photo-card-btn-icon photo-card-btn1"
-              onClick={() => window.open(photo.url)}
+              onClick={() => window.open(urls[photo.creditWeb])}
             >
               <div className="containter-search-photo-card">
                 <div className="search-photo-card-btn-item1">
-                  <p>pexels</p>
+                  <p>{photo.creditWeb}</p>
                 </div>
                 <div className="search-photo-card-btn-item2">
                   <i className="bi bi-box-arrow-up-right" />
