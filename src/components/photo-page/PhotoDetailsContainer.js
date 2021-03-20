@@ -1,6 +1,3 @@
-/* eslint-disable react/void-dom-elements-no-children */
-/* eslint-disable max-len */
-/* eslint-disable object-curly-newline */
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button, Image, Card } from 'react-bootstrap';
@@ -40,7 +37,8 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
 
   const collectSinglePhoto = async (photo, collection) => {
     const updatedCollection = { ...collection, isCollected: !collection.isCollected };
-    const updatedCollections = photo.allCollectionsToShow.map((obj) => (obj.id === collection.id ? updatedCollection : obj));
+    const updatedCollections = photo.allCollectionsToShow
+      .map((obj) => (obj.id === collection.id ? updatedCollection : obj));
     const updatedPhoto = { ...photo, allCollectionsToShow: updatedCollections };
     setPhotoToShow(updatedPhoto);
     if (collection.isCollected) {

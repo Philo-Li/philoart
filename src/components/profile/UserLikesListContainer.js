@@ -6,7 +6,7 @@ import '../../index.css';
 import useLikePhoto from '../../hooks/useLikePhoto';
 import useUnlikePhoto from '../../hooks/useUnlikePhoto';
 import useAuthorizedUser from '../../hooks/useAuthorizedUser';
-import PhotoCard from '../PhotoCard';
+import PhotoCard from '../others/photo-card/PhotoCard';
 
 const breakpointColumnsObj = {
   default: 3,

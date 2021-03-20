@@ -1,10 +1,7 @@
-/* eslint-disable react/style-prop-object */
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable object-curly-newline */
 import React from 'react';
-import { Switch,
-  Route,
-  useRouteMatch, useHistory } from 'react-router-dom';
+import {
+  Switch, Route, useRouteMatch, useHistory,
+} from 'react-router-dom';
 import { Nav, Image } from 'react-bootstrap';
 import Profile from './Profile';
 import useAuthorizedUser from '../../hooks/useAuthorizedUser';
@@ -16,8 +13,6 @@ const UserPage = () => {
 
   if (!authorizedUser) return null;
 
-  // console.log('authorizedUser', authorizedUser);
-  // console.log('history path url', history.location.pathname, path, url);
   const profileImage = authorizedUser.profileImage
     ? authorizedUser.profileImage
     : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';

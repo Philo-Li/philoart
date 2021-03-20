@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import useSignUp from '../../hooks/useSignUp';

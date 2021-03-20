@@ -13,7 +13,6 @@ const img4 = aboutImg4;
 const AboutZh = () => {
   const cando = ['Search and download best free stock photos', 'Discover top free stock photo website', 'Like photos', 'Make your own collections'];
   const needpicky = ['designer', 'photographer', 'creater', 'artist', '......And you'];
-  // const notallowed = ['Identifiable people may not appear in a bad light or in a way that is offensive.', 'Don\'t sell unaltered copies of a photo or video, e.g. as a poster, print or on a physical product without modifying it first.', 'Don\'t imply endorsement of your product by people or brands on the imagery.', 'Don\'t redistribute or sell the photos and videos on other stock photo or wallpaper platforms.'];
   const whychoosepicky = ['Well designed website', 'Well curated collections', 'Discover best free stock photo website', 'Inspire you', 'Stimulate your creativity'];
   return (
     <div>

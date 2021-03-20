@@ -1,6 +1,7 @@
-/* eslint-disable object-curly-newline */
 import React from 'react';
-import { Card, Container, Row, Col, Navbar, Nav } from 'react-bootstrap';
+import {
+  Card, Container, Row, Col, Navbar, Nav,
+} from 'react-bootstrap';
 import logo from '../logo.png';
 
 const Footer = () => {

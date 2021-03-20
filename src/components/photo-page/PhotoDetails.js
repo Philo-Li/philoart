@@ -1,5 +1,3 @@
-/* eslint-disable max-len */
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import usePhoto from '../../hooks/usePhoto';
@@ -20,19 +18,25 @@ const PhotoDetails = ({ authorizedUser }) => {
           ? photo.likes.edges.map((edge) => edge.node)
           : [];
 
-        const findUserLike = photoLikes && photoLikes.find((like) => like.user.id === authorizedUser.id);
+        const findUserLike = photoLikes && photoLikes
+          .find((like) => like.user.id === authorizedUser.id);
+
         const photoInCollections = photo.collections && photo.collections.edges
           ? photo.collections.edges.map((edge) => edge.node.collection)
           : [];
+
         const userCollections = authorizedUser.collectionCount !== 0
           ? authorizedUser.collections.edges.map((edge) => edge.node)
           : [];
+
         const collectionsToShow = userCollections && userCollections.map((collection) => {
           const findCollected = photoInCollections.find((obj) => obj.id === collection.id);
           let newCover;
           if (collection.photoCount !== 0) newCover = collection.photos.edges[0].node.photo.small;
           else newCover = null;
-          return findCollected != null ? { ...collection, isCollected: true, cover: newCover } : { ...collection, isCollected: false, cover: newCover };
+          return findCollected != null
+            ? { ...collection, isCollected: true, cover: newCover }
+            : { ...collection, isCollected: false, cover: newCover };
         });
         const updatedPhoto = {
           ...photo,

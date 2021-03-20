@@ -1,5 +1,3 @@
-/* eslint-disable max-len */
-/* eslint-disable object-curly-newline */
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import Masonry from 'react-masonry-css';
