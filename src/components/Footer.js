@@ -35,9 +35,6 @@ const Footer = () => {
               <Col className="inline my-2 ml-auto">
                 <Card.Title className="text-left text-light  my-lg-0 mb-2"> Free Stock Photos </Card.Title>
                 <Card.Text className="text-left text-light  my-lg-0 mb-2">
-                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="/">Popular searches</Card.Link>
-                </Card.Text>
-                <Card.Text className="text-left text-light  my-lg-0 mb-2">
                   <Card.Link className="text-left text-muted my-lg-0 mb-2" href="/black&white">Black and white photography</Card.Link>
                 </Card.Text>
                 <Card.Text className="text-left text-light  my-lg-0 mb-2">
@@ -51,9 +48,6 @@ const Footer = () => {
                 <Card.Title className="text-left text-light  my-lg-0 mb-2"> Contact us </Card.Title>
                 <Card.Text className="text-left text-light  my-lg-0 mb-2">
                   <Card.Link className="text-left text-muted my-lg-0 mb-2" href="/submit">Submit website</Card.Link>
-                </Card.Text>
-                <Card.Text className="text-left text-light  my-lg-0 mb-2">
-                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="/">Social media</Card.Link>
                 </Card.Text>
               </Col>
             </Row>

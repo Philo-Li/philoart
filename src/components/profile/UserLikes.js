@@ -58,12 +58,11 @@ const UserLikes = ({ authorizedUser }) => {
     fetchMore();
   };
 
-  if (!allLikedPhotos) return null;
-
   return (
     <div className="p-3">
       <HomePhotoList
         allPhotos={allLikedPhotos}
+        authorizedUser={authorizedUser}
         setAllPhotos={setAllLikedPhotos}
         clickFetchMore={clickFetchMore}
       />
