@@ -9,7 +9,7 @@ import useAuthorizedUser from '../../../hooks/useAuthorizedUser';
 
 const SaveToCollectionsModal = ({ photo, collectSinglePhoto }) => {
   const [show, setShow] = useState(false);
-  const title = useField('title');
+  const title = useField('text');
   const { authorizedUser } = useAuthorizedUser();
   const history = useHistory();
   const [createCollectionAndCollectPhoto] = useCreateCollectionAndCollectPhoto();
@@ -31,9 +31,8 @@ const SaveToCollectionsModal = ({ photo, collectSinglePhoto }) => {
         photoId: photo.id,
       };
       // console.log('variables', variables);
-
       await createCollectionAndCollectPhoto(variables);
-      history.push('/home');
+      // history.push('/home');
       // eslint-disable-next-line no-alert
     } catch (e) {
       // eslint-disable-next-line no-console
@@ -65,10 +64,10 @@ const SaveToCollectionsModal = ({ photo, collectSinglePhoto }) => {
               <Form id="createCollectionform" onSubmit={() => createNewCollection()}>
                 <div className="container-row-3">
                   <div className="row-item-3">
-                    <Form.Label>New collection:</Form.Label>
+                    <Form.Label>Save to new collection:</Form.Label>
                   </div>
                   <div className="row-item-0">
-                    <Form.Control {...title} placeholder="title" />
+                    <input {...title} placeholder="title" aria-label="title" />
                     <Button variant="primary" id="create-button" type="submit">Save</Button>
                   </div>
                 </div>
