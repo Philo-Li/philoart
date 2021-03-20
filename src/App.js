@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable object-curly-newline */
 import React, { useState } from 'react';
 import { useApolloClient } from '@apollo/client';
 import {
@@ -9,27 +7,27 @@ import {
 import { Nav, Button } from 'react-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
 
-import Home from './components/Home';
-import Discover from './components/Discover';
+import Home from './components/home/Home';
+import Discover from './components/discover/Discover';
 import Footer from './components/Footer';
-import Profile from './components/Profile';
-import UserLikes from './components/UserLikes';
-import UserCollections from './components/UserCollections';
-import PhotoDetails from './components/PhotoDetails';
-import CollectionDetails from './components/CollectionDetails';
-import SignIn from './components/SignIn';
-import SignUp from './components/SignUp';
+import Profile from './components/profile/Profile';
+import UserLikes from './components/profile/UserLikes';
+import UserCollections from './components/profile/UserCollections';
+import PhotoDetails from './components/photo-page/PhotoDetails';
+import CollectionDetails from './components/collection-page/CollectionDetails';
+import SignIn from './components/sign-in/SignIn';
+import SignUp from './components/sign-up/SignUp';
 import useAuthorizedUser from './hooks/useAuthorizedUser';
 import useField from './hooks/useField';
-import NavSearchBar from './components/NavSearchBar';
-import UserPage from './components/UserPage';
-import SearchPage from './components/SearchPage';
-import BroadSearchPage from './components/BroadSearchPage';
-import AddNewPhotoPanel from './components/AddNewPhotoPanel';
-import License from './components/License';
-import LicenseZh from './components/LicenseZh';
-import About from './components/About';
-import AboutZh from './components/AboutZh';
+import NavSearchBar from './components/others/NavSearchBar';
+import UserPage from './components/profile/UserPage';
+import SearchPage from './components/search/SearchPage';
+import BroadSearchPage from './components/search/BroadSearchPage';
+import AddNewPhotoPanel from './utils/AddNewPhotoPanel';
+import License from './components/license/License';
+import LicenseZh from './components/license/LicenseZh';
+import About from './components/about/About';
+import AboutZh from './components/about/AboutZh';
 import TopWebsites from './components/TopWebsites';
 import logo from './logo.png';
 
