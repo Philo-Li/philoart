@@ -226,6 +226,13 @@ input[type=password] {
   align-items: center;
 }
 
+.row-item-6 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
 .container-collection-title {
   display: flex;
   flex-wrap: wrap;

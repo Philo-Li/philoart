@@ -1,18 +1,44 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal, Button, Alert } from 'react-bootstrap';
+import { Formik, Form } from 'formik';
 import UserCollectionsList from '../UserCollectionsList';
 import useCreateCollectionAndCollectPhoto from '../../../hooks/useCreateCollectionAndCollectPhoto';
-import useField from '../../../hooks/useField';
+import TextInput from '../TextInput';
 import useAuthorizedUser from '../../../hooks/useAuthorizedUser';
+
+const initialValues = {
+  title: '',
+};
+
+export const CreateAndSaveForm = () => (
+  <Form className="container-row-3">
+    <div className="row-item-6">
+      <h5>Save to new collection:</h5>
+    </div>
+
+    <div className="row-item-0">
+      <TextInput
+        name="title"
+        type="text"
+        placeholder=""
+      />
+    </div>
+
+    <div className="row-item-6">
+      <Button variant="primary" id="create-button" type="submit" block>Save</Button>
+    </div>
+  </Form>
+);
 
 const SaveToCollectionsModal = ({ photo, collectSinglePhoto }) => {
   const [show, setShow] = useState(false);
-  const title = useField('text');
   const { authorizedUser } = useAuthorizedUser();
   const history = useHistory();
   const [createCollectionAndCollectPhoto] = useCreateCollectionAndCollectPhoto();
+  const [errorInfo, setErrorInfo] = useState('');
+  const [successInfo, setSuccessInfo] = useState('');
 
   const openCollectModal = async () => {
     if (!authorizedUser) {
@@ -22,21 +48,21 @@ const SaveToCollectionsModal = ({ photo, collectSinglePhoto }) => {
     }
   };
 
-  const createNewCollection = async () => {
+  const onSubmit = async (value) => {
+    const { title } = value;
     try {
       const variables = {
-        title: title.value,
+        title,
         description: '',
         public: true,
         photoId: photo.id,
       };
-      // console.log('variables', variables);
       await createCollectionAndCollectPhoto(variables);
-      // history.push('/home');
-      // eslint-disable-next-line no-alert
+      setSuccessInfo('Saved!');
+      setTimeout(() => { setSuccessInfo(''); }, 3000);
     } catch (e) {
-      // eslint-disable-next-line no-console
-      console.log(e);
+      setErrorInfo(e.message);
+      setTimeout(() => { setErrorInfo(''); }, 3000);
     }
   };
 
@@ -60,18 +86,23 @@ const SaveToCollectionsModal = ({ photo, collectSinglePhoto }) => {
         </Modal.Header>
         <Modal.Body>
           <div className="container-col">
+            {errorInfo && (
+              <Alert variant="danger">
+                {errorInfo}
+              </Alert>
+            )}
+            {successInfo && (
+              <Alert variant="success">
+                {successInfo}
+              </Alert>
+            )}
             <div className="container-row-3">
-              <Form id="createCollectionform" onSubmit={() => createNewCollection()}>
-                <div className="container-row-3">
-                  <div className="row-item-3">
-                    <Form.Label>Save to new collection:</Form.Label>
-                  </div>
-                  <div className="row-item-0">
-                    <input {...title} placeholder="title" aria-label="title" />
-                    <Button variant="primary" id="create-button" type="submit">Save</Button>
-                  </div>
-                </div>
-              </Form>
+              <Formik
+                initialValues={initialValues}
+                onSubmit={onSubmit}
+              >
+                {({ handleSubmit }) => <CreateAndSaveForm onSubmit={handleSubmit} />}
+              </Formik>
             </div>
             <div className="col-item-0">
               <UserCollectionsList
