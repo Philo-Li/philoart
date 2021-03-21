@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import useSignUp from '../../hooks/useSignUp';
 import SignUpContainer from './SignUpContainer';
@@ -14,6 +14,7 @@ const initialValues = {
 const SignUp = () => {
   const [signUp] = useSignUp();
   const history = useHistory();
+  const [errorInfo, setErrorInfo] = useState('');
 
   const onSubmit = async (values) => {
     const variables = {
@@ -28,13 +29,12 @@ const SignUp = () => {
       await signUp(variables);
       history.push('/');
     } catch (e) {
-      // eslint-disable-next-line no-console
-      console.log(e);
+      setErrorInfo(e.message);
     }
   };
 
   return (
-    <SignUpContainer initialValues={initialValues} onSubmit={onSubmit} />
+    <SignUpContainer initialValues={initialValues} onSubmit={onSubmit} errorInfo={errorInfo} />
   );
 };
 

@@ -11,6 +11,7 @@ import Home from './components/home/Home';
 import Discover from './components/discover/Discover';
 import Footer from './components/Footer';
 import Profile from './components/profile/Profile';
+import MyAccount from './components/profile/MyAccount';
 import UserLikes from './components/profile/UserLikes';
 import UserCollections from './components/profile/UserCollections';
 import PhotoDetails from './components/photo-page/PhotoDetails';
@@ -125,6 +126,9 @@ const App = () => {
             </Route>
             <Route path="/user" exact>
               <UserPage />
+            </Route>
+            <Route path="/user/edit" exact>
+              <MyAccount authorizedUser={authorizedUser} />
             </Route>
             <Route path="/user/:userId" exact>
               <Profile authorizedUser={authorizedUser} />

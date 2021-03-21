@@ -47,6 +47,9 @@ export const GET_AUTHORIZED_USER = gql`
     authorizedUser {
       id
       username
+      firstName
+      lastName
+      email
       profileImage
       likes{
         edges{

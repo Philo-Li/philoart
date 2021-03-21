@@ -1,6 +1,6 @@
 import { gql } from '@apollo/react-hooks';
 
-const PHOTO_DETAILS = gql`
+export const PHOTO_DETAILS = gql`
   fragment photoDetails on Photo {
     id
     width
@@ -53,6 +53,67 @@ const PHOTO_DETAILS = gql`
     reviewCount
     createdAt
   }
+`;
+
+export const USER_DETAILS = gql`
+  fragment userDetails on User {
+    id
+    username
+    firstName
+    lastName
+    email
+    profileImage
+    likes{
+      edges{
+        node{
+          id
+          photo{
+            ...photoDetails
+          }
+          createdAt
+        }
+      }
+    }
+    collections{
+      edges{
+        node{
+          id
+          user{
+            id
+            username
+          }
+          reviews{
+            edges{
+              node{
+                id
+                text
+              }
+            }
+          }
+          photos{
+            edges{
+              node{
+                id
+                photo{
+                  ...photoDetails
+                }
+              }
+            }
+          }
+          reviewCount
+          title
+          description
+          photoCount
+          createdAt
+          public
+          cover
+        }
+      }
+    }
+    likeCount
+    collectionCount
+  }
+  ${PHOTO_DETAILS}
 `;
 
 export default PHOTO_DETAILS;

@@ -1,16 +1,16 @@
 import { gql } from '@apollo/react-hooks';
-import PHOTO_DETAILS from './fragment';
+import { PHOTO_DETAILS, USER_DETAILS } from './fragment';
 
 export const AUTHORIZE = gql`
   mutation authorize($username: String!, $password: String!) {
     authorize(credentials: { username: $username, password: $password }) {
       accessToken
       user{
-        id
-        username
+        ...userDetails
       }
     }
   }
+  ${USER_DETAILS}
 `;
 
 export const CREATE_USER = gql`
@@ -31,6 +31,27 @@ export const CREATE_USER = gql`
       username
     }
   }
+`;
+
+export const UPDATE_PROFILE = gql`
+  mutation updateUserProfile(
+    $username: String!
+    $password: String!
+    $firstName: String!
+    $lastName: String
+    $email: String!
+    ) {
+    updateUserProfile(user: {
+      username: $username
+      password: $password
+      firstName: $firstName
+      lastName: $lastName
+      email:$email
+    }) {
+      ...userDetails
+    }
+  }
+  ${USER_DETAILS}
 `;
 
 export const CREATE_PHOTO = gql`
