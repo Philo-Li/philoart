@@ -12,8 +12,8 @@ const img4 = aboutImg4;
 
 const AboutZh = () => {
   const cando = ['Search and download best free stock photos', 'Discover top free stock photo website', 'Like photos', 'Make your own collections'];
-  const needpicky = ['designer', 'photographer', 'creater', 'artist', '......And you'];
-  const whychoosepicky = ['Well designed website', 'Well curated collections', 'Discover best free stock photo website', 'Inspire you', 'Stimulate your creativity'];
+  const needpicky = ['Designer', 'Photographer', 'Creator', 'Artist', '......And you'];
+  const whychoosepicky = ['Well designed website', 'Curated collections', 'Discover best free stock photo website', 'Inspire you', 'Stimulate your creativity'];
   return (
     <div>
       <div className="container-col-login">
@@ -25,17 +25,17 @@ const AboutZh = () => {
       <div className="container-col-login">
         <div className="col-item-3">
           <h1>
-            Think paid stock photos are too expensive?
+            Do you think paid stock photos are too expensive?
           </h1>
         </div>
         <div className="col-item-3">
           <h1>
-            Find it hard to get a nice free photo?
+            Do you find it hard to get a nice free photo?
           </h1>
         </div>
         <div className="col-item-3">
           <h1>
-            Want to save your money and time?
+            Do you want to save money and time?
           </h1>
         </div>
       </div>

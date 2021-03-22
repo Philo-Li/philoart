@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# Picky - Discover the best free photos
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The relative Node.js backend is here: [picky-api](https://github.com/LulalaP/picky-api)
 
-## Available Scripts
+## ✔️ Website
 
-In the project directory, you can run:
+https://picky.vercel.app/
 
-### `npm start`
+## 🚀 About Picky
 
-Runs the app in the development mode.\
-Open [http://localhost:3001](http://localhost:3001) to view it in the browser.
+- ***Do you think paid stock photos are too expensive?***
+- ***Do you find it hard to get a nice free photo?***
+- ***Do you want to save money and time?***
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Picky - Best Free Photo Stock Search Engine
 
-### `npm run build`
+### Picky is on a mission to collect best free stock photos for you.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![](https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1416&q=80)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+# What you can do with Picky?
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- #### Search and download best free stock photos
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- #### Discover top free stock photo website
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- #### Like photos
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- #### Search and download best free stock photos
 
-## Learn More
+![](https://images.unsplash.com/photo-1497030947858-3f40f1508e84?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Who need Picky?
 
-### Code Splitting
+- #### Designer
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- #### Photographer
 
-### Analyzing the Bundle Size
+- #### Creator
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- #### Artist
 
-### Making a Progressive Web App
+- #### ......And you
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![](https://images.unsplash.com/3/doctype-hi-res.jpg?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1492&q=80)
 
-### Advanced Configuration
+## 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+# Why choose Picky?
 
-### Deployment
+- #### Well designed website
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- #### Curated collections
 
-### `npm run build` fails to minify
+- #### Discover best free stock photo website
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- #### Inspire you
+
+- #### Stimulate your creativity
+
+![](/src/img/aboutImg4.jpg)
+
+
+
+## 🐛 Found a bug?
+
+Submit an issue with the bug description and a way to reproduce the bug. If you have already come up with a solution, we will gladly accept a pull request.
+
+If you have any questions or suggestions that might make the Picky experience even better, please let us know! You can get in touch with us at philoart42@gmail.com.
+
