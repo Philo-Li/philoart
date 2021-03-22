@@ -96,9 +96,11 @@ const CollectionDetails = ({ authorizedUser }) => {
       </div>
       <div className="container-collection-title">
         <div className="item-1-collection-title">
-          <Button variant="apparent" size="sm" onClick={() => deleteSingleCollection(collectionNow.id)}>
-            <i className="bi bi-trash-fill icon-delete" />
-          </Button>
+          { authorizedUser && collectionNow && (authorizedUser.id === collectionNow.user.id) && (
+            <Button variant="apparent" size="sm" onClick={() => deleteSingleCollection(collectionNow.id)}>
+              <i className="bi bi-trash-fill icon-delete" />
+            </Button>
+          ) }
         </div>
       </div>
       <HomePhotoList

@@ -1,5 +1,5 @@
 import { gql } from '@apollo/react-hooks';
-import PHOTO_DETAILS from './fragment';
+import { PHOTO_DETAILS } from './fragment';
 
 export const GET_PHOTOS = gql`
   query getPhotos(
@@ -150,6 +150,7 @@ export const GET_COLLECTIONS = gql`
     $searchKeyword: String
     $first: Int
     $after: String
+    $userId: String
   ) {
     collections(
       orderBy: $orderBy
@@ -157,6 +158,8 @@ export const GET_COLLECTIONS = gql`
       searchKeyword: $searchKeyword
       first: $first
       after: $after
+      userId: $userId
+
     ) {
       edges {
         node {
@@ -244,6 +247,7 @@ export const GET_COLLECTION_PHOTOS = gql`
             cover
             user{
               username
+              id
             }
           }
         }

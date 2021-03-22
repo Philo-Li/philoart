@@ -21,6 +21,8 @@ const Discover = () => {
     first: 30,
   });
 
+  console.log(config.pickyAdmin);
+
   if (!collections) return null;
 
   const allCollections = collections.edges
