@@ -85,6 +85,11 @@ const BroadSearchPage = () => {
   useEffect(() => {
     if (location) {
       getPhotos();
+      axios.get(`${config.pickyApi}/photos`)
+        // eslint-disable-next-line no-unused-vars
+        .then((response) => {
+          // console.log('kaboompics', response.data);
+        });
     }
   }, [pageNow]);
 

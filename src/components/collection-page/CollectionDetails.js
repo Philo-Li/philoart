@@ -82,7 +82,8 @@ const CollectionDetails = ({ authorizedUser }) => {
     // eslint-disable-next-line no-alert
     if (window.confirm('delete this collection?')) {
       await deleteCollection({ id: collectionId });
-      history.push(`/user/${authorizedUser.id}/collections`);
+      // history.push(`/user/${authorizedUser.id}/collections`);
+      history.goBack();
     }
   };
 

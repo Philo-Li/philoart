@@ -11,4 +11,5 @@ export default {
   pexelApi: process.env.REACT_APP_PEXEL_API_KEY,
   pickyAdmin: process.env.REACT_APP_PICKY_ADMIN,
   unsplashApi: process.env.REACT_APP_UNSPLASH_ACCESS_KEY,
+  pickyApi: process.env.REACT_APP_PICKY_API,
 };

@@ -27,8 +27,8 @@ const Discover = () => {
     ? collections.edges.map((edge) => edge.node)
     : [];
 
-  const openCollection = () => {
-    history.push('/collection/:id');
+  const openCollection = (collection) => {
+    history.push(`/collection/${collection.id}`);
   };
 
   const getCover = (collection) => (collection.photoCount === 0
@@ -39,6 +39,11 @@ const Discover = () => {
     <div className="p-3">
       <>
       </>
+      <div className="p-3 container-profile">
+        <div className="profile-item">
+          <h1>Discover</h1>
+        </div>
+      </div>
       <Masonry
         breakpointCols={breakpointColumnsObj}
         className="my-masonry-grid"
@@ -48,8 +53,8 @@ const Discover = () => {
           <Card key={collection.id}>
             <div
               className="view zoom overlay"
-              onClick={() => { openCollection(); }}
-              onKeyPress={() => openCollection()}
+              onClick={() => { openCollection(collection); }}
+              onKeyPress={() => openCollection(collection)}
               role="button"
               tabIndex="0"
             >

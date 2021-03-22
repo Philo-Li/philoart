@@ -3,11 +3,14 @@
 import React, { useState } from 'react';
 import { Card, Button, Row } from 'react-bootstrap';
 import { createClient } from 'pexels';
+import axios from 'axios';
 import useCreatePhoto from '../hooks/useCreatePhoto';
 import config from '../config';
 import db from '../out';
 import usePhotos from '../hooks/usePhotos';
 import useEditPhotoLabels from '../hooks/useEditPhotoLabels';
+
+const baseUrl = 'https://kaboompics.com/gallery?search=';
 
 // eslint-disable-next-line arrow-body-style
 const AddNewPhotoPanel = () => {
@@ -97,6 +100,15 @@ const AddNewPhotoPanel = () => {
     setPhotosPool(temp);
   };
 
+  const getHtml = () => {
+    const query = 'dog';
+    const request = axios.get(`${baseUrl}${query}&sortby=`);
+    return request.then((response) => {
+      console.log(response);
+      return response.data;
+    });
+  };
+
   return (
     <div>
       <h1>Discover</h1>
@@ -109,6 +121,14 @@ const AddNewPhotoPanel = () => {
             <Button variant="primary" onClick={() => nextPhoto()}>Next</Button>
             <Button variant="primary" onClick={() => updatePhotoLabels()}>添加</Button>
             <Button variant="primary" onClick={() => getMorePhotos()}>setPhotoPool</Button>
+          </Card.Body>
+        </Card>
+      </Row>
+      <Row className="sm my-2 my-lg-5 flex-end">
+        <Card style={{ width: '18rem' }}>
+          <Card.Title>Get Html</Card.Title>
+          <Card.Body>
+            <Button variant="primary" onClick={() => getHtml()}>Get</Button>
           </Card.Body>
         </Card>
       </Row>

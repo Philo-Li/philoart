@@ -35,10 +35,10 @@ const Footer = () => {
               <Col className="inline my-2 ml-auto">
                 <Card.Title className="text-left text-light  my-lg-0 mb-2"> Free Stock Photos </Card.Title>
                 <Card.Text className="text-left text-light  my-lg-0 mb-2">
-                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="/black&white">Black and white photography</Card.Link>
+                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="/collection/2f402d3e-b3e2-46c9-82c7-e821b2bb595f">Black and white photography</Card.Link>
                 </Card.Text>
                 <Card.Text className="text-left text-light  my-lg-0 mb-2">
-                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="/inspiring">Inspiring photos</Card.Link>
+                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="/discover">Inspiring photos</Card.Link>
                 </Card.Text>
                 <Card.Text className="text-left text-light  my-lg-0 mb-2">
                   <Card.Link className="text-left text-muted my-lg-0 mb-2" href="/wallpaper">Best wallpapers</Card.Link>
