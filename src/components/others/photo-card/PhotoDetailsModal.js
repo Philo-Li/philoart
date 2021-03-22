@@ -4,6 +4,9 @@ import {
 } from 'react-bootstrap';
 import SaveToCollectionsModal2 from '../../photo-page/SaveToCollectionsModal2';
 import PhotoMoreDetailsModal from './PhotoMoreDetailsModal';
+import PhotoRelatedTagBar from '../PhotoRelatedTagBar';
+// eslint-disable-next-line import/no-cycle
+import RelatedPhotos from '../../photo-page/RelatedPhotos';
 
 const PhotoDetailsModal = ({
   photo, allCollections, collectSinglePhoto, likeSinglePhoto,
@@ -75,6 +78,8 @@ const PhotoDetailsModal = ({
               </div>
             </div>
           </div>
+          <PhotoRelatedTagBar photo={photo} />
+          <RelatedPhotos photoToShow={photo} />
         </Modal.Body>
       </Modal>
     </>

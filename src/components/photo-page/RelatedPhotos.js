@@ -11,7 +11,7 @@ const RelatedPhotos = ({
 
   const tags = tags1 && tags1.split(',');
 
-  const { photos, fetchMore } = usePhotos({ searchKeyword: tags && tags[0], first: 30 });
+  const { photos, fetchMore } = usePhotos({ searchKeyword: tags && tags[0], first: 10 });
 
   useEffect(() => {
     if (photos) {

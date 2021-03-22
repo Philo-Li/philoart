@@ -61,7 +61,7 @@ const PhotoDetails = ({ authorizedUser }) => {
         authorizedUser={authorizedUser}
       />
       <PhotoRelatedTagBar photo={photoToShow} />
-      <RelatedPhotos photoToShow={photoToShow} />
+      <RelatedPhotos authorizedUser={authorizedUser} photoToShow={photoToShow} />
     </div>
   );
 };
