@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import usePhoto from '../../hooks/usePhoto';
+import PhotoRelatedTagBar from '../others/PhotoRelatedTagBar';
 import PhotoDetailsContainer from './PhotoDetailsContainer';
+import RelatedPhotos from './RelatedPhotos';
 
 const PhotoDetails = ({ authorizedUser }) => {
   const [photoToShow, setPhotoToShow] = useState();
@@ -58,6 +60,8 @@ const PhotoDetails = ({ authorizedUser }) => {
         setPhotoToShow={setPhotoToShow}
         authorizedUser={authorizedUser}
       />
+      <PhotoRelatedTagBar photo={photoToShow} />
+      <RelatedPhotos photoToShow={photoToShow} />
     </div>
   );
 };
