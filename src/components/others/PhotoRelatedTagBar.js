@@ -15,6 +15,7 @@ const PhotoRelatedTagBar = ({ photo }) => {
   return (
     <div>
       <div className="scrollmenu">
+        <h5 className="p-3 container-row-tag">Related tags</h5>
         <div className="p-3 container-row-tag">
           {tags.map((tag) => (
             <div className="" key={tag}>

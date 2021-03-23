@@ -68,9 +68,10 @@ const SaveToCollectionsModal2 = ({ photo, collectSinglePhoto }) => {
 
   return (
     <>
-      <Button className="button1" variant="light" onClick={() => openCollectModal()}>
-        <i className="bi bi-plus-square" />
-      </Button>
+      <button type="button" className="photodetails-card-btn-collect photodetails-card-btn-item" onClick={() => openCollectModal()}>
+        <i className="bi bi-plus-square margin-right" />
+        Collect
+      </button>
 
       <Modal
         show={show}

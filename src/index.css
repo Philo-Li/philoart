@@ -181,6 +181,13 @@ input[type=password] {
   flex-direction: row;
 }
 
+.container-row-photodetail-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
 .container-row-signup {
   display: flex;
   justify-content: space-between;
@@ -271,6 +278,60 @@ input[type=password] {
   cursor: pointer;
   width: auto;
   height: auto;
+}
+
+.photodetails-card-btn-like {
+  font-size: 1.2rem;
+  margin-top: 10%;
+  font-weight: light;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0.5rem 1.5rem;
+  transition: ease 0.2s;
+}
+
+.photodetails-card-btn-like:hover {
+  background-color: #f1f1f1;
+}
+
+.photodetails-card-btn-collect {
+  font-size: 1.2rem;
+  margin-top: 10%;
+  font-weight: light;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0.5rem 1.5rem;
+  transition: ease 0.2s;
+}
+
+.photodetails-card-btn-collect:hover {
+  background-color: #f1f1f1;
+}
+
+.photodetails-card-btn-download {
+  font-size: 1.2rem;
+  margin-top: 10%;
+  font-weight: light;
+  color: white;
+  background-color: rgb(61, 131, 61);
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1.5rem;
+  transition: ease 0.2s;
+}
+
+.photodetails-card-btn-download:hover {
+  background-color: rgb(96, 173, 96);
+}
+
+.photodetails-card-btn-item {
+  margin: 0.5rem;
+}
+
+.margin-right {
+  margin-right: 0.4rem;
 }
 
 .search-photo-card-btn-icon {
@@ -762,4 +823,8 @@ div.scrollmenu a:hover {
 
 .footer-container {
   background-color: white;
+}
+
+.margin-1rem {
+  margin: 1rem;
 }

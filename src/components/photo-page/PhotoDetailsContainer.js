@@ -1,11 +1,12 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Button, Image, Card } from 'react-bootstrap';
+import { Image } from 'react-bootstrap';
 import useLikePhoto from '../../hooks/useLikePhoto';
 import useUnlikePhoto from '../../hooks/useUnlikePhoto';
 import useUncollectPhoto from '../../hooks/useUncollectPhoto';
 import useCollectPhoto from '../../hooks/useCollectPhoto';
 import SaveToCollectionsModal2 from './SaveToCollectionsModal2';
+import PhotoMoreDetailsModal from '../others/photo-card/PhotoMoreDetailsModal';
 
 const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) => {
   const [likePhoto] = useLikePhoto();
@@ -57,145 +58,67 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
 
   const photo = photoToShow;
 
+  const photoCredit = `Photo by ${photo.photographer}`;
+
   return (
     <div className="p-3">
-      <div className="container-profile">
-        <div className="profile-item">
-          <Image src={photoToShow.small} magin={10} fluid />
-        </div>
-        <div className="profile-item">
-          <div className="container-col">
-            <div className="container-col">
-              <div className="container-row-1">
-                <div className="row-item-0">
-                  <div className="container-col-details">
-                    <div>
-                      <Button variant="light" onClick={() => likeSinglePhoto(photoToShow)}>
-                        {!photoToShow.isLiked && (<i className={photoToShow.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />)}
-                        {photoToShow.isLiked && (
-                          <div className="red-icon">
-                            <i className={photoToShow.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />
-                          </div>
-                        )}
-                      </Button>
-                    </div>
-                  </div>
+      <div className="container-row-photodetail-btn">
+        <div className="">
+          <button
+            type="button"
+            className="photodetails-card-btn-like container-row-0 photodetails-card-btn-item"
+            onClick={() => likeSinglePhoto(photo)}
+          >
+            <div className="margin-right">
+              {!photo.isLiked && (<i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />)}
+              {photo.isLiked && (
+                <div className="red-icon">
+                  <i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />
                 </div>
-                <div className="row-item-0">
-                  <div className="container-col-details">
-                    <div>
-                      <SaveToCollectionsModal2
-                        photo={photoToShow}
-                        allCollections={photoToShow.collections}
-                        collectSinglePhoto={collectSinglePhoto}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="container-row-5">
-                <Button variant="success" size="lg" block onClick={() => window.open(photoToShow.downloadPage)}>
-                  <i className="bi bi-download icon-download" />
-                  Download
-                </Button>
-              </div>
-              <Card>
-                <Card.Body>
-                  <div className="container-row-1">
-                    <div className="row-item-0">
-                      <div className="container-col-details">
-                        <div className="subtitle">
-                          Likes
-                        </div>
-                        <div>
-                          {photo.likeCount}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="row-item-0">
-                      <div className="container-col-details">
-                        <div className="subtitle">
-                          Downloads
-                        </div>
-                        <div>
-                          {photo.downloadCount}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="container-row-1">
-                    <div className="container-col-details">
-                      <div className="col-item-0">
-                        <div className="container-col-details">
-                          <div className="subtitle">
-                            Width
-                          </div>
-                          <div>
-                            {photo.width}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-item-0">
-                        <div className="container-col-details">
-                          <div className="subtitle">
-                            Height
-                          </div>
-                          <div>
-                            {photo.height}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="container-col-details">
-                      <div className="col-item-0">
-                        <div className="container-col-details">
-                          <div className="subtitle">
-                            Photographer
-                          </div>
-                          <div>
-                            {photo.photographer}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-item-0">
-                        <div className="container-col-details">
-                          <div className="subtitle">
-                            Website
-                          </div>
-                          <div>
-                            <Card.Link href="#" className="col-item-0">{photo.creditWeb}</Card.Link>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="container-col-details">
-                      <div className="col-item-0">
-                        <div className="container-col-details">
-                          <div className="subtitle">
-                            Width
-                          </div>
-                          <div>
-                            {photo.width}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-item-0">
-                        <div className="container-col-details">
-                          <div className="subtitle">
-                            Height
-                          </div>
-                          <div>
-                            {photo.height}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </Card.Body>
-              </Card>
+              )}
             </div>
+            {photo.likeCount}
+            {photo.likeCount <= 1 ? 'like' : 'likes'}
+          </button>
+        </div>
+        <div>
+          <SaveToCollectionsModal2
+            photo={photoToShow}
+            allCollections={photoToShow.collections}
+            collectSinglePhoto={collectSinglePhoto}
+          />
+        </div>
+        <div className="photodetails-card-btn-item">
+          <button type="button" className="photodetails-card-btn-download" onClick={() => window.open(photoToShow.downloadPage)}>
+            <i className="bi bi-download margin-right" />
+            Download
+          </button>
+        </div>
+      </div>
+      <div className="profile-item">
+        <Image src={photoToShow.small} magin={10} height={500} fluid />
+      </div>
+      <div className="container-row-0">
+        <h5>{photoCredit}</h5>
+      </div>
+      <div className="container-row-0">
+        <div className="container-col-details margin-1rem">
+          <div className="subtitle">
+            Website
+          </div>
+          <div>
+            <a href="https://www.pexels.com" target="_">{photo.creditWeb}</a>
           </div>
         </div>
+        <div className="container-col-details margin-1rem">
+          <div className="subtitle">
+            Downloads
+          </div>
+          <div>
+            {photo.downloadCount}
+          </div>
+        </div>
+        <PhotoMoreDetailsModal photo={photo} />
       </div>
     </div>
   );
