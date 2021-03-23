@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 
 import SignInForm from './SignInForm';
 
-import logo from '../../logo.png';
+import logo from '../../img/logo/logo2.svg';
 
 const validationSchema = Yup.object().shape({
   username: Yup
