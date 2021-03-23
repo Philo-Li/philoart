@@ -103,8 +103,9 @@ const AddNewPhotoPanel = () => {
   const getHtml = () => {
     const query = 'dog';
     const request = axios.get(`${baseUrl}${query}&sortby=`);
+    // eslint-disable-next-line arrow-body-style
     return request.then((response) => {
-      console.log(response);
+      // console.log(response);
       return response.data;
     });
   };

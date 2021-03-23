@@ -4,9 +4,9 @@ import Masonry from 'react-masonry-css';
 import NanoPhotoCard from '../others/photo-card/NanoPhotoCard';
 
 const breakpointColumnsObj = {
-  default: 3,
-  800: 2,
-  500: 1,
+  default: 4,
+  800: 3,
+  500: 2,
 };
 
 const RelatedPhotoListContainer = ({ allPhotos, clickFetchMore }) => (

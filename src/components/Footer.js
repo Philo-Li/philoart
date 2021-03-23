@@ -1,8 +1,16 @@
+/* eslint-disable max-len */
 import React from 'react';
 import {
-  Card, Container, Row, Col, Navbar, Nav,
+  Card, Container, Navbar, Nav,
 } from 'react-bootstrap';
+import Masonry from 'react-masonry-css';
 import logo from '../logo.png';
+
+const breakpointColumnsObj = {
+  default: 3,
+  800: 2,
+  500: 1,
+};
 
 const Footer = () => {
   const footerStyle = {
@@ -16,41 +24,31 @@ const Footer = () => {
       <Card className="text-left text-light bg-dark" fluid="true">
         <Card.Body>
           <Container className="sm my-2 my-lg-5">
-            <Row className="justify-content-center xs-6 xl-8">
-              <Col className="inline my-2 ml-auto">
-                <Card.Title className="text-left text-light  my-lg-0 mb-2"> Picky </Card.Title>
-                <Card.Text className="text-left text-light  my-lg-0 mb-2">
-                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="/about">About</Card.Link>
-                </Card.Text>
-                <Card.Text className="text-left text-light  my-lg-0 mb-2">
-                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="/faq">FAQ</Card.Link>
-                </Card.Text>
-                <Card.Text className="text-left text-light  my-lg-0 mb-2">
-                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="/signup">Sign up</Card.Link>
-                </Card.Text>
-                <Card.Text className="text-left text-light  my-lg-0 mb-2">
-                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="/partner">Free photo stock website</Card.Link>
-                </Card.Text>
-              </Col>
-              <Col className="inline my-2 ml-auto">
-                <Card.Title className="text-left text-light  my-lg-0 mb-2"> Free Stock Photos </Card.Title>
-                <Card.Text className="text-left text-light  my-lg-0 mb-2">
-                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="/collection/2f402d3e-b3e2-46c9-82c7-e821b2bb595f">Black and white photography</Card.Link>
-                </Card.Text>
-                <Card.Text className="text-left text-light  my-lg-0 mb-2">
-                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="/discover">Inspiring photos</Card.Link>
-                </Card.Text>
-                <Card.Text className="text-left text-light  my-lg-0 mb-2">
-                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="/wallpaper">Best wallpapers</Card.Link>
-                </Card.Text>
-              </Col>
-              <Col className="inline my-2 ml-auto">
-                <Card.Title className="text-left text-light  my-lg-0 mb-2"> Contact us </Card.Title>
-                <Card.Text className="text-left text-light  my-lg-0 mb-2">
-                  <Card.Link className="text-left text-muted my-lg-0 mb-2" href="/submit">Submit website</Card.Link>
-                </Card.Text>
-              </Col>
-            </Row>
+            <div className="">
+              <Masonry
+                breakpointCols={breakpointColumnsObj}
+                className="my-masonry-grid footer"
+                columnClassName="my-masonry-grid_column"
+              >
+                <div className="footer-container-col">
+                  <h3 className="footer-subtitle">Picky</h3>
+                  <a href="/about">About</a>
+                  <a href="/faq">FAQ</a>
+                  <a href="/signup">Sign up</a>
+                  <a href="/partner">Free photo stock website</a>
+                </div>
+                <div className="footer-container-col">
+                  <h3 className="footer-subtitle">Free Stock Photos</h3>
+                  <a href="/collection/2f402d3e-b3e2-46c9-82c7-e821b2bb595f">Black and white photography</a>
+                  <a href="/discover">Inspiring photos</a>
+                  <a href="/collection/eebec1a0-3030-4914-a075-183018a8c413">Cute animals</a>
+                </div>
+                <div className="footer-container-col">
+                  <h3 className="footer-subtitle">Contact us</h3>
+                  <a href="/submit">Submit website</a>
+                </div>
+              </Masonry>
+            </div>
           </Container>
         </Card.Body>
         <Card.Footer className="text-center text-light">

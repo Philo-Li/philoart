@@ -615,7 +615,7 @@ div.scrollmenu a:hover {
 
 /* Style your items */
 .my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
-  background: white;
+  background: transparent;
   margin-bottom: 15px;
 }
 
@@ -736,4 +736,30 @@ div.scrollmenu a:hover {
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
   background-color: rgba(0,0,0,0.2);
+}
+
+.footer-subtitle {
+  color: white;
+  font-size: 20;
+  font-weight: bold;
+}
+
+.footer a {
+  color: rgb(196, 196, 196);
+  font-size: 20;
+}
+
+.footer a:hover {
+  color: rgb(150, 150, 150);
+}
+
+.footer-container-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.footer-container {
+  background-color: white;
 }
