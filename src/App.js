@@ -30,7 +30,8 @@ import LicenseZh from './components/license/LicenseZh';
 import About from './components/about/About';
 import AboutZh from './components/about/AboutZh';
 import TopWebsites from './components/TopWebsites';
-import logo from './logo.png';
+import ContactUs from './components/ContactUs';
+import logo from './img/logo/logo1.svg';
 
 const App = () => {
   const client = useApolloClient();
@@ -105,6 +106,9 @@ const App = () => {
             </Route>
             <Route path="/about/zh" exact>
               <AboutZh />
+            </Route>
+            <Route path="/contact" exact>
+              <ContactUs />
             </Route>
             <Route path="/partner" exact>
               <TopWebsites />

@@ -4,7 +4,7 @@ import {
   Card, Container, Navbar, Nav,
 } from 'react-bootstrap';
 import Masonry from 'react-masonry-css';
-import logo from '../logo.png';
+import logo from '../img/logo/logo1.svg';
 
 const breakpointColumnsObj = {
   default: 3,
@@ -45,7 +45,7 @@ const Footer = () => {
                 </div>
                 <div className="footer-container-col">
                   <h3 className="footer-subtitle">Contact us</h3>
-                  <a href="/submit">Submit website</a>
+                  <a href="/contact">Submit website</a>
                 </div>
               </Masonry>
             </div>
