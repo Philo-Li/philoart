@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   Modal, Button, Image, Card,
 } from 'react-bootstrap';
-import SaveToCollectionsModal2 from '../../photo-page/SaveToCollectionsModal2';
+import SaveToCollectionsModal2 from './SaveToCollectionsModal3';
 import PhotoMoreDetailsModal from './PhotoMoreDetailsModal';
 import PhotoRelatedTagBar from '../PhotoRelatedTagBar';
 // eslint-disable-next-line import/no-cycle
