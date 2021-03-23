@@ -68,7 +68,7 @@ const RelatedPhotos = ({
     <div>
       <div className="p-3 container-profile">
         <div className="profile-item">
-          <h1>Related photos</h1>
+          <h1>Similar photos</h1>
         </div>
       </div>
       <RelatedPhotoList

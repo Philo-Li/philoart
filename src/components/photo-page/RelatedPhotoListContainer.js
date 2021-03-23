@@ -4,7 +4,7 @@ import Masonry from 'react-masonry-css';
 import NanoPhotoCard from '../others/photo-card/NanoPhotoCard';
 
 const breakpointColumnsObj = {
-  default: 5,
+  default: 3,
   800: 2,
   500: 1,
 };
