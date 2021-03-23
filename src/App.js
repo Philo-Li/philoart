@@ -70,6 +70,7 @@ const App = () => {
               <Nav.Link className="text-light" href="/license">License</Nav.Link>
               <Nav.Link className="text-light" href="/about">About</Nav.Link>
               {authorizedUser && <Nav.Link className="text-light" href={userPage}>Profile</Nav.Link>}
+              {authorizedUser && <Nav.Link className="text-light" href="/user/edit">My account</Nav.Link>}
               {!authorizedUser && <Nav.Link className="text-light" href="/signin">Login</Nav.Link>}
               {!authorizedUser && <Nav.Link className="text-light" href="/signup">Sign Up</Nav.Link>}
               {authorizedUser && <Button variant="outline-primary" type="submit" onClick={handleLogout}>logout</Button>}
