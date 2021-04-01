@@ -47,7 +47,7 @@ const App = () => {
     };
 
     let userPage;
-    if (authorizedUser) userPage = `/user/${authorizedUser.id}`;
+    if (authorizedUser) userPage = `/user/@${authorizedUser.username}`;
 
     return (
       <div>
@@ -135,11 +135,11 @@ const App = () => {
             <Route path="/user/edit" exact>
               <MyAccount authorizedUser={authorizedUser} />
             </Route>
-            <Route path="/user/:userId" exact>
+            <Route path="/user/:username" exact>
               <Profile authorizedUser={authorizedUser} />
               <UserLikes authorizedUser={authorizedUser} />
             </Route>
-            <Route path="/user/:userId/collections" exact>
+            <Route path="/user/:username/collections" exact>
               <Profile authorizedUser={authorizedUser} />
               <UserCollections authorizedUser={authorizedUser} />
             </Route>

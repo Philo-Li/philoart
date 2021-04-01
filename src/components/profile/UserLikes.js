@@ -5,8 +5,9 @@ import HomePhotoList from '../others/photo-list/HomePhotoList';
 
 const UserLikes = ({ authorizedUser }) => {
   const [allLikedPhotos, setAllLikedPhotos] = useState();
-  const { userId } = useParams();
-  const { likes, fetchMore } = useUserLikes({ userId, first: 15 });
+  let { username } = useParams();
+  username = username.substr(1, username.length - 1);
+  const { likes, fetchMore } = useUserLikes({ username, first: 15 });
 
   useEffect(() => {
     if (likes) {

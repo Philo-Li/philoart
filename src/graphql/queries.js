@@ -6,6 +6,7 @@ export const GET_PHOTOS = gql`
     $orderBy: AllPhotosOrderBy
     $orderDirection: OrderDirection
     $searchKeyword: String
+    $username: String
     $first: Int
     $after: String
   ) {
@@ -13,6 +14,7 @@ export const GET_PHOTOS = gql`
       orderBy: $orderBy
       orderDirection: $orderDirection
       searchKeyword: $searchKeyword
+      username: $username
       first: $first
       after: $after
     ) {
@@ -112,6 +114,7 @@ export const GET_USER_LIKES = gql`
     $first: Int
     $after: String
     $userId: String
+    $username: String
   ) {
     likes(
       orderBy: $orderBy
@@ -119,6 +122,7 @@ export const GET_USER_LIKES = gql`
       first: $first
       after: $after
       userId: $userId
+      username: $username
     ) {
       edges {
         node {
@@ -151,6 +155,7 @@ export const GET_COLLECTIONS = gql`
     $first: Int
     $after: String
     $userId: String
+    $username: String
   ) {
     collections(
       orderBy: $orderBy
@@ -159,7 +164,7 @@ export const GET_COLLECTIONS = gql`
       first: $first
       after: $after
       userId: $userId
-
+      username: $username
     ) {
       edges {
         node {

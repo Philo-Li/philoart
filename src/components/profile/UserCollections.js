@@ -15,9 +15,10 @@ const cover = 'https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-gall
 
 const UserCollections = () => {
   const history = useHistory();
-  const { userId } = useParams();
+  let { username } = useParams();
+  username = username.substr(1, username.length - 1);
   const { collections } = useCollections({
-    userId,
+    username,
     first: 30,
   });
 
