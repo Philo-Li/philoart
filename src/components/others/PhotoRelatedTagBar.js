@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import TagBar from './TagBar';
 
 const PhotoRelatedTagBar = ({ photo }) => {
   if (photo === undefined) return null;
@@ -14,18 +14,8 @@ const PhotoRelatedTagBar = ({ photo }) => {
 
   return (
     <div>
-      <div className="scrollmenu">
-        <h5 className="p-3 container-row-tag">Related tags</h5>
-        <div className="p-3 container-row-tag">
-          {tags.map((tag) => (
-            <div className="" key={tag}>
-              <Button variant="outline-dark" size="sm" href={`/search?q=${tag}`}>
-                {tag}
-              </Button>
-            </div>
-          ))}
-        </div>
-      </div>
+      <h5 className="p-3 container-row-tag">Related tags</h5>
+      <TagBar tagToShow={tags} />
     </div>
   );
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
 import Masonry from 'react-masonry-css';
 import SearchPhotoCard from './SearchPhotoCard';
 
@@ -26,10 +25,10 @@ const SearchPagePhotoList = ({ allPhotos, clickFetchMore }) => (
       </Masonry>
     </div>
     <div className="row-item-2">
-      <Button variant="outline-secondary" onClick={clickFetchMore}>
+      <button className="more-photos-btn" type="button" onClick={clickFetchMore}>
         <i className="bi bi-three-dots" />
         More photos
-      </Button>
+      </button>
     </div>
   </div>
 );

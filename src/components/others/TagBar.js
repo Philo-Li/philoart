@@ -1,8 +1,14 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 
-const TagBar = () => {
-  const tags = ['nature', 'animals', 'people', 'travel', 'food', 'sea', 'texture', 'interiors', 'art'];
+const TagBar = ({ tagToShow }) => {
+  const history = useHistory();
+  let tags = ['nature', 'animals', 'people', 'travel', 'food', 'sea', 'texture', 'interiors', 'art'];
+  if (tagToShow) tags = tagToShow;
+
+  const onSubmit = async (tag) => {
+    history.push(`/search?q=${tag}`);
+  };
 
   return (
     <div>
@@ -10,9 +16,9 @@ const TagBar = () => {
         <div className="p-3 container-row-tag">
           {tags.map((tag) => (
             <div className="" key={tag}>
-              <Button variant="outline-dark" size="sm" href={`/search?q=${tag}`}>
+              <button className="tag-btn" type="button" onClick={() => onSubmit(tag)}>
                 {tag}
-              </Button>
+              </button>
             </div>
           ))}
         </div>

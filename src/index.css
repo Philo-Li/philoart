@@ -828,3 +828,33 @@ div.scrollmenu a:hover {
 .margin-1rem {
   margin: 1rem;
 }
+
+.more-photos-btn {
+  font-size: 1.2rem;
+  margin-top: 10%;
+  font-weight: light;
+  background-color: white;
+  border: 1px solid black;
+  padding: 0.5rem 1.5rem;
+  transition: ease 0.2s;
+}
+
+.more-photos-btn:hover {
+  -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
+
+.tag-btn {
+  margin-left: 20px;
+  font-size: 1.2rem;
+  font-weight: light;
+  background-color: white;
+  border: 1px solid black;
+  padding: 0.2rem 1rem;
+  transition: ease 0.2s;
+}
+
+.tag-btn:hover {
+  -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}

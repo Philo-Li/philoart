@@ -1,12 +1,11 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
 import Masonry from 'react-masonry-css';
 import NanoPhotoCard from '../others/photo-card/NanoPhotoCard';
 
 const breakpointColumnsObj = {
-  default: 4,
-  800: 3,
-  500: 2,
+  default: 3,
+  800: 2,
+  500: 1,
 };
 
 const RelatedPhotoListContainer = ({ allPhotos, clickFetchMore }) => (
@@ -26,10 +25,10 @@ const RelatedPhotoListContainer = ({ allPhotos, clickFetchMore }) => (
       </Masonry>
     </div>
     <div className="row-item-2">
-      <Button variant="outline-secondary" onClick={clickFetchMore}>
+      <button className="more-photos-btn" type="button" onClick={clickFetchMore}>
         <i className="bi bi-three-dots" />
         More photos
-      </Button>
+      </button>
     </div>
   </div>
 );

@@ -1,6 +1,5 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
 import Masonry from 'react-masonry-css';
 import useLikePhoto from '../../../hooks/useLikePhoto';
 import useAuthorizedUser from '../../../hooks/useAuthorizedUser';
@@ -88,10 +87,10 @@ const HomePhotoListContainer = ({ allPhotos, setAllPhotos, clickFetchMore }) => 
         </Masonry>
       </div>
       <div className="row-item-2">
-        <Button variant="outline-secondary" onClick={clickFetchMore}>
+        <button className="more-photos-btn" type="button" onClick={clickFetchMore}>
           <i className="bi bi-three-dots" />
           More photos
-        </Button>
+        </button>
       </div>
     </div>
   );
