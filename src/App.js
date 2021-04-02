@@ -11,7 +11,7 @@ import Home from './components/home/Home';
 import Discover from './components/discover/Discover';
 import Footer from './components/Footer';
 import Profile from './components/profile/Profile';
-import MyAccount from './components/profile/MyAccount';
+import Settings from './components/profile/Settings';
 import UserLikes from './components/profile/UserLikes';
 import UserCollections from './components/profile/UserCollections';
 import PhotoDetails from './components/photo-page/PhotoDetails';
@@ -70,7 +70,7 @@ const App = () => {
               <Nav.Link className="text-light" href="/license">License</Nav.Link>
               <Nav.Link className="text-light" href="/about">About</Nav.Link>
               {authorizedUser && <Nav.Link className="text-light" href={userPage}>Profile</Nav.Link>}
-              {authorizedUser && <Nav.Link className="text-light" href="/user/edit">My account</Nav.Link>}
+              {authorizedUser && <Nav.Link className="text-light" href="/user/edit">Settings</Nav.Link>}
               {!authorizedUser && <Nav.Link className="text-light" href="/signin">Login</Nav.Link>}
               {!authorizedUser && <Nav.Link className="text-light" href="/signup">Sign Up</Nav.Link>}
               {authorizedUser && <Button variant="outline-primary" type="submit" onClick={handleLogout}>logout</Button>}
@@ -133,7 +133,7 @@ const App = () => {
               <UserPage />
             </Route>
             <Route path="/user/edit" exact>
-              <MyAccount authorizedUser={authorizedUser} />
+              <Settings authorizedUser={authorizedUser} />
             </Route>
             <Route path="/user/:username" exact>
               <Profile authorizedUser={authorizedUser} />

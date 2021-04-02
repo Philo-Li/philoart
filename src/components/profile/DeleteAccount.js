@@ -1,8 +1,10 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+import useDeleteUser from '../../hooks/useDeleteUser';
 
 const DeleteAccount = ({ authorizedUser }) => {
+  const [deleteUser] = useDeleteUser();
   const history = useHistory();
 
   if (!authorizedUser) return null;
@@ -10,9 +12,7 @@ const DeleteAccount = ({ authorizedUser }) => {
   const deleteAccount = async (user) => {
     // eslint-disable-next-line no-alert
     if (window.confirm('Deleted accounts are not recoverable. Are you sure? ')) {
-      // await deleteAccount({ id: userId });
-      // eslint-disable-next-line no-console
-      console.log('delete account', user.username, user.id);
+      await deleteUser({ id: user.id });
       history.push('/');
     }
   };
@@ -21,7 +21,7 @@ const DeleteAccount = ({ authorizedUser }) => {
     <div className="p-3">
       <div className="container-profile">
         <div className="profile-item">
-          <h3>Delete my Account</h3>
+          <h3>Delete your account</h3>
         </div>
         <div className="profile-item">
           <Button variant="apparent" size="sm" onClick={() => deleteAccount(authorizedUser)}>

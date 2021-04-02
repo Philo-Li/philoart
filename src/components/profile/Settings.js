@@ -4,19 +4,16 @@ import {
   Nav, Image, Tab, Row, Col,
 } from 'react-bootstrap';
 import EditProfile from './edit-profile/EditProfile';
+import ChangePassword from './change-password/ChangePassword';
 import DeleteAccount from './DeleteAccount';
 
-const MyAccount = ({ authorizedUser }) => {
-  // const history = useHistory();
-
+const Settings = ({ authorizedUser }) => {
   if (!authorizedUser) return null;
 
   const profileImage = authorizedUser.profileImage
     ? authorizedUser.profileImage
     : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
 
-  // const userPage = `/user/${authorizedUser.id}`;
-  // const userPageCollections = `/user/${authorizedUser.id}/collections`;
   return (
     <div className="p-3">
       <div className="container-profile">
@@ -35,7 +32,10 @@ const MyAccount = ({ authorizedUser }) => {
                 <Nav.Link eventKey="first">Edit Profile</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="second">Delete Account</Nav.Link>
+                <Nav.Link eventKey="second">Change Password</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey="third">Delete Account</Nav.Link>
               </Nav.Item>
             </Nav>
           </Col>
@@ -45,6 +45,9 @@ const MyAccount = ({ authorizedUser }) => {
                 <EditProfile authorizedUser={authorizedUser} />
               </Tab.Pane>
               <Tab.Pane eventKey="second">
+                <ChangePassword authorizedUser={authorizedUser} />
+              </Tab.Pane>
+              <Tab.Pane eventKey="third">
                 <DeleteAccount authorizedUser={authorizedUser} />
               </Tab.Pane>
             </Tab.Content>
@@ -55,4 +58,4 @@ const MyAccount = ({ authorizedUser }) => {
   );
 };
 
-export default MyAccount;
+export default Settings;

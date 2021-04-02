@@ -231,3 +231,21 @@ export const EDIT_PHOTO_LABELS = gql`
     }
   }
 `;
+
+export const DELETE_USER = gql`
+  mutation deleteUser( $id: ID! ) {
+    deleteUser( id: $id )
+  }
+`;
+
+export const CHANGE_PASSWORD = gql`
+  mutation changePassword(
+    $currentPassword: String!
+    $newPassword: String!
+    ) {
+      changePassword(user: {
+        currentPassword: $currentPassword
+        newPassword: $newPassword
+      })
+    }
+`;

@@ -3,26 +3,16 @@ import { Formik } from 'formik';
 import { Alert } from 'react-bootstrap';
 import * as Yup from 'yup';
 
-import EditProfileForm from './EditProfileForm';
+import ChangePasswordForm from './ChangePasswordForm';
 
 const validationSchema = Yup.object({
-  firstName: Yup.string()
-    .max(15, 'Must be 15 characters or less')
-    .required('Required'),
-  lastName: Yup.string()
-    .max(20, 'Must be 20 characters or less'),
-  email: Yup.string()
-    .email('Invalid email address')
-    .required('Required'),
-  username: Yup.string()
-    .max(20, 'Must be 20 characters or less')
-    .matches('^[a-zA-Z0-9_]*$', 'Invalid username')
-    .required('Required'),
-  password: Yup.string()
+  currentPassword: Yup.string()
+    .min(6, 'Must be 6 characters or more'),
+  newPassword: Yup.string()
     .min(6, 'Must be 6 characters or more'),
 });
 
-const EditProfileContainer = ({
+const ChangePasswordContainer = ({
   initialValues, onSubmit, errorInfo, successInfo,
 }) => (
   <div className="container-col-settings">
@@ -41,9 +31,9 @@ const EditProfileContainer = ({
       validationSchema={validationSchema}
       onSubmit={onSubmit}
     >
-      {({ handleSubmit }) => <EditProfileForm onSubmit={handleSubmit} />}
+      {({ handleSubmit }) => <ChangePasswordForm onSubmit={handleSubmit} />}
     </Formik>
   </div>
 );
 
-export default EditProfileContainer;
+export default ChangePasswordContainer;

@@ -256,6 +256,16 @@ input[type=password] {
   align-self: flex-end;
 }
 
+.container-col-settings {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
 .green-icon {
   color:yellowgreen;
 }
