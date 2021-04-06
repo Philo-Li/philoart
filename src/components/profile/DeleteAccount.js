@@ -11,7 +11,7 @@ const DeleteAccount = ({ authorizedUser }) => {
 
   const deleteAccount = async (user) => {
     // eslint-disable-next-line no-alert
-    if (window.confirm('Deleted accounts are not recoverable. Are you sure? ')) {
+    if (window.confirm('You can\'t undo this. Are you sure? ')) {
       await deleteUser({ id: user.id });
       history.push('/');
     }

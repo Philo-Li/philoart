@@ -367,21 +367,21 @@ input[type=password] {
 .containter-search-photo-card {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .search-photo-card-btn-item1 {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  /* display: flex; */
+  /* justify-content: flex-end;
+  align-items: flex-end; */
   margin-top: 1.5rem;
   margin-right: 1rem;
 }
 
 .search-photo-card-btn-item2 {
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end; */
 }
 
 .subtitle {
@@ -734,6 +734,15 @@ div.scrollmenu a:hover {
   transition: opacity .5s ease;
 }
 
+.photo-card-btn5 {
+  position: absolute;
+  text-align: start;
+  top: -2rem;
+  right: 10.5rem;
+  opacity: 0;
+  transition: opacity .5s ease;
+}
+
 .photo-card:hover .photo-card-btn1 {
   opacity: 1;
 }
@@ -747,6 +756,10 @@ div.scrollmenu a:hover {
 }
 
 .photo-card:hover .photo-card-btn4 {
+  opacity: 1;
+}
+
+.photo-card:hover .photo-card-btn5 {
   opacity: 1;
 }
 
