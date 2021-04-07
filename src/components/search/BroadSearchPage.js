@@ -5,14 +5,14 @@ import { createClient } from 'pexels';
 import axios from 'axios';
 import config from '../../config';
 import SearchPagePhotoList from './SearchPagePhotoList';
-import TagBar from '../others/TagBar';
+import BroadSearchTagBar from '../others/BroadSearchTagBar';
 
 const baseUrl = 'https://api.unsplash.com/search/photos';
 const ACCESS_KEY = config.unsplashApi;
 
 const BroadSearchPage = () => {
   const [pageNow, setPageNow] = useState(1);
-  const [photosToShow, setPhotosToShow] = useState();
+  const [allPhotos, setAllPhotos] = useState();
   const location = useLocation();
   const parsed = queryString.parse(location.search);
 
@@ -23,26 +23,38 @@ const BroadSearchPage = () => {
       .then(async (response) => {
         const thisphotos = response.photos.map((obj) => {
           const updated = {
-            ...obj,
+            obj,
+            id: obj.url,
+            width: obj.width,
+            height: obj.height,
+            photographer: obj.photographer,
+            description: '',
+            tags: '',
+            color: obj.avg_color,
+            tiny: obj.src.small,
+            small: obj.src.large,
+            large: obj.src.original,
+            downloadPage: obj.url,
             creditWeb: 'pexels',
+            creditId: 'https://www.pexels.com/',
           };
           return updated;
         });
-        if (photosToShow === undefined) {
-          setPhotosToShow(thisphotos);
+        if (allPhotos === undefined) {
+          setAllPhotos(thisphotos);
         } else {
           const filterPhotos = thisphotos
             .filter((photo) => {
-              const res = photosToShow.filter((temp) => temp.id === photo.id);
+              const res = allPhotos.filter((temp) => temp.id === photo.id);
               if (res.length === 1) return false;
               return true;
             });
 
-          const updatedPhotosToShow = [...photosToShow, ...filterPhotos];
+          const updatedAllPhotos = [...allPhotos, ...filterPhotos];
 
           // eslint-disable-next-line no-use-before-define
           searchUnsplash({
-            query: parsed.q, perPage: 10, page: pageNow, updatedPhotosToShow,
+            query: parsed.q, perPage: 10, page: pageNow, updatedAllPhotos,
           });
           // setPhotosToShow(updatedPhotosToShow);
         }
@@ -50,34 +62,43 @@ const BroadSearchPage = () => {
   };
 
   const searchUnsplash = ({
-    query, perPage, page, updatedPhotosToShow,
+    query, perPage, page, updatedAllPhotos,
   }) => {
     const request = axios.get(`${baseUrl}?client_id=${ACCESS_KEY}&per_page=${perPage}&page=${page}&query=${query}`);
     return request.then((response) => {
       if (!response.data.results) {
-        setPhotosToShow(updatedPhotosToShow);
+        setAllPhotos(updatedAllPhotos);
         return response.data;
       }
       const thisphotos = response.data.results.map((obj) => {
         const updated = {
           ...obj,
-          src: {
-            large: obj.urls.regular,
-          },
           url: obj.links.html,
+          id: obj.links.html,
+          width: obj.width,
+          height: obj.height,
+          photographer: obj.user.name,
+          description: obj.alt_description,
+          tags: '',
+          color: obj.color,
+          tiny: obj.urls.small,
+          small: obj.urls.regular,
+          large: obj.urls.full,
+          downloadPage: obj.links.html,
           creditWeb: 'unsplash',
+          creditId: 'https://unsplash.com/',
         };
         return updated;
       });
       const filterPhotos = thisphotos
         .filter((photo) => {
-          const res = updatedPhotosToShow.filter((temp) => temp.id === photo.id);
+          const res = updatedAllPhotos.filter((temp) => temp.id === photo.id);
           if (res.length === 1) return false;
           return true;
         });
 
-      const updatedPhotosToShow2 = [...updatedPhotosToShow, ...filterPhotos];
-      setPhotosToShow(updatedPhotosToShow2);
+      const updatedAllPhotos2 = [...updatedAllPhotos, ...filterPhotos];
+      setAllPhotos(updatedAllPhotos2);
       return response.data;
     });
   };
@@ -99,7 +120,7 @@ const BroadSearchPage = () => {
     setPageNow(pageNow + 1);
   };
 
-  if (!photosToShow) return null;
+  console.log('allPhotos', allPhotos);
 
   return (
     <div>
@@ -111,9 +132,10 @@ const BroadSearchPage = () => {
           <h1>{parsed.q}</h1>
         </div>
       </div>
-      <TagBar />
+      <BroadSearchTagBar />
       <SearchPagePhotoList
-        allPhotos={photosToShow}
+        allPhotos={allPhotos}
+        setAllPhotos={setAllPhotos}
         clickFetchMore={clickFetchMore}
       />
     </div>

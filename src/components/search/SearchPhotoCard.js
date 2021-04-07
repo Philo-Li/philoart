@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SaveToCollectionsModal from '../others/photo-card/SaveToCollectionsModal';
@@ -6,20 +7,18 @@ import '../../MDB-Free_4.19.2/css/mdb.css';
 const SearchPhotoCard = ({ photo, likeSinglePhoto, collectSinglePhoto }) => {
   if (!photo) return null;
 
-  const urls = { pexels: 'https://www.pexels.com/', unsplash: 'https://unsplash.com/' };
-
   return (
     <div className="grid-item">
       <div className="photo-card photo-card-webicon overlay">
         <Link
           key={photo.id}
           to={{
-            pathname: `${photo.url}`,
+            pathname: `${photo.downloadPage}`,
           }}
           target="_blank"
         >
           <img
-            src={photo.src.large}
+            src={photo.small}
             width="100%"
             alt="sample"
           />
@@ -34,12 +33,12 @@ const SearchPhotoCard = ({ photo, likeSinglePhoto, collectSinglePhoto }) => {
               <i className="bi bi-download" />
             </button>
           </div>
-          <div id={photo.id} className="text-white">
+          {/* <div id={photo.id} className="text-white">
             <SaveToCollectionsModal
               photo={photo}
               collectSinglePhoto={collectSinglePhoto}
             />
-          </div>
+          </div> */}
           <div className="text-white">
             <button
               type="button"
@@ -57,8 +56,8 @@ const SearchPhotoCard = ({ photo, likeSinglePhoto, collectSinglePhoto }) => {
           <div id={photo.id} className="text-white">
             <button
               type="button"
-              className="photo-card-btn-icon photo-card-btn4"
-              onClick={() => window.open(urls[photo.creditWeb])}
+              className="photo-card-btn-icon photo-card-btn3"
+              onClick={() => window.open(photo.creditId)}
             >
               <p>{photo.creditWeb}</p>
             </button>

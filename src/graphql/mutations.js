@@ -61,6 +61,7 @@ export const CREATE_PHOTO = gql`
     $tiny: String
     $small: String
     $large: String
+    $color: String
     $downloadPage: String
     $creditWeb: String
     $creditId: String
@@ -74,6 +75,7 @@ export const CREATE_PHOTO = gql`
       tiny: $tiny
       small: $small
       large: $large
+      color: $color
       creditWeb: $creditWeb
       creditId: $creditId
       photographer: $photographer
@@ -81,22 +83,10 @@ export const CREATE_PHOTO = gql`
       description: $description
       tags: $tags
     } ) {
-      id
-      width
-      height
-      tiny
-      small
-      large
-      creditWeb
-      creditId
-      photographer
-      downloadPage
-      description
-      tags
-      likeCount
-      downloadCount
+      ...photoDetails
     }
   }
+  ${PHOTO_DETAILS}
 `;
 
 export const LIKE_PHOTO = gql`
@@ -248,4 +238,51 @@ export const CHANGE_PASSWORD = gql`
         newPassword: $newPassword
       })
     }
+`;
+
+export const DOWNLOAD_PHOTO = gql`
+  mutation downloadPhoto( $id: ID! ) {
+    downloadPhoto( id: $id )
+  }
+`;
+
+export const CREATE_AND_LIKE_PHOTO = gql`
+  mutation createAndLikePhoto(
+    $width: Int
+    $height: Int
+    $tiny: String
+    $small: String
+    $large: String
+    $color: String
+    $downloadPage: String
+    $creditWeb: String
+    $creditId: String
+    $photographer: String
+    $description: String
+    $tags: String
+    ) {
+    createAndLikePhoto(photo: {
+      width: $width
+      height: $height
+      tiny: $tiny
+      small: $small
+      large: $large
+      color: $color
+      creditWeb: $creditWeb
+      creditId: $creditId
+      photographer: $photographer
+      downloadPage: $downloadPage
+      description: $description
+      tags: $tags
+    } ) {
+      ...photoDetails
+    }
+  }
+  ${PHOTO_DETAILS}
+`;
+
+export const UNLIKE_AND_DELETE_PHOTO = gql`
+  mutation unlikeAndDeletePhoto( $url: String! ) {
+    unlikeAndDeletePhoto( url: $url )
+  }
 `;
