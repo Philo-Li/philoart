@@ -286,3 +286,9 @@ export const UNLIKE_AND_DELETE_PHOTO = gql`
     unlikeAndDeletePhoto( url: $url )
   }
 `;
+
+export const DELETE_PHOTO = gql`
+  mutation deletePhoto( $id: ID! ) {
+    deletePhoto( id: $id )
+  }
+`;

@@ -3,31 +3,31 @@
 import React, { useState } from 'react';
 import { Card, Button, Row } from 'react-bootstrap';
 import { createClient } from 'pexels';
-import axios from 'axios';
+// import axios from 'axios';
 import useCreatePhoto from '../hooks/useCreatePhoto';
 import config from '../config';
 import db from '../out';
 import usePhotos from '../hooks/usePhotos';
-import useEditPhotoLabels from '../hooks/useEditPhotoLabels';
+// import useEditPhotoLabels from '../hooks/useEditPhotoLabels';
 
-const baseUrl = 'https://kaboompics.com/gallery?search=';
+// const baseUrl = 'https://kaboompics.com/gallery?search=';
 
 // eslint-disable-next-line arrow-body-style
 const AddNewPhotoPanel = () => {
   const [photoNow, setPhotoNow] = useState(0);
   const [photosPool, setPhotosPool] = useState();
   const [createPhoto] = useCreatePhoto();
-  const [editPhotoLabels] = useEditPhotoLabels();
+  // const [editPhotoLabels] = useEditPhotoLabels();
   const allPhotos = db.photos;
 
-  const { photos, fetchMore } = usePhotos({ first: 30, searchKeyword: 'dog,cat' });
+  const { photos } = usePhotos({ first: 30, searchKeyword: 'dog,cat' });
 
   if (!allPhotos || !photos) return null;
 
   const getPhotos = () => {
     const client = createClient(config.pexelApi);
 
-    client.photos.curated({ per_page: 80, page: 21 }).then((thisphotos) => {
+    client.photos.curated({ per_page: 80, page: 11 }).then((thisphotos) => {
       setPhotosPool(thisphotos.photos);
       // console.log('photos pexels', photos, photosPool);
     });
@@ -35,21 +35,22 @@ const AddNewPhotoPanel = () => {
 
   const createNewPhoto = async () => {
     try {
-      const photo = photosPool[photoNow];
+      const obj = photosPool[photoNow];
 
       // const variables = createNormalPhoto(photo, `Pexels_${photo.id}`);
       const variables = {
-        width: photo.width,
-        height: photo.height,
-        tiny: photo.src.small,
-        small: photo.src.large,
-        large: photo.src.original,
-        downloadPage: photo.url,
-        creditWeb: 'Pexels',
-        creditId: `${photo.id}`,
-        photographer: photo.photographer,
+        width: obj.width,
+        height: obj.height,
+        photographer: obj.photographer,
         description: '',
-        tags: 'pexels',
+        tags: '',
+        color: obj.avg_color,
+        tiny: obj.src.small,
+        small: obj.src.large,
+        large: obj.src.original,
+        downloadPage: obj.url,
+        creditWeb: 'pexels',
+        creditId: 'https://www.pexels.com/',
       };
       // console.log('photonow', photo, 'variables', variables);
 
@@ -71,49 +72,49 @@ const AddNewPhotoPanel = () => {
     else setPhotoNow(photoNow + 1);
   };
 
-  let temp = photos && photos.edges
-    ? photos.edges.map((edge) => edge.node)
-    : [];
+  // let temp = photos && photos.edges
+  //   ? photos.edges.map((edge) => edge.node)
+  //   : [];
 
-  const updatePhotoLabels = async () => {
-    for (let i = 0; i < temp.length; i += 1) {
-      const tags = JSON.parse(temp[i].tags);
-      let getlabels = [];
+  // const updatePhotoLabels = async () => {
+  //   for (let i = 0; i < temp.length; i += 1) {
+  //     const tags = JSON.parse(temp[i].tags);
+  //     let getlabels = [];
 
-      // eslint-disable-next-line no-unused-vars
-      const temp2 = tags.map((node) => {
-        if (node.confidence > 20) {
-          getlabels = [...getlabels, node.tag.en];
-        }
-        return true;
-      });
-      editPhotoLabels({ photoId: temp[i].id });
-      // console.log(getlabels, temp2.length);
-    }
-  };
+  //     // eslint-disable-next-line no-unused-vars
+  //     const temp2 = tags.map((node) => {
+  //       if (node.confidence > 20) {
+  //         getlabels = [...getlabels, node.tag.en];
+  //       }
+  //       return true;
+  //     });
+  //     editPhotoLabels({ photoId: temp[i].id });
+  //     // console.log(getlabels, temp2.length);
+  //   }
+  // };
 
-  const getMorePhotos = () => {
-    fetchMore();
-    temp = photos && photos.edges
-      ? photos.edges.map((edge) => edge.node)
-      : [];
-    setPhotosPool(temp);
-  };
+  // const getMorePhotos = () => {
+  //   fetchMore();
+  //   temp = photos && photos.edges
+  //     ? photos.edges.map((edge) => edge.node)
+  //     : [];
+  //   setPhotosPool(temp);
+  // };
 
-  const getHtml = () => {
-    const query = 'dog';
-    const request = axios.get(`${baseUrl}${query}&sortby=`);
-    // eslint-disable-next-line arrow-body-style
-    return request.then((response) => {
-      // console.log(response);
-      return response.data;
-    });
-  };
+  // const getHtml = () => {
+  //   const query = 'dog';
+  //   const request = axios.get(`${baseUrl}${query}&sortby=`);
+  //   // eslint-disable-next-line arrow-body-style
+  //   return request.then((response) => {
+  //     // console.log(response);
+  //     return response.data;
+  //   });
+  // };
 
   return (
     <div>
       <h1>Discover</h1>
-      <Row className="sm my-2 my-lg-5 flex-end">
+      {/* <Row className="sm my-2 my-lg-5 flex-end">
         <Card style={{ width: '18rem' }}>
           <Card.Title>Edit Photo Labels</Card.Title>
           <Card.Body>
@@ -132,7 +133,7 @@ const AddNewPhotoPanel = () => {
             <Button variant="primary" onClick={() => getHtml()}>Get</Button>
           </Card.Body>
         </Card>
-      </Row>
+      </Row> */}
       <Row className="sm my-2 my-lg-5 flex-end">
         <Card style={{ width: '28rem' }}>
           <Card.Body key={allPhotos[photoNow].id}>

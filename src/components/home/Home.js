@@ -10,7 +10,7 @@ const Home = ({
 }) => {
   const [allPhotos, setAllPhotos] = useState();
 
-  const { photos, fetchMore } = usePhotos({ first: 30 });
+  const { photos, fetchMore } = usePhotos({ first: 30, username: 'picky' });
 
   useEffect(() => {
     if (photos) {

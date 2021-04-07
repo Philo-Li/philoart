@@ -30,7 +30,7 @@ const SearchPagePhotoListContainer = ({ allPhotos, setAllPhotos, clickFetchMore 
         .map((obj) => (obj.id === photo.id ? { ...obj, isLiked: !obj.isLiked } : obj));
       setAllPhotos(temp);
       if (photo.isLiked) {
-        console.log('unlike photo', photo.id);
+        // console.log('unlike photo', photo.id);
         await unlikeAndDeletePhoto({ url: photo.downloadPage });
       } else {
         const variables = {
@@ -44,7 +44,7 @@ const SearchPagePhotoListContainer = ({ allPhotos, setAllPhotos, clickFetchMore 
           creditWeb: photo.creditWeb,
           creditId: photo.creditId,
           photographer: photo.photographer,
-          description: photo.description,
+          description: photo.description || '',
           tags: photo.tags,
         };
 

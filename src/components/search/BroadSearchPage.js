@@ -23,7 +23,6 @@ const BroadSearchPage = () => {
       .then(async (response) => {
         const thisphotos = response.photos.map((obj) => {
           const updated = {
-            obj,
             id: obj.url,
             width: obj.width,
             height: obj.height,
@@ -72,13 +71,11 @@ const BroadSearchPage = () => {
       }
       const thisphotos = response.data.results.map((obj) => {
         const updated = {
-          ...obj,
-          url: obj.links.html,
           id: obj.links.html,
           width: obj.width,
           height: obj.height,
           photographer: obj.user.name,
-          description: obj.alt_description,
+          description: obj.alt_description || '',
           tags: '',
           color: obj.color,
           tiny: obj.urls.small,
@@ -109,6 +106,7 @@ const BroadSearchPage = () => {
       axios.get(`${config.pickyApi}/kaboompics/${parsed.q}`)
         // eslint-disable-next-line no-unused-vars
         .then((response) => {
+          // eslint-disable-next-line no-console
           console.log('kaboompics', response.data);
         });
     }
@@ -120,6 +118,7 @@ const BroadSearchPage = () => {
     setPageNow(pageNow + 1);
   };
 
+  // eslint-disable-next-line no-console
   console.log('allPhotos', allPhotos);
 
   return (

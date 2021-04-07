@@ -2,10 +2,38 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SaveToCollectionsModal from '../others/photo-card/SaveToCollectionsModal';
+import useCreatePhoto from '../../hooks/useCreatePhoto';
 import '../../MDB-Free_4.19.2/css/mdb.css';
 
 const SearchPhotoCard = ({ photo, likeSinglePhoto, collectSinglePhoto }) => {
   if (!photo) return null;
+  const [createPhoto] = useCreatePhoto();
+
+  const createNewPhoto = async () => {
+    try {
+      const variables = {
+        width: photo.width,
+        height: photo.height,
+        color: photo.color,
+        tiny: photo.tiny,
+        small: photo.small,
+        large: photo.large,
+        downloadPage: photo.downloadPage,
+        creditWeb: photo.creditWeb,
+        creditId: photo.creditId,
+        photographer: photo.photographer,
+        description: photo.description,
+        tags: photo.tags,
+      };
+      // console.log('photonow', photo, 'variables', variables);
+
+      await createPhoto(variables);
+      // eslint-disable-next-line no-alert
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.log(e);
+    }
+  };
 
   return (
     <div className="grid-item">
@@ -62,6 +90,17 @@ const SearchPhotoCard = ({ photo, likeSinglePhoto, collectSinglePhoto }) => {
               <p>{photo.creditWeb}</p>
             </button>
           </div>
+          { localStorage.username === 'picky' && (
+            <div className="text-white">
+              <button
+                type="button"
+                className="photo-card-btn-icon photo-card-btn5"
+                onClick={() => createNewPhoto(photo)}
+              >
+                <i className="bi bi-plus-square" />
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

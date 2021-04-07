@@ -2,11 +2,17 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import PhotoDetailsModal from './PhotoDetailsModal';
 import SaveToCollectionsModal from './SaveToCollectionsModal';
+import useDeletePhoto from '../../../hooks/useDeletePhoto';
 import '../../../MDB-Free_4.19.2/css/mdb.css';
 
 const PhotoCard = ({ photo, likeSinglePhoto, collectSinglePhoto }) => {
   if (!photo) return null;
   const location = useLocation();
+  const [deletePhoto] = useDeletePhoto();
+
+  const deleteSinglePhoto = async () => {
+    await deletePhoto({ id: photo.id });
+  };
 
   return (
     <div className="grid-item">
@@ -63,6 +69,17 @@ const PhotoCard = ({ photo, likeSinglePhoto, collectSinglePhoto }) => {
               likeSinglePhoto={likeSinglePhoto}
             />
           </div>
+          { localStorage.username === 'picky' && (
+            <div className="text-white">
+              <button
+                type="button"
+                className="photo-card-btn-icon photo-card-btn5"
+                onClick={() => deleteSinglePhoto(photo)}
+              >
+                <i className="bi bi-trash-fill" />
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
