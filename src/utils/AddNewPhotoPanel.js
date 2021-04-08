@@ -25,7 +25,7 @@ const AddNewPhotoPanel = () => {
   const getPhotos = () => {
     const client = createClient(config.pexelApi);
 
-    client.photos.curated({ per_page: 80, page: 11 }).then((thisphotos) => {
+    client.photos.curated({ per_page: 80, page: 23 }).then((thisphotos) => {
       setPhotosPool(thisphotos.photos);
       // console.log('photos pexels', photos, photosPool);
     });
