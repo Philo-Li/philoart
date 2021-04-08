@@ -5,7 +5,9 @@ import SaveToCollectionsModal from './SaveToCollectionsModal';
 import useDeletePhoto from '../../../hooks/useDeletePhoto';
 import '../../../MDB-Free_4.19.2/css/mdb.css';
 
-const PhotoCard = ({ photo, likeSinglePhoto, collectSinglePhoto }) => {
+const PhotoCard = ({
+  photo, authorizedUser, likeSinglePhoto, collectSinglePhoto,
+}) => {
   if (!photo) return null;
   const location = useLocation();
   const [deletePhoto] = useDeletePhoto();
@@ -69,7 +71,7 @@ const PhotoCard = ({ photo, likeSinglePhoto, collectSinglePhoto }) => {
               likeSinglePhoto={likeSinglePhoto}
             />
           </div>
-          { localStorage.username === 'picky' && (
+          { authorizedUser && authorizedUser.username === 'picky' && (
             <div className="text-white">
               <button
                 type="button"

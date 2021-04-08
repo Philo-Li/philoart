@@ -91,6 +91,7 @@ const SearchPagePhotoListContainer = ({ allPhotos, setAllPhotos, clickFetchMore 
             <SearchPhotoCard
               key={photo.id}
               photo={photo}
+              authorizedUser={authorizedUser}
               likeSinglePhoto={likeSinglePhoto}
               // collectSinglePhoto={collectSinglePhoto}
             />

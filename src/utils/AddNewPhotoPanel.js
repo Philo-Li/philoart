@@ -10,8 +10,6 @@ import db from '../out';
 import usePhotos from '../hooks/usePhotos';
 // import useEditPhotoLabels from '../hooks/useEditPhotoLabels';
 
-// const baseUrl = 'https://kaboompics.com/gallery?search=';
-
 // eslint-disable-next-line arrow-body-style
 const AddNewPhotoPanel = () => {
   const [photoNow, setPhotoNow] = useState(0);
@@ -37,7 +35,6 @@ const AddNewPhotoPanel = () => {
     try {
       const obj = photosPool[photoNow];
 
-      // const variables = createNormalPhoto(photo, `Pexels_${photo.id}`);
       const variables = {
         width: obj.width,
         height: obj.height,
@@ -52,7 +49,6 @@ const AddNewPhotoPanel = () => {
         creditWeb: 'pexels',
         creditId: 'https://www.pexels.com/',
       };
-      // console.log('photonow', photo, 'variables', variables);
 
       await createPhoto(variables);
       // eslint-disable-next-line no-alert

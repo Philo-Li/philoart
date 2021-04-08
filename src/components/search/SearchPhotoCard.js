@@ -5,7 +5,9 @@ import SaveToCollectionsModal from '../others/photo-card/SaveToCollectionsModal'
 import useCreatePhoto from '../../hooks/useCreatePhoto';
 import '../../MDB-Free_4.19.2/css/mdb.css';
 
-const SearchPhotoCard = ({ photo, likeSinglePhoto, collectSinglePhoto }) => {
+const SearchPhotoCard = ({
+  photo, authorizedUser, likeSinglePhoto, collectSinglePhoto,
+}) => {
   if (!photo) return null;
   const [createPhoto] = useCreatePhoto();
 
@@ -90,7 +92,7 @@ const SearchPhotoCard = ({ photo, likeSinglePhoto, collectSinglePhoto }) => {
               <p>{photo.creditWeb}</p>
             </button>
           </div>
-          { localStorage.username === 'picky' && (
+          { authorizedUser && authorizedUser.username === 'picky' && (
             <div className="text-white">
               <button
                 type="button"

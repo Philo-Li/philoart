@@ -80,6 +80,7 @@ const HomePhotoListContainer = ({ allPhotos, setAllPhotos, clickFetchMore }) => 
             <PhotoCard
               key={photo.id}
               photo={photo}
+              authorizedUser={authorizedUser}
               likeSinglePhoto={likeSinglePhoto}
               collectSinglePhoto={collectSinglePhoto}
             />
