@@ -24,7 +24,6 @@ import NavSearchBar from './components/others/NavSearchBar';
 import UserPage from './components/profile/UserPage';
 import SearchPage from './components/search/SearchPage';
 import BroadSearchPage from './components/search/BroadSearchPage';
-import AddNewPhotoPanel from './utils/AddNewPhotoPanel';
 import License from './components/license/License';
 import LicenseZh from './components/license/LicenseZh';
 import About from './components/about/About';
@@ -119,9 +118,6 @@ const App = () => {
             </Route>
             <Route path="/signup" exact>
               <SignUp />
-            </Route>
-            <Route path="/addphoto" exact>
-              <AddNewPhotoPanel />
             </Route>
             <Route path="/search">
               <SearchPage authorizedUser={authorizedUser} />
