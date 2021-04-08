@@ -1,7 +1,7 @@
 import React from 'react';
 import RelatedPhotoListContainer from './RelatedPhotoListContainer';
 
-const HomePhotoList = ({
+const RelatedPhotoList = ({
   allPhotos, setAllPhotos, clickFetchMore,
 }) => {
   if (allPhotos === undefined) return null;
@@ -17,4 +17,4 @@ const HomePhotoList = ({
   );
 };
 
-export default HomePhotoList;
+export default RelatedPhotoList;
