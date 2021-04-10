@@ -11,7 +11,7 @@ import useCollectPhoto from '../../hooks/useCollectPhoto';
 const breakpointColumnsObj = {
   default: 3,
   800: 2,
-  500: 1,
+  500: 2,
 };
 
 const HomePhotoListContainer = ({ allPhotos, setAllPhotos, clickFetchMore }) => {

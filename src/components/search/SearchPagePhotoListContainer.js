@@ -11,7 +11,7 @@ import useUnlikeAndDeletePhoto from '../../hooks/useUnlikeAndDeletePhoto';
 const breakpointColumnsObj = {
   default: 3,
   800: 2,
-  500: 1,
+  500: 2,
 };
 
 const SearchPagePhotoListContainer = ({ allPhotos, setAllPhotos, clickFetchMore }) => {
@@ -89,7 +89,7 @@ const SearchPagePhotoListContainer = ({ allPhotos, setAllPhotos, clickFetchMore 
         >
           {allPhotos.map((photo) => (
             <SearchPhotoCard
-              key={photo.id}
+              key={photo.downloadPage}
               photo={photo}
               authorizedUser={authorizedUser}
               likeSinglePhoto={likeSinglePhoto}

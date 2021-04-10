@@ -10,6 +10,11 @@ import BroadSearchTagBar from '../others/BroadSearchTagBar';
 const baseUrl = 'https://api.unsplash.com/search/photos';
 const ACCESS_KEY = config.unsplashApi;
 
+const merge = (a, b, prop) => {
+  const reduced = a.filter((aitem) => !b.find((bitem) => aitem[prop] === bitem[prop]));
+  return reduced.concat(b);
+};
+
 const BroadSearchPage = () => {
   const [pageNow, setPageNow] = useState(1);
   const [allPhotos, setAllPhotos] = useState();
@@ -39,24 +44,12 @@ const BroadSearchPage = () => {
           };
           return updated;
         });
-        if (allPhotos === undefined) {
-          setAllPhotos(thisphotos);
-        } else {
-          const filterPhotos = thisphotos
-            .filter((photo) => {
-              const res = allPhotos.filter((temp) => temp.id === photo.id);
-              if (res.length === 1) return false;
-              return true;
-            });
+        const updatedAllPhotos = !allPhotos ? thisphotos : merge(allPhotos, thisphotos, 'downloadPage');
 
-          const updatedAllPhotos = [...allPhotos, ...filterPhotos];
-
-          // eslint-disable-next-line no-use-before-define
-          searchUnsplash({
-            query: parsed.q, perPage: 10, page: pageNow, updatedAllPhotos,
-          });
-          // setPhotosToShow(updatedPhotosToShow);
-        }
+        // eslint-disable-next-line no-use-before-define
+        searchUnsplash({
+          query: parsed.q, perPage: 10, page: pageNow, updatedAllPhotos,
+        });
       });
   };
 
@@ -65,6 +58,7 @@ const BroadSearchPage = () => {
   }) => {
     const request = axios.get(`${baseUrl}?client_id=${ACCESS_KEY}&per_page=${perPage}&page=${page}&query=${query}`);
     return request.then((response) => {
+      // console.log('unsplash result', response.data);
       if (!response.data.results) {
         setAllPhotos(updatedAllPhotos);
         return response.data;
@@ -87,28 +81,41 @@ const BroadSearchPage = () => {
         };
         return updated;
       });
-      const filterPhotos = thisphotos
-        .filter((photo) => {
-          const res = updatedAllPhotos.filter((temp) => temp.id === photo.id);
-          if (res.length === 1) return false;
-          return true;
-        });
 
-      const updatedAllPhotos2 = [...updatedAllPhotos, ...filterPhotos];
-      setAllPhotos(updatedAllPhotos2);
+      const updatedAllPhotos2 = merge(updatedAllPhotos, thisphotos, 'downloadPage');
+      // eslint-disable-next-line no-use-before-define
+      searchKaboompics({
+        query: parsed.q, perPage: 10, page: pageNow, updatedAllPhotos2,
+      });
       return response.data;
     });
+  };
+
+  const searchKaboompics = ({
+    // eslint-disable-next-line no-unused-vars
+    query, perPage, page, updatedAllPhotos2,
+  }) => {
+    axios.get(`${config.pickyApi}/kaboompics/${query}`)
+      .then((response) => {
+        // eslint-disable-next-line no-console
+        console.log('kaboompics2', response.data);
+        if (!response.data.photos) {
+          setAllPhotos(updatedAllPhotos2);
+          return response.data;
+        }
+
+        const thisphotos = response.data.photos.splice(0, 10);
+
+        const updatedAllPhotos3 = merge(updatedAllPhotos2, thisphotos, 'downloadPage');
+
+        setAllPhotos(updatedAllPhotos3);
+        return response.data;
+      });
   };
 
   useEffect(() => {
     if (location) {
       getPhotos();
-      axios.get(`${config.pickyApi}/kaboompics/${parsed.q}`)
-        // eslint-disable-next-line no-unused-vars
-        .then((response) => {
-          // eslint-disable-next-line no-console
-          console.log('kaboompics', response.data);
-        });
     }
   }, [pageNow]);
 

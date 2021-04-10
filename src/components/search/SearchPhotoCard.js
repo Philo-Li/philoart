@@ -41,7 +41,7 @@ const SearchPhotoCard = ({
     <div className="grid-item">
       <div className="photo-card photo-card-webicon overlay">
         <Link
-          key={photo.id}
+          key={photo.downloadPage}
           to={{
             pathname: `${photo.downloadPage}`,
           }}
@@ -54,7 +54,7 @@ const SearchPhotoCard = ({
           />
         </Link>
         <div>
-          <div id={photo.id} className="text-white">
+          <div id={photo.downloadPage} className="text-white">
             <button
               type="button"
               className="photo-card-btn-icon photo-card-btn1"
@@ -83,10 +83,10 @@ const SearchPhotoCard = ({
               )}
             </button>
           </div>
-          <div id={photo.id} className="text-white">
+          <div id={photo.downloadPage} className="text-white">
             <button
               type="button"
-              className="photo-card-btn-icon photo-card-btn3"
+              className="photo-card-btn-icon photo-card-btn-web text-1rem"
               onClick={() => window.open(photo.creditId)}
             >
               <p>{photo.creditWeb}</p>

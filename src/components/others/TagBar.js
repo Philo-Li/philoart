@@ -7,7 +7,7 @@ const TagBar = ({ tagToShow }) => {
   if (tagToShow) tags = tagToShow;
 
   const onSubmit = async (tag) => {
-    history.push(`/search?q=${tag}`);
+    history.push(`/pickysearch?q=${tag}`);
   };
 
   return (

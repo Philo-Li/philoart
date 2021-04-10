@@ -119,10 +119,10 @@ const App = () => {
             <Route path="/signup" exact>
               <SignUp />
             </Route>
-            <Route path="/search">
+            <Route path="/pickysearch">
               <SearchPage authorizedUser={authorizedUser} />
             </Route>
-            <Route path="/broadsearch">
+            <Route path="/search">
               <BroadSearchPage />
             </Route>
             <Route path="/user" exact>

@@ -7,7 +7,7 @@ const BroadSearchTagBar = ({ tagToShow }) => {
   if (tagToShow) tags = tagToShow;
 
   const onSubmit = async (tag) => {
-    history.push(`/broadsearch?q=${tag}`);
+    history.push(`/search?q=${tag}`);
   };
 
   return (
