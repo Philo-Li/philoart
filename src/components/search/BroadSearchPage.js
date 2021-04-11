@@ -28,7 +28,6 @@ const BroadSearchPage = () => {
       .then(async (response) => {
         const thisphotos = response.photos.map((obj) => {
           const updated = {
-            id: obj.url,
             width: obj.width,
             height: obj.height,
             photographer: obj.photographer,
@@ -65,7 +64,6 @@ const BroadSearchPage = () => {
       }
       const thisphotos = response.data.results.map((obj) => {
         const updated = {
-          id: obj.links.html,
           width: obj.width,
           height: obj.height,
           photographer: obj.user.name,
@@ -104,7 +102,7 @@ const BroadSearchPage = () => {
           return response.data;
         }
 
-        const thisphotos = response.data.photos.splice(0, 10);
+        const thisphotos = response.data.photos.splice((page - 1) * perPage, perPage);
 
         const updatedAllPhotos3 = merge(updatedAllPhotos2, thisphotos, 'downloadPage');
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import LazyLoad from 'react-lazyload';
 import PhotoDetailsModal from './PhotoDetailsModal';
 import SaveToCollectionsModal from './SaveToCollectionsModal';
 import useDeletePhoto from '../../../hooks/useDeletePhoto';
@@ -11,6 +12,16 @@ const PhotoCard = ({
   if (!photo) return null;
   const location = useLocation();
   const [deletePhoto] = useDeletePhoto();
+
+  const Placeholder = () => (
+    <div className="photo-card placeholder">
+      <img
+        src={photo.tiny}
+        width="100%"
+        alt="lazy load search results"
+      />
+    </div>
+  );
 
   const deleteSinglePhoto = async () => {
     await deletePhoto({ id: photo.id });
@@ -28,11 +39,13 @@ const PhotoCard = ({
             state: { background: location },
           }}
         >
-          <img
-            src={photo.small}
-            width="100%"
-            alt="sample"
-          />
+          <LazyLoad height={200} offset={[-200, 0]} debounce={500} placeholder={<Placeholder />}>
+            <img
+              src={photo.small}
+              width="100%"
+              alt="gird item"
+            />
+          </LazyLoad>
         </Link>
         <div>
           <div id={photo.id} className="text-white">

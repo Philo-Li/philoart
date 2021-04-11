@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import LazyLoad from 'react-lazyload';
 import SaveToCollectionsModal from '../others/photo-card/SaveToCollectionsModal';
 import useCreatePhoto from '../../hooks/useCreatePhoto';
 import '../../MDB-Free_4.19.2/css/mdb.css';
@@ -10,6 +11,16 @@ const SearchPhotoCard = ({
 }) => {
   if (!photo) return null;
   const [createPhoto] = useCreatePhoto();
+
+  const Placeholder = () => (
+    <div className="photo-card placeholder">
+      <img
+        src={photo.tiny}
+        width="100%"
+        alt="lazy load search results"
+      />
+    </div>
+  );
 
   const createNewPhoto = async () => {
     try {
@@ -47,11 +58,13 @@ const SearchPhotoCard = ({
           }}
           target="_blank"
         >
-          <img
-            src={photo.small}
-            width="100%"
-            alt="sample"
-          />
+          <LazyLoad height={200} offset={[-200, 0]} debounce={500} placeholder={<Placeholder />}>
+            <img
+              src={photo.small}
+              width="100%"
+              alt="search results"
+            />
+          </LazyLoad>
         </Link>
         <div>
           <div id={photo.downloadPage} className="text-white">
