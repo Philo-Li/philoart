@@ -6,6 +6,7 @@ const RelatedPhotos = ({
   authorizedUser, photoToShow,
 }) => {
   const [allPhotos, setAllPhotos] = useState();
+  const [loading, setLoading] = useState(false);
 
   const tags1 = photoToShow && photoToShow.labels;
 
@@ -53,11 +54,13 @@ const RelatedPhotos = ({
         });
         setAllPhotos(updatedAllPhotos);
       }
+      setLoading(false);
     }
   }, [photos, authorizedUser]);
 
   const clickFetchMore = () => {
     fetchMore();
+    setLoading(true);
   };
 
   // console.log('picky: photos', photos);
@@ -75,6 +78,7 @@ const RelatedPhotos = ({
         allPhotos={allPhotos}
         setAllPhotos={setAllPhotos}
         clickFetchMore={clickFetchMore}
+        loading={loading}
       />
     </div>
   );

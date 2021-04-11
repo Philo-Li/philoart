@@ -5,6 +5,7 @@ import HomePhotoList from '../others/photo-list/HomePhotoList';
 
 const UserLikes = ({ authorizedUser }) => {
   const [allLikedPhotos, setAllLikedPhotos] = useState();
+  const [loading, setLoading] = useState(false);
   let { username } = useParams();
   username = username.substr(1, username.length - 1);
   const { likes, fetchMore } = useUserLikes({ username, first: 15 });
@@ -52,14 +53,14 @@ const UserLikes = ({ authorizedUser }) => {
         });
         setAllLikedPhotos(updatedAllPhotos);
       }
+      setLoading(false);
     }
   }, [likes, authorizedUser]);
 
   const clickFetchMore = () => {
     fetchMore();
+    setLoading(true);
   };
-
-  if (!authorizedUser) return null;
 
   return (
     <div className="p-3">
@@ -67,6 +68,7 @@ const UserLikes = ({ authorizedUser }) => {
         allPhotos={allLikedPhotos}
         setAllPhotos={setAllLikedPhotos}
         clickFetchMore={clickFetchMore}
+        loading={loading}
       />
     </div>
   );

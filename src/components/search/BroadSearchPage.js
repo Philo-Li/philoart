@@ -22,7 +22,7 @@ const merge = (a, b, prop) => {
 
 const BroadSearchPage = () => {
   const [pageNow, setPageNow] = useState(1);
-  // eslint-disable-next-line no-unused-vars
+  const [loading, setLoading] = useState(false);
   const [allPhotos, setAllPhotos] = useState();
   const [allPhotosPool, setAllPhotosPool] = useState({
     pexels: undefined,
@@ -84,6 +84,7 @@ const BroadSearchPage = () => {
         .then((response) => {
           if (!response.data.results) {
             searchKaboompics(photosPool);
+            return response.data;
           }
           const thisphotos = response.data.results.map((obj) => {
             const updated = {
@@ -128,7 +129,23 @@ const BroadSearchPage = () => {
           return response.data;
         }
 
-        const thisphotos = response.data.photos;
+        const thisphotos = response.data.photos.map((obj) => {
+          const updated = {
+            width: obj.width || 0,
+            height: obj.height || 0,
+            photographer: obj.photographer || '',
+            description: obj.description,
+            tags: obj.tags || '',
+            color: obj.color,
+            tiny: obj.tiny,
+            small: obj.small,
+            large: obj.large,
+            downloadPage: obj.downloadPage,
+            creditWeb: obj.creditWeb,
+            creditId: obj.creditId,
+          };
+          return updated;
+        });
 
         const kaboompicsPool = allPhotosPool.kaboompics;
         const updatedKaboompicsPool = !kaboompicsPool ? thisphotos : merge(kaboompicsPool, thisphotos, 'downloadPage');
@@ -151,6 +168,7 @@ const BroadSearchPage = () => {
     const splicedPhotos3 = photosPool3.kaboompics.slice(0, pageNow * PerLoad);
     const merged = [...splicedPhotos1, ...splicedPhotos2, ...splicedPhotos3];
     setAllPhotos(merged);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -163,6 +181,7 @@ const BroadSearchPage = () => {
 
   const clickFetchMore = () => {
     setPageNow(pageNow + 1);
+    setLoading(true);
   };
 
   // eslint-disable-next-line no-console
@@ -183,6 +202,7 @@ const BroadSearchPage = () => {
         allPhotos={allPhotos}
         setAllPhotos={setAllPhotos}
         clickFetchMore={clickFetchMore}
+        loading={loading}
       />
     </div>
   );

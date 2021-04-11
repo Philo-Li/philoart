@@ -9,6 +9,7 @@ const Home = ({
   authorizedUser,
 }) => {
   const [allPhotos, setAllPhotos] = useState();
+  const [loading, setLoading] = useState(false);
 
   const { photos, fetchMore } = usePhotos({ first: 30, username: 'picky' });
 
@@ -52,11 +53,13 @@ const Home = ({
         });
         setAllPhotos(updatedAllPhotos);
       }
+      setLoading(false);
     }
   }, [photos, authorizedUser]);
 
   const clickFetchMore = () => {
     fetchMore();
+    setLoading(true);
   };
 
   // console.log('picky: photos', photos);
@@ -79,6 +82,7 @@ const Home = ({
         allPhotos={allPhotos}
         setAllPhotos={setAllPhotos}
         clickFetchMore={clickFetchMore}
+        loading={loading}
       />
     </div>
   );

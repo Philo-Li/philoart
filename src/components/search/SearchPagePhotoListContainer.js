@@ -1,5 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { css } from '@emotion/react';
+import BeatLoader from 'react-spinners/BeatLoader';
 import Masonry from 'react-masonry-css';
 import SearchPhotoCard from './SearchPhotoCard';
 import useCreateAndLikePhoto from '../../hooks/useCreateAndLikePhoto';
@@ -8,13 +10,22 @@ import useUnlikeAndDeletePhoto from '../../hooks/useUnlikeAndDeletePhoto';
 // import useUncollectPhoto from '../../hooks/useUncollectPhoto';
 // import useCreatePhotoAndCollectPhoto from '../../hooks/useCollectPhoto';
 
+const override = css`
+  display: flex;
+  justify-content: center;
+  align-item: center;
+  margin: 3rem;
+`;
+
 const breakpointColumnsObj = {
   default: 3,
   800: 2,
   500: 2,
 };
 
-const SearchPagePhotoListContainer = ({ allPhotos, setAllPhotos, clickFetchMore }) => {
+const SearchPagePhotoListContainer = ({
+  allPhotos, setAllPhotos, clickFetchMore, loading,
+}) => {
   const { authorizedUser } = useAuthorizedUser();
   const [createAndLikePhoto] = useCreateAndLikePhoto();
   const [unlikeAndDeletePhoto] = useUnlikeAndDeletePhoto();
@@ -27,7 +38,8 @@ const SearchPagePhotoListContainer = ({ allPhotos, setAllPhotos, clickFetchMore 
       history.push('/signin');
     } else {
       const temp = allPhotos
-        .map((obj) => (obj.id === photo.id ? { ...obj, isLiked: !obj.isLiked } : obj));
+        .map((obj) => (obj.downloadPage === photo.downloadPage
+          ? { ...obj, isLiked: !obj.isLiked } : obj));
       setAllPhotos(temp);
       if (photo.isLiked) {
         // console.log('unlike photo', photo.id);
@@ -98,6 +110,7 @@ const SearchPagePhotoListContainer = ({ allPhotos, setAllPhotos, clickFetchMore 
           ))}
         </Masonry>
       </div>
+      { loading && (<BeatLoader color="#9B9B9B" loading css={override} size={50} />) }
       <div className="row-item-2">
         <button className="more-photos-btn" type="button" onClick={clickFetchMore}>
           <i className="bi bi-three-dots" />

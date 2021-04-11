@@ -7,6 +7,7 @@ import RelatedTagBar from '../others/RelatedTagBar';
 
 const SearchPage = ({ authorizedUser }) => {
   const [allPhotos, setAllPhotos] = useState();
+  const [loading, setLoading] = useState(false);
   const location = useLocation();
   const parsed = queryString.parse(location.search);
 
@@ -62,11 +63,13 @@ const SearchPage = ({ authorizedUser }) => {
         });
         setAllPhotos(updatedAllPhotos);
       }
+      setLoading(false);
     }
   }, [photos]);
 
   const clickFetchMore = () => {
     fetchMore();
+    setLoading(true);
   };
 
   // console.log('picky: photos', photos);
@@ -88,6 +91,7 @@ const SearchPage = ({ authorizedUser }) => {
         allPhotos={allPhotos}
         setAllPhotos={setAllPhotos}
         clickFetchMore={clickFetchMore}
+        loading={loading}
       />
     </div>
   );

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import {
-  Modal, Button, Image, Card,
+  Modal, Button, Image,
 } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import SaveToCollectionsModal2 from './SaveToCollectionsModal3';
 import PhotoMoreDetailsModal from './PhotoMoreDetailsModal';
 import PhotoRelatedTagBar from '../PhotoRelatedTagBar';
@@ -72,7 +73,16 @@ const PhotoDetailsModal = ({
                   </div>
                   <div>
                     from
-                    <Card.Link href="#" className="col-item-0">{photo.creditWeb}</Card.Link>
+                    <Link
+                      key={photo.downloadPage}
+                      to={{
+                        pathname: `${photo.creditId}`,
+                      }}
+                      target="_blank"
+                    >
+                      {' '}
+                      {photo.creditWeb}
+                    </Link>
                   </div>
                 </div>
               </div>

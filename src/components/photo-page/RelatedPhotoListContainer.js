@@ -1,5 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { css } from '@emotion/react';
+import BeatLoader from 'react-spinners/BeatLoader';
 import Masonry from 'react-masonry-css';
 import useLikePhoto from '../../hooks/useLikePhoto';
 import useAuthorizedUser from '../../hooks/useAuthorizedUser';
@@ -8,13 +10,22 @@ import useUnlikePhoto from '../../hooks/useUnlikePhoto';
 import useUncollectPhoto from '../../hooks/useUncollectPhoto';
 import useCollectPhoto from '../../hooks/useCollectPhoto';
 
+const override = css`
+  display: flex;
+  justify-content: center;
+  align-item: center;
+  margin: 3rem;
+`;
+
 const breakpointColumnsObj = {
   default: 3,
   800: 2,
   500: 2,
 };
 
-const HomePhotoListContainer = ({ allPhotos, setAllPhotos, clickFetchMore }) => {
+const HomePhotoListContainer = ({
+  allPhotos, setAllPhotos, clickFetchMore, loading,
+}) => {
   const { authorizedUser } = useAuthorizedUser();
   const [likePhoto] = useLikePhoto();
   const [unlikePhoto] = useUnlikePhoto();
@@ -86,6 +97,7 @@ const HomePhotoListContainer = ({ allPhotos, setAllPhotos, clickFetchMore }) => 
           ))}
         </Masonry>
       </div>
+      { loading && (<BeatLoader color="#9B9B9B" loading css={override} size={50} />) }
       <div className="row-item-2">
         <button className="more-photos-btn" type="button" onClick={clickFetchMore}>
           <i className="bi bi-three-dots" />

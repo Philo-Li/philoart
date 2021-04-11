@@ -5,6 +5,7 @@
   "dependencies": {
     "@apollo/client": "^3.2.5",
     "@apollo/react-hooks": "^4.0.0",
+    "@emotion/react": "^11.1.5",
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
     "@testing-library/jest-dom": "^5.11.6",
@@ -34,6 +35,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "react-select": "^3.2.0",
+    "react-spinners": "^0.10.6",
     "semantic-ui-react": "^2.0.3",
     "subscriptions-transport-ws": "^0.9.18",
     "web-vitals": "^0.2.4",
