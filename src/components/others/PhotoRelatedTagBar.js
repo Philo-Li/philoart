@@ -9,7 +9,7 @@ const PhotoRelatedTagBar = ({ photo }) => {
   let tags = tags1.split(',');
 
   if (tags.length > 10) {
-    tags = tags.splice(0, 10);
+    tags = tags.slice(0, 10);
   }
 
   return (
