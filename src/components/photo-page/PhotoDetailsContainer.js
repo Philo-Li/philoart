@@ -107,7 +107,7 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
             Website
           </div>
           <div>
-            <a href="https://www.pexels.com" target="_">{photo.creditWeb}</a>
+            <a href={photo.creditId} target="_">{photo.creditWeb}</a>
           </div>
         </div>
         <div className="container-col-details margin-1rem">

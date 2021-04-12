@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import LazyLoad from 'react-lazyload';
 import SaveToCollectionsModal from './SaveToCollectionsModal';
 import '../../../MDB-Free_4.19.2/css/mdb.css';
 
@@ -7,58 +7,70 @@ const NanoPhotoCard2 = ({
   photo, likeSinglePhoto, collectSinglePhoto,
 }) => {
   if (!photo) return null;
-  const location = useLocation();
+
+  const bgColor = photo.color || '#84B0B3';
+
+  const mystyle = {
+    backgroundColor: bgColor,
+  };
+
+  const Placeholder = () => (
+    <div style={mystyle}>
+      <a href={`/photo/${photo.id}`}>
+        <img
+          src={photo.tiny}
+          className="lazyload-img"
+          width="100%"
+          alt="gird item"
+        />
+      </a>
+    </div>
+  );
 
   return (
     <div className="grid-item">
-      <div className="photo-card overlay">
-        <Link
-          key={photo.id}
-          to={{
-            pathname: `/photo/${photo.id}`,
-            // This is the trick! This link sets
-            // the `background` in location state.
-            state: { background: location },
-          }}
-        >
-          <img
-            src={photo.small}
-            width="100%"
-            alt="sample"
-          />
-        </Link>
-        <div>
-          <div id={photo.id} className="text-white">
-            <button
-              type="button"
-              className="photo-card-btn-icon photo-card-btn1"
-              onClick={() => window.open(photo.downloadPage)}
-            >
-              <i className="bi bi-download" />
-            </button>
-          </div>
-          <div id={photo.id} className="text-white">
-            <SaveToCollectionsModal
-              photo={photo}
-              collectSinglePhoto={collectSinglePhoto}
+      <LazyLoad height={200} offset={[-100, 0]} debounce={500} placeholder={<Placeholder />}>
+        <div className="photo-card overlay">
+          <a href={`/photo/${photo.id}`}>
+            <img
+              src={photo.small}
+              width="100%"
+              alt="sample"
             />
-          </div>
-          <div className="text-white">
-            <button
-              type="button"
-              className="photo-card-btn-icon photo-card-btn2"
-              onClick={() => likeSinglePhoto(photo)}
-            >
-              {!photo.isLiked && (<i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />)}
-              {photo.isLiked && (
-                <div className="red-icon">
-                  <i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />
-                </div>
-              )}
-            </button>
+          </a>
+          <div>
+            <div id={photo.id} className="text-white">
+              <button
+                type="button"
+                className="photo-card-btn-icon photo-card-btn1"
+                onClick={() => window.open(photo.downloadPage)}
+              >
+                <i className="bi bi-download" />
+              </button>
+            </div>
+            <div id={photo.id} className="text-white">
+              <SaveToCollectionsModal
+                photo={photo}
+                collectSinglePhoto={collectSinglePhoto}
+              />
+            </div>
+            <div className="text-white">
+              <button
+                type="button"
+                className="photo-card-btn-icon photo-card-btn2"
+                onClick={() => likeSinglePhoto(photo)}
+              >
+                {!photo.isLiked && (<i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />)}
+                {photo.isLiked && (
+                  <div className="red-icon">
+                    <i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />
+                  </div>
+                )}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </LazyLoad>
     </div>
   );
 };

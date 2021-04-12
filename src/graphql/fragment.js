@@ -5,6 +5,7 @@ export const PHOTO_DETAILS = gql`
     id
     width
     height
+    color
     tiny
     small
     large

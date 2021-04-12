@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
-const options = ['Picky', 'All'];
+const options = ['All', 'Picky'];
 
 export default function DropdownButton({ setSearchRange }) {
   const [selectedIndex, setSelectedIndex] = useState(0);

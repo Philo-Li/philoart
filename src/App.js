@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import { useApolloClient } from '@apollo/client';
 import {
@@ -119,11 +120,11 @@ const App = () => {
             <Route path="/signup" exact>
               <SignUp />
             </Route>
-            <Route path="/pickysearch">
-              <SearchPage authorizedUser={authorizedUser} />
+            <Route path="/pickysearch" render={() => (<SearchPage authorizedUser={authorizedUser} />)}>
+              {/* <SearchPage authorizedUser={authorizedUser} /> */}
             </Route>
-            <Route path="/search">
-              <BroadSearchPage />
+            <Route path="/search" render={() => (<BroadSearchPage />)}>
+              {/* <BroadSearchPage /> */}
             </Route>
             <Route path="/user" exact>
               <UserPage />

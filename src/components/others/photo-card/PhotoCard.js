@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import LazyLoad from 'react-lazyload';
 import PhotoDetailsModal from './PhotoDetailsModal';
 import SaveToCollectionsModal from './SaveToCollectionsModal';
@@ -10,16 +9,24 @@ const PhotoCard = ({
   photo, authorizedUser, likeSinglePhoto, collectSinglePhoto,
 }) => {
   if (!photo) return null;
-  const location = useLocation();
   const [deletePhoto] = useDeletePhoto();
 
+  const bgColor = photo.color || '#84B0B3';
+
+  const mystyle = {
+    backgroundColor: bgColor,
+  };
+
   const Placeholder = () => (
-    <div className="photo-card placeholder">
-      <img
-        src={photo.tiny}
-        width="100%"
-        alt="lazy load search results"
-      />
+    <div style={mystyle}>
+      <a href={`/photo/${photo.id}`}>
+        <img
+          src={photo.tiny}
+          className="lazyload-img"
+          width="100%"
+          alt="gird item"
+        />
+      </a>
     </div>
   );
 
@@ -29,74 +36,66 @@ const PhotoCard = ({
 
   return (
     <div className="grid-item">
-      <div className="photo-card overlay">
-        <Link
-          key={photo.id}
-          to={{
-            pathname: `/photo/${photo.id}`,
-            // This is the trick! This link sets
-            // the `background` in location state.
-            state: { background: location },
-          }}
-        >
-          <LazyLoad height={200} offset={[-200, 0]} debounce={500} placeholder={<Placeholder />}>
+      <LazyLoad height={300} offset={[-100, 0]} debounce={500} once placeholder={<Placeholder />}>
+        <div className="photo-card overlay">
+          <a href={`/photo/${photo.id}`}>
             <img
               src={photo.small}
               width="100%"
               alt="gird item"
             />
-          </LazyLoad>
-        </Link>
-        <div>
-          <div id={photo.id} className="text-white">
-            <button
-              type="button"
-              className="photo-card-btn-icon photo-card-btn1"
-              onClick={() => window.open(photo.downloadPage)}
-            >
-              <i className="bi bi-download" />
-            </button>
-          </div>
-          <div id={photo.id} className="text-white">
-            <SaveToCollectionsModal
-              photo={photo}
-              collectSinglePhoto={collectSinglePhoto}
-            />
-          </div>
-          <div className="text-white">
-            <button
-              type="button"
-              className="photo-card-btn-icon photo-card-btn2"
-              onClick={() => likeSinglePhoto(photo)}
-            >
-              {!photo.isLiked && (<i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />)}
-              {photo.isLiked && (
-                <div className="red-icon">
-                  <i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />
-                </div>
-              )}
-            </button>
-          </div>
-          <div className="button-0">
-            <PhotoDetailsModal
-              photo={photo}
-              collectSinglePhoto={collectSinglePhoto}
-              likeSinglePhoto={likeSinglePhoto}
-            />
-          </div>
-          { authorizedUser && authorizedUser.username === 'picky' && (
+          </a>
+          <div>
+            <div id={photo.id} className="text-white">
+              <button
+                type="button"
+                className="photo-card-btn-icon photo-card-btn1"
+                onClick={() => window.open(photo.downloadPage)}
+              >
+                <i className="bi bi-download" />
+              </button>
+            </div>
+            <div id={photo.id} className="text-white">
+              <SaveToCollectionsModal
+                photo={photo}
+                collectSinglePhoto={collectSinglePhoto}
+              />
+            </div>
             <div className="text-white">
               <button
                 type="button"
-                className="photo-card-btn-icon photo-card-btn5"
-                onClick={() => deleteSinglePhoto(photo)}
+                className="photo-card-btn-icon photo-card-btn2"
+                onClick={() => likeSinglePhoto(photo)}
               >
-                <i className="bi bi-trash-fill" />
+                {!photo.isLiked && (<i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />)}
+                {photo.isLiked && (
+                  <div className="red-icon">
+                    <i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />
+                  </div>
+                )}
               </button>
             </div>
-          )}
+            <div className="button-0">
+              <PhotoDetailsModal
+                photo={photo}
+                collectSinglePhoto={collectSinglePhoto}
+                likeSinglePhoto={likeSinglePhoto}
+              />
+            </div>
+            { authorizedUser && authorizedUser.username === 'picky' && (
+              <div className="text-white">
+                <button
+                  type="button"
+                  className="photo-card-btn-icon photo-card-btn5"
+                  onClick={() => deleteSinglePhoto(photo)}
+                >
+                  <i className="bi bi-trash-fill" />
+                </button>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      </LazyLoad>
     </div>
   );
 };

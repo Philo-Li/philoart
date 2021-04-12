@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SearchBar = () => {
   const searchKeyword = useField('text');
-  const [searchRange, setSearchRange] = useState('Picky');
+  const [searchRange, setSearchRange] = useState('All');
   const history = useHistory();
   const classes = useStyles();
 
