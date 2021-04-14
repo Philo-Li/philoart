@@ -31,6 +31,8 @@ const BroadSearchPage = () => {
     unsplash_page: 1,
     kaboompics: undefined,
     kaboompics_page: 1,
+    burst: undefined,
+    burst_page: 1,
   });
   const location = useLocation();
   const parsed = queryString.parse(location.search);
@@ -154,19 +156,60 @@ const BroadSearchPage = () => {
           kaboompics: updatedKaboompicsPool,
           kaboompics_page: allPhotosPool.kaboompics_page + 1,
         };
-
-        setAllPhotosPool(photosPool3);
         // eslint-disable-next-line no-use-before-define
-        getPhotosToShow(photosPool3);
+        searchBurst(photosPool3);
         return response.data;
       });
   };
 
-  const getPhotosToShow = (photosPool3) => {
-    const splicedPhotos1 = photosPool3.pexels.slice(0, pageNow * PerLoad);
-    const splicedPhotos2 = photosPool3.unsplash.slice(0, pageNow * PerLoad);
-    const splicedPhotos3 = photosPool3.kaboompics.slice(0, pageNow * PerLoad);
-    const merged = [...splicedPhotos1, ...splicedPhotos2, ...splicedPhotos3];
+  const searchBurst = (photosPool3) => {
+    const queryPageNow = allPhotosPool.burst_page;
+    axios.get(`${config.pickyApi}/burst/page=${queryPageNow}&q=${parsed.q}`)
+      .then((response) => {
+        if (response.data.photos.length === 0) {
+          setAllPhotosPool(photosPool3);
+          return response.data;
+        }
+
+        const thisphotos = response.data.photos.map((obj) => {
+          const updated = {
+            width: obj.width || 0,
+            height: obj.height || 0,
+            photographer: obj.photographer || '',
+            description: obj.description,
+            tags: obj.tags || '',
+            color: obj.color,
+            tiny: obj.tiny,
+            small: obj.small,
+            large: obj.large,
+            downloadPage: obj.downloadPage,
+            creditWeb: obj.creditWeb,
+            creditId: obj.creditId,
+          };
+          return updated;
+        });
+
+        const burstPool = allPhotosPool.burst;
+        const updatedBurstPool = !burstPool ? thisphotos : merge(burstPool, thisphotos, 'downloadPage');
+        const photosPool4 = {
+          ...photosPool3,
+          burst: updatedBurstPool,
+          burst_page: allPhotosPool.burst_page + 1,
+        };
+
+        setAllPhotosPool(photosPool4);
+        // eslint-disable-next-line no-use-before-define
+        getPhotosToShow(photosPool4);
+        return response.data;
+      });
+  };
+
+  const getPhotosToShow = (photosPool4) => {
+    const slicedPhotos1 = photosPool4.pexels.slice(0, pageNow * PerLoad);
+    const slicedPhotos2 = photosPool4.unsplash.slice(0, pageNow * PerLoad);
+    const slicedPhotos3 = photosPool4.kaboompics.slice(0, pageNow * PerLoad);
+    const slicedPhotos4 = photosPool4.burst.slice(0, pageNow * PerLoad);
+    const merged = [...slicedPhotos1, ...slicedPhotos2, ...slicedPhotos3, ...slicedPhotos4];
     setAllPhotos(merged);
     setLoading(false);
   };
