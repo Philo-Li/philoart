@@ -1,10 +1,20 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
+import { css } from '@emotion/react';
+import PacmanLoader from 'react-spinners/PacmanLoader';
 import Masonry from 'react-masonry-css';
 import config from '../../config';
 
 import useCollections from '../../hooks/useCollections';
+
+const override = css`
+  display: flex;
+  justify-content: center;
+  align-item: center;
+  margin: 3rem;
+  margin-bottom: 6rem;
+`;
 
 const breakpointColumnsObj = {
   default: 3,
@@ -17,11 +27,18 @@ const cover = 'https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-gall
 const Discover = () => {
   const history = useHistory();
   const { collections } = useCollections({
-    userId: config.pickyAdmin,
+    username: config.pickyAdmin,
     first: 30,
   });
 
-  if (!collections) return null;
+  // if (!collections) return null;
+  if (collections === undefined) {
+    return (
+      <div className="col-item-3">
+        <PacmanLoader color="#9B9B9B" loading css={override} size={50} />
+      </div>
+    );
+  }
 
   const allCollections = collections.edges
     ? collections.edges.map((edge) => edge.node)
@@ -68,7 +85,12 @@ const Discover = () => {
               </div>
             </div>
             <Card.Title>
-              <p className="row-item-0">{collection.title}</p>
+              <p className="row-item-0">
+                {collection.title}
+                (
+                {collection.photoCount}
+                )
+              </p>
             </Card.Title>
           </Card>
         ))}

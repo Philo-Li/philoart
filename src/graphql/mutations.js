@@ -91,7 +91,7 @@ export const CREATE_PHOTO = gql`
 
 export const LIKE_PHOTO = gql`
   mutation likePhoto( $photoId: ID! ) {
-    likePhoto(like: { photoId: $photoId } ) {
+    likePhoto( photoId: $photoId ) {
       id
       user{
         id
@@ -106,8 +106,8 @@ export const LIKE_PHOTO = gql`
 `;
 
 export const UNLIKE_PHOTO = gql`
-  mutation unlikePhoto( $id: ID! ) {
-    unlikePhoto( id: $id )
+  mutation unlikePhoto( $photoId: ID! ) {
+    unlikePhoto(photoId: $photoId )
   }
 `;
 

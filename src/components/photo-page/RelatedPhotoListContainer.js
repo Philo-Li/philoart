@@ -41,13 +41,8 @@ const HomePhotoListContainer = ({
         .map((obj) => (obj.id === photo.id ? { ...obj, isLiked: !obj.isLiked } : obj));
       setAllPhotos(temp);
       if (photo.isLiked) {
-        const photoLikes = photo.likes && photo.likes.edges
-          ? photo.likes.edges.map((edge) => edge.node)
-          : [];
-
-        const likedId = photoLikes.find((like) => like.user.id === authorizedUser.id);
         // console.log('unlike photo', photo.id);
-        await unlikePhoto({ id: likedId.id });
+        await unlikePhoto({ photoId: photo.id });
       } else {
         // console.log('like photo', photo.id);
         await likePhoto({ photoId: photo.id });
