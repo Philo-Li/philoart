@@ -38,7 +38,7 @@ const BroadSearchPage = () => {
   const parsed = queryString.parse(location.search);
   const PerLoad = 5;
 
-  const getPhotos = () => {
+  const getPhotos = async () => {
     if (allPhotosPool.pexels === undefined || pageNow * PerLoad >= allPhotosPool.pexels.length) {
       let photosPool;
       const client = createClient(config.pexelApi);
@@ -67,6 +67,7 @@ const BroadSearchPage = () => {
           const pexelsPool = allPhotosPool.pexels;
           const updatedPexelsPool = pexelsPool === undefined ? thisphotos : merge(pexelsPool, thisphotos, 'downloadPage');
           photosPool = {
+            ...allPhotosPool,
             pexels: updatedPexelsPool,
             pexels_page: allPhotosPool.pexels_page + 1,
           };
@@ -78,7 +79,7 @@ const BroadSearchPage = () => {
     }
   };
 
-  const searchUnsplash = (photosPool) => {
+  const searchUnsplash = async (photosPool) => {
     if (allPhotosPool.unsplash === undefined || pageNow * PerLoad >= allPhotosPool.unsplash.length) {
       const perPage = MAX_PER_PAGE_UNSPLASH;
       const queryPageNow = allPhotosPool.unsplash_page;
@@ -117,100 +118,120 @@ const BroadSearchPage = () => {
           return response.data;
         });
     } else {
-      searchKaboompics(allPhotosPool);
+      searchKaboompics(photosPool);
     }
     return true;
   };
 
-  const searchKaboompics = (photosPool2) => {
+  const searchKaboompics = async (photosPool2) => {
     // const queryPageNow = allPhotosPool.kaboompics_page;
-    axios.get(`${config.pickyApi}/kaboompics/${parsed.q}`)
-      .then((response) => {
-        if (!response.data.photos) {
-          setAllPhotosPool(photosPool2);
-          return response.data;
-        }
+    if (allPhotosPool.kaboompics === undefined || pageNow * PerLoad >= allPhotosPool.kaboompics.length) {
+      axios.get(`${config.pickyApi}/kaboompics/${parsed.q}`)
+        .then((response) => {
+          if (!response.data.photos) {
+            setAllPhotosPool(photosPool2);
+            return response.data;
+          }
 
-        const thisphotos = response.data.photos.map((obj) => {
-          const updated = {
-            width: obj.width || 0,
-            height: obj.height || 0,
-            photographer: obj.photographer || '',
-            description: obj.description,
-            tags: obj.tags || '',
-            color: obj.color,
-            tiny: obj.tiny,
-            small: obj.small,
-            large: obj.large,
-            downloadPage: obj.downloadPage,
-            creditWeb: obj.creditWeb,
-            creditId: obj.creditId,
+          const thisphotos = response.data.photos.map((obj) => {
+            const updated = {
+              width: obj.width || 0,
+              height: obj.height || 0,
+              photographer: obj.photographer || '',
+              description: obj.description,
+              tags: obj.tags || '',
+              color: obj.color,
+              tiny: obj.tiny,
+              small: obj.small,
+              large: obj.large,
+              downloadPage: obj.downloadPage,
+              creditWeb: obj.creditWeb,
+              creditId: obj.creditId,
+            };
+            return updated;
+          });
+
+          const kaboompicsPool = allPhotosPool.kaboompics;
+          const updatedKaboompicsPool = !kaboompicsPool ? thisphotos : merge(kaboompicsPool, thisphotos, 'downloadPage');
+          const photosPool3 = {
+            ...photosPool2,
+            kaboompics: updatedKaboompicsPool,
+            kaboompics_page: allPhotosPool.kaboompics_page + 1,
           };
-          return updated;
+          // eslint-disable-next-line no-use-before-define
+          searchBurst(photosPool3);
+          return response.data;
         });
-
-        const kaboompicsPool = allPhotosPool.kaboompics;
-        const updatedKaboompicsPool = !kaboompicsPool ? thisphotos : merge(kaboompicsPool, thisphotos, 'downloadPage');
-        const photosPool3 = {
-          ...photosPool2,
-          kaboompics: updatedKaboompicsPool,
-          kaboompics_page: allPhotosPool.kaboompics_page + 1,
-        };
-        // eslint-disable-next-line no-use-before-define
-        searchBurst(photosPool3);
-        return response.data;
-      });
+    } else {
+      searchBurst(photosPool2);
+    }
+    return true;
   };
 
-  const searchBurst = (photosPool3) => {
-    const queryPageNow = allPhotosPool.burst_page;
-    axios.get(`${config.pickyApi}/burst/page=${queryPageNow}&q=${parsed.q}`)
-      .then((response) => {
-        if (response.data.photos.length === 0) {
-          setAllPhotosPool(photosPool3);
-          return response.data;
-        }
+  const searchBurst = async (photosPool3) => {
+    if (allPhotosPool.burst === undefined || pageNow * PerLoad >= allPhotosPool.burst.length) {
+      const queryPageNow = allPhotosPool.burst_page;
+      axios.get(`${config.pickyApi}/burst/page=${queryPageNow}&q=${parsed.q}`)
+        .then((response) => {
+          if (!response.data.photos) {
+            setAllPhotosPool(photosPool3);
+            return response.data;
+          }
 
-        const thisphotos = response.data.photos.map((obj) => {
-          const updated = {
-            width: obj.width || 0,
-            height: obj.height || 0,
-            photographer: obj.photographer || '',
-            description: obj.description,
-            tags: obj.tags || '',
-            color: obj.color,
-            tiny: obj.tiny,
-            small: obj.small,
-            large: obj.large,
-            downloadPage: obj.downloadPage,
-            creditWeb: obj.creditWeb,
-            creditId: obj.creditId,
+          const thisphotos = response.data.photos.map((obj) => {
+            const updated = {
+              width: obj.width || 0,
+              height: obj.height || 0,
+              photographer: obj.photographer || '',
+              description: obj.description,
+              tags: obj.tags || '',
+              color: obj.color,
+              tiny: obj.tiny,
+              small: obj.small,
+              large: obj.large,
+              downloadPage: obj.downloadPage,
+              creditWeb: obj.creditWeb,
+              creditId: obj.creditId,
+            };
+            return updated;
+          });
+
+          const burstPool = allPhotosPool.burst;
+          const updatedBurstPool = !burstPool ? thisphotos : merge(burstPool, thisphotos, 'downloadPage');
+          const photosPool4 = {
+            ...photosPool3,
+            burst: updatedBurstPool,
+            burst_page: allPhotosPool.burst_page + 1,
           };
-          return updated;
+
+          setAllPhotosPool(photosPool4);
+          // eslint-disable-next-line no-use-before-define
+          getPhotosToShow(photosPool4);
+          return response.data;
         });
-
-        const burstPool = allPhotosPool.burst;
-        const updatedBurstPool = !burstPool ? thisphotos : merge(burstPool, thisphotos, 'downloadPage');
-        const photosPool4 = {
-          ...photosPool3,
-          burst: updatedBurstPool,
-          burst_page: allPhotosPool.burst_page + 1,
-        };
-
-        setAllPhotosPool(photosPool4);
-        // eslint-disable-next-line no-use-before-define
-        getPhotosToShow(photosPool4);
-        return response.data;
-      });
+    } else {
+      setAllPhotosPool(photosPool3);
+      getPhotosToShow(photosPool3);
+    }
+    return true;
   };
 
-  const getPhotosToShow = (photosPool4) => {
-    const slicedPhotos1 = photosPool4.pexels.slice(0, pageNow * PerLoad);
-    const slicedPhotos2 = photosPool4.unsplash.slice(0, pageNow * PerLoad);
-    const slicedPhotos3 = photosPool4.kaboompics.slice(0, pageNow * PerLoad);
-    const slicedPhotos4 = photosPool4.burst.slice(0, pageNow * PerLoad);
-    const merged = [...slicedPhotos1, ...slicedPhotos2, ...slicedPhotos3, ...slicedPhotos4];
-    setAllPhotos(merged);
+  const getPhotosToShow = async (photosPool4) => {
+    const slicedPhotos1 = photosPool4.pexels.slice(pageNow * PerLoad - PerLoad, pageNow * PerLoad);
+    const slicedPhotos2 = photosPool4.unsplash.slice(pageNow * PerLoad - PerLoad, pageNow * PerLoad);
+    const slicedPhotos3 = photosPool4.kaboompics.slice(pageNow * PerLoad - PerLoad, pageNow * PerLoad);
+    // if (photosPool4.burst) {
+    //   const slicedPhotos4 = photosPool4.burst.slice(pageNow * PerLoad - PerLoad, pageNow * PerLoad);
+    //   newLoad = [...slicedPhotos1, ...slicedPhotos2, ...slicedPhotos3, ...slicedPhotos4];
+    // } else {
+    //   newLoad = [...slicedPhotos1, ...slicedPhotos2, ...slicedPhotos3];
+    // }
+    const slicedPhotos4 = photosPool4.burst.slice(pageNow * PerLoad - PerLoad, pageNow * PerLoad);
+    const newLoad = [...slicedPhotos1, ...slicedPhotos2, ...slicedPhotos3, ...slicedPhotos4];
+    const updatedAllPhotos = !allPhotos ? newLoad : [...allPhotos, ...newLoad];
+    console.log('newLoad', pageNow * PerLoad - PerLoad, PerLoad, newLoad, slicedPhotos1);
+    console.log('updatedAllPhotos', updatedAllPhotos, photosPool4);
+    setAllPhotos(updatedAllPhotos);
     setLoading(false);
   };
 
@@ -220,7 +241,7 @@ const BroadSearchPage = () => {
     }
   }, [pageNow]);
 
-  // console.log('photosPool', allPhotosPool);
+  console.log('photosPool', allPhotosPool);
 
   const clickFetchMore = () => {
     setPageNow(pageNow + 1);
@@ -228,7 +249,7 @@ const BroadSearchPage = () => {
   };
 
   // eslint-disable-next-line no-console
-  // console.log('allPhotos', allPhotos);
+  console.log('allPhotos', allPhotos);
 
   return (
     <div>
