@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { css } from '@emotion/react';
@@ -22,35 +22,50 @@ const breakpointColumnsObj = {
   500: 1,
 };
 
-const cover = 'https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-gallery-vector-icon-png-image_470660.jpg';
+const INIT_COVER = 'https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-gallery-vector-icon-png-image_470660.jpg';
 // eslint-disable-next-line react/prefer-stateless-function
 const Discover = () => {
   const history = useHistory();
+  const [allCollections, setAllCollections] = useState();
   const { collections } = useCollections({
     username: config.pickyAdmin,
     first: 30,
   });
 
-  // if (!collections) return null;
-  if (collections === undefined) {
+  useEffect(() => {
+    if (collections) {
+      const temp = collections && collections.edges
+        ? collections.edges.map((edge) => edge.node)
+        : [];
+
+      const updatedAllCollections = temp.map((collection) => {
+        let coverToShow;
+        if (collection.photoCount === 0) {
+          coverToShow = INIT_COVER;
+        } else {
+          coverToShow = collection.photos.edges[0].node.photo.small;
+        }
+        const updatedCollection = {
+          coverToShow,
+          ...collection,
+        };
+        return updatedCollection;
+      });
+      setAllCollections(updatedAllCollections);
+    }
+  }, [collections]);
+
+  const openCollection = (collectionId) => {
+    history.push(`/collection/${collectionId}`);
+  };
+
+  if (allCollections === undefined) {
     return (
       <div className="col-item-3">
         <PacmanLoader color="#9B9B9B" loading css={override} size={50} />
       </div>
     );
   }
-
-  const allCollections = collections.edges
-    ? collections.edges.map((edge) => edge.node)
-    : [];
-
-  const openCollection = (collection) => {
-    history.push(`/collection/${collection.id}`);
-  };
-
-  const getCover = (collection) => (collection.photoCount === 0
-    ? cover
-    : collection.photos.edges[0].node.photo.small);
 
   return (
     <div className="p-3">
@@ -76,7 +91,7 @@ const Discover = () => {
               tabIndex="0"
             >
               <img
-                src={getCover(collection)}
+                src={collection.coverToShow}
                 className="max-height-100"
                 alt="smaple"
               />
