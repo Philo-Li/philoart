@@ -13,7 +13,7 @@ const validationSchema = Yup.object({
 });
 
 const ChangePasswordContainer = ({
-  initialValues, onSubmit, errorInfo, successInfo,
+  initialValues, onSubmit, errorInfo, successInfo, loading,
 }) => (
   <div className="container-col-settings">
     {errorInfo && (
@@ -31,7 +31,7 @@ const ChangePasswordContainer = ({
       validationSchema={validationSchema}
       onSubmit={onSubmit}
     >
-      {({ handleSubmit }) => <ChangePasswordForm onSubmit={handleSubmit} />}
+      {({ handleSubmit }) => <ChangePasswordForm onSubmit={handleSubmit} loading={loading} />}
     </Formik>
   </div>
 );

@@ -94,6 +94,27 @@
   width: 100%;
 }
 
+.container-col-collection-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.col-item-collection-title {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.col-item-collection-description {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 input {
   width: 100%;
   padding: 8px 20px;
@@ -278,6 +299,10 @@ input[type=password] {
   font-size: 1rem;
 }
 
+.icon-list {
+  font-size: 1.2rem;
+}
+
 .photo-card-btn-icon {
   font-size: 1.5rem;
   margin-top: 10%;
@@ -418,10 +443,9 @@ input[type=password] {
 }
 
 .icon-delete {
-  padding: 10px 10px;
-  font-size: 2rem;
+  font-size: 1.2rem;
+  margin-right: 5px;
   color: crimson;
-  width:50%;
 }
 
 .icon-download {
@@ -928,4 +952,33 @@ div.scrollmenu a:hover {
 
 .lazyload-img {
   opacity: 0;
+}
+
+.collection-dropbtn {
+  background-color: white;
+  color: black;
+  width: auto;
+  font-size: 16px;
+  margin-right: 35px;
+  border: none;
+  cursor: pointer;
+}
+
+.delete-btn {
+  font-size: 1.2rem;
+  margin-top: 10%;
+  font-weight: light;
+  background-color: white;
+  border: 1px solid crimson;
+  padding: 0.5rem 1.5rem;
+  transition: ease 0.2s;
+}
+
+.delete-btn:hover {
+  -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
+
+.icon-margin-right {
+  margin-right: 5px;
 }

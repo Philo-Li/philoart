@@ -1,16 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
+import { css } from '@emotion/react';
+import PacmanLoader from 'react-spinners/PacmanLoader';
+import CollectionDropdownButton from '../others/CollectionDropdownButton';
 import HomePhotoList from '../others/photo-list/HomePhotoList';
 import useCollectionPhotos from '../../hooks/useCollectionPhotos';
-import useDeleteCollection from '../../hooks/useDeleteCollection';
+import EditCollectionModal from './EditCollection/EditCollectionModal';
+import DeleteCollectionModal from './DeleteCollectionModal';
+
+const override = css`
+  display: flex;
+  justify-content: center;
+  align-item: center;
+  margin: 3rem;
+  margin-bottom: 6rem;
+`;
 
 const CollectionDetails = ({ authorizedUser }) => {
-  const history = useHistory();
   const { id } = useParams();
   const [allPhotos, setAllPhotos] = useState();
   const [collectionNow, setCollectionNow] = useState();
-  const [deleteCollection] = useDeleteCollection();
+  const [showEditCollectionModal, setShowEditCollectionModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const variables = {
     id,
@@ -78,31 +89,58 @@ const CollectionDetails = ({ authorizedUser }) => {
     fetchMore();
   };
 
-  const deleteSingleCollection = async (collectionId) => {
-    // eslint-disable-next-line no-alert
-    if (window.confirm('delete this collection?')) {
-      await deleteCollection({ id: collectionId });
-      // history.push(`/user/${authorizedUser.id}/collections`);
-      history.goBack();
-    }
-  };
+  if (collectionNow === undefined) {
+    return (
+      <div className="col-item-3">
+        <PacmanLoader color="#9B9B9B" loading css={override} size={50} />
+      </div>
+    );
+  }
 
   return (
     <div>
       <div>
-        <div className="col-item-4">
-          { collectionNow && <h1 className="header-bold">{collectionNow.title}</h1> }
+        <div className="container-col-collection-details">
+          <div className="col-item-collection-title">
+            <h1 className="header-bold">
+              {collectionNow.title}
+            </h1>
+          </div>
+          <div className="col-item-collection-description">
+            <p className="">
+              Collected by
+              {' '}
+              {collectionNow.user.username}
+            </p>
+          </div>
+          <div className="col-item-collection-description">
+            <p className="">
+              {collectionNow.photoCount}
+              {' '}
+              photos
+            </p>
+          </div>
         </div>
       </div>
       <div className="container-collection-title">
-        <div className="item-1-collection-title">
-          { authorizedUser && collectionNow && (authorizedUser.id === collectionNow.user.id) && (
-            <Button variant="apparent" size="sm" onClick={() => deleteSingleCollection(collectionNow.id)}>
-              <i className="bi bi-trash-fill icon-delete" />
-            </Button>
-          ) }
+        <div className="collection-dropbtn">
+          <CollectionDropdownButton
+            setShowEditCollectionModal={setShowEditCollectionModal}
+            setShowDeleteModal={setShowDeleteModal}
+          />
         </div>
       </div>
+      <EditCollectionModal
+        collectionNow={collectionNow}
+        setCollectionNow={setCollectionNow}
+        showEditCollectionModal={showEditCollectionModal}
+        setShowEditCollectionModal={setShowEditCollectionModal}
+      />
+      <DeleteCollectionModal
+        collectionNow={collectionNow}
+        showDeleteModal={showDeleteModal}
+        setShowDeleteModal={setShowDeleteModal}
+      />
       <HomePhotoList
         allPhotos={allPhotos}
         setAllPhotos={setAllPhotos}

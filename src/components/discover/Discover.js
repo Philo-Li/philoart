@@ -38,6 +38,13 @@ const Discover = () => {
         ? collections.edges.map((edge) => edge.node)
         : [];
 
+      const reorder = {
+        mood: [],
+        animals: [],
+        light: [],
+        nature: [],
+        people: [],
+      };
       const updatedAllCollections = temp.map((collection) => {
         let coverToShow;
         if (collection.photoCount === 0) {
@@ -49,14 +56,19 @@ const Discover = () => {
           coverToShow,
           ...collection,
         };
+        if (collection.description === 'mood') reorder.mood.push(collection);
+        if (collection.description === 'animals') reorder.animals.push(collection);
+        if (collection.description === 'light') reorder.light.push(collection);
+        if (collection.description === 'nature') reorder.nature.push(collection);
+        if (collection.description === 'people') reorder.people.push(collection);
         return updatedCollection;
       });
       setAllCollections(updatedAllCollections);
     }
   }, [collections]);
 
-  const openCollection = (collectionId) => {
-    history.push(`/collection/${collectionId}`);
+  const openCollection = (collection) => {
+    history.push(`/collection/${collection.id}`);
   };
 
   if (allCollections === undefined) {
@@ -74,6 +86,26 @@ const Discover = () => {
       <div className="p-3 container-profile">
         <div className="profile-item">
           <h1>Discover</h1>
+        </div>
+      </div>
+      <div className="p-3 container-profile">
+        <div className="profile-item">
+          <h1>Mood</h1>
+        </div>
+      </div>
+      <div className="p-3 container-profile">
+        <div className="profile-item">
+          <h1>Animals</h1>
+        </div>
+      </div>
+      <div className="p-3 container-profile">
+        <div className="profile-item">
+          <h1>Light and shadow</h1>
+        </div>
+      </div>
+      <div className="p-3 container-profile">
+        <div className="profile-item">
+          <h1>Nature</h1>
         </div>
       </div>
       <Masonry

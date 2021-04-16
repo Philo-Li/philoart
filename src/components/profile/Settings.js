@@ -1,14 +1,29 @@
 import React from 'react';
-// import { useHistory } from 'react-router-dom';
 import {
   Nav, Image, Tab, Row, Col,
 } from 'react-bootstrap';
+import { css } from '@emotion/react';
+import PacmanLoader from 'react-spinners/PacmanLoader';
 import EditProfile from './edit-profile/EditProfile';
 import ChangePassword from './change-password/ChangePassword';
 import DeleteAccount from './DeleteAccount';
 
+const override = css`
+  display: flex;
+  justify-content: center;
+  align-item: center;
+  margin: 3rem;
+  margin-bottom: 6rem;
+`;
+
 const Settings = ({ authorizedUser }) => {
-  if (!authorizedUser) return null;
+  if (authorizedUser === undefined) {
+    return (
+      <div className="col-item-3">
+        <PacmanLoader color="#9B9B9B" loading css={override} size={50} />
+      </div>
+    );
+  }
 
   const profileImage = authorizedUser.profileImage
     ? authorizedUser.profileImage

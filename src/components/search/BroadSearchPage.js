@@ -307,7 +307,7 @@ const BroadSearchPage = () => {
     }
   }, [pageNow]);
 
-  console.log('photosPool', allPhotosPool);
+  // console.log('photosPool', allPhotosPool);
 
   const clickFetchMore = () => {
     setPageNow(pageNow + 1);
@@ -315,7 +315,7 @@ const BroadSearchPage = () => {
   };
 
   // eslint-disable-next-line no-console
-  console.log('allPhotos', allPhotos);
+  // console.log('allPhotos', allPhotos);
 
   return (
     <div>

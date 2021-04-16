@@ -6,6 +6,7 @@ const ChangePassword = () => {
   const [changePassword] = useChangePassword();
   const [errorInfo, setErrorInfo] = useState('');
   const [successInfo, setSuccessInfo] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const initialValues = {
     currentPassword: '',
@@ -17,6 +18,7 @@ const ChangePassword = () => {
       currentPassword: values.currentPassword,
       newPassword: values.newPassword,
     };
+    setLoading(true);
 
     try {
       await changePassword(variables);
@@ -26,6 +28,7 @@ const ChangePassword = () => {
       setErrorInfo(e.message);
       setTimeout(() => { setErrorInfo(''); }, 3000);
     }
+    setLoading(false);
   };
 
   return (
@@ -34,6 +37,7 @@ const ChangePassword = () => {
       onSubmit={onSubmit}
       errorInfo={errorInfo}
       successInfo={successInfo}
+      loading={loading}
     />
   );
 };

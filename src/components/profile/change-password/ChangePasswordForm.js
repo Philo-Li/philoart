@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { Button } from 'react-bootstrap';
+import { Button, Spinner } from 'react-bootstrap';
 import { Form } from 'formik';
 
 import TextInput from '../../others/TextInput';
 
-const ChangePasswordForm = () => (
+const ChangePasswordForm = ({ loading }) => (
   <div>
     <Form>
       <div className="col-item-1">
@@ -29,7 +29,23 @@ const ChangePasswordForm = () => (
       </div>
 
       <div className="col-item-1">
-        <Button variant="primary" id="change-password-button" type="submit" block>Update</Button>
+        {!loading && (
+          <Button variant="primary" id="change-password-button" type="submit" block>
+            Update
+          </Button>
+        )}
+        {loading && (
+          <Button variant="primary" id="change-password-button-loading" disabled block>
+            <Spinner
+              as="span"
+              animation="border"
+              size="sm"
+              role="status"
+              aria-hidden="true"
+            />
+            <span className="sr-only">Loading...</span>
+          </Button>
+        )}
       </div>
     </Form>
   </div>

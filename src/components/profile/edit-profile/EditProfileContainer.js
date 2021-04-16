@@ -23,7 +23,7 @@ const validationSchema = Yup.object({
 });
 
 const EditProfileContainer = ({
-  initialValues, onSubmit, errorInfo, successInfo,
+  initialValues, onSubmit, errorInfo, successInfo, loading,
 }) => (
   <div className="container-col-settings">
     {errorInfo && (
@@ -41,7 +41,7 @@ const EditProfileContainer = ({
       validationSchema={validationSchema}
       onSubmit={onSubmit}
     >
-      {({ handleSubmit }) => <EditProfileForm onSubmit={handleSubmit} />}
+      {({ handleSubmit }) => <EditProfileForm onSubmit={handleSubmit} loading={loading} />}
     </Formik>
   </div>
 );

@@ -6,6 +6,7 @@ const EditProfile = ({ authorizedUser }) => {
   const [updateProfile] = useUpdateProfile();
   const [errorInfo, setErrorInfo] = useState('');
   const [successInfo, setSuccessInfo] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const initialValues = {
     firstName: authorizedUser.firstName,
@@ -23,6 +24,7 @@ const EditProfile = ({ authorizedUser }) => {
       username: values.username,
       password: values.password,
     };
+    setLoading(true);
 
     try {
       await updateProfile(variables);
@@ -32,6 +34,7 @@ const EditProfile = ({ authorizedUser }) => {
       setErrorInfo(e.message);
       setTimeout(() => { setErrorInfo(''); }, 3000);
     }
+    setLoading(false);
   };
 
   return (
@@ -40,6 +43,7 @@ const EditProfile = ({ authorizedUser }) => {
       onSubmit={onSubmit}
       errorInfo={errorInfo}
       successInfo={successInfo}
+      loading={loading}
     />
   );
 };

@@ -292,3 +292,28 @@ export const DELETE_PHOTO = gql`
     deletePhoto( id: $id )
   }
 `;
+
+export const EDIT_COLLECTION = gql`
+mutation editCollection( $collectionId: ID!, $newTitle: String!, $newDescription: String! ){
+  editCollection(edit: {collectionId: $collectionId, newTitle: $newTitle, newDescription: $newDescription} ) {
+    id
+    userId
+    user{
+      id
+      username
+    }
+    photos{
+      edges{
+        node{
+          id
+        }
+      }
+    }
+    title
+    description
+    photoCount
+    createdAt
+    cover
+  }
+}
+`;

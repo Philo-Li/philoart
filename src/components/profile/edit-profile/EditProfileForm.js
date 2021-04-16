@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { Button } from 'react-bootstrap';
+import { Button, Spinner } from 'react-bootstrap';
 import { Form } from 'formik';
 
 import TextInput from '../../others/TextInput';
 
-const EditProfileForm = () => (
+const EditProfileForm = ({ loading }) => (
   <div>
     <Form>
       <div className="container-row-signup">
@@ -58,7 +58,23 @@ const EditProfileForm = () => (
       </div>
 
       <div className="col-item-1">
-        <Button variant="primary" id="login-button" type="submit" block>Update</Button>
+        {!loading && (
+          <Button variant="primary" id="edit-profile-button" type="submit" block>
+            Update
+          </Button>
+        )}
+        {loading && (
+          <Button variant="primary" id="edit-profile-button-loading" disabled block>
+            <Spinner
+              as="span"
+              animation="border"
+              size="sm"
+              role="status"
+              aria-hidden="true"
+            />
+            <span className="sr-only">Loading...</span>
+          </Button>
+        )}
       </div>
     </Form>
   </div>
