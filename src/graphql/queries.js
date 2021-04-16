@@ -1,5 +1,5 @@
 import { gql } from '@apollo/react-hooks';
-import { PHOTO_DETAILS } from './fragment';
+import { PHOTO_DETAILS, COLLECTION_DETAILS } from './fragment';
 
 export const GET_PHOTOS = gql`
   query getPhotos(
@@ -168,36 +168,7 @@ export const GET_COLLECTIONS = gql`
     ) {
       edges {
         node {
-          id
-        user{
-          id
-          username
-        }
-        reviews{
-          edges{
-            node{
-              id
-              text
-            }
-          }
-        }
-        photos{
-          edges{
-            node{
-              id
-              photo{
-                ...photoDetails
-              }
-            }
-          }
-        }
-        reviewCount
-        title
-        description
-        photoCount
-        createdAt
-        public
-        cover
+          ...collectionDetails
         }
         cursor
       }
@@ -209,7 +180,7 @@ export const GET_COLLECTIONS = gql`
       }
     }
   }
-  ${PHOTO_DETAILS}
+  ${COLLECTION_DETAILS}
 `;
 
 export const IS_LIKED_PHOTO = gql`
@@ -246,14 +217,7 @@ export const GET_COLLECTION_PHOTOS = gql`
             ...photoDetails
           }
           collection{
-            id
-            title
-            photoCount
-            cover
-            user{
-              username
-              id
-            }
+            ...collectionDetails
           }
         }
         cursor
@@ -267,4 +231,5 @@ export const GET_COLLECTION_PHOTOS = gql`
     }
   }
   ${PHOTO_DETAILS}
+  ${COLLECTION_DETAILS}
 `;

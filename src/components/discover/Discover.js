@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { css } from '@emotion/react';
 import PacmanLoader from 'react-spinners/PacmanLoader';
 import Masonry from 'react-masonry-css';
+import DiscoverCollectionList from './DiscoverCollectionList';
 import config from '../../config';
 
 import useCollections from '../../hooks/useCollections';
@@ -23,6 +24,7 @@ const breakpointColumnsObj = {
 };
 
 const INIT_COVER = 'https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-gallery-vector-icon-png-image_470660.jpg';
+// const CATEGORY = ['mood', 'animals', 'light', 'nature', 'human', 'road', 'food'];
 // eslint-disable-next-line react/prefer-stateless-function
 const Discover = () => {
   const history = useHistory();
@@ -38,13 +40,6 @@ const Discover = () => {
         ? collections.edges.map((edge) => edge.node)
         : [];
 
-      const reorder = {
-        mood: [],
-        animals: [],
-        light: [],
-        nature: [],
-        people: [],
-      };
       const updatedAllCollections = temp.map((collection) => {
         let coverToShow;
         if (collection.photoCount === 0) {
@@ -56,11 +51,6 @@ const Discover = () => {
           coverToShow,
           ...collection,
         };
-        if (collection.description === 'mood') reorder.mood.push(collection);
-        if (collection.description === 'animals') reorder.animals.push(collection);
-        if (collection.description === 'light') reorder.light.push(collection);
-        if (collection.description === 'nature') reorder.nature.push(collection);
-        if (collection.description === 'people') reorder.people.push(collection);
         return updatedCollection;
       });
       setAllCollections(updatedAllCollections);
@@ -88,32 +78,54 @@ const Discover = () => {
           <h1>Discover</h1>
         </div>
       </div>
-      <div className="p-3 container-profile">
-        <div className="profile-item">
-          <h1>Mood</h1>
-        </div>
-      </div>
-      <div className="p-3 container-profile">
-        <div className="profile-item">
-          <h1>Animals</h1>
-        </div>
-      </div>
-      <div className="p-3 container-profile">
-        <div className="profile-item">
-          <h1>Light and shadow</h1>
-        </div>
-      </div>
-      <div className="p-3 container-profile">
-        <div className="profile-item">
+      <div className="p-3">
+        <div className="container-profile profile-item">
           <h1>Nature</h1>
         </div>
+        <DiscoverCollectionList allCollections={allCollections} category="nature" />
+      </div>
+      <div className="p-3">
+        <div className="container-profile profile-item">
+          <h1>Human</h1>
+        </div>
+        <DiscoverCollectionList allCollections={allCollections} category="human" />
+      </div>
+      <div className="p-3">
+        <div className="container-profile profile-item">
+          <h1>Mood</h1>
+        </div>
+        <DiscoverCollectionList allCollections={allCollections} category="mood" />
+      </div>
+      <div className="p-3">
+        <div className="container-profile profile-item">
+          <h1>Delicious food</h1>
+        </div>
+        <DiscoverCollectionList allCollections={allCollections} category="food" />
+      </div>
+      <div className="p-3">
+        <div className="container-profile profile-item">
+          <h1>Animals</h1>
+        </div>
+        <DiscoverCollectionList allCollections={allCollections} category="animals" />
+      </div>
+      <div className="p-3">
+        <div className="container-profile profile-item">
+          <h1>Light and shadow</h1>
+        </div>
+        <DiscoverCollectionList allCollections={allCollections} category="light" />
+      </div>
+      <div className="p-3">
+        <div className="container-profile profile-item">
+          <h1>On the Road</h1>
+        </div>
+        <DiscoverCollectionList allCollections={allCollections} category="road" />
       </div>
       <Masonry
         breakpointCols={breakpointColumnsObj}
         className="my-masonry-grid"
         columnClassName="my-masonry-grid_column"
       >
-        {allCollections.map((collection) => (
+        {allCollections.map((collection) => !collection.description && (
           <Card key={collection.id}>
             <div
               className="view zoom overlay"
