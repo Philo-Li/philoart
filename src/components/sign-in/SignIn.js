@@ -22,8 +22,9 @@ const SignIn = () => {
       history.push('/');
     } catch (e) {
       setErrorInfo(e.message);
+      setLoading(false);
+      setTimeout(() => { setErrorInfo(''); }, 3000);
     }
-    setLoading(false);
   };
 
   return (

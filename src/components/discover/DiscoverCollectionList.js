@@ -1,17 +1,7 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-import { css } from '@emotion/react';
-import PacmanLoader from 'react-spinners/PacmanLoader';
 import Masonry from 'react-masonry-css';
-
-const override = css`
-  display: flex;
-  justify-content: center;
-  align-item: center;
-  margin: 3rem;
-  margin-bottom: 6rem;
-`;
 
 const breakpointColumnsObj = {
   default: 3,
@@ -19,21 +9,11 @@ const breakpointColumnsObj = {
   500: 1,
 };
 
-// const CATEGORY = ['mood', 'animals', 'light', 'nature', 'people', 'road'];
-// eslint-disable-next-line react/prefer-stateless-function
 const DiscoverCollectionList = ({ allCollections, category }) => {
-  const history = useHistory();
-  if (!allCollections) {
-    return (
-      <div className="col-item-3">
-        <PacmanLoader color="#9B9B9B" loading css={override} size={50} />
-      </div>
-    );
-  }
-
   const collectionsToShow = allCollections
     .filter((collection) => collection.description === category);
 
+  const history = useHistory();
   if (!collectionsToShow) {
     return (
       <div className="col-item-3">
