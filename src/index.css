@@ -982,3 +982,9 @@ div.scrollmenu a:hover {
 .icon-margin-right {
   margin-right: 5px;
 }
+
+.login-info {
+  margin: 1rem;
+  display: flex;
+  align-items: center;
+}
