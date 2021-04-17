@@ -4,7 +4,7 @@ import SaveToCollectionsModal from './SaveToCollectionsModal';
 import '../../../MDB-Free_4.19.2/css/mdb.css';
 
 const NanoPhotoCard2 = ({
-  photo, likeSinglePhoto, collectSinglePhoto,
+  photo, likeSinglePhoto, collectSinglePhoto, authorizedUser,
 }) => {
   if (!photo) return null;
 
@@ -52,6 +52,7 @@ const NanoPhotoCard2 = ({
               <SaveToCollectionsModal
                 photo={photo}
                 collectSinglePhoto={collectSinglePhoto}
+                authorizedUser={authorizedUser}
               />
             </div>
             <div className="text-white">

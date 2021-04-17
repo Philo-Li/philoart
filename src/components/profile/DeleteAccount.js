@@ -1,23 +1,11 @@
 import React, { useState } from 'react';
-// import { useHistory } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import DeleteAccountModal from './DeleteAccountModal';
-// import useDeleteUser from '../../hooks/useDeleteUser';
 
 const DeleteAccount = ({ authorizedUser }) => {
-  // const [deleteUser] = useDeleteUser();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  // const history = useHistory();
 
   if (!authorizedUser) return null;
-
-  // const deleteAccount = async (user) => {
-  //   // eslint-disable-next-line no-alert
-  //   if (window.confirm('You can\'t undo this. Are you sure? ')) {
-  //     await deleteUser({ id: user.id });
-  //     history.push('/');
-  //   }
-  // };
 
   return (
     <div className="p-3">

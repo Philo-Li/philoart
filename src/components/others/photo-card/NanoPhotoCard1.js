@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import LazyLoad from 'react-lazyload';
-import PhotoDetailsModal from './PhotoDetailsModal';
 import SaveToCollectionsModal from './SaveToCollectionsModal';
-import useDeletePhoto from '../../../hooks/useDeletePhoto';
 import '../../../MDB-Free_4.19.2/css/mdb.css';
 
-const PhotoCard = ({
+const NanoPhotoCard1 = ({
   photo, authorizedUser, likeSinglePhoto, collectSinglePhoto,
 }) => {
   if (!photo) return null;
-  const [deletePhoto] = useDeletePhoto();
   const history = useHistory();
   const [showCollectModal, setShowCollectModal] = useState(false);
 
@@ -32,10 +29,6 @@ const PhotoCard = ({
       </a>
     </div>
   );
-
-  const deleteSinglePhoto = async () => {
-    await deletePhoto({ id: photo.id });
-  };
 
   const openCollectModal = async () => {
     if (!authorizedUser) {
@@ -91,25 +84,6 @@ const PhotoCard = ({
                 )}
               </button>
             </div>
-            <div className="button-0">
-              <PhotoDetailsModal
-                photo={photo}
-                collectSinglePhoto={collectSinglePhoto}
-                likeSinglePhoto={likeSinglePhoto}
-                authorizedUser={authorizedUser}
-              />
-            </div>
-            { authorizedUser && authorizedUser.username === 'picky' && (
-              <div className="text-white">
-                <button
-                  type="button"
-                  className="photo-card-btn-icon photo-card-btn5"
-                  onClick={() => deleteSinglePhoto(photo)}
-                >
-                  <i className="bi bi-trash-fill" />
-                </button>
-              </div>
-            )}
           </div>
         </div>
       </LazyLoad>
@@ -117,4 +91,4 @@ const PhotoCard = ({
   );
 };
 
-export default PhotoCard;
+export default NanoPhotoCard1;

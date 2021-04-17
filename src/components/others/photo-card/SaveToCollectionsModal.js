@@ -1,12 +1,9 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { Modal, Button, Alert } from 'react-bootstrap';
 import { Formik, Form } from 'formik';
 import UserCollectionsList from '../UserCollectionsList';
 import useCreateCollectionAndCollectPhoto from '../../../hooks/useCreateCollectionAndCollectPhoto';
 import TextInput from '../TextInput';
-import useAuthorizedUser from '../../../hooks/useAuthorizedUser';
 
 const initialValues = {
   title: '',
@@ -32,21 +29,12 @@ export const CreateAndSaveForm = () => (
   </Form>
 );
 
-const SaveToCollectionsModal = ({ photo, collectSinglePhoto }) => {
-  const [show, setShow] = useState(false);
-  const { authorizedUser } = useAuthorizedUser();
-  const history = useHistory();
+const SaveToCollectionsModal = ({
+  photo, collectSinglePhoto, showCollectModal, setShowCollectModal,
+}) => {
   const [createCollectionAndCollectPhoto] = useCreateCollectionAndCollectPhoto();
   const [errorInfo, setErrorInfo] = useState('');
   const [successInfo, setSuccessInfo] = useState('');
-
-  const openCollectModal = async () => {
-    if (!authorizedUser) {
-      history.push('/signin');
-    } else {
-      setShow(true);
-    }
-  };
 
   const onSubmit = async (value) => {
     const { title } = value;
@@ -68,13 +56,9 @@ const SaveToCollectionsModal = ({ photo, collectSinglePhoto }) => {
 
   return (
     <>
-      <button type="button" className="photo-card-btn-icon photo-card-btn3" onClick={() => openCollectModal()}>
-        <i className="bi bi-plus-square" />
-      </button>
-
       <Modal
-        show={show}
-        onHide={() => setShow(false)}
+        show={showCollectModal}
+        onHide={() => setShowCollectModal(false)}
         size="lg"
         dialogClassName="modal-90w"
         aria-labelledby="example-custom-modal-styling-title"
@@ -106,7 +90,6 @@ const SaveToCollectionsModal = ({ photo, collectSinglePhoto }) => {
             </div>
             <div className="col-item-0">
               <UserCollectionsList
-                show={show}
                 photo={photo}
                 collectSinglePhoto={collectSinglePhoto}
               />

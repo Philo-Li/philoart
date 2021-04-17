@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Image } from 'react-bootstrap';
 import useLikePhoto from '../../hooks/useLikePhoto';
 import useUnlikePhoto from '../../hooks/useUnlikePhoto';
 import useUncollectPhoto from '../../hooks/useUncollectPhoto';
 import useCollectPhoto from '../../hooks/useCollectPhoto';
-import SaveToCollectionsModal2 from './SaveToCollectionsModal2';
+import SaveToCollectionsModal from '../others/photo-card/SaveToCollectionsModal';
 import PhotoMoreDetailsModal from '../others/photo-card/PhotoMoreDetailsModal';
 
 const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) => {
@@ -13,6 +13,7 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
   const [unlikePhoto] = useUnlikePhoto();
   const [collectPhoto] = useCollectPhoto();
   const [uncollectPhoto] = useUncollectPhoto();
+  const [showCollectModal, setShowCollectModal] = useState(false);
   const history = useHistory();
 
   if (!photoToShow) return null;
@@ -56,6 +57,14 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
     }
   };
 
+  const openCollectModal = async () => {
+    if (!authorizedUser) {
+      history.push('/signin');
+    } else {
+      setShowCollectModal(true);
+    }
+  };
+
   const photo = photoToShow;
 
   const photoCredit = `Photo by ${photo.photographer}`;
@@ -82,10 +91,15 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
           </button>
         </div>
         <div>
-          <SaveToCollectionsModal2
-            photo={photoToShow}
-            allCollections={photoToShow.collections}
+          <button type="button" className="photodetails-card-btn-collect photodetails-card-btn-item" onClick={() => openCollectModal()}>
+            <i className="bi bi-plus-square margin-right" />
+            Collect
+          </button>
+          <SaveToCollectionsModal
+            photo={photo}
             collectSinglePhoto={collectSinglePhoto}
+            showCollectModal={showCollectModal}
+            setShowCollectModal={setShowCollectModal}
           />
         </div>
         <div className="photodetails-card-btn-item">

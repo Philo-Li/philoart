@@ -132,28 +132,6 @@ input:invalid {
   box-sizing: border-box;
 }
 
-/* 
-input[type=email] {
-  width: 100%;
-  padding: 8px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-}
-
-input[type=username] {
-  width: 100%;
-  padding: 8px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-}
-
-input[type=password] {
-  width: 100%;
-  padding: 8px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-} */
-
 .error {
   color: red;
 }
@@ -401,6 +379,16 @@ input[type=password] {
   font-size: 3rem;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: white;
+  transition: 0.5s ease;
+}
+
+@media screen and (max-width: 600px) {
+  .header-home {
+    font-size: 2rem;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    color: white;
+  }
 }
 
 .website-link {
@@ -444,6 +432,7 @@ input[type=password] {
 
 .icon-delete {
   font-size: 1.2rem;
+  margin-left: 5px;
   margin-right: 5px;
   color: crimson;
 }

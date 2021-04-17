@@ -1,17 +1,27 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import {
   Modal, Button, Image,
 } from 'react-bootstrap';
-import SaveToCollectionsModal2 from './SaveToCollectionsModal3';
+import SaveToCollectionsModal from './SaveToCollectionsModal';
 import PhotoMoreDetailsModal from './PhotoMoreDetailsModal';
 import PhotoRelatedTagBar from '../PhotoRelatedTagBar';
-// eslint-disable-next-line import/no-cycle
 import RelatedPhotos from '../../photo-page/RelatedPhotos';
 
 const PhotoDetailsModal = ({
-  photo, allCollections, collectSinglePhoto, likeSinglePhoto,
+  photo, collectSinglePhoto, likeSinglePhoto, authorizedUser,
 }) => {
   const [show, setShow] = useState(false);
+  const [showCollectModal, setShowCollectModal] = useState(false);
+  const history = useHistory();
+
+  const openCollectModal = async () => {
+    if (!authorizedUser) {
+      history.push('/signin');
+    } else {
+      setShowCollectModal(true);
+    }
+  };
 
   return (
     <>
@@ -46,10 +56,14 @@ const PhotoDetailsModal = ({
                     </Button>
                   </div>
                   <div className="button-0">
-                    <SaveToCollectionsModal2
+                    <Button className="button1" variant="light" onClick={() => openCollectModal()}>
+                      <i className="bi bi-plus-square " />
+                    </Button>
+                    <SaveToCollectionsModal
                       photo={photo}
-                      allCollections={allCollections}
                       collectSinglePhoto={collectSinglePhoto}
+                      showCollectModal={showCollectModal}
+                      setShowCollectModal={setShowCollectModal}
                     />
                   </div>
                   <div className="button-0">

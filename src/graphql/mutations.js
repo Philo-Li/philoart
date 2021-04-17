@@ -132,8 +132,8 @@ export const COLLECT_PHOTO = gql`
 `;
 
 export const UNCOLLECT_PHOTO = gql`
-  mutation deleteCollectedPhoto( $id: ID! ) {
-    deleteCollectedPhoto( id: $id )
+  mutation deleteColletedPhoto( $photoId: ID!,  $collectionId: ID! ){
+    deleteCollectedPhoto(uncollect: { photoId: $photoId, collectionId: $collectionId })
   }
 `;
 

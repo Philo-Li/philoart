@@ -1,11 +1,11 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import Masonry from 'react-masonry-css';
 import { css } from '@emotion/react';
 import BeatLoader from 'react-spinners/BeatLoader';
-import Masonry from 'react-masonry-css';
 import useLikePhoto from '../../hooks/useLikePhoto';
 import useAuthorizedUser from '../../hooks/useAuthorizedUser';
-import NanoPhotoCard2 from '../others/photo-card/NanoPhotoCard2';
+import PhotoCard from '../others/photo-card/NanoPhotoCard1';
 import useUnlikePhoto from '../../hooks/useUnlikePhoto';
 import useUncollectPhoto from '../../hooks/useUncollectPhoto';
 import useCollectPhoto from '../../hooks/useCollectPhoto';
@@ -51,23 +51,24 @@ const HomePhotoListContainer = ({
   };
 
   const collectSinglePhoto = async (photo, collection) => {
-    const updatedCollection = { ...collection, isCollected: !collection.isCollected };
+    const changeCover = (collection.isCollected === false);
+    const updatedCollection = {
+      ...collection,
+      isCollected: !collection.isCollected,
+      cover: changeCover ? photo.small : collection.cover,
+    };
+    const updatedAllPhotos = allPhotos.map((obj) => {
+      const updatedCollections = obj.allCollectionsToShow
+        .map((obj2) => (obj2.id === collection.id ? updatedCollection : obj2));
 
-    const updatedCollections = photo.allCollectionsToShow
-      .map((obj) => (obj.id === collection.id ? updatedCollection : obj));
-
-    const updatedPhoto = { ...photo, allCollectionsToShow: updatedCollections };
-    const updatedAllPhotos = allPhotos.map((obj) => (obj.id === photo.id ? updatedPhoto : obj));
+      const updatedPhoto = { ...obj, allCollectionsToShow: updatedCollections };
+      return updatedPhoto;
+    });
     setAllPhotos(updatedAllPhotos);
 
     if (collection.isCollected) {
-      const photoCollections = photo.collections && photo.collections.edges
-        ? photo.collections.edges.map((edge) => edge.node)
-        : [];
-
-      const collectedPhoto = photoCollections.find((collected) => collected.photo.id === photo.id);
-      // console.log('uncollect photo', photo.id, collection.id, collectedPhoto);
-      await uncollectPhoto({ id: collectedPhoto.id });
+      // console.log('uncollect photo', photo.id, collection.id);
+      await uncollectPhoto({ photoId: photo.id, collectionId: collection.id });
     } else {
       await collectPhoto({ photoId: photo.id, collectionId: collection.id });
       // console.log('collect photo', photo.id, collection.id);
@@ -83,9 +84,10 @@ const HomePhotoListContainer = ({
           columnClassName="my-masonry-grid_column"
         >
           {allPhotos.map((photo) => (
-            <NanoPhotoCard2
+            <PhotoCard
               key={photo.id}
               photo={photo}
+              authorizedUser={authorizedUser}
               likeSinglePhoto={likeSinglePhoto}
               collectSinglePhoto={collectSinglePhoto}
             />

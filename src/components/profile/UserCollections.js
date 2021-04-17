@@ -43,12 +43,7 @@ const UserCollections = () => {
         : [];
 
       const updatedAllCollections = temp.map((collection) => {
-        let coverToShow;
-        if (collection.photoCount === 0) {
-          coverToShow = INIT_COVER;
-        } else {
-          coverToShow = collection.photos.edges[0].node.photo.small;
-        }
+        const coverToShow = collection.cover ? collection.cover : INIT_COVER;
         const updatedCollection = {
           coverToShow,
           ...collection,
