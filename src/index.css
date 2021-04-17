@@ -799,33 +799,41 @@ div.scrollmenu a:hover {
   }
 
   .photo-card-btn1 {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     right: .5rem;
     opacity: 1;
   }
   
   .photo-card-btn2 {
-    font-size: 1.2rem;
-    right: 2rem;
+    font-size: 1.5rem;
+    right: 2.5rem;
     opacity: 1;
   }
   
   .photo-card-btn3 {
-    font-size: 1.2rem;
-    right: 3.5rem;
+    font-size: 1.5rem;
+    right: 4.5rem;
     opacity: 1;
   }
   
   .photo-card-btn4 {
-    font-size: 1.2rem;
-    right: 5rem;
-    opacity: 1;
+    font-size: 1.5rem;
+    right: 6.5rem;
+    opacity: 0;
+  }
+
+  .photo-card:hover .photo-card-btn4 {
+    opacity: 0;
   }
   
   .photo-card-btn5 {
-    font-size: 1.2rem;
-    right: 6.5rem;
-    opacity: 1;
+    font-size: 1.5rem;
+    right: 8.5rem;
+    opacity: 0;
+  }
+
+  .photo-card:hover .photo-card-btn5 {
+    opacity: 0;
   }
 }
 
@@ -833,7 +841,7 @@ div.scrollmenu a:hover {
 .dropbtn {
   background-color: white;
   color: black;
-  width: 8rem;
+  width: 5rem;
   padding: 20px;
   font-size: 16px;
   border: none;
@@ -850,7 +858,7 @@ div.scrollmenu a:hover {
 .dropdown-content {
   display: none;
   position: absolute;
-  width: 8rem;
+  width: 5rem;
   background-color: #f9f9f9;
   box-shadow: rgba(0,0,0,0.2);
   z-index: 1;
@@ -861,7 +869,7 @@ div.scrollmenu a:hover {
   display: block;
   background-color: white;
   color: black;
-  width: 8rem;
+  width: 5rem;
   padding: 20px;
   font-size: 16px;
   border: none;
