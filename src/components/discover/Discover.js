@@ -4,7 +4,7 @@ import PacmanLoader from 'react-spinners/PacmanLoader';
 import DiscoverCollectionList from './DiscoverCollectionList';
 import config from '../../config';
 
-import useCollections from '../../hooks/useCollections';
+import useDiscoverCollections from '../../hooks/useDiscoverCollections';
 
 const override = css`
   display: flex;
@@ -19,7 +19,7 @@ const INIT_COVER = 'https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree
 
 const Discover = () => {
   const [allCollections, setAllCollections] = useState();
-  const { collections } = useCollections({
+  const { collections } = useDiscoverCollections({
     username: config.pickyAdmin,
     first: 30,
   });
@@ -31,12 +31,7 @@ const Discover = () => {
         : [];
 
       const updatedAllCollections = temp.map((collection) => {
-        let coverToShow;
-        if (collection.photoCount === 0) {
-          coverToShow = INIT_COVER;
-        } else {
-          coverToShow = collection.photos.edges[0].node.photo.small;
-        }
+        const coverToShow = collection.cover ? collection.cover : INIT_COVER;
         const updatedCollection = {
           coverToShow,
           ...collection,
@@ -112,6 +107,12 @@ const Discover = () => {
           <h1>On the Road</h1>
         </div>
         <DiscoverCollectionList allCollections={allCollections} category="road" />
+      </div>
+      <div className="p-3">
+        <div className="container-profile profile-item">
+          <h1>Other</h1>
+        </div>
+        <DiscoverCollectionList allCollections={allCollections} category="" />
       </div>
     </div>
   );
