@@ -597,6 +597,7 @@ input:invalid {
 .licence-msg-container {
   display: flex;
   align-items: center;
+  
 }
 
 @media screen and (max-width: 700px) {

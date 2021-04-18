@@ -5,6 +5,7 @@ import useLikePhoto from '../../hooks/useLikePhoto';
 import useUnlikePhoto from '../../hooks/useUnlikePhoto';
 import useUncollectPhoto from '../../hooks/useUncollectPhoto';
 import useCollectPhoto from '../../hooks/useCollectPhoto';
+import useDownloadPhoto from '../../hooks/useDownloadPhoto';
 import SaveToCollectionsModal from '../others/photo-card/SaveToCollectionsModal';
 import PhotoMoreDetailsModal from '../others/photo-card/PhotoMoreDetailsModal';
 
@@ -13,6 +14,7 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
   const [unlikePhoto] = useUnlikePhoto();
   const [collectPhoto] = useCollectPhoto();
   const [uncollectPhoto] = useUncollectPhoto();
+  const [downloadPhoto] = useDownloadPhoto();
   const [showCollectModal, setShowCollectModal] = useState(false);
   const history = useHistory();
 
@@ -62,6 +64,11 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
 
   const photoCredit = `Photographer: ${photo.photographer}`;
 
+  const downloadSinglePhoto = async () => {
+    window.open(photo.downloadPage);
+    await downloadPhoto({ id: photo.id });
+  };
+
   return (
     <div className="p-3">
       <div className="photodetails-photo-item">
@@ -76,7 +83,7 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
             className="photodetails-card-btn-like container-row-0 photodetails-card-btn-item"
             onClick={() => likeSinglePhoto(photo)}
           >
-            <div className="margin-right">
+            <div className="">
               {!photo.isLiked && (<i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />)}
               {photo.isLiked && (
                 <div className="red-icon">
@@ -88,7 +95,7 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
         </div>
         <div>
           <button type="button" className="photodetails-card-btn-collect photodetails-card-btn-item" onClick={() => openCollectModal()}>
-            <i className="bi bi-plus-square margin-right" />
+            <i className="bi bi-plus-square" />
           </button>
           <SaveToCollectionsModal
             photo={photo}
@@ -98,8 +105,8 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
           />
         </div>
         <div className="photodetails-card-btn-item">
-          <button type="button" className="photodetails-card-btn-download" onClick={() => window.open(photoToShow.downloadPage)}>
-            <i className="bi bi-download margin-right" />
+          <button type="button" className="photodetails-card-btn-download" onClick={() => downloadSinglePhoto()}>
+            <i className="bi bi-download" />
           </button>
         </div>
       </div>

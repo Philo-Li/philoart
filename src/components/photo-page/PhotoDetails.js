@@ -49,6 +49,8 @@ const PhotoDetails = ({ authorizedUser }) => {
 
   // console.log('authorizedUser', authorizedUser);
   // console.log('photo', photoToShow);
+  // console.log(photo.downloadCount, photo.downloadCount + 1, typeof (photo.downloadCount));
+  // console.log(int(photo.downloadCount));
 
   return (
     <div>

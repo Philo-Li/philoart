@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import LazyLoad from 'react-lazyload';
 import SaveToCollectionsModal from './SaveToCollectionsModal';
+import useDownloadPhoto from '../../../hooks/useDownloadPhoto';
 import '../../../MDB-Free_4.19.2/css/mdb.css';
 
 const NanoPhotoCard1 = ({
@@ -9,6 +10,7 @@ const NanoPhotoCard1 = ({
 }) => {
   if (!photo) return null;
   const history = useHistory();
+  const [downloadPhoto] = useDownloadPhoto();
   const [showCollectModal, setShowCollectModal] = useState(false);
 
   const bgColor = photo.color || '#84B0B3';
@@ -38,6 +40,11 @@ const NanoPhotoCard1 = ({
     }
   };
 
+  const downloadSinglePhoto = async () => {
+    window.open(photo.downloadPage);
+    await downloadPhoto({ id: photo.id });
+  };
+
   return (
     <div className="grid-item">
       <LazyLoad height={300} offset={[-100, 0]} debounce={500} once placeholder={<Placeholder />}>
@@ -54,7 +61,7 @@ const NanoPhotoCard1 = ({
               <button
                 type="button"
                 className="photo-card-btn-icon photo-card-btn1"
-                onClick={() => window.open(photo.downloadPage)}
+                onClick={() => downloadSinglePhoto()}
               >
                 <i className="bi bi-download" />
               </button>

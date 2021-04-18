@@ -1,10 +1,17 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import useDownloadPhoto from '../../../hooks/useDownloadPhoto';
 import '../../../MDB-Free_4.19.2/css/mdb.css';
 
 const NanoPhotoCard = ({ photo }) => {
   if (!photo) return null;
+  const [downloadPhoto] = useDownloadPhoto();
   const location = useLocation();
+
+  const downloadSinglePhoto = async () => {
+    window.open(photo.downloadPage);
+    await downloadPhoto({ id: photo.id });
+  };
 
   return (
     <div className="grid-item">
@@ -29,7 +36,7 @@ const NanoPhotoCard = ({ photo }) => {
             <button
               type="button"
               className="photo-card-btn-icon photo-card-btn1"
-              onClick={() => window.open(photo.downloadPage)}
+              onClick={() => downloadSinglePhoto()}
             >
               <i className="bi bi-download" />
             </button>

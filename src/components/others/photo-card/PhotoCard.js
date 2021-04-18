@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import LazyLoad from 'react-lazyload';
 import SaveToCollectionsModal from './SaveToCollectionsModal';
 import useDeletePhoto from '../../../hooks/useDeletePhoto';
+import useDownloadPhoto from '../../../hooks/useDownloadPhoto';
 import '../../../MDB-Free_4.19.2/css/mdb.css';
 
 const PhotoCard = ({
@@ -10,6 +11,7 @@ const PhotoCard = ({
 }) => {
   if (!photo) return null;
   const [deletePhoto] = useDeletePhoto();
+  const [downloadPhoto] = useDownloadPhoto();
   const history = useHistory();
   const [showCollectModal, setShowCollectModal] = useState(false);
 
@@ -44,6 +46,11 @@ const PhotoCard = ({
     }
   };
 
+  const downloadSinglePhoto = async () => {
+    window.open(photo.downloadPage);
+    await downloadPhoto({ id: photo.id });
+  };
+
   return (
     <div className="grid-item">
       <LazyLoad height={300} offset={[-100, 0]} debounce={500} once placeholder={<Placeholder />}>
@@ -60,7 +67,7 @@ const PhotoCard = ({
               <button
                 type="button"
                 className="photo-card-btn-icon photo-card-btn1"
-                onClick={() => window.open(photo.downloadPage)}
+                onClick={() => downloadSinglePhoto()}
               >
                 <i className="bi bi-download" />
               </button>

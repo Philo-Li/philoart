@@ -1,5 +1,6 @@
 import React from 'react';
 import LazyLoad from 'react-lazyload';
+import useDownloadPhoto from '../../../hooks/useDownloadPhoto';
 import SaveToCollectionsModal from './SaveToCollectionsModal';
 import '../../../MDB-Free_4.19.2/css/mdb.css';
 
@@ -7,7 +8,7 @@ const NanoPhotoCard2 = ({
   photo, likeSinglePhoto, collectSinglePhoto, authorizedUser,
 }) => {
   if (!photo) return null;
-
+  const [downloadPhoto] = useDownloadPhoto();
   const bgColor = photo.color || '#84B0B3';
 
   const mystyle = {
@@ -27,6 +28,11 @@ const NanoPhotoCard2 = ({
     </div>
   );
 
+  const downloadSinglePhoto = async () => {
+    window.open(photo.downloadPage);
+    await downloadPhoto({ id: photo.id });
+  };
+
   return (
     <div className="grid-item">
       <LazyLoad height={200} offset={[-100, 0]} debounce={500} placeholder={<Placeholder />}>
@@ -43,7 +49,7 @@ const NanoPhotoCard2 = ({
               <button
                 type="button"
                 className="photo-card-btn-icon photo-card-btn1"
-                onClick={() => window.open(photo.downloadPage)}
+                onClick={() => downloadSinglePhoto()}
               >
                 <i className="bi bi-download" />
               </button>
