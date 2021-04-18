@@ -42,7 +42,6 @@ export const PHOTO_DETAILS = gql`
     likeCount
     collectionCount
     downloadCount
-    createdAt
   }
 `;
 
@@ -64,31 +63,6 @@ export const USER_DETAILS = gql`
     lastName
     email
     profileImage
-    likes{
-      edges{
-        node{
-          id
-          photo{
-            ...photoDetails
-          }
-        }
-      }
-    }
-    collections{
-      edges{
-        node{
-          id
-          title
-          description
-          photoCount
-          createdAt
-          public
-          cover
-        }
-      }
-    }
-    likeCount
-    collectionCount
   }
   ${PHOTO_DETAILS}
 `;

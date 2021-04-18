@@ -185,6 +185,7 @@ input:invalid {
   flex-direction: row;
   justify-content: flex-end;
   align-items: flex-end;
+  margin-right: 5%;
 }
 
 .container-row-signup {
@@ -326,7 +327,7 @@ input:invalid {
 }
 
 .photodetails-card-btn-like {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   margin-top: 10%;
   font-weight: light;
   background-color: white;
@@ -341,7 +342,7 @@ input:invalid {
 }
 
 .photodetails-card-btn-collect {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   margin-top: 10%;
   font-weight: light;
   background-color: white;
@@ -356,7 +357,7 @@ input:invalid {
 }
 
 .photodetails-card-btn-download {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   margin-top: 10%;
   font-weight: light;
   color: white;
@@ -373,8 +374,24 @@ input:invalid {
   box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
 }
 
+.photodetails-card-btn-info {
+  font-size: 1rem;
+  margin-top: 10%;
+  font-weight: light;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0.2rem 1rem;
+  transition: ease 0.2s;
+}
+
 .photodetails-card-btn-item {
   margin: 0.5rem;
+}
+
+.photodetails-photo-item {
+  margin-bottom: 5%;
+  padding: 0.2rem 1rem;
 }
 
 .margin-right {

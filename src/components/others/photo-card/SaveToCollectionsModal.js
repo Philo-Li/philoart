@@ -1,30 +1,50 @@
+/* eslint-disable max-len */
 import React, { useState } from 'react';
-import { Modal, Button, Alert } from 'react-bootstrap';
+import { Modal, Spinner, Alert } from 'react-bootstrap';
 import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
 import UserCollectionsList from '../UserCollectionsList';
 import useCreateCollectionAndCollectPhoto from '../../../hooks/useCreateCollectionAndCollectPhoto';
 import TextInput from '../TextInput';
+
+const validationSchema = Yup.object().shape({
+  title: Yup
+    .string()
+    .required('Title is required'),
+});
 
 const initialValues = {
   title: '',
 };
 
-export const CreateAndSaveForm = () => (
-  <Form className="container-row-3">
-    <div className="row-item-6">
-      <h5>Save to new collection:</h5>
-    </div>
-
-    <div className="row-item-0">
+export const CreateAndSaveForm = ({ loading }) => (
+  <Form className="container-create-collection-row">
+    <div className="create-collection-row-item">
       <TextInput
         name="title"
         type="text"
-        placeholder=""
+        placeholder="Create new and save"
       />
     </div>
 
-    <div className="row-item-6">
-      <Button variant="primary" id="create-button" type="submit" block>Save</Button>
+    <div className="create-collection-row-item">
+      {!loading && (
+        <button type="submit" className="create-collection-btn" id="create-button">
+          Save
+        </button>
+      )}
+      {loading && (
+        <button type="submit" className="create-collection-btn" id="create-loading-button" disabled>
+          <Spinner
+            as="span"
+            animation="border"
+            size="sm"
+            role="status"
+            aria-hidden="true"
+          />
+          <span className="sr-only">Loading...</span>
+        </button>
+      )}
     </div>
   </Form>
 );
@@ -35,9 +55,11 @@ const SaveToCollectionsModal = ({
   const [createCollectionAndCollectPhoto] = useCreateCollectionAndCollectPhoto();
   const [errorInfo, setErrorInfo] = useState('');
   const [successInfo, setSuccessInfo] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = async (value) => {
     const { title } = value;
+    setLoading(true);
     try {
       const variables = {
         title,
@@ -52,6 +74,7 @@ const SaveToCollectionsModal = ({
       setErrorInfo(e.message);
       setTimeout(() => { setErrorInfo(''); }, 3000);
     }
+    setLoading(false);
   };
 
   return (
@@ -62,6 +85,7 @@ const SaveToCollectionsModal = ({
         size="lg"
         dialogClassName="modal-90w"
         aria-labelledby="example-custom-modal-styling-title"
+        scrollable
       >
         <Modal.Header closeButton>
           <Modal.Title id="example-custom-modal-styling-title">
@@ -83,9 +107,10 @@ const SaveToCollectionsModal = ({
             <div className="container-row-3">
               <Formik
                 initialValues={initialValues}
+                validationSchema={validationSchema}
                 onSubmit={onSubmit}
               >
-                {({ handleSubmit }) => <CreateAndSaveForm onSubmit={handleSubmit} />}
+                {({ handleSubmit }) => <CreateAndSaveForm onSubmit={handleSubmit} loading={loading} />}
               </Formik>
             </div>
             <div className="col-item-0">

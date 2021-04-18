@@ -1,10 +1,13 @@
 import { gql } from '@apollo/react-hooks';
-import { PHOTO_DETAILS, USER_DETAILS } from './fragment';
+import { USER_DETAILS } from './fragment';
 
 export const AUTHORIZE = gql`
   mutation authorize($username: String!, $password: String!) {
     authorize(credentials: { username: $username, password: $password }) {
       accessToken
+      user {
+        username
+      }
     }
   }
 `;
@@ -234,10 +237,9 @@ export const CREATE_AND_LIKE_PHOTO = gql`
       description: $description
       tags: $tags
     } ) {
-      ...photoDetails
+      id
     }
   }
-  ${PHOTO_DETAILS}
 `;
 
 export const UNLIKE_AND_DELETE_PHOTO = gql`

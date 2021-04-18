@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 
 const PhotoMoreDetailsModal = ({ photo }) => {
   const [show, setShow] = useState(false);
 
   return (
     <>
-      <Button size="sm" className="button1" variant="info" onClick={() => setShow(true)}>
+      <button
+        type="button"
+        className="photodetails-card-btn-info photodetails-card-btn-item"
+        onClick={() => setShow(true)}
+      >
         Info
-      </Button>
+      </button>
 
       <Modal
         show={show}

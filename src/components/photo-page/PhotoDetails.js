@@ -33,12 +33,9 @@ const PhotoDetails = ({ authorizedUser }) => {
 
         const collectionsToShow = userCollections && userCollections.map((collection) => {
           const findCollected = photoInCollections.find((obj) => obj.id === collection.id);
-          let newCover;
-          if (collection.photoCount !== 0) newCover = collection.photos.edges[0].node.photo.small;
-          else newCover = null;
           return findCollected != null
-            ? { ...collection, isCollected: true, cover: newCover }
-            : { ...collection, isCollected: false, cover: newCover };
+            ? { ...collection, isCollected: true }
+            : { ...collection, isCollected: false };
         });
         const updatedPhoto = {
           ...photo,
@@ -48,13 +45,13 @@ const PhotoDetails = ({ authorizedUser }) => {
         setPhotoToShow(updatedPhoto);
       }
     }
-  }, [photo]);
+  }, [photo, authorizedUser]);
 
   // console.log('authorizedUser', authorizedUser);
   // console.log('photo', photoToShow);
 
   return (
-    <div className="p-3">
+    <div>
       <PhotoDetailsContainer
         photoToShow={photoToShow}
         setPhotoToShow={setPhotoToShow}

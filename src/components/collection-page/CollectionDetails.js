@@ -59,17 +59,9 @@ const CollectionDetails = ({ authorizedUser }) => {
 
           const collectionsToShow = userCollections && userCollections.map((collection) => {
             const findCollected = photoInCollections.find((obj) => obj.id === collection.id);
-            let newCover;
-
-            if (collection.photoCount !== 0) {
-              newCover = collection.photos.edges[0].node.photo.small;
-            } else {
-              newCover = null;
-            }
-
             return findCollected != null
-              ? { ...collection, isCollected: true, cover: newCover }
-              : { ...collection, isCollected: false, cover: newCover };
+              ? { ...collection, isCollected: true }
+              : { ...collection, isCollected: false };
           });
 
           const updatedPhoto = {
@@ -124,10 +116,12 @@ const CollectionDetails = ({ authorizedUser }) => {
       </div>
       <div className="container-collection-title">
         <div className="collection-dropbtn">
-          <CollectionDropdownButton
-            setShowEditCollectionModal={setShowEditCollectionModal}
-            setShowDeleteModal={setShowDeleteModal}
-          />
+          {collectionNow.user.username === authorizedUser.username && (
+            <CollectionDropdownButton
+              setShowEditCollectionModal={setShowEditCollectionModal}
+              setShowDeleteModal={setShowDeleteModal}
+            />
+          )}
         </div>
       </div>
       <EditCollectionModal

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Image } from 'react-bootstrap';
 import useLikePhoto from '../../hooks/useLikePhoto';
 import useUnlikePhoto from '../../hooks/useUnlikePhoto';
 import useUncollectPhoto from '../../hooks/useUncollectPhoto';
@@ -25,12 +24,7 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
       const temp = { ...photoToShow, isLiked: !photoToShow.isLiked };
       setPhotoToShow(temp);
       if (photoToShow.isLiked) {
-        const photoLikes = photoToShow.likes && photoToShow.likes.edges
-          ? photoToShow.likes.edges.map((edge) => edge.node)
-          : [];
-
-        const likedId = photoLikes.find((like) => like.user.id === authorizedUser.id);
-        await unlikePhoto({ id: likedId.id });
+        await unlikePhoto({ photoId: photoToShow.id });
       } else {
         await likePhoto({ photoId: photoToShow.id });
       }
@@ -38,22 +32,20 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
   };
 
   const collectSinglePhoto = async (photo, collection) => {
-    const updatedCollection = { ...collection, isCollected: !collection.isCollected };
+    const changeCover = (collection.isCollected === false);
+    const updatedCollection = {
+      ...collection,
+      isCollected: !collection.isCollected,
+      cover: changeCover ? photo.small : collection.cover,
+    };
     const updatedCollections = photo.allCollectionsToShow
       .map((obj) => (obj.id === collection.id ? updatedCollection : obj));
     const updatedPhoto = { ...photo, allCollectionsToShow: updatedCollections };
     setPhotoToShow(updatedPhoto);
     if (collection.isCollected) {
-      const photoCollections = photo.collections && photo.collections.edges
-        ? photo.collections.edges.map((edge) => edge.node)
-        : [];
-
-      const collectedPhoto = photoCollections.find((collected) => collected.photo.id === photo.id);
-      // console.log('uncollect photo', photo.id, collection.id, collectedPhoto);
-      await uncollectPhoto({ id: collectedPhoto.id });
+      await uncollectPhoto({ photoId: photo.id, collectionId: collection.id });
     } else {
       await collectPhoto({ photoId: photo.id, collectionId: collection.id });
-      // console.log('collect photo', photo.id, collection.id);
     }
   };
 
@@ -86,14 +78,11 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
                 </div>
               )}
             </div>
-            {photo.likeCount}
-            {photo.likeCount <= 1 ? 'like' : 'likes'}
           </button>
         </div>
         <div>
           <button type="button" className="photodetails-card-btn-collect photodetails-card-btn-item" onClick={() => openCollectModal()}>
             <i className="bi bi-plus-square margin-right" />
-            Collect
           </button>
           <SaveToCollectionsModal
             photo={photo}
@@ -105,12 +94,15 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
         <div className="photodetails-card-btn-item">
           <button type="button" className="photodetails-card-btn-download" onClick={() => window.open(photoToShow.downloadPage)}>
             <i className="bi bi-download margin-right" />
-            Download
           </button>
         </div>
       </div>
-      <div className="profile-item">
-        <Image src={photoToShow.small} magin={10} height={500} fluid />
+      <div className="photodetails-photo-item">
+        <img
+          src={photoToShow.large}
+          width="100%"
+          alt="grid item"
+        />
       </div>
       <div className="container-row-0">
         <h5>{photoCredit}</h5>
@@ -122,14 +114,6 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
           </div>
           <div>
             <a href={photo.creditId} target="_">{photo.creditWeb}</a>
-          </div>
-        </div>
-        <div className="container-col-details margin-1rem">
-          <div className="subtitle">
-            Downloads
-          </div>
-          <div>
-            {photo.downloadCount}
           </div>
         </div>
         <PhotoMoreDetailsModal photo={photo} />
