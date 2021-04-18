@@ -1,16 +1,12 @@
 import { gql } from '@apollo/react-hooks';
-import { PHOTO_DETAILS, USER_DETAILS, COLLECTION_DETAILS } from './fragment';
+import { PHOTO_DETAILS, USER_DETAILS } from './fragment';
 
 export const AUTHORIZE = gql`
   mutation authorize($username: String!, $password: String!) {
     authorize(credentials: { username: $username, password: $password }) {
       accessToken
-      user{
-        ...userDetails
-      }
     }
   }
-  ${USER_DETAILS}
 `;
 
 export const CREATE_USER = gql`
@@ -83,26 +79,17 @@ export const CREATE_PHOTO = gql`
       description: $description
       tags: $tags
     } ) {
-      ...photoDetails
+      id
     }
   }
-  ${PHOTO_DETAILS}
 `;
 
 export const LIKE_PHOTO = gql`
   mutation likePhoto( $photoId: ID! ) {
     likePhoto( photoId: $photoId ) {
       id
-      user{
-        id
-        username
-      }
-      photo{
-        ...photoDetails
-      }
     }
   }
-  ${PHOTO_DETAILS}
 `;
 
 export const UNLIKE_PHOTO = gql`
@@ -115,20 +102,8 @@ export const COLLECT_PHOTO = gql`
   mutation collectPhoto( $photoId: ID!,  $collectionId: ID! ) {
     collectPhoto(collect: { photoId: $photoId, collectionId: $collectionId } ) {
       id
-      user{
-        id
-        username
-      }
-      collection{
-        id
-        title
-      }
-      photo{
-        ...photoDetails
-      }
     }
   }
-  ${PHOTO_DETAILS}
 `;
 
 export const UNCOLLECT_PHOTO = gql`
@@ -155,10 +130,6 @@ export const CREATE_COLLECTION = gql`
       public: $public
     } ) {
       id
-      user{
-        id
-        username
-      }
       title
       description
       public
@@ -182,20 +153,8 @@ export const CREATE_COLLECTION_AND_COLLECT_PHOTO = gql`
       photoId: $photoId
     } ) {
       id
-      user{
-        id
-        username
-      }
-      collection{
-        id
-        title
-      }
-      photo{
-        ...photoDetails
-      }
     }
   }
-  ${PHOTO_DETAILS}
 `;
 
 export const EDIT_PHOTO_LABELS = gql`
@@ -296,8 +255,7 @@ export const DELETE_PHOTO = gql`
 export const EDIT_COLLECTION = gql`
 mutation editCollection( $collectionId: ID!, $newTitle: String!, $newDescription: String! ){
   editCollection(edit: {collectionId: $collectionId, newTitle: $newTitle, newDescription: $newDescription} ) {
-    ...collectionDetails
+    id
   }
 }
-${COLLECTION_DETAILS}
 `;

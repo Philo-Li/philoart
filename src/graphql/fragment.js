@@ -26,15 +26,6 @@ export const PHOTO_DETAILS = gql`
         }
       }
     }
-    reviews{
-      edges{
-        node{
-          id
-          text
-        }
-      }
-    }
-    reviewCount
     collections{
       edges{
         node{
@@ -51,7 +42,6 @@ export const PHOTO_DETAILS = gql`
     likeCount
     collectionCount
     downloadCount
-    reviewCount
     createdAt
   }
 `;
@@ -59,55 +49,10 @@ export const PHOTO_DETAILS = gql`
 export const COLLECTION_DETAILS = gql`
   fragment collectionDetails on Collection {
     id
-    userId
-    user {
-      id
-      username
-    }
-    photos{
-      edges{
-        node{
-          id
-          photo{
-            id
-            width
-            height
-            color
-            tiny
-            small
-            large
-            downloadPage
-            creditWeb
-            creditId
-            photographer
-            description
-            labels
-            tags
-            likeCount
-            collectionCount
-            downloadCount
-            reviewCount
-            createdAt
-          }
-        }
-      }
-    }
     title
     description
     photoCount
-    public
     cover
-    reviews{
-      edges{
-        node{
-          id
-          text
-        }
-      }
-    }
-    reviewCount
-    createdAt
-    updatedAt
   }
 `;
 
@@ -126,7 +71,6 @@ export const USER_DETAILS = gql`
           photo{
             ...photoDetails
           }
-          createdAt
         }
       }
     }
@@ -134,29 +78,6 @@ export const USER_DETAILS = gql`
       edges{
         node{
           id
-          user{
-            id
-            username
-          }
-          reviews{
-            edges{
-              node{
-                id
-                text
-              }
-            }
-          }
-          photos{
-            edges{
-              node{
-                id
-                photo{
-                  ...photoDetails
-                }
-              }
-            }
-          }
-          reviewCount
           title
           description
           photoCount

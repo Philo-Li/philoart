@@ -53,58 +53,19 @@ export const GET_AUTHORIZED_USER = gql`
       lastName
       email
       profileImage
-      likes{
-        edges{
-          node{
-            id
-            photo{
-              ...photoDetails
-            }
-            createdAt
-          }
-        }
-      }
       collections{
         edges{
           node{
             id
-            user{
-              id
-              username
-            }
-            reviews{
-              edges{
-                node{
-                  id
-                  text
-                }
-              }
-            }
-            photos{
-              edges{
-                node{
-                  id
-                  photo{
-                    ...photoDetails
-                  }
-                }
-              }
-            }
-            reviewCount
             title
-            description
             photoCount
-            createdAt
-            public
             cover
           }
         }
       }
-      likeCount
       collectionCount
     }
   }
-  ${PHOTO_DETAILS}
 `;
 
 export const GET_USER_LIKES = gql`
@@ -218,6 +179,10 @@ export const GET_COLLECTION_PHOTOS = gql`
           }
           collection{
             ...collectionDetails
+            user {
+              id
+              username
+            }
           }
         }
         cursor
@@ -231,5 +196,41 @@ export const GET_COLLECTION_PHOTOS = gql`
     }
   }
   ${PHOTO_DETAILS}
+  ${COLLECTION_DETAILS}
+`;
+
+export const GET_DISCOVER_COLLECTIONS = gql`
+  query getCollections(
+    $orderBy: AllCollectionsOrderBy
+    $orderDirection: OrderDirection
+    $searchKeyword: String
+    $first: Int
+    $after: String
+    $userId: String
+    $username: String
+  ) {
+    collections(
+      orderBy: $orderBy
+      orderDirection: $orderDirection
+      searchKeyword: $searchKeyword
+      first: $first
+      after: $after
+      userId: $userId
+      username: $username
+    ) {
+      edges {
+        node {
+          ...collectionDetails
+        }
+        cursor
+      }
+      pageInfo {
+        endCursor
+        startCursor
+        totalCount
+        hasNextPage
+      }
+    }
+  }
   ${COLLECTION_DETAILS}
 `;
