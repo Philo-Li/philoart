@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import LazyLoad from 'react-lazyload';
-import PhotoDetailsModal from './PhotoDetailsModal';
 import SaveToCollectionsModal from './SaveToCollectionsModal';
 import useDeletePhoto from '../../../hooks/useDeletePhoto';
 import '../../../MDB-Free_4.19.2/css/mdb.css';
@@ -90,14 +89,6 @@ const PhotoCard = ({
                   </div>
                 )}
               </button>
-            </div>
-            <div className="button-0">
-              <PhotoDetailsModal
-                photo={photo}
-                collectSinglePhoto={collectSinglePhoto}
-                likeSinglePhoto={likeSinglePhoto}
-                authorizedUser={authorizedUser}
-              />
             </div>
             { authorizedUser && authorizedUser.username === 'picky' && (
               <div className="text-white">
