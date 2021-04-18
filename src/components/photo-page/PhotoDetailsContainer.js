@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Image, Card } from 'react-bootstrap';
 import useLikePhoto from '../../hooks/useLikePhoto';
 import useUnlikePhoto from '../../hooks/useUnlikePhoto';
 import useUncollectPhoto from '../../hooks/useUncollectPhoto';
@@ -59,7 +60,7 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
 
   const photo = photoToShow;
 
-  const photoCredit = `Photo by ${photo.photographer}`;
+  const photoCredit = `Photographer: ${photo.photographer}`;
 
   return (
     <div className="p-3">
@@ -98,24 +99,21 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
         </div>
       </div>
       <div className="photodetails-photo-item">
-        <img
-          src={photoToShow.large}
-          width="100%"
-          alt="grid item"
-        />
+        <Card>
+          <Image src={photoToShow.small} width="100%" />
+        </Card>
       </div>
       <div className="container-row-0">
         <h5>{photoCredit}</h5>
       </div>
+      <div className="col-item-collection-description">
+        <p className="">
+          From
+          {' '}
+          <a href={photo.creditId} target="_">{photo.creditWeb}</a>
+        </p>
+      </div>
       <div className="container-row-0">
-        <div className="container-col-details margin-1rem">
-          <div className="subtitle">
-            Website
-          </div>
-          <div>
-            <a href={photo.creditId} target="_">{photo.creditWeb}</a>
-          </div>
-        </div>
         <PhotoMoreDetailsModal photo={photo} />
       </div>
     </div>

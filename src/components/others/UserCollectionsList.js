@@ -15,7 +15,7 @@ const UserCollectionsList = ({ photo, collectSinglePhoto }) => {
   if (!photo.allCollectionsToShow) return (<p>No results</p>);
 
   return (
-    <div className="p-3">
+    <div className="p-3 scrollmenu">
       <>
       </>
       <Masonry
