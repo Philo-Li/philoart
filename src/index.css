@@ -265,6 +265,38 @@ input:invalid {
   margin-right: 20%;
 }
 
+.container-create-collection-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.create-collection-row-item {
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+}
+
+.create-collection-btn {
+  font-size: 1.2rem;
+  font-weight: light;
+  color: white;
+  background-color: rgb(61, 131, 61);
+  border: none;
+  margin: 8px 0;
+  margin-left: 10px;
+  border-radius: 5px;
+  padding: 0.5rem 1.5rem;
+  transition: ease 0.2s;
+}
+
+.create-collection-btn:hover {
+  background-color: rgb(96, 173, 96);
+  -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
+
 .green-icon {
   color:yellowgreen;
 }
@@ -337,6 +369,8 @@ input:invalid {
 
 .photodetails-card-btn-download:hover {
   background-color: rgb(96, 173, 96);
+  -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
 }
 
 .photodetails-card-btn-item {
@@ -492,14 +526,80 @@ input:invalid {
   overflow:visible;
 }
 
+.container-col-licence {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
 .licence {
   background-image: url("https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1500&q=80");
   background-size: cover;
-  height: 30rem;
+  height: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.licence-header-bold-white {
+  font-weight: bold;
+  color: white;
+}
+
+.licence-subheader {
+  color: white;
+}
+
+.licence-header-bold {
+  font-weight: bold;
+}
+
+.licence-icon-check {
+  padding: 10px 20px;
+  font-size: 2rem;
+  color: cornflowerblue;
+  width:50%;
+}
+
+.licence-icon-x {
+  padding: 10px 20px;
+  font-size: 2rem;
+  color: crimson;
+  width:50%;
+}
+
+.licence-msg-container {
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 700px) {
+  .licence-header-bold-white {
+    font-size: 1.5rem;
+  }
+  .licence-header-bold {
+    font-size: 1.5rem;
+  }
+  .licence-subheader {
+    font-size: 1rem;
+  }
+  .licence-subheader-footer {
+    font-size: 1rem;
+  }
+  .licence-msg {
+    font-size: 1rem;
+  }
+  .licence-icon-check {
+    font-size: 1.5rem;
+  }
+  .licence-icon-x {
+    font-size: 1.5rem;
+  }
 }
 
 .about {
