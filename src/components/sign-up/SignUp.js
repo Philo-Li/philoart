@@ -4,8 +4,6 @@ import useSignUp from '../../hooks/useSignUp';
 import SignUpContainer from './SignUpContainer';
 
 const initialValues = {
-  firstName: '',
-  lastName: '',
   email: '',
   username: '',
   password: '',
@@ -20,8 +18,7 @@ const SignUp = () => {
 
   const onSubmit = async (values) => {
     const variables = {
-      firstName: values.firstName,
-      lastName: values.lastName,
+      firstName: values.username,
       email: values.email,
       username: values.username,
       password: values.password,

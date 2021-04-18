@@ -8,24 +8,14 @@ import TextInput from '../others/TextInput';
 const SignUpForm = ({ loading }) => (
   <div>
     <Form>
-      <div className="container-row-signup">
-        <div className="">
-          <TextInput
-            label="First Name *"
-            name="firstName"
-            type="text"
-            placeholder=""
-          />
-        </div>
-
-        <div className="">
-          <TextInput
-            label="Last Name"
-            name="lastName"
-            type="text"
-            placeholder=""
-          />
-        </div>
+      <div className="col-item-1">
+        <TextInput
+          label="Username *"
+          info=" (only letters, numbers, and underscores)"
+          name="username"
+          type="username"
+          placeholder=""
+        />
       </div>
 
       <div className="col-item-1">
@@ -34,16 +24,6 @@ const SignUpForm = ({ loading }) => (
           name="email"
           type="email"
           placeholder="example@mail.com"
-        />
-      </div>
-
-      <div className="col-item-1">
-        <TextInput
-          label="Username *"
-          info=" (only letters, numbers, and underscores)"
-          name="username"
-          type="username"
-          placeholder=""
         />
       </div>
 
