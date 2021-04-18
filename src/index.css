@@ -183,9 +183,9 @@ input:invalid {
 .container-row-photodetail-btn {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: flex-end;
-  margin-right: 5%;
+  margin-bottom: 1rem;
 }
 
 .container-row-signup {
@@ -390,7 +390,8 @@ input:invalid {
 }
 
 .photodetails-photo-item {
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
   padding: 0.2rem 1rem;
   display: flex;
   justify-content: center;

@@ -64,6 +64,11 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
 
   return (
     <div className="p-3">
+      <div className="photodetails-photo-item">
+        <Card>
+          <Image src={photoToShow.small} width="100%" />
+        </Card>
+      </div>
       <div className="container-row-photodetail-btn">
         <div className="">
           <button
@@ -97,11 +102,6 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
             <i className="bi bi-download margin-right" />
           </button>
         </div>
-      </div>
-      <div className="photodetails-photo-item">
-        <Card>
-          <Image src={photoToShow.small} width="100%" />
-        </Card>
       </div>
       <div className="container-row-0">
         <h5>{photoCredit}</h5>

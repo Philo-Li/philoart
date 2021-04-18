@@ -23,7 +23,7 @@ const PhotoMoreDetailsModal = ({ photo }) => {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Info
+            Photo info
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -41,10 +41,10 @@ const PhotoMoreDetailsModal = ({ photo }) => {
             <div className="row-item-0">
               <div className="container-col-details">
                 <div className="subtitle">
-                  Downloads
+                  Collections
                 </div>
                 <div>
-                  {photo.downloadCount}
+                  {photo.collectionCount}
                 </div>
               </div>
             </div>
@@ -89,7 +89,7 @@ const PhotoMoreDetailsModal = ({ photo }) => {
                     Website
                   </div>
                   <div>
-                    {photo.creditWeb}
+                    <a href={photo.creditId} target="_">{photo.creditWeb}</a>
                   </div>
                 </div>
               </div>
@@ -98,10 +98,10 @@ const PhotoMoreDetailsModal = ({ photo }) => {
               <div className="col-item-0">
                 <div className="container-col-details">
                   <div className="subtitle">
-                    Width
+                    Downloads
                   </div>
                   <div>
-                    {photo.width}
+                    {photo.downloadCount}
                   </div>
                 </div>
               </div>
