@@ -225,56 +225,6 @@ const BroadSearchPage = () => {
     return true;
   };
 
-  // const searchPicography = async (photosPool4) => {
-  //   if (allPhotosPool.pico === undefined || (pageNow * PerLoad + PerLoad >= allPhotosPool.pico.length && allPhotosPool.pico_hasnextpage)) {
-  //     const queryPageNow = allPhotosPool.pico_page;
-  //     axios.get(`${config.pickyApi}/picography/page=${queryPageNow}&q=${parsed.q}`)
-  //       .then((response) => {
-  //         if (!response.data.photos) {
-  //           setAllPhotosPool(photosPool4);
-  //           return response.data;
-  //         }
-
-  //         const thisphotos = response.data.photos.map((obj) => {
-  //           const updated = {
-  //             width: obj.width || 0,
-  //             height: obj.height || 0,
-  //             photographer: obj.photographer || '',
-  //             description: obj.description,
-  //             tags: obj.tags || '',
-  //             color: obj.color,
-  //             tiny: obj.tiny,
-  //             small: obj.small,
-  //             large: obj.large,
-  //             downloadPage: obj.downloadPage,
-  //             creditWeb: obj.creditWeb,
-  //             creditId: obj.creditId,
-  //           };
-  //           return updated;
-  //         });
-
-  //         const picoPool = allPhotosPool.pico;
-  //         const updatedPicoPool = !picoPool ? thisphotos : merge(picoPool, thisphotos, 'downloadPage');
-  //         const hasNextPage = !(thisphotos.length < MAX_PER_PAGE_PICO);
-  //         const photosPool5 = {
-  //           ...photosPool4,
-  //           pico: updatedPicoPool,
-  //           pico_page: allPhotosPool.pico_page + 1,
-  //           pico_hasnextpage: hasNextPage,
-  //         };
-
-  //         setAllPhotosPool(photosPool5);
-  //         // eslint-disable-next-line no-use-before-define
-  //         getPhotosToShow(photosPool5);
-  //         return response.data;
-  //       });
-  //   } else {
-  //     setAllPhotosPool(photosPool4);
-  //     getPhotosToShow(photosPool4);
-  //   }
-  //   return true;
-  // };
-
   const getPhotosToShow = async (photosPool4) => {
     const Start = pageNow * PerLoad - PerLoad;
     const End = pageNow * PerLoad;

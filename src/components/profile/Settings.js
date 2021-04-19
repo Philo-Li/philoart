@@ -6,7 +6,7 @@ import { css } from '@emotion/react';
 import PacmanLoader from 'react-spinners/PacmanLoader';
 import EditProfile from './edit-profile/EditProfile';
 import ChangePassword from './change-password/ChangePassword';
-import DeleteAccount from './DeleteAccount';
+import DeleteAccount from './delete-account/DeleteAccount';
 
 const override = css`
   display: flex;

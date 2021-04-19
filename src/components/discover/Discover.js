@@ -3,7 +3,6 @@ import { css } from '@emotion/react';
 import PacmanLoader from 'react-spinners/PacmanLoader';
 import DiscoverCollectionList from './DiscoverCollectionList';
 import config from '../../config';
-import galleryIcon from '../../img/galleryIcon.jpg';
 import useDiscoverCollections from '../../hooks/useDiscoverCollections';
 
 const override = css`
@@ -14,9 +13,7 @@ const override = css`
   margin-bottom: 6rem;
 `;
 
-// const INIT_COVER = 'https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-gallery-vector-icon-png-image_470660.jpg';
 // const CATEGORY = ['mood', 'animals', 'light', 'nature', 'human', 'road', 'food'];
-const INIT_COVER = galleryIcon;
 
 const Discover = () => {
   const [allCollections, setAllCollections] = useState();
@@ -31,15 +28,7 @@ const Discover = () => {
         ? collections.edges.map((edge) => edge.node)
         : [];
 
-      const updatedAllCollections = temp.map((collection) => {
-        const coverToShow = collection.cover ? collection.cover : INIT_COVER;
-        const updatedCollection = {
-          coverToShow,
-          ...collection,
-        };
-        return updatedCollection;
-      });
-      setAllCollections(updatedAllCollections);
+      setAllCollections(temp);
     }
   }, [collections]);
 

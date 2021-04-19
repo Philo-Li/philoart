@@ -2,12 +2,15 @@ import React from 'react';
 import { Card } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import Masonry from 'react-masonry-css';
+import galleryIcon from '../../img/galleryIcon.jpg';
 
 const breakpointColumnsObj = {
   default: 3,
   800: 2,
   500: 1,
 };
+
+const INIT_COVER = galleryIcon;
 
 const DiscoverCollectionList = ({ allCollections, category }) => {
   const collectionsToShow = allCollections
@@ -43,7 +46,7 @@ const DiscoverCollectionList = ({ allCollections, category }) => {
               tabIndex="0"
             >
               <img
-                src={collection.coverToShow}
+                src={collection.cover || INIT_COVER}
                 className="max-height-100"
                 alt="smaple"
               />
