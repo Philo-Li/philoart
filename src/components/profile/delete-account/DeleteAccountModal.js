@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Modal, Alert } from 'react-bootstrap';
-import useDeleteUser from '../../hooks/useDeleteUser';
+import useDeleteUser from '../../../hooks/useDeleteUser';
 
 const DeleteAccountModal = ({
   authorizedUser,
