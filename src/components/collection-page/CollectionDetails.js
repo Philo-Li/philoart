@@ -123,6 +123,7 @@ const CollectionDetails = ({ authorizedUser }) => {
         allPhotos={allPhotos}
         setAllPhotos={setAllPhotos}
         clickFetchMore={clickFetchMore}
+        column="collection"
       />
     </div>
   );

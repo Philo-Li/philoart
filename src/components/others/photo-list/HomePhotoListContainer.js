@@ -21,8 +21,14 @@ const breakpointColumnsObj = {
   500: 2,
 };
 
+const breakpointColumnsObj2 = {
+  default: 3,
+  800: 2,
+  500: 1,
+};
+
 const HomePhotoListContainer = ({
-  allPhotos, setAllPhotos, clickFetchMore, loading,
+  allPhotos, setAllPhotos, clickFetchMore, loading, column,
 }) => {
   const { authorizedUser } = useAuthorizedUser();
   const [likePhoto] = useLikePhoto();
@@ -50,7 +56,7 @@ const HomePhotoListContainer = ({
     <div className="p-3 daily-cover-container">
       <div className="">
         <Masonry
-          breakpointCols={breakpointColumnsObj}
+          breakpointCols={column === 'collection' ? breakpointColumnsObj2 : breakpointColumnsObj}
           className="my-masonry-grid"
           columnClassName="my-masonry-grid_column"
         >

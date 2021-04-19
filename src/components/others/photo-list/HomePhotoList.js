@@ -12,7 +12,7 @@ const override = css`
 `;
 
 const HomePhotoList = ({
-  allPhotos, setAllPhotos, clickFetchMore, loading,
+  allPhotos, setAllPhotos, clickFetchMore, loading, column,
 }) => {
   // if (allPhotos === undefined) return null;
   if (allPhotos === undefined) {
@@ -30,6 +30,7 @@ const HomePhotoList = ({
         setAllPhotos={setAllPhotos}
         clickFetchMore={clickFetchMore}
         loading={loading}
+        column={column}
       />
     </div>
   );
