@@ -22,10 +22,11 @@ const CollectionDetails = ({ authorizedUser }) => {
   const [collectionNow, setCollectionNow] = useState();
   const [showEditCollectionModal, setShowEditCollectionModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const variables = {
     id,
-    first: 30,
+    first: 20,
   };
   const { photosInCollection, fetchMore } = useCollectionPhotos(variables);
 
@@ -58,11 +59,15 @@ const CollectionDetails = ({ authorizedUser }) => {
         });
         setAllPhotos(updatedAllPhotos);
       }
+      setLoading(false);
     }
   }, [photosInCollection]);
 
   const clickFetchMore = () => {
-    fetchMore();
+    if (collectionNow.photoCount > allPhotos.length) {
+      fetchMore();
+      setLoading(true);
+    }
   };
 
   if (collectionNow === undefined) {
@@ -123,6 +128,7 @@ const CollectionDetails = ({ authorizedUser }) => {
         allPhotos={allPhotos}
         setAllPhotos={setAllPhotos}
         clickFetchMore={clickFetchMore}
+        loading={loading}
         column="collection"
       />
     </div>
