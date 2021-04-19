@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Card } from 'react-bootstrap';
 import { css } from '@emotion/react';
 import BeatLoader from 'react-spinners/BeatLoader';
 import PacmanLoader from 'react-spinners/PacmanLoader';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Masonry from 'react-masonry-css';
-import galleryIcon from '../../img/galleryIcon.jpg';
 import '../../index.css';
 import useCollections from '../../hooks/useCollections';
+import CollectionCard from './user-collections/CollectionCard';
 
 const override = css`
   display: flex;
@@ -23,14 +22,10 @@ const breakpointColumnsObj = {
   500: 1,
 };
 
-// const INIT_COVER = 'https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-gallery-vector-icon-png-image_470660.jpg';
-const INIT_COVER = galleryIcon;
-
-const UserCollections = () => {
+const UserCollections = ({ authorizedUser }) => {
   const [loading, setLoading] = useState(false);
   const [allCollections, setAllCollections] = useState();
 
-  const history = useHistory();
   let { username } = useParams();
   username = username.substr(1, username.length - 1);
   const { collections, fetchMore } = useCollections({
@@ -44,22 +39,10 @@ const UserCollections = () => {
         ? collections.edges.map((edge) => edge.node)
         : [];
 
-      const updatedAllCollections = temp.map((collection) => {
-        const coverToShow = collection.cover ? collection.cover : INIT_COVER;
-        const updatedCollection = {
-          coverToShow,
-          ...collection,
-        };
-        return updatedCollection;
-      });
-      setAllCollections(updatedAllCollections);
+      setAllCollections(temp);
       setLoading(false);
     }
   }, [collections]);
-
-  const openCollection = (collectionId) => {
-    history.push(`/collection/${collectionId}`);
-  };
 
   const clickFetchMore = () => {
     fetchMore();
@@ -76,44 +59,19 @@ const UserCollections = () => {
 
   return (
     <div className="p-3">
-      <>
-      </>
       <Masonry
         breakpointCols={breakpointColumnsObj}
         className="my-masonry-grid"
         columnClassName="my-masonry-grid_column"
       >
         {allCollections.map((collection) => (
-          <Card key={collection.id}>
-            <div
-              className="view zoom overlay"
-              onClick={() => { openCollection(collection.id); }}
-              onKeyPress={() => openCollection(collection.id)}
-              role="button"
-              tabIndex="0"
-            >
-              <img
-                src={collection.coverToShow}
-                className="max-height-100"
-                alt="smaple"
-              />
-              <div className="mask flex-center rgba-blue-light white-text">
-                <i size="lg" className="bi bi-search" />
-              </div>
-            </div>
-            <Card.Title>
-              <div className="container-collection-title">
-                <div className="item-0-collection-title">
-                  <p className="row-item-0">
-                    {collection.title}
-                    (
-                    {collection.photoCount}
-                    )
-                  </p>
-                </div>
-              </div>
-            </Card.Title>
-          </Card>
+          <CollectionCard
+            key={collection.id}
+            showEditButton={authorizedUser && (username === authorizedUser.username)}
+            collection={collection}
+            allCollections={allCollections}
+            setAllCollections={setAllCollections}
+          />
         ))}
       </Masonry>
       { loading && (<BeatLoader color="#9B9B9B" loading css={override} size={50} />) }
