@@ -3,7 +3,7 @@ import { Card } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import galleryIcon from '../../../img/galleryIcon.jpg';
 import '../../../index.css';
-import CollectionDropdownButton from '../../others/button/edit-collection-btn/CollectionDropdownButton';
+import CollectionDropdownButton from '../../others/button/edit-collection-btn/CollectionDropdownButtonDotIcon';
 import DeleteCollectionModal from './DeleteCollectionModal';
 import EditCollectionModal from './edit-collection/EditCollectionModal';
 
@@ -41,37 +41,37 @@ const CollectionCard = ({
           </div>
         </div>
         <Card.Title>
-          <div className="container-collection-title">
-            <div className="item-0-collection-title">
-              <p className="row-item-0">
+          <div className="container-user-collection-list-title">
+            <div className="user-collection-list-title">
+              <p className="user-collection-list-title-center">
                 {collection.title}
                 (
                 {collection.photoCount}
                 )
               </p>
             </div>
-          </div>
-          <div>
-            {showEditButton && (
-              <CollectionDropdownButton
-                setShowEditCollectionModal={setShowEditCollectionModal}
+            <div className="user-collection-list-btn">
+              {showEditButton && (
+                <CollectionDropdownButton
+                  setShowEditCollectionModal={setShowEditCollectionModal}
+                  setShowDeleteModal={setShowDeleteModal}
+                />
+              )}
+              <DeleteCollectionModal
+                collectionNow={collection}
+                allCollections={allCollections}
+                setAllCollections={setAllCollections}
+                showDeleteModal={showDeleteModal}
                 setShowDeleteModal={setShowDeleteModal}
               />
-            )}
-            <DeleteCollectionModal
-              collectionNow={collection}
-              allCollections={allCollections}
-              setAllCollections={setAllCollections}
-              showDeleteModal={showDeleteModal}
-              setShowDeleteModal={setShowDeleteModal}
-            />
-            <EditCollectionModal
-              collectionNow={collection}
-              allCollections={allCollections}
-              setAllCollections={setAllCollections}
-              showEditCollectionModal={showEditCollectionModal}
-              setShowEditCollectionModal={setShowEditCollectionModal}
-            />
+              <EditCollectionModal
+                collectionNow={collection}
+                allCollections={allCollections}
+                setAllCollections={setAllCollections}
+                showEditCollectionModal={showEditCollectionModal}
+                setShowEditCollectionModal={setShowEditCollectionModal}
+              />
+            </div>
           </div>
         </Card.Title>
       </Card>

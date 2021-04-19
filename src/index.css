@@ -1107,3 +1107,30 @@ div.scrollmenu a:hover {
   display: flex;
   align-items: center;
 }
+
+.user-collection-list-title {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 2rem;
+}
+
+.user-collection-list-title-center {
+  align-self: flex-end;
+  justify-content: flex-end;
+}
+
+.user-collection-list-btn {
+  align-self: flex-end;
+  padding-right: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.container-user-collection-list-title {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  padding-top: 0.5rem;
+}
