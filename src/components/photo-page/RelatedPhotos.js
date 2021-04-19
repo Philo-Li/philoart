@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import usePhotos from '../../hooks/usePhotos';
-import RelatedPhotoList from './RelatedPhotoList';
+import HomePhotoList from '../others/photo-list/HomePhotoList';
 
 const RelatedPhotos = ({
   authorizedUser, photoToShow,
@@ -30,22 +30,9 @@ const RelatedPhotos = ({
 
           const findUserLike = photoLikes && photoLikes
             .find((like) => like.user.id === authorizedUser.id);
-          const photoInCollections = photo.collections && photo.collections.edges
-            ? photo.collections.edges.map((edge) => edge.node.collection)
-            : [];
-          const userCollections = authorizedUser.collectionCount !== 0
-            ? authorizedUser.collections.edges.map((edge) => edge.node)
-            : [];
-          const collectionsToShow = userCollections && userCollections.map((collection) => {
-            const findCollected = photoInCollections.find((obj) => obj.id === collection.id);
-            return findCollected != null
-              ? { ...collection, isCollected: true }
-              : { ...collection, isCollected: false };
-          });
           const updatedPhoto = {
             ...photo,
             isLiked: findUserLike != null,
-            allCollectionsToShow: collectionsToShow,
           };
           return updatedPhoto;
         });
@@ -60,10 +47,6 @@ const RelatedPhotos = ({
     setLoading(true);
   };
 
-  // console.log('picky: photos', photos);
-  // console.log('picky: updatedAllPhotos', allPhotos);
-  // console.log('picky: authorizedUser', authorizedUser);
-
   return (
     <div>
       <div className="p-3 container-profile">
@@ -71,7 +54,7 @@ const RelatedPhotos = ({
           <h1>Similar photos</h1>
         </div>
       </div>
-      <RelatedPhotoList
+      <HomePhotoList
         allPhotos={allPhotos}
         setAllPhotos={setAllPhotos}
         clickFetchMore={clickFetchMore}

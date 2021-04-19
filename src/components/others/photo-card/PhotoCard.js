@@ -7,7 +7,7 @@ import useDownloadPhoto from '../../../hooks/useDownloadPhoto';
 import '../../../MDB-Free_4.19.2/css/mdb.css';
 
 const PhotoCard = ({
-  photo, authorizedUser, likeSinglePhoto, collectSinglePhoto,
+  photo, authorizedUser, likeSinglePhoto,
 }) => {
   if (!photo) return null;
   const [deletePhoto] = useDeletePhoto();
@@ -78,7 +78,6 @@ const PhotoCard = ({
               </button>
               <SaveToCollectionsModal
                 photo={photo}
-                collectSinglePhoto={collectSinglePhoto}
                 showCollectModal={showCollectModal}
                 setShowCollectModal={setShowCollectModal}
               />

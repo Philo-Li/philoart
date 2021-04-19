@@ -29,22 +29,10 @@ const Home = ({
 
           const findUserLike = photoLikes && photoLikes
             .find((like) => like.user.id === authorizedUser.id);
-          const photoInCollections = photo.collections && photo.collections.edges
-            ? photo.collections.edges.map((edge) => edge.node.collection)
-            : [];
-          const userCollections = authorizedUser.collectionCount !== 0
-            ? authorizedUser.collections.edges.map((edge) => edge.node)
-            : [];
-          const collectionsToShow = userCollections && userCollections.map((collection) => {
-            const findCollected = photoInCollections.find((obj) => obj.id === collection.id);
-            return findCollected != null
-              ? { ...collection, isCollected: true }
-              : { ...collection, isCollected: false };
-          });
+
           const updatedPhoto = {
             ...photo,
             isLiked: findUserLike != null,
-            allCollectionsToShow: collectionsToShow,
           };
           return updatedPhoto;
         });
@@ -58,10 +46,6 @@ const Home = ({
     fetchMore();
     setLoading(true);
   };
-
-  // console.log('picky: photos', photos);
-  // console.log('picky: updatedAllPhotos', allPhotos);
-  // console.log('picky: authorizedUser', authorizedUser);
 
   return (
     <div>

@@ -23,34 +23,14 @@ const PhotoDetails = ({ authorizedUser }) => {
         const findUserLike = photoLikes && photoLikes
           .find((like) => like.user.id === authorizedUser.id);
 
-        const photoInCollections = photo.collections && photo.collections.edges
-          ? photo.collections.edges.map((edge) => edge.node.collection)
-          : [];
-
-        const userCollections = authorizedUser.collectionCount !== 0
-          ? authorizedUser.collections.edges.map((edge) => edge.node)
-          : [];
-
-        const collectionsToShow = userCollections && userCollections.map((collection) => {
-          const findCollected = photoInCollections.find((obj) => obj.id === collection.id);
-          return findCollected != null
-            ? { ...collection, isCollected: true }
-            : { ...collection, isCollected: false };
-        });
         const updatedPhoto = {
           ...photo,
           isLiked: findUserLike != null,
-          allCollectionsToShow: collectionsToShow,
         };
         setPhotoToShow(updatedPhoto);
       }
     }
   }, [photo, authorizedUser]);
-
-  // console.log('authorizedUser', authorizedUser);
-  // console.log('photo', photoToShow);
-  // console.log(photo.downloadCount, photo.downloadCount + 1, typeof (photo.downloadCount));
-  // console.log(int(photo.downloadCount));
 
   return (
     <div>

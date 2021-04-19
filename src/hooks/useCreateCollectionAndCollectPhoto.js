@@ -10,8 +10,12 @@ const useCreateCollectionAndCollectPhoto = () => {
       variables,
     });
   };
+  let newCollection = null;
+  if (result.data) {
+    newCollection = result.data.createCollectionAndCollectPhoto.collection;
+  }
 
-  return [createCollectionAndCollectPhoto, result];
+  return [createCollectionAndCollectPhoto, newCollection];
 };
 
 export default useCreateCollectionAndCollectPhoto;

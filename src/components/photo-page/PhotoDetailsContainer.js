@@ -3,8 +3,6 @@ import { useHistory } from 'react-router-dom';
 import { Image, Card } from 'react-bootstrap';
 import useLikePhoto from '../../hooks/useLikePhoto';
 import useUnlikePhoto from '../../hooks/useUnlikePhoto';
-import useUncollectPhoto from '../../hooks/useUncollectPhoto';
-import useCollectPhoto from '../../hooks/useCollectPhoto';
 import useDownloadPhoto from '../../hooks/useDownloadPhoto';
 import SaveToCollectionsModal from '../others/photo-card/SaveToCollectionsModal';
 import PhotoMoreDetailsModal from '../others/photo-card/PhotoMoreDetailsModal';
@@ -12,8 +10,6 @@ import PhotoMoreDetailsModal from '../others/photo-card/PhotoMoreDetailsModal';
 const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) => {
   const [likePhoto] = useLikePhoto();
   const [unlikePhoto] = useUnlikePhoto();
-  const [collectPhoto] = useCollectPhoto();
-  const [uncollectPhoto] = useUncollectPhoto();
   const [downloadPhoto] = useDownloadPhoto();
   const [showCollectModal, setShowCollectModal] = useState(false);
   const history = useHistory();
@@ -31,24 +27,6 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
       } else {
         await likePhoto({ photoId: photoToShow.id });
       }
-    }
-  };
-
-  const collectSinglePhoto = async (photo, collection) => {
-    const changeCover = (collection.isCollected === false);
-    const updatedCollection = {
-      ...collection,
-      isCollected: !collection.isCollected,
-      cover: changeCover ? photo.small : collection.cover,
-    };
-    const updatedCollections = photo.allCollectionsToShow
-      .map((obj) => (obj.id === collection.id ? updatedCollection : obj));
-    const updatedPhoto = { ...photo, allCollectionsToShow: updatedCollections };
-    setPhotoToShow(updatedPhoto);
-    if (collection.isCollected) {
-      await uncollectPhoto({ photoId: photo.id, collectionId: collection.id });
-    } else {
-      await collectPhoto({ photoId: photo.id, collectionId: collection.id });
     }
   };
 
@@ -99,7 +77,6 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
           </button>
           <SaveToCollectionsModal
             photo={photo}
-            collectSinglePhoto={collectSinglePhoto}
             showCollectModal={showCollectModal}
             setShowCollectModal={setShowCollectModal}
           />

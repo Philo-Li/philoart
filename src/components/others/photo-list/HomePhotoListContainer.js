@@ -7,8 +7,6 @@ import useLikePhoto from '../../../hooks/useLikePhoto';
 import useAuthorizedUser from '../../../hooks/useAuthorizedUser';
 import PhotoCard from '../photo-card/PhotoCard';
 import useUnlikePhoto from '../../../hooks/useUnlikePhoto';
-import useUncollectPhoto from '../../../hooks/useUncollectPhoto';
-import useCollectPhoto from '../../../hooks/useCollectPhoto';
 
 const override = css`
   display: flex;
@@ -29,8 +27,6 @@ const HomePhotoListContainer = ({
   const { authorizedUser } = useAuthorizedUser();
   const [likePhoto] = useLikePhoto();
   const [unlikePhoto] = useUnlikePhoto();
-  const [collectPhoto] = useCollectPhoto();
-  const [uncollectPhoto] = useUncollectPhoto();
   const history = useHistory();
 
   const likeSinglePhoto = async (photo) => {
@@ -50,31 +46,6 @@ const HomePhotoListContainer = ({
     }
   };
 
-  const collectSinglePhoto = async (photo, collection) => {
-    const changeCover = (collection.isCollected === false);
-    const updatedCollection = {
-      ...collection,
-      isCollected: !collection.isCollected,
-      cover: changeCover ? photo.small : collection.cover,
-    };
-    const updatedAllPhotos = allPhotos.map((obj) => {
-      const updatedCollections = obj.allCollectionsToShow
-        .map((obj2) => (obj2.id === collection.id ? updatedCollection : obj2));
-
-      const updatedPhoto = { ...obj, allCollectionsToShow: updatedCollections };
-      return updatedPhoto;
-    });
-    setAllPhotos(updatedAllPhotos);
-
-    if (collection.isCollected) {
-      // console.log('uncollect photo', photo.id, collection.id);
-      await uncollectPhoto({ photoId: photo.id, collectionId: collection.id });
-    } else {
-      await collectPhoto({ photoId: photo.id, collectionId: collection.id });
-      // console.log('collect photo', photo.id, collection.id);
-    }
-  };
-
   return (
     <div className="p-3 daily-cover-container">
       <div className="">
@@ -89,7 +60,6 @@ const HomePhotoListContainer = ({
               photo={photo}
               authorizedUser={authorizedUser}
               likeSinglePhoto={likeSinglePhoto}
-              collectSinglePhoto={collectSinglePhoto}
             />
           ))}
         </Masonry>

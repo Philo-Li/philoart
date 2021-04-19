@@ -234,3 +234,49 @@ export const GET_DISCOVER_COLLECTIONS = gql`
   }
   ${COLLECTION_DETAILS}
 `;
+
+export const GET_USER_COLLECTIONS_PLUS = gql`
+  query getCollections(
+    $orderBy: AllCollectionsOrderBy
+    $orderDirection: OrderDirection
+    $searchKeyword: String
+    $first: Int
+    $after: String
+    $userId: String
+    $username: String
+  ) {
+    collections(
+      orderBy: $orderBy
+      orderDirection: $orderDirection
+      searchKeyword: $searchKeyword
+      first: $first
+      after: $after
+      userId: $userId
+      username: $username
+    ) {
+      edges {
+        node {
+          ...collectionDetails
+          photos {
+            edges {
+              node {
+                id
+                photo {
+                  id
+                }
+              }
+            }
+          }
+        }
+        cursor
+      }
+      pageInfo {
+        endCursor
+        startCursor
+        totalCount
+        hasNextPage
+      }
+    }
+  }
+  ${COLLECTION_DETAILS}
+`;

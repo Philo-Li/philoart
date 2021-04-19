@@ -9,10 +9,10 @@ const breakpointColumnsObj = {
   800: 2,
   500: 1,
 };
-const cover = galleryIcon;
+const INIT_COVER = galleryIcon;
 
-const UserCollectionsList = ({ photo, collectSinglePhoto }) => {
-  if (!photo.allCollectionsToShow) return (<p>No results</p>);
+const UserCollectionsList = ({ allCollections, collectSinglePhoto }) => {
+  if (!allCollections) return (<p>Loading</p>);
 
   return (
     <div className="p-3 scrollmenu">
@@ -23,17 +23,17 @@ const UserCollectionsList = ({ photo, collectSinglePhoto }) => {
         className="my-masonry-grid"
         columnClassName="my-masonry-grid_column"
       >
-        {photo.allCollectionsToShow.map((collection) => (
+        {allCollections.map((collection) => (
           <Card key={collection.id}>
             <div
               className="view zoom overlay"
-              onClick={() => { collectSinglePhoto(photo, collection); }}
-              onKeyPress={() => collectSinglePhoto(photo, collection)}
+              onClick={() => { collectSinglePhoto(collection); }}
+              onKeyPress={() => collectSinglePhoto(collection)}
               role="button"
               tabIndex="0"
             >
               <img
-                src={collection.cover != null ? collection.cover : cover}
+                src={collection.coverToShow || INIT_COVER}
                 className="max-height"
                 alt="smaple"
               />

@@ -7,8 +7,6 @@ import SearchPhotoCard from './SearchPhotoCard';
 import useCreateAndLikePhoto from '../../hooks/useCreateAndLikePhoto';
 import useAuthorizedUser from '../../hooks/useAuthorizedUser';
 import useUnlikeAndDeletePhoto from '../../hooks/useUnlikeAndDeletePhoto';
-// import useUncollectPhoto from '../../hooks/useUncollectPhoto';
-// import useCreatePhotoAndCollectPhoto from '../../hooks/useCollectPhoto';
 
 const override = css`
   display: flex;
@@ -29,8 +27,6 @@ const SearchPagePhotoListContainer = ({
   const { authorizedUser } = useAuthorizedUser();
   const [createAndLikePhoto] = useCreateAndLikePhoto();
   const [unlikeAndDeletePhoto] = useUnlikeAndDeletePhoto();
-  // const [createPhotoAndCollectPhoto] = useCreatePhotoAndCollectPhoto();
-  // const [uncollectPhoto] = useUncollectPhoto();
   const history = useHistory();
 
   const likeSinglePhoto = async (photo) => {
@@ -42,7 +38,6 @@ const SearchPagePhotoListContainer = ({
           ? { ...obj, isLiked: !obj.isLiked } : obj));
       setAllPhotos(temp);
       if (photo.isLiked) {
-        // console.log('unlike photo', photo.id);
         await unlikeAndDeletePhoto({ url: photo.downloadPage });
       } else {
         const variables = {
@@ -60,36 +55,10 @@ const SearchPagePhotoListContainer = ({
           tags: photo.tags,
         };
 
-        // console.log('like photo', photo, photo.id);
         await createAndLikePhoto(variables);
       }
     }
   };
-
-  // const collectSinglePhoto = async (photo, collection) => {
-  //   const updatedCollection = { ...collection, isCollected: !collection.isCollected };
-
-  //   const updatedCollections = photo.allCollectionsToShow
-  //     .map((obj) => (obj.id === collection.id ? updatedCollection : obj));
-
-  //   const updatedPhoto = { ...photo, allCollectionsToShow: updatedCollections };
-  //   const updatedAllPhotos = allPhotos.map((obj) => (obj.id === photo.id ? updatedPhoto : obj));
-  //   setAllPhotos(updatedAllPhotos);
-
-  //   if (collection.isCollected) {
-  //     const photoCollections = photo.collections && photo.collections.edges
-  //       ? photo.collections.edges.map((edge) => edge.node)
-  //       : [];
-
-  //     const collectedPhoto = photoCollections
-  //       .find((collected) => collected.photo.id === photo.id);
-  //     console.log('uncollect photo', photo.id, collection.id, collectedPhoto);
-  //     // await uncollectPhoto({ id: collectedPhoto.id });
-  //   } else {
-  //     // await createPhotoAndCollectPhoto({ photoId: photo.id, collectionId: collection.id });
-  //     console.log('collect photo', photo.id, collection.id);
-  //   }
-  // };
 
   return (
     <div className="p-3 daily-cover-container">
@@ -105,7 +74,6 @@ const SearchPagePhotoListContainer = ({
               photo={photo}
               authorizedUser={authorizedUser}
               likeSinglePhoto={likeSinglePhoto}
-              // collectSinglePhoto={collectSinglePhoto}
             />
           ))}
         </Masonry>

@@ -26,19 +26,6 @@ export const PHOTO_DETAILS = gql`
         }
       }
     }
-    collections{
-      edges{
-        node{
-          id
-          collection{
-            id
-          }
-          photo{
-            id
-          }
-        }
-      }
-    }
     likeCount
     collectionCount
     downloadCount
@@ -64,7 +51,6 @@ export const USER_DETAILS = gql`
     email
     profileImage
   }
-  ${PHOTO_DETAILS}
 `;
 
 export default PHOTO_DETAILS;

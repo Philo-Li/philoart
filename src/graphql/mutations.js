@@ -135,9 +135,6 @@ export const CREATE_COLLECTION = gql`
       id
       title
       description
-      public
-      createdAt
-      cover
     }
   }
 `;
@@ -156,6 +153,12 @@ export const CREATE_COLLECTION_AND_COLLECT_PHOTO = gql`
       photoId: $photoId
     } ) {
       id
+      collection {
+        id
+        title
+        description
+        cover
+      }
     }
   }
 `;

@@ -5,6 +5,7 @@ import BeatLoader from 'react-spinners/BeatLoader';
 import PacmanLoader from 'react-spinners/PacmanLoader';
 import { useHistory, useParams } from 'react-router-dom';
 import Masonry from 'react-masonry-css';
+import galleryIcon from '../../img/galleryIcon.jpg';
 import '../../index.css';
 import useCollections from '../../hooks/useCollections';
 
@@ -22,7 +23,8 @@ const breakpointColumnsObj = {
   500: 1,
 };
 
-const INIT_COVER = 'https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-gallery-vector-icon-png-image_470660.jpg';
+// const INIT_COVER = 'https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-gallery-vector-icon-png-image_470660.jpg';
+const INIT_COVER = galleryIcon;
 
 const UserCollections = () => {
   const [loading, setLoading] = useState(false);
