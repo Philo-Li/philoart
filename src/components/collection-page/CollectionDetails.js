@@ -1,11 +1,12 @@
+/* eslint-disable max-len */
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { css } from '@emotion/react';
 import PacmanLoader from 'react-spinners/PacmanLoader';
-import CollectionDropdownButton from '../others/CollectionDropdownButton';
+import CollectionDropdownButton from '../others/button/edit-collection-btn/CollectionDropdownButton';
 import HomePhotoList from '../others/photo-list/HomePhotoList';
 import useCollectionPhotos from '../../hooks/useCollectionPhotos';
-import EditCollectionModal from './EditCollection/EditCollectionModal';
+import EditCollectionModal from './edit-collection/EditCollectionModal';
 import DeleteCollectionModal from './DeleteCollectionModal';
 
 const override = css`
