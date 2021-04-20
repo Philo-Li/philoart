@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import LazyLoad from 'react-lazyload';
 import { Image, Card } from 'react-bootstrap';
 import useLikePhoto from '../../hooks/useLikePhoto';
 import useUnlikePhoto from '../../hooks/useUnlikePhoto';
@@ -15,6 +16,25 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
   const history = useHistory();
 
   if (!photoToShow) return null;
+
+  const bgColor = photoToShow.color || '#84B0B3';
+
+  const mystyle = {
+    backgroundColor: bgColor,
+  };
+
+  const Placeholder = () => (
+    <div style={mystyle}>
+      <a href={`/photo/${photoToShow.id}`}>
+        <img
+          src={photoToShow.tiny}
+          className="lazyload-img"
+          width="100%"
+          alt="gird item"
+        />
+      </a>
+    </div>
+  );
 
   const likeSinglePhoto = async () => {
     if (!authorizedUser) {
@@ -50,9 +70,11 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
   return (
     <div className="p-3">
       <div className="photodetails-photo-item">
-        <Card>
-          <Image src={photoToShow.small} width="100%" />
-        </Card>
+        <LazyLoad height={300} offset={[-100, 0]} debounce={500} once placeholder={<Placeholder />}>
+          <Card>
+            <Image src={photoToShow.small} width="100%" />
+          </Card>
+        </LazyLoad>
       </div>
       <div className="container-row-photodetail-btn">
         <div className="">
