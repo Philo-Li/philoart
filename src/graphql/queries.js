@@ -79,6 +79,7 @@ export const GET_USER_LIKES = gql`
     $after: String
     $userId: String
     $username: String
+    $checkUserLike: ID
   ) {
     likes(
       orderBy: $orderBy
@@ -96,6 +97,7 @@ export const GET_USER_LIKES = gql`
           }
           photo{
             ...photoDetails
+            isLiked(checkUserLike: $checkUserLike)
           }
         }
         cursor

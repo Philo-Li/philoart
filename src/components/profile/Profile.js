@@ -7,8 +7,6 @@ const Profile = ({ authorizedUser }) => {
   let { username } = useParams();
   username = username.substr(1, username.length - 1);
 
-  // if (!authorizedUser) return null;
-
   const profileImage = authorizedUser && authorizedUser.profileImage
     ? authorizedUser.profileImage
     : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
