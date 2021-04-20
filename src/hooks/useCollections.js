@@ -42,6 +42,7 @@ const useCollections = (variables) => {
   return {
     collections: data ? data.collections : undefined,
     fetchMore: handleFetchMore,
+    hasNextPage: data && data.collections.pageInfo.hasNextPage,
     refetch,
     loading,
     ...result,

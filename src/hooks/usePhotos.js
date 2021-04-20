@@ -42,6 +42,7 @@ const usePhotos = (variables) => {
   return {
     photos: data ? data.photos : undefined,
     fetchMore: handleFetchMore,
+    hasNextPage: data && data.photos.pageInfo.hasNextPage,
     refetch,
     loading,
     ...result,

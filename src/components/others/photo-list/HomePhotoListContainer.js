@@ -1,19 +1,11 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Masonry from 'react-masonry-css';
-import { css } from '@emotion/react';
-import BeatLoader from 'react-spinners/BeatLoader';
+import LoadMore from '../button/LoadMore';
 import useLikePhoto from '../../../hooks/useLikePhoto';
 import useAuthorizedUser from '../../../hooks/useAuthorizedUser';
 import PhotoCard from '../photo-card/PhotoCard';
 import useUnlikePhoto from '../../../hooks/useUnlikePhoto';
-
-const override = css`
-  display: flex;
-  justify-content: center;
-  align-item: center;
-  margin: 3rem;
-`;
 
 const breakpointColumnsObj = {
   default: 3,
@@ -28,7 +20,7 @@ const breakpointColumnsObj2 = {
 };
 
 const HomePhotoListContainer = ({
-  allPhotos, setAllPhotos, clickFetchMore, loading, column,
+  allPhotos, setAllPhotos, clickFetchMore, loading, column, hasNextPage,
 }) => {
   const { authorizedUser } = useAuthorizedUser();
   const [likePhoto] = useLikePhoto();
@@ -51,7 +43,7 @@ const HomePhotoListContainer = ({
   };
 
   return (
-    <div className="p-3 daily-cover-container">
+    <div className="p-3 photo-list-container">
       <div className="">
         <Masonry
           breakpointCols={column === 'collection' ? breakpointColumnsObj2 : breakpointColumnsObj}
@@ -68,13 +60,11 @@ const HomePhotoListContainer = ({
           ))}
         </Masonry>
       </div>
-      { loading && (<BeatLoader color="#9B9B9B" loading css={override} size={50} />) }
-      <div className="row-item-2">
-        <button className="more-photos-btn" type="button" onClick={clickFetchMore}>
-          <i className="bi bi-three-dots" />
-          More photos
-        </button>
-      </div>
+      <LoadMore
+        hasNextPage={hasNextPage}
+        loading={loading}
+        clickFetchMore={clickFetchMore}
+      />
     </div>
   );
 };

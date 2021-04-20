@@ -60,6 +60,7 @@ const SaveToCollectionsModal = ({
   const [uncollectPhoto] = useUncollectPhoto();
   const [errorInfo, setErrorInfo] = useState('');
   const [loading, setLoading] = useState(false);
+  const [loadingList, setLoadingList] = useState(true);
 
   const [allCollections, setAllCollections] = useState();
   const { username } = localStorage;
@@ -83,6 +84,7 @@ const SaveToCollectionsModal = ({
         });
 
       setAllCollections(updatedAllCollections);
+      setLoadingList(false);
       setLoading(false);
     }
     if (allCollections && newCollection) {
@@ -161,6 +163,7 @@ const SaveToCollectionsModal = ({
             </div>
             <div className="col-item-0">
               <UserCollectionsList
+                loadingList={loadingList}
                 allCollections={allCollections}
                 collectSinglePhoto={collectSinglePhoto}
               />

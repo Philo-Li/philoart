@@ -21,11 +21,19 @@ const breakpointColumnsObj = {
 };
 const INIT_COVER = galleryIcon;
 
-const UserCollectionsList = ({ allCollections, collectSinglePhoto }) => {
-  if (!allCollections) {
+const UserCollectionsList = ({ loadingList, allCollections, collectSinglePhoto }) => {
+  if (loadingList) {
     return (
       <div className="col-item-3">
         <BeatLoader color="#9B9B9B" loading css={override} size={50} />
+      </div>
+    );
+  }
+
+  if (!allCollections || allCollections.length === 0) {
+    return (
+      <div className="col-item-3">
+        <h3>No collection</h3>
       </div>
     );
   }

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { css } from '@emotion/react';
-import BeatLoader from 'react-spinners/BeatLoader';
 import PacmanLoader from 'react-spinners/PacmanLoader';
 import { useParams } from 'react-router-dom';
 import Masonry from 'react-masonry-css';
 import '../../index.css';
 import useCollections from '../../hooks/useCollections';
 import CollectionCard from './user-collections/CollectionCard';
+import LoadMore from '../others/button/LoadMore';
 
 const override = css`
   display: flex;
@@ -28,7 +28,7 @@ const UserCollections = ({ authorizedUser }) => {
 
   let { username } = useParams();
   username = username.substr(1, username.length - 1);
-  const { collections, fetchMore } = useCollections({
+  const { collections, fetchMore, hasNextPage } = useCollections({
     username,
     first: 30,
   });
@@ -58,7 +58,7 @@ const UserCollections = ({ authorizedUser }) => {
   }
 
   return (
-    <div className="p-3">
+    <div className="p-3 photo-list-container">
       <Masonry
         breakpointCols={breakpointColumnsObj}
         className="my-masonry-grid"
@@ -74,13 +74,12 @@ const UserCollections = ({ authorizedUser }) => {
           />
         ))}
       </Masonry>
-      { loading && (<BeatLoader color="#9B9B9B" loading css={override} size={50} />) }
-      <div className="row-item-2">
-        <button className="more-photos-btn" type="button" onClick={clickFetchMore}>
-          <i className="bi bi-three-dots" />
-          More collections
-        </button>
-      </div>
+      <LoadMore
+        title="More collections"
+        hasNextPage={hasNextPage}
+        loading={loading}
+        clickFetchMore={clickFetchMore}
+      />
     </div>
   );
 };

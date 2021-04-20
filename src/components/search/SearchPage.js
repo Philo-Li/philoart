@@ -15,10 +15,10 @@ const SearchPage = ({ authorizedUser }) => {
   const variables = {
     searchKeyword: parsed.q,
     checkUserLike: !authorizedUser ? config.visitorID : authorizedUser.id,
-    first: 30,
+    first: 20,
   };
 
-  const { photos, fetchMore } = usePhotos(variables);
+  const { photos, fetchMore, hasNextPage } = usePhotos(variables);
 
   useEffect(() => {
     if (photos) {
@@ -52,6 +52,7 @@ const SearchPage = ({ authorizedUser }) => {
         setAllPhotos={setAllPhotos}
         clickFetchMore={clickFetchMore}
         loading={loading}
+        hasNextPage={hasNextPage}
       />
     </div>
   );

@@ -42,6 +42,7 @@ const useUserLikedPhotos = (variables) => {
   return {
     likes: data ? data.likes : undefined,
     fetchMore: handleFetchMore,
+    hasNextPage: data && data.likes.pageInfo.hasNextPage,
     refetch,
     loading,
     ...result,

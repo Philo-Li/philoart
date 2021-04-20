@@ -31,7 +31,7 @@ const CollectionDetails = ({ authorizedUser }) => {
     first: 30,
   };
 
-  const { collection, fetchMore } = useCollection(variables);
+  const { collection, fetchMore, hasNextPage } = useCollection(variables);
 
   useEffect(() => {
     if (collection) {
@@ -112,6 +112,7 @@ const CollectionDetails = ({ authorizedUser }) => {
         clickFetchMore={clickFetchMore}
         loading={loading}
         column="collection"
+        hasNextPage={hasNextPage}
       />
     </div>
   );

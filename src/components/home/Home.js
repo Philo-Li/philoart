@@ -15,10 +15,10 @@ const Home = ({
   const variables = {
     username: config.pickyAdmin,
     checkUserLike: !authorizedUser ? config.visitorID : authorizedUser.id,
-    first: 30,
+    first: 20,
   };
 
-  const { photos, fetchMore } = usePhotos(variables);
+  const { photos, fetchMore, hasNextPage } = usePhotos(variables);
 
   useEffect(() => {
     if (photos) {
@@ -53,6 +53,7 @@ const Home = ({
         setAllPhotos={setAllPhotos}
         clickFetchMore={clickFetchMore}
         loading={loading}
+        hasNextPage={hasNextPage}
       />
     </div>
   );

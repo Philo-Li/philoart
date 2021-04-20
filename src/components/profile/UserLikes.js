@@ -16,7 +16,7 @@ const UserLikes = ({ authorizedUser }) => {
     first: 15,
   };
 
-  const { likes, fetchMore } = useUserLikes(variables);
+  const { likes, fetchMore, hasNextPage } = useUserLikes(variables);
 
   useEffect(() => {
     if (likes) {
@@ -41,6 +41,7 @@ const UserLikes = ({ authorizedUser }) => {
         setAllPhotos={setAllPhotos}
         clickFetchMore={clickFetchMore}
         loading={loading}
+        hasNextPage={hasNextPage}
       />
     </div>
   );

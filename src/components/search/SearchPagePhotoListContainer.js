@@ -1,19 +1,11 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { css } from '@emotion/react';
-import BeatLoader from 'react-spinners/BeatLoader';
 import Masonry from 'react-masonry-css';
+import LoadMore from '../others/button/LoadMore';
 import SearchPhotoCard from './SearchPhotoCard';
 import useCreateAndLikePhoto from '../../hooks/useCreateAndLikePhoto';
 import useAuthorizedUser from '../../hooks/useAuthorizedUser';
 import useUnlikeAndDeletePhoto from '../../hooks/useUnlikeAndDeletePhoto';
-
-const override = css`
-  display: flex;
-  justify-content: center;
-  align-item: center;
-  margin: 3rem;
-`;
 
 const breakpointColumnsObj = {
   default: 3,
@@ -61,7 +53,7 @@ const SearchPagePhotoListContainer = ({
   };
 
   return (
-    <div className="p-3 daily-cover-container">
+    <div className="p-3 photo-list-container">
       <div className="">
         <Masonry
           breakpointCols={breakpointColumnsObj}
@@ -78,13 +70,11 @@ const SearchPagePhotoListContainer = ({
           ))}
         </Masonry>
       </div>
-      { loading && (<BeatLoader color="#9B9B9B" loading css={override} size={50} />) }
-      <div className="row-item-2">
-        <button className="more-photos-btn" type="button" onClick={clickFetchMore}>
-          <i className="bi bi-three-dots" />
-          More photos
-        </button>
-      </div>
+      <LoadMore
+        hasNextPage
+        loading={loading}
+        clickFetchMore={clickFetchMore}
+      />
     </div>
   );
 };
