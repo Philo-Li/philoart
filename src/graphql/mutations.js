@@ -168,22 +168,9 @@ export const EDIT_PHOTO_LABELS = gql`
   mutation editPhoto( $photoId: ID! ){
     editPhoto(edit: { photoId: $photoId }) {
       id
-      width
-      height
-      small
-      large
       labels
       tags
       color
-      creditWeb
-      creditId
-      photographer
-      downloadPage
-      description
-      likeCount
-      collectionCount
-      downloadCount
-      createdAt
     }
   }
 `;

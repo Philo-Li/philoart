@@ -1,5 +1,5 @@
 import { gql } from '@apollo/react-hooks';
-import { PHOTO_DETAILS, COLLECTION_DETAILS } from './fragment';
+import { PHOTO_DETAILS, COLLECTION_DETAILS, USER_DETAILS } from './fragment';
 
 export const GET_PHOTOS = gql`
   query getPhotos(
@@ -41,6 +41,9 @@ export const GET_PHOTO = gql`
   query getPhoto($id: ID!, $checkUserLike: ID) {
     photo(id: $id) {
       ...photoDetails
+      likeCount
+      collectionCount
+      downloadCount
       isLiked(checkUserLike: $checkUserLike)
     }
   }
@@ -50,25 +53,10 @@ export const GET_PHOTO = gql`
 export const GET_AUTHORIZED_USER = gql`
   query getAuthorizedUser {
     authorizedUser {
-      id
-      username
-      firstName
-      lastName
-      email
-      profileImage
-      collections{
-        edges{
-          node{
-            id
-            title
-            photoCount
-            cover
-          }
-        }
-      }
-      collectionCount
+      ...userDetails
     }
   }
+  ${USER_DETAILS}
 `;
 
 export const GET_USER_LIKES = gql`

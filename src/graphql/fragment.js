@@ -16,19 +16,6 @@ export const PHOTO_DETAILS = gql`
     description
     labels
     tags
-    likes{
-      edges{
-        node{
-          id
-          user{
-            id
-          }
-        }
-      }
-    }
-    likeCount
-    collectionCount
-    downloadCount
   }
 `;
 
