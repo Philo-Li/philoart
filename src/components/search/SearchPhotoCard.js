@@ -44,10 +44,8 @@ const SearchPhotoCard = ({
         description: photo.description,
         tags: photo.tags,
       };
-      // console.log('photonow', photo, 'variables', variables);
 
       await createPhoto(variables);
-      // eslint-disable-next-line no-alert
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log(e);

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import usePhotos from '../../hooks/usePhotos';
 import HomePhotoList from '../others/photo-list/HomePhotoList';
+import config from '../../config';
 
 const RelatedPhotos = ({
   authorizedUser, photoToShow,
@@ -14,7 +15,7 @@ const RelatedPhotos = ({
 
   const variables = {
     searchKeyword: tags && tags[0],
-    checkUserLike: !authorizedUser ? 'lq3d6VSwSwDlv3mqJr7RE' : authorizedUser.id,
+    checkUserLike: !authorizedUser ? config.visitorID : authorizedUser.id,
     first: 10,
   };
 

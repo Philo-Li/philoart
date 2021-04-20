@@ -4,13 +4,14 @@ import usePhoto from '../../hooks/usePhoto';
 import PhotoRelatedTagBar from '../others/PhotoRelatedTagBar';
 import PhotoDetailsContainer from './PhotoDetailsContainer';
 import RelatedPhotos from './RelatedPhotos';
+import config from '../../config';
 
 const PhotoDetails = ({ authorizedUser }) => {
   const [photoToShow, setPhotoToShow] = useState();
   const { id } = useParams();
   const { photo } = usePhoto({
     id,
-    checkUserLike: !authorizedUser ? 'lq3d6VSwSwDlv3mqJr7RE' : authorizedUser.id,
+    checkUserLike: !authorizedUser ? config.visitorID : authorizedUser.id,
   });
 
   useEffect(() => {

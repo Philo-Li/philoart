@@ -4,6 +4,7 @@ import queryString from 'query-string';
 import usePhotos from '../../hooks/usePhotos';
 import HomePhotoList from '../others/photo-list/HomePhotoList';
 import RelatedTagBar from '../others/RelatedTagBar';
+import config from '../../config';
 
 const SearchPage = ({ authorizedUser }) => {
   const [allPhotos, setAllPhotos] = useState();
@@ -13,6 +14,7 @@ const SearchPage = ({ authorizedUser }) => {
 
   const variables = {
     searchKeyword: parsed.q,
+    checkUserLike: !authorizedUser ? config.visitorID : authorizedUser.id,
     first: 30,
   };
 
@@ -23,46 +25,8 @@ const SearchPage = ({ authorizedUser }) => {
       const temp = photos && photos.edges
         ? photos.edges.map((edge) => edge.node)
         : [];
-      if (!authorizedUser) {
-        const updatedAllPhotos = temp.map((photo) => ({ ...photo, isLiked: false }));
-        setAllPhotos(updatedAllPhotos);
-      } else {
-        const updatedAllPhotos = temp.map((photo) => {
-          const photoLikes = photo.likes && photo.likes.edges
-            ? photo.likes.edges.map((edge) => edge.node)
-            : [];
 
-          const findUserLike = photoLikes
-            && photoLikes.find((like) => like.user.id === authorizedUser.id);
-
-          const photoInCollections = photo.collections && photo.collections.edges
-            ? photo.collections.edges.map((edge) => edge.node.collection)
-            : [];
-
-          const userCollections = authorizedUser.collectionCount !== 0
-            ? authorizedUser.collections.edges.map((edge) => edge.node)
-            : [];
-
-          const collectionsToShow = userCollections && userCollections.map((collection) => {
-            const findCollected = photoInCollections.find((obj) => obj.id === collection.id);
-            let newCover;
-            if (collection.photoCount !== 0) newCover = collection.photos.edges[0].node.photo.small;
-            else newCover = null;
-            return findCollected != null
-              ? { ...collection, isCollected: true, cover: newCover }
-              : { ...collection, isCollected: false, cover: newCover };
-          });
-
-          const updatedPhoto = {
-            ...photo,
-            isLiked: findUserLike != null,
-            allCollectionsToShow: collectionsToShow,
-          };
-
-          return updatedPhoto;
-        });
-        setAllPhotos(updatedAllPhotos);
-      }
+      setAllPhotos(temp);
       setLoading(false);
     }
   }, [photos]);
@@ -71,10 +35,6 @@ const SearchPage = ({ authorizedUser }) => {
     fetchMore();
     setLoading(true);
   };
-
-  // console.log('picky: photos', photos);
-  // console.log('picky: updatedAllPhotos', allPhotos);
-  // console.log('picky: authorizedUser', authorizedUser);
 
   return (
     <div>

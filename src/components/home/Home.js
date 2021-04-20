@@ -14,7 +14,7 @@ const Home = ({
 
   const variables = {
     username: config.pickyAdmin,
-    checkUserLike: !authorizedUser ? 'lq3d6VSwSwDlv3mqJr7RE' : authorizedUser.id,
+    checkUserLike: !authorizedUser ? config.visitorID : authorizedUser.id,
     first: 30,
   };
 

@@ -14,7 +14,6 @@ const override = css`
 const SearchPagePhotoList = ({
   allPhotos, setAllPhotos, clickFetchMore, loading,
 }) => {
-  // if (allPhotos === undefined) return null;
   if (allPhotos === undefined) {
     return (
       <div className="col-item-3">

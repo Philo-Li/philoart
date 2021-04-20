@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useUserLikes from '../../hooks/useUserLikes';
 import HomePhotoList from '../others/photo-list/HomePhotoList';
+import config from '../../config';
 
 const UserLikes = ({ authorizedUser }) => {
   const [allPhotos, setAllPhotos] = useState();
@@ -11,7 +12,7 @@ const UserLikes = ({ authorizedUser }) => {
 
   const variables = {
     username,
-    checkUserLike: !authorizedUser ? 'lq3d6VSwSwDlv3mqJr7RE' : authorizedUser.id,
+    checkUserLike: !authorizedUser ? config.visitorID : authorizedUser.id,
     first: 15,
   };
 
