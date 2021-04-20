@@ -12,32 +12,21 @@ const RelatedPhotos = ({
 
   const tags = tags1 && tags1.split(',');
 
-  const { photos, fetchMore } = usePhotos({ searchKeyword: tags && tags[0], first: 10 });
+  const variables = {
+    searchKeyword: tags && tags[0],
+    checkUserLike: !authorizedUser ? 'lq3d6VSwSwDlv3mqJr7RE' : authorizedUser.id,
+    first: 10,
+  };
+
+  const { photos, fetchMore } = usePhotos(variables);
 
   useEffect(() => {
     if (photos) {
       const temp = photos && photos.edges
         ? photos.edges.map((edge) => edge.node)
         : [];
-      if (!authorizedUser) {
-        const updatedAllPhotos = temp.map((photo) => ({ ...photo, isLiked: false }));
-        setAllPhotos(updatedAllPhotos);
-      } else {
-        const updatedAllPhotos = temp.map((photo) => {
-          const photoLikes = photo.likes && photo.likes.edges
-            ? photo.likes.edges.map((edge) => edge.node)
-            : [];
 
-          const findUserLike = photoLikes && photoLikes
-            .find((like) => like.user.id === authorizedUser.id);
-          const updatedPhoto = {
-            ...photo,
-            isLiked: findUserLike != null,
-          };
-          return updatedPhoto;
-        });
-        setAllPhotos(updatedAllPhotos);
-      }
+      setAllPhotos(temp);
       setLoading(false);
     }
   }, [photos, authorizedUser]);

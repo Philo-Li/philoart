@@ -38,9 +38,10 @@ export const GET_PHOTOS = gql`
 `;
 
 export const GET_PHOTO = gql`
-  query getPhoto($id: ID!) {
+  query getPhoto($id: ID!, $checkUserLike: ID) {
     photo(id: $id) {
       ...photoDetails
+      isLiked(checkUserLike: $checkUserLike)
     }
   }
   ${PHOTO_DETAILS}
@@ -144,14 +145,6 @@ export const GET_COLLECTIONS = gql`
     }
   }
   ${COLLECTION_DETAILS}
-`;
-
-export const IS_LIKED_PHOTO = gql`
-  query isLikedPhoto {
-    isLikedPhoto {
-      id
-    }
-  }
 `;
 
 export const GET_COLLECTION = gql`
