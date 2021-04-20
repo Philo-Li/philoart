@@ -27,8 +27,8 @@ const CollectionDetails = ({ authorizedUser }) => {
 
   const variables = {
     id,
-    userId: !authorizedUser ? 'lq3d6VSwSwDlv3mqJr7RE' : authorizedUser.id,
-    first: 6,
+    checkUserLike: !authorizedUser ? 'lq3d6VSwSwDlv3mqJr7RE' : authorizedUser.id,
+    first: 30,
   };
 
   const { collection, fetchMore } = useCollection(variables);

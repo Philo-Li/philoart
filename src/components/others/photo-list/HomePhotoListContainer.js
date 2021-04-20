@@ -43,10 +43,8 @@ const HomePhotoListContainer = ({
         .map((obj) => (obj.id === photo.id ? { ...obj, isLiked: !obj.isLiked } : obj));
       setAllPhotos(temp);
       if (photo.isLiked) {
-        // console.log('unlike photo', photo.id);
         await unlikePhoto({ photoId: photo.id });
       } else {
-        // console.log('like photo', photo.id);
         await likePhoto({ photoId: photo.id });
       }
     }

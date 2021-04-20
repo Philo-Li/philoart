@@ -4,6 +4,7 @@ import usePhotos from '../../hooks/usePhotos';
 import HomePhotoList from '../others/photo-list/HomePhotoList';
 import SearchBar from '../others/search-bar/SearchBar';
 import TagBar from '../others/TagBar';
+import config from '../../config';
 
 const Home = ({
   authorizedUser,
@@ -11,33 +12,21 @@ const Home = ({
   const [allPhotos, setAllPhotos] = useState();
   const [loading, setLoading] = useState(false);
 
-  const { photos, fetchMore } = usePhotos({ first: 30, username: 'picky' });
+  const variables = {
+    username: config.pickyAdmin,
+    checkUserLike: !authorizedUser ? 'lq3d6VSwSwDlv3mqJr7RE' : authorizedUser.id,
+    first: 30,
+  };
+
+  const { photos, fetchMore } = usePhotos(variables);
 
   useEffect(() => {
     if (photos) {
       const temp = photos && photos.edges
         ? photos.edges.map((edge) => edge.node)
         : [];
-      if (!authorizedUser) {
-        const updatedAllPhotos = temp.map((photo) => ({ ...photo, isLiked: false }));
-        setAllPhotos(updatedAllPhotos);
-      } else {
-        const updatedAllPhotos = temp.map((photo) => {
-          const photoLikes = photo.likes && photo.likes.edges
-            ? photo.likes.edges.map((edge) => edge.node)
-            : [];
 
-          const findUserLike = photoLikes && photoLikes
-            .find((like) => like.user.id === authorizedUser.id);
-
-          const updatedPhoto = {
-            ...photo,
-            isLiked: findUserLike != null,
-          };
-          return updatedPhoto;
-        });
-        setAllPhotos(updatedAllPhotos);
-      }
+      setAllPhotos(temp);
       setLoading(false);
     }
   }, [photos, authorizedUser]);

@@ -9,6 +9,7 @@ export const GET_PHOTOS = gql`
     $username: String
     $first: Int
     $after: String
+    $checkUserLike: ID
   ) {
     photos(
       orderBy: $orderBy
@@ -21,6 +22,7 @@ export const GET_PHOTOS = gql`
       edges {
         node {
           ...photoDetails
+          isLiked(checkUserLike: $checkUserLike)
         }
         cursor
       }
@@ -155,7 +157,7 @@ export const IS_LIKED_PHOTO = gql`
 export const GET_COLLECTION = gql`
   query getCollection(
     $id: ID!
-    $userId: ID
+    $checkUserLike: ID
     $first: Int
     $after: String
   ) {
@@ -172,7 +174,7 @@ export const GET_COLLECTION = gql`
           node {
             photo{
               ...photoDetails
-              isLiked(userId: $userId)
+              isLiked(checkUserLike: $checkUserLike)
             }
           }
           cursor

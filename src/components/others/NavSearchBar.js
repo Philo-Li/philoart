@@ -11,7 +11,6 @@ const NavSearchBar = () => {
     event.preventDefault();
     try {
       history.push(`/search?q=${searchKeyword.value}`);
-      // eslint-disable-next-line no-alert
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log(e);
