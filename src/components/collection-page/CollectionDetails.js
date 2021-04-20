@@ -5,7 +5,7 @@ import { css } from '@emotion/react';
 import PacmanLoader from 'react-spinners/PacmanLoader';
 import CollectionDropdownButton from '../others/button/edit-collection-btn/CollectionDropdownButton';
 import HomePhotoList from '../others/photo-list/HomePhotoList';
-import useCollectionPhotos from '../../hooks/useCollectionPhotos';
+import useCollection from '../../hooks/useCollection';
 import EditCollectionModal from './edit-collection/EditCollectionModal';
 import DeleteCollectionModal from './DeleteCollectionModal';
 
@@ -27,17 +27,16 @@ const CollectionDetails = ({ authorizedUser }) => {
 
   const variables = {
     id,
-    first: 20,
+    first: 6,
   };
-  const { photosInCollection, fetchMore } = useCollectionPhotos(variables);
+  const { collection, fetchMore } = useCollection(variables);
 
   useEffect(() => {
-    if (photosInCollection) {
-      const temp = photosInCollection && photosInCollection.edges
-        ? photosInCollection.edges.map((edge) => edge.node.photo)
+    if (collection) {
+      const temp = collection.photoCount > 0
+        ? collection.photos.edges.map((edge) => edge.node.photo)
         : [];
-
-      setCollectionNow(photosInCollection.edges[0].node.collection);
+      setCollectionNow(collection);
 
       if (!authorizedUser) {
         const updatedAllPhotos = temp.map((photo) => ({ ...photo, isLiked: false }));
@@ -62,7 +61,7 @@ const CollectionDetails = ({ authorizedUser }) => {
       }
       setLoading(false);
     }
-  }, [photosInCollection]);
+  }, [collection]);
 
   const clickFetchMore = () => {
     if (collectionNow.photoCount > allPhotos.length) {
@@ -106,7 +105,7 @@ const CollectionDetails = ({ authorizedUser }) => {
       </div>
       <div className="container-collection-title">
         <div className="collection-dropbtn">
-          {collectionNow.user.username === authorizedUser.username && (
+          {loading && collectionNow.user.username === authorizedUser.username && (
             <CollectionDropdownButton
               setShowEditCollectionModal={setShowEditCollectionModal}
               setShowDeleteModal={setShowDeleteModal}
