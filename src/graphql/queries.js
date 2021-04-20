@@ -220,6 +220,7 @@ export const GET_USER_COLLECTIONS_PLUS = gql`
     $after: String
     $userId: String
     $username: String
+    $checkPhotoCollect: ID
   ) {
     collections(
       orderBy: $orderBy
@@ -233,16 +234,7 @@ export const GET_USER_COLLECTIONS_PLUS = gql`
       edges {
         node {
           ...collectionDetails
-          photos {
-            edges {
-              node {
-                id
-                photo {
-                  id
-                }
-              }
-            }
-          }
+          isCollected(checkPhotoCollect: $checkPhotoCollect)
         }
         cursor
       }

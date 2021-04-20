@@ -66,6 +66,7 @@ const SaveToCollectionsModal = ({
 
   const { collections } = useCollections({
     username,
+    checkPhotoCollect: photo.id,
     first: 30,
   });
 
@@ -74,19 +75,13 @@ const SaveToCollectionsModal = ({
       const temp = collections && collections.edges
         ? collections.edges.map((edge) => edge.node)
         : [];
+
       const updatedAllCollections = temp
         .map((obj) => {
-          let findCollected = false;
-          // eslint-disable-next-line no-unused-vars
-          const photosInCollection = obj.photos && obj.photos.edges
-            ? obj.photos.edges.map((edge) => {
-              if (edge.node.photo.id === photo.id) findCollected = true;
-              return edge.node;
-            })
-            : [];
-
-          return { ...obj, isCollected: findCollected, coverToShow: obj.cover };
+          const coverToShow = obj.isCollected ? photo.tiny : obj.cover;
+          return { ...obj, coverToShow };
         });
+
       setAllCollections(updatedAllCollections);
       setLoading(false);
     }
@@ -119,7 +114,7 @@ const SaveToCollectionsModal = ({
     const updatedCollection = {
       ...collection,
       isCollected: !collection.isCollected,
-      coverToShow: uncollect ? collection.cover : photo.small,
+      coverToShow: uncollect ? collection.cover : photo.tiny,
     };
     const updatedAllCollections = allCollections
       .map((obj) => (obj.id === collection.id ? updatedCollection : obj));
@@ -127,11 +122,9 @@ const SaveToCollectionsModal = ({
     setAllCollections(updatedAllCollections);
 
     if (uncollect) {
-      // console.log('uncollect photo', photo.id, collection.id);
       await uncollectPhoto({ photoId: photo.id, collectionId: collection.id });
     } else {
       await collectPhoto({ photoId: photo.id, collectionId: collection.id });
-      // console.log('collect photo', photo.id, collection.id);
     }
   };
 
