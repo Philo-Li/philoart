@@ -1,8 +1,18 @@
 import React from 'react';
+import { css } from '@emotion/react';
+import BeatLoader from 'react-spinners/BeatLoader';
 import { Card } from 'react-bootstrap';
 import Masonry from 'react-masonry-css';
 import galleryIcon from '../../img/galleryIcon.jpg';
 import '../../MDB-Free_4.19.2/css/mdb.css';
+
+const override = css`
+  display: flex;
+  justify-content: center;
+  align-item: center;
+  margin: 3rem;
+  margin-bottom: 6rem;
+`;
 
 const breakpointColumnsObj = {
   default: 3,
@@ -12,7 +22,13 @@ const breakpointColumnsObj = {
 const INIT_COVER = galleryIcon;
 
 const UserCollectionsList = ({ allCollections, collectSinglePhoto }) => {
-  if (!allCollections) return (<p>Loading</p>);
+  if (!allCollections) {
+    return (
+      <div className="col-item-3">
+        <BeatLoader color="#9B9B9B" loading css={override} size={50} />
+      </div>
+    );
+  }
 
   return (
     <div className="p-3 scrollmenu">

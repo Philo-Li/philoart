@@ -16,13 +16,14 @@ const TextInput = ({ label, info, ...props }) => {
         </label>
       </div>
 
+      {meta.touched && meta.error ? (
+        <div className="error">{meta.error}</div>
+      ) : null}
+
       <div className="">
         <input className="text-input" {...field} {...props} />
       </div>
 
-      {meta.touched && meta.error ? (
-        <div className="error">{meta.error}</div>
-      ) : null}
     </div>
   );
 };
