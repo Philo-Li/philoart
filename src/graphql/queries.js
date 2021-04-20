@@ -155,6 +155,7 @@ export const IS_LIKED_PHOTO = gql`
 export const GET_COLLECTION = gql`
   query getCollection(
     $id: ID!
+    $userId: ID
     $first: Int
     $after: String
   ) {
@@ -171,6 +172,7 @@ export const GET_COLLECTION = gql`
           node {
             photo{
               ...photoDetails
+              isLiked(userId: $userId)
             }
           }
           cursor

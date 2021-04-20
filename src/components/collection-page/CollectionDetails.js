@@ -27,8 +27,10 @@ const CollectionDetails = ({ authorizedUser }) => {
 
   const variables = {
     id,
+    userId: !authorizedUser ? 'lq3d6VSwSwDlv3mqJr7RE' : authorizedUser.id,
     first: 6,
   };
+
   const { collection, fetchMore } = useCollection(variables);
 
   useEffect(() => {
@@ -38,27 +40,7 @@ const CollectionDetails = ({ authorizedUser }) => {
         : [];
       setCollectionNow(collection);
 
-      if (!authorizedUser) {
-        const updatedAllPhotos = temp.map((photo) => ({ ...photo, isLiked: false }));
-        setAllPhotos(updatedAllPhotos);
-      } else {
-        const updatedAllPhotos = temp.map((photo) => {
-          const photoLikes = photo.likes && photo.likes.edges
-            ? photo.likes.edges.map((edge) => edge.node)
-            : [];
-
-          const findUserLike = photoLikes && photoLikes
-            .find((like) => like.user.id === authorizedUser.id);
-
-          const updatedPhoto = {
-            ...photo,
-            isLiked: findUserLike != null,
-          };
-
-          return updatedPhoto;
-        });
-        setAllPhotos(updatedAllPhotos);
-      }
+      setAllPhotos(temp);
       setLoading(false);
     }
   }, [collection]);
@@ -70,7 +52,7 @@ const CollectionDetails = ({ authorizedUser }) => {
     }
   };
 
-  if (collectionNow === undefined) {
+  if (!collectionNow) {
     return (
       <div className="col-item-3">
         <PacmanLoader color="#9B9B9B" loading css={override} size={50} />
@@ -105,7 +87,7 @@ const CollectionDetails = ({ authorizedUser }) => {
       </div>
       <div className="container-collection-title">
         <div className="collection-dropbtn">
-          {loading && collectionNow.user.username === authorizedUser.username && (
+          {authorizedUser && collectionNow.user.username === authorizedUser.username && (
             <CollectionDropdownButton
               setShowEditCollectionModal={setShowEditCollectionModal}
               setShowDeleteModal={setShowDeleteModal}

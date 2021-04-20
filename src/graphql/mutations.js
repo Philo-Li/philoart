@@ -7,6 +7,7 @@ export const AUTHORIZE = gql`
       accessToken
       user {
         username
+        id
       }
     }
   }
