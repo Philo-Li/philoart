@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import { useApolloClient } from '@apollo/client';
@@ -5,7 +6,7 @@ import {
   BrowserRouter as Router,
   Switch, Route, Redirect,
 } from 'react-router-dom';
-import { Nav, Button } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
 
 import Home from './components/home/Home';
@@ -48,35 +49,35 @@ const App = () => {
 
     let userPage;
     if (authorizedUser) userPage = `/user/@${authorizedUser.username}`;
-
     return (
       <div>
         <Navbar expand="lg" bg="dark" variant="dark" fixed="sticky">
-          <Navbar.Brand className="text-light container-row-0" href="/">
+          <Navbar.Brand href="/" className="container-row-navbar-brand">
             <img
               src={logo}
               width="30"
               height="30"
-              className="d-inline-block align-top"
-              alt="Free Stock Photos"
+              alt="Picky brand logo"
             />
             Picky
           </Navbar.Brand>
-          <NavSearchBar />
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end light">
-            <Nav className="justify-content-end container-row-0">
-              <Nav.Link className="text-light" href="/discover">Discover</Nav.Link>
-              <Nav.Link className="text-light" href="/license">License</Nav.Link>
-              <Nav.Link className="text-light" href="/about">About</Nav.Link>
-              {authorizedUser && <Nav.Link className="text-light" href={userPage}>Profile</Nav.Link>}
-              {authorizedUser && <Nav.Link className="text-light" href="/user/edit">Settings</Nav.Link>}
-              {!authorizedUser && <Nav.Link className="text-light" href="/signin">Login</Nav.Link>}
-              {!authorizedUser && <Nav.Link className="text-light" href="/signup">Sign Up</Nav.Link>}
-              {authorizedUser && <Button variant="outline-primary" type="submit" onClick={handleLogout}>logout</Button>}
-            </Nav>
             <Nav>
-              {!authorizedUser && <Button href="/signup" variant="primary" type="submit">Join</Button>}
+              <div className="container-row-navbar-searchbox">
+                <NavSearchBar />
+              </div>
+            </Nav>
+            <Nav className="justify-content-end container-row-0">
+              <a className="navbar-link" href="/discover">Discover</a>
+              <a className="navbar-link" href="/license">License</a>
+              <a className="navbar-link" href="/about">About</a>
+              {authorizedUser && <a className="navbar-link" href={userPage}>Profile</a>}
+              {authorizedUser && <a className="navbar-link" href="/user/edit">Settings</a>}
+              {!authorizedUser && <a className="navbar-link" href="/signin">Login</a>}
+              {!authorizedUser && <a className="navbar-link" href="/signup">Sign Up</a>}
+              {authorizedUser && <button className="navbar-button-logout" type="submit" onClick={handleLogout}>Logout</button>}
+              {!authorizedUser && <a href="/signup" className="navbar-button-join">Join</a>}
             </Nav>
           </Navbar.Collapse>
         </Navbar>

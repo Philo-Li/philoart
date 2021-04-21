@@ -79,7 +79,7 @@ const SaveToCollectionsModal = ({
 
       const updatedAllCollections = temp
         .map((obj) => {
-          const coverToShow = obj.isCollected ? photo.tiny : obj.cover;
+          const coverToShow = obj.isCollected ? photo.small : obj.cover;
           return { ...obj, coverToShow };
         });
 
@@ -116,7 +116,7 @@ const SaveToCollectionsModal = ({
     const updatedCollection = {
       ...collection,
       isCollected: !collection.isCollected,
-      coverToShow: uncollect ? collection.cover : photo.tiny,
+      coverToShow: uncollect ? collection.cover : photo.small,
     };
     const updatedAllCollections = allCollections
       .map((obj) => (obj.id === collection.id ? updatedCollection : obj));

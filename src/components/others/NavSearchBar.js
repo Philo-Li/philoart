@@ -18,11 +18,9 @@ const NavSearchBar = () => {
   };
 
   return (
-    <div className="topnav2">
+    <div>
       <Form onSubmit={handleSearch}>
-        <div className="topnav2">
-          <input {...searchKeyword} placeholder="Search for free photos" aria-label="Search" />
-        </div>
+        <input {...searchKeyword} placeholder="Search for free photos" aria-label="Search" />
       </Form>
     </div>
   );
