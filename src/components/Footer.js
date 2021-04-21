@@ -32,15 +32,14 @@ const Footer = () => {
               <div className="footer-container-col">
                 <h5 className="footer-subtitle">Picky</h5>
                 <a href="/about">About</a>
-                <a href="/faq">FAQ</a>
-                <a href="/signup">Sign in</a>
+                <a href="/signin">Sign in</a>
                 <a href="/signup">Sign up</a>
-                <a href="/partner">Top free photo stock website</a>
+                <a href="/partner">Top free photos website</a>
               </div>
               <div className="footer-container-col">
                 <h5 className="footer-subtitle">Free Stock Photos</h5>
                 <a href="/discover">Discover</a>
-                <a href="/collection/eTwvHyAuWHObb2sg7G_vE">Black and white photography</a>
+                <a href="/collection/eTwvHyAuWHObb2sg7G_vE">Black and white</a>
                 <a href="/collection/SWKChRQP_Jd6yVaZl3J1a">Cute animals</a>
                 <a href="/collection/PTun9zoNAPO3Q61Py0tmf">Happy everyday</a>
               </div>

@@ -3,8 +3,6 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
 import { makeStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import SearchIcon from '@material-ui/icons/Search';
 import DropdownButton from './DropdownButton';
 import useField from '../../../hooks/useField';
 
@@ -39,14 +37,14 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="topnav">
+    <div className="searchbar">
       <Form onSubmit={handleSearch}>
-        <div className="topnav container-row-1">
+        <div className="container-row-searchbar">
           <DropdownButton className={classes.margin} setSearchRange={setSearchRange} />
           <input {...searchKeyword} placeholder="Search..." aria-label="Search" />
-          <IconButton aria-label="search" className={classes.margin} type="submit">
-            <SearchIcon fontSize="large" />
-          </IconButton>
+          <button type="submit" className="search-btn">
+            <i className="bi bi-search icon-search" />
+          </button>
         </div>
       </Form>
     </div>

@@ -9,7 +9,7 @@ const EditProfileForm = ({ loading }) => (
   <div>
     <Form>
       <div className="container-row-signup">
-        <div className="">
+        <div className="margin-right">
           <TextInput
             label="First Name *"
             name="firstName"

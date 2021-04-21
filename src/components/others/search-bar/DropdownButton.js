@@ -17,7 +17,7 @@ export default function DropdownButton({ setSearchRange }) {
   return (
     <div>
       <div className="dropdown">
-        <button className="dropbtn" type="button">
+        <button className="dropbtn container-row-searchbar" type="button">
           {options[selectedIndex]}
           <ArrowDropDownIcon />
         </button>

@@ -5,17 +5,16 @@ const TopWebsites = () => {
     'https://unsplash.com/',
     'https://burst.shopify.com/',
     'https://kaboompics.com/',
-    'https://gratisography.com/',
-    'https://picography.co/',
-    'https://www.pexels.com/zh-cn/',
+    // 'https://gratisography.com/',
+    'https://www.pexels.com/',
     '......',
   ];
 
   return (
     <div>
-      <div className="container-col-login">
+      <div className="top-web container-top-web">
         <div className="profile-item">
-          <h1 className="header-bold">Top Free Stock Photos Website:</h1>
+          <h1 className="header">Top Free Stock Photos Website:</h1>
         </div>
         <ol className="website-link">
           {website.map((obj) => (

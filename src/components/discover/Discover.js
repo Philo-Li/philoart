@@ -34,10 +34,10 @@ const Discover = () => {
 
   if (allCollections === undefined) {
     return (
-      <div>
+      <div className="discover">
         <div className="p-3 container-profile">
           <div className="profile-item">
-            <h1>Discover</h1>
+            <p className="header">Discover</p>
           </div>
         </div>
         <div className="col-item-3">
@@ -48,59 +48,59 @@ const Discover = () => {
   }
 
   return (
-    <div className="p-3">
+    <div className="p-3 discover">
       <>
       </>
       <div className="p-3 container-profile">
         <div className="profile-item">
-          <h1>Discover</h1>
+          <p className="header">Discover</p>
         </div>
       </div>
-      <div className="p-3">
-        <div className="container-profile profile-item">
-          <h1>Nature</h1>
+      <div>
+        <div className="container-profile profile-item subheader">
+          <p>Nature</p>
         </div>
         <DiscoverCollectionList allCollections={allCollections} category="nature" />
       </div>
       <div className="p-3">
-        <div className="container-profile profile-item">
-          <h1>Human</h1>
+        <div className="container-profile profile-item subheader">
+          <p>Human</p>
         </div>
         <DiscoverCollectionList allCollections={allCollections} category="human" />
       </div>
       <div className="p-3">
-        <div className="container-profile profile-item">
-          <h1>Mood</h1>
+        <div className="container-profile profile-item subheader">
+          <p>Mood</p>
         </div>
         <DiscoverCollectionList allCollections={allCollections} category="mood" />
       </div>
       <div className="p-3">
-        <div className="container-profile profile-item">
-          <h1>Delicious food</h1>
+        <div className="container-profile profile-item subheader">
+          <p>Delicious food</p>
         </div>
         <DiscoverCollectionList allCollections={allCollections} category="food" />
       </div>
       <div className="p-3">
-        <div className="container-profile profile-item">
-          <h1>Animals</h1>
+        <div className="container-profile profile-item subheader">
+          <p>Animals</p>
         </div>
         <DiscoverCollectionList allCollections={allCollections} category="animals" />
       </div>
       <div className="p-3">
-        <div className="container-profile profile-item">
-          <h1>Light and shadow</h1>
+        <div className="container-profile profile-item subheader">
+          <p>Light and shadow</p>
         </div>
         <DiscoverCollectionList allCollections={allCollections} category="light" />
       </div>
       <div className="p-3">
-        <div className="container-profile profile-item">
-          <h1>On the Road</h1>
+        <div className="container-profile profile-item subheader">
+          <p>On the Road</p>
         </div>
         <DiscoverCollectionList allCollections={allCollections} category="road" />
       </div>
       <div className="p-3">
-        <div className="container-profile profile-item">
-          <h1>Other</h1>
+        <div className="container-profile profile-item subheader">
+          <p>Other</p>
         </div>
         <DiscoverCollectionList allCollections={allCollections} category="" />
       </div>

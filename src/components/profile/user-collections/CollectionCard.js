@@ -42,14 +42,22 @@ const CollectionCard = ({
         </div>
         <Card.Title>
           <div className="container-user-collection-list-title">
-            <div className="user-collection-list-title">
-              <p className="user-collection-list-title-center">
+            {showEditButton && (
+              <div className="user-collection-list-title-padding-left">
                 {collection.title}
                 (
                 {collection.photoCount}
                 )
-              </p>
-            </div>
+              </div>
+            )}
+            {!showEditButton && (
+              <div className="user-collection-list-title">
+                {collection.title}
+                (
+                {collection.photoCount}
+                )
+              </div>
+            )}
             <div className="user-collection-list-btn">
               {showEditButton && (
                 <CollectionDropdownButton

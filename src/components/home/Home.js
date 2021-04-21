@@ -15,7 +15,7 @@ const Home = ({
   const variables = {
     username: config.pickyAdmin,
     checkUserLike: !authorizedUser ? config.visitorID : authorizedUser.id,
-    first: 20,
+    first: 5,
   };
 
   const { photos, fetchMore, hasNextPage } = usePhotos(variables);
@@ -40,8 +40,8 @@ const Home = ({
     <div>
       <div>
         <Jumbotron className="jumbotron">
-          <h1 className="header-home">Discover the best free stock photos.</h1>
-          <p className="header">
+          <h1 className="header">Discover the best free stock photos.</h1>
+          <p className="subheader">
             Free to use. Redirect to download.
           </p>
           <SearchBar />

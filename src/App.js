@@ -75,9 +75,8 @@ const App = () => {
               {authorizedUser && <a className="navbar-link" href={userPage}>Profile</a>}
               {authorizedUser && <a className="navbar-link" href="/user/edit">Settings</a>}
               {!authorizedUser && <a className="navbar-link" href="/signin">Login</a>}
-              {!authorizedUser && <a className="navbar-link" href="/signup">Sign Up</a>}
               {authorizedUser && <button className="navbar-button-logout" type="submit" onClick={handleLogout}>Logout</button>}
-              {!authorizedUser && <a href="/signup" className="navbar-button-join">Join</a>}
+              {!authorizedUser && <a href="/signup" className="navbar-button-join">Sign up</a>}
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -87,7 +86,7 @@ const App = () => {
 
   return (
     <Router>
-      <div className="daily-cover-container">
+      <div>
         <Menu />
         <div>
           <Switch>
