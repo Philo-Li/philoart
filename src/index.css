@@ -837,7 +837,7 @@ input:invalid {
   
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
   .licence-header-bold-white {
     font-size: 1.5rem;
   }
@@ -862,9 +862,20 @@ input:invalid {
 }
 
 .about .header {
-  font-size: 2rem;
+  font-size: 3rem;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #777;
+}
+
+.about .subheader {
+  font-size: 2rem;
+  font-weight: bold;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.about .subheader2 {
+  font-size: 1.5rem;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .container-about {
@@ -872,6 +883,30 @@ input:invalid {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+.container-about-row-reverse {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-col-about-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.container-col-about {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 div.scrollmenu {
@@ -935,6 +970,16 @@ div.scrollmenu a:hover {
 .my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
   background: transparent;
   margin-bottom: 15px;
+}
+
+.about .my-masonry-grid {
+  display: -webkit-box; /* Not needed if autoprefixing */
+  display: -ms-flexbox; /* Not needed if autoprefixing */
+  display: flex;
+  width: auto;
+}
+.about .my-masonry-grid_column {
+  background-clip: padding-box;
 }
 
 .photo-card {

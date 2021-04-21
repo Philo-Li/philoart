@@ -51,12 +51,12 @@ const License = () => {
         ))}
       </div>
       <div className="container-col-login">
-        <div className="licence-subheader-footer">
-          <h3>
+        <div className="licence-msg">
+          <h5>
             You can read the original website
             {'\''}
             s licenses for more purpose.
-          </h3>
+          </h5>
         </div>
       </div>
     </div>

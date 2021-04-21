@@ -51,10 +51,10 @@ const LicenseZh = () => {
         ))}
       </div>
       <div className="container-col-login">
-        <div className="licence-subheader-footer">
-          <h3>
+        <div className="licence-msg">
+          <h5>
             除了上述提到的之外，如果你还想将图片用于其他用途，请仔细阅读原图片站点的用户协议。
-          </h3>
+          </h5>
         </div>
       </div>
     </div>

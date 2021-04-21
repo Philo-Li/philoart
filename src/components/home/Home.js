@@ -15,7 +15,7 @@ const Home = ({
   const variables = {
     username: config.pickyAdmin,
     checkUserLike: !authorizedUser ? config.visitorID : authorizedUser.id,
-    first: 5,
+    first: 20,
   };
 
   const { photos, fetchMore, hasNextPage } = usePhotos(variables);
