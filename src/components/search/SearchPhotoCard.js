@@ -43,6 +43,7 @@ const SearchPhotoCard = ({
         photographer: photo.photographer,
         description: photo.description,
         tags: photo.tags,
+        labels: photo.tags,
       };
 
       await createPhoto(variables);
