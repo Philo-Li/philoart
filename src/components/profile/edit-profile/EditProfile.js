@@ -10,7 +10,7 @@ const EditProfile = ({ authorizedUser }) => {
 
   const initialValues = {
     firstName: authorizedUser.firstName,
-    lastName: authorizedUser.lastName,
+    lastName: authorizedUser.lastName || '',
     email: authorizedUser.email,
     username: authorizedUser.username,
     password: '',

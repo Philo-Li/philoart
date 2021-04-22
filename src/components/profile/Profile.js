@@ -17,7 +17,7 @@ const Profile = ({ authorizedUser }) => {
     <div className="p-3">
       <div className="container-profile">
         <div className="profile-item">
-          <Image src={profileImage} width={150} height={150} magin={10} roundedCircle />
+          <Image src={profileImage} width={100} height={100} magin={10} roundedCircle />
         </div>
         <div className="profile-item">
           <h1>{username}</h1>
