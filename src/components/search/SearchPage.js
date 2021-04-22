@@ -53,7 +53,7 @@ const SearchPage = ({ authorizedUser }) => {
           <h3>Search:</h3>
         </div>
         <div className="container-row-searchpage-searchbox">
-          <NavSearchBar placeholder={parsed.q} />
+          <NavSearchBar placeholder={parsed.q} searchRange="picky" />
         </div>
       </div>
       <RelatedTagBar allPhotos={allPhotos} />
