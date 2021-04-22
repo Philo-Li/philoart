@@ -1,24 +1,17 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const TagBar = ({ tagToShow }) => {
-  const history = useHistory();
   let tags = ['nature', 'animals', 'people', 'travel', 'food', 'sea', 'texture', 'interiors', 'art'];
   if (tagToShow) tags = tagToShow;
-
-  const onSubmit = async (tag) => {
-    history.push(`/pickysearch?q=${tag}`);
-  };
 
   return (
     <div>
       <div className="scrollmenu">
         <div className="p-3 container-row-tag">
           {tags.map((tag) => (
-            <div className="" key={tag}>
-              <button className="tag-btn" type="button" onClick={() => onSubmit(tag)}>
-                {tag}
-              </button>
+            <div key={tag}>
+              <Link to={`/pickysearch?q=${tag}`}>{tag}</Link>
             </div>
           ))}
         </div>

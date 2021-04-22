@@ -916,15 +916,20 @@ div.scrollmenu {
 }
 
 div.scrollmenu a {
-  display: inline-block;
-  color: white;
-  text-align: center;
-  padding: 14px;
-  text-decoration: none;
+  margin-left: 20px;
+  font-size: 1.2rem;
+  font-weight: light;
+  color: #777;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0.2rem 1rem;
+  transition: ease 0.2s;
 }
 
 div.scrollmenu a:hover {
-  background-color: #777;
+  -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
 }
 
 .container-row-tag {

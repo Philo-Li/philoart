@@ -26,7 +26,14 @@ const BroadSearchPage = () => {
   const [pageNow, setPageNow] = useState(1);
   const [loading, setLoading] = useState(false);
   const [allPhotos, setAllPhotos] = useState();
+  const location = useLocation();
+  const parsed = queryString.parse(location.search);
+  const PerLoad = 4;
+  const newQuery = parsed.q.replace(' ', '+');
+
+  const [queryNow, setQueryNow] = useState(parsed.q);
   const [allPhotosPool, setAllPhotosPool] = useState({
+    query: parsed.q,
     pexels: undefined,
     pexels_page: 1,
     unsplash: undefined,
@@ -41,10 +48,6 @@ const BroadSearchPage = () => {
     // pico_page: 1,
     // pico_hasnextpage: true,
   });
-  const location = useLocation();
-  const parsed = queryString.parse(location.search);
-  const PerLoad = 5;
-  const newQuery = parsed.q.replace(' ', '+');
 
   const getPhotos = async () => {
     if (allPhotosPool.pexels === undefined || pageNow * PerLoad + PerLoad >= allPhotosPool.pexels.length) {
@@ -239,6 +242,10 @@ const BroadSearchPage = () => {
     const slicedPhotos3 = photosPool4.kaboompics && photosPool4.kaboompics.slice(Start, End);
     const slicedPhotos4 = photosPool4.burst && photosPool4.burst.slice(Start, End);
 
+    if (parsed.q !== allPhotosPool.query) {
+      return;
+    }
+
     let newLoad = [...slicedPhotos1, ...slicedPhotos2];
 
     if (photosPool4.kaboompics) {
@@ -255,15 +262,34 @@ const BroadSearchPage = () => {
   };
 
   useEffect(() => {
-    if (location) {
+    if (parsed.q === queryNow) {
       getPhotos();
     }
-  }, [pageNow]);
+  }, [pageNow, queryNow]);
 
   const clickFetchMore = () => {
     setPageNow(pageNow + 1);
     setLoading(true);
   };
+
+  if (parsed.q !== queryNow) {
+    setQueryNow(parsed.q);
+    setAllPhotosPool({
+      query: parsed.q,
+      pexels: undefined,
+      pexels_page: 1,
+      unsplash: undefined,
+      unsplash_page: 1,
+      kaboompics: undefined,
+      kaboompics_page: 1,
+      kaboompics_hasNextpage: true,
+      burst: undefined,
+      burst_page: 1,
+      burst_hasNextpage: true,
+    });
+    setPageNow(1);
+    setAllPhotos();
+  }
 
   return (
     <div>

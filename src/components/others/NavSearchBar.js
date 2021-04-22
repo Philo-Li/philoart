@@ -6,6 +6,7 @@ import useField from '../../hooks/useField';
 
 const NavSearchBar = () => {
   const searchKeyword = useField('text');
+  // eslint-disable-next-line no-unused-vars
   const history = useHistory();
   const handleSearch = async (event) => {
     event.preventDefault();
