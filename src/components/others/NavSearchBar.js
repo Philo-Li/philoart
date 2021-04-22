@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
 import useField from '../../hooks/useField';
 
-const NavSearchBar = () => {
+const NavSearchBar = ({ placeholder }) => {
   const searchKeyword = useField('text');
   // eslint-disable-next-line no-unused-vars
   const history = useHistory();
@@ -31,7 +31,7 @@ const NavSearchBar = () => {
   return (
     <div>
       <Form onSubmit={handleSearch}>
-        <input {...searchKeyword} placeholder="Search for free photos" aria-label="Search" />
+        <input {...searchKeyword} placeholder={placeholder} aria-label="Search" />
       </Form>
     </div>
   );

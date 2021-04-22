@@ -6,6 +6,7 @@ import BeatLoader from 'react-spinners/BeatLoader';
 import usePhotos from '../../hooks/usePhotos';
 import HomePhotoList from '../others/photo-list/HomePhotoList';
 import RelatedTagBar from '../others/RelatedTagBar';
+import NavSearchBar from '../others/NavSearchBar';
 import config from '../../config';
 
 const override = css`
@@ -49,10 +50,10 @@ const SearchPage = ({ authorizedUser }) => {
     <div>
       <div className="p-3 container-profile">
         <div className="profile-item">
-          <h1>Search:</h1>
+          <h3>Search:</h3>
         </div>
-        <div className="profile-item">
-          <h1>{parsed.q}</h1>
+        <div className="container-row-searchpage-searchbox">
+          <NavSearchBar placeholder={parsed.q} />
         </div>
       </div>
       <RelatedTagBar allPhotos={allPhotos} />

@@ -8,6 +8,7 @@ import axios from 'axios';
 import config from '../../config';
 import SearchPagePhotoList from './SearchPagePhotoList';
 import BroadSearchTagBar from '../others/BroadSearchTagBar';
+import NavSearchBar from '../others/NavSearchBar';
 
 const baseUrl = 'https://api.unsplash.com/search/photos';
 const ACCESS_KEY = config.unsplashApi;
@@ -295,10 +296,10 @@ const BroadSearchPage = () => {
     <div>
       <div className="p-3 container-profile">
         <div className="profile-item">
-          <h1>Search:</h1>
+          <h3>Search:</h3>
         </div>
-        <div className="profile-item">
-          <h1>{parsed.q}</h1>
+        <div className="container-row-searchpage-searchbox">
+          <NavSearchBar placeholder={parsed.q} />
         </div>
       </div>
       <BroadSearchTagBar />

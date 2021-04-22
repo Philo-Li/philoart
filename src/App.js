@@ -51,7 +51,7 @@ const App = () => {
     if (authorizedUser) userPage = `/user/@${authorizedUser.username}`;
     return (
       <div>
-        <Navbar expand="lg" bg="dark" variant="dark" fixed="sticky">
+        <Navbar collapseOnSelect expand="md" bg="dark" variant="dark" fixed="sticky">
           <Navbar.Brand href="/" className="container-row-navbar-brand">
             <img
               src={logo}
@@ -65,7 +65,7 @@ const App = () => {
           <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end light">
             <Nav>
               <div className="container-row-navbar-searchbox">
-                <NavSearchBar />
+                <NavSearchBar placeholder="Search for free photos" />
               </div>
             </Nav>
             <Nav className="justify-content-end container-row-0">

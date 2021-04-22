@@ -380,6 +380,17 @@ input:invalid {
   padding: 8px 20px;
 }
 
+.container-row-searchpage-searchbox {
+  border: 2px;
+}
+
+.container-row-searchpage-searchbox input[type=text] {
+  border-radius: 5px;
+  font-size: 20px;
+  width: 100%;
+  padding: 8px 20px;
+}
+
 /*forest green */
 .navbar-button-join {
   font-size: 18px;
