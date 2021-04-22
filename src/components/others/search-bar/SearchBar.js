@@ -24,7 +24,10 @@ const SearchBar = () => {
   const handleSearch = async (event) => {
     event.preventDefault();
     try {
-      // console.log('searchRange', searchRange);
+      if (!searchKeyword.value) {
+        history.push('/discover');
+        return;
+      }
       if (searchRange === 'All') {
         history.push(`/search?q=${searchKeyword.value}`);
       } else {

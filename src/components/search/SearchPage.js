@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, withRouter } from 'react-router-dom';
 import queryString from 'query-string';
 import usePhotos from '../../hooks/usePhotos';
 import HomePhotoList from '../others/photo-list/HomePhotoList';
@@ -58,4 +58,4 @@ const SearchPage = ({ authorizedUser }) => {
   );
 };
 
-export default SearchPage;
+export default withRouter(SearchPage);

@@ -155,6 +155,7 @@ const App = () => {
               />
             </Route>
             <Redirect to="/" />
+            <Redirect from="/search?" to="/search?" />
           </Switch>
         </div>
         <Footer />

@@ -33,9 +33,10 @@ const BroadSearchPage = () => {
     unsplash_page: 1,
     kaboompics: undefined,
     kaboompics_page: 1,
+    kaboompics_hasNextpage: true,
     burst: undefined,
     burst_page: 1,
-    burst_hasnextpage: true,
+    burst_hasNextpage: true,
     // pico: undefined,
     // pico_page: 1,
     // pico_hasnextpage: true,
@@ -43,6 +44,7 @@ const BroadSearchPage = () => {
   const location = useLocation();
   const parsed = queryString.parse(location.search);
   const PerLoad = 5;
+  const newQuery = parsed.q.replace(' ', '+');
 
   const getPhotos = async () => {
     if (allPhotosPool.pexels === undefined || pageNow * PerLoad + PerLoad >= allPhotosPool.pexels.length) {
@@ -121,7 +123,8 @@ const BroadSearchPage = () => {
             unsplash_page: allPhotosPool.unsplash_page + 1,
           };
           searchKaboompics(photosPool2);
-          getPhotosToShowQuick(photosPool2);
+          // result quick show
+          getPhotosToShow(photosPool2);
           return response.data;
         });
     } else {
@@ -131,12 +134,15 @@ const BroadSearchPage = () => {
   };
 
   const searchKaboompics = async (photosPool2) => {
-    // const queryPageNow = allPhotosPool.kaboompics_page;
-    if (allPhotosPool.kaboompics === undefined) {
-      axios.get(`${config.pickyApi}/kaboompics/${parsed.q}`)
+    if (allPhotosPool.kaboompics === undefined && allPhotosPool.kaboompics_hasNextpage) {
+      axios.get(`${config.pickyApi}/kaboompics/${newQuery}`)
         .then((response) => {
           if (!response.data.photos) {
-            setAllPhotosPool(photosPool2);
+            const photosPool3 = {
+              ...photosPool2,
+              kaboompics_hasnextpage: false,
+            };
+            searchBurst(photosPool3);
             return response.data;
           }
 
@@ -176,9 +182,9 @@ const BroadSearchPage = () => {
   };
 
   const searchBurst = async (photosPool3) => {
-    if (allPhotosPool.burst === undefined || (pageNow * PerLoad + PerLoad >= allPhotosPool.burst.length && allPhotosPool.burst_hasnextpage)) {
+    if (allPhotosPool.burst === undefined || (pageNow * PerLoad + PerLoad >= allPhotosPool.burst.length && allPhotosPool.burst_hasNextpage)) {
       const queryPageNow = allPhotosPool.burst_page;
-      axios.get(`${config.pickyApi}/burst/page=${queryPageNow}&q=${parsed.q}`)
+      axios.get(`${config.pickyApi}/burst/page=${queryPageNow}&q=${newQuery}`)
         .then((response) => {
           if (!response.data.photos) {
             setAllPhotosPool(photosPool3);
@@ -210,7 +216,7 @@ const BroadSearchPage = () => {
             ...photosPool3,
             burst: updatedBurstPool,
             burst_page: allPhotosPool.burst_page + 1,
-            burst_hasnextpage: hasNextPage,
+            burst_hasNextpage: hasNextPage,
           };
 
           setAllPhotosPool(photosPool4);
@@ -230,22 +236,19 @@ const BroadSearchPage = () => {
     const End = pageNow * PerLoad;
     const slicedPhotos1 = photosPool4.pexels.slice(Start, End);
     const slicedPhotos2 = photosPool4.unsplash.slice(Start, End);
-    const slicedPhotos3 = photosPool4.kaboompics.slice(Start, End);
-    const slicedPhotos4 = photosPool4.burst.slice(Start, End);
+    const slicedPhotos3 = photosPool4.kaboompics && photosPool4.kaboompics.slice(Start, End);
+    const slicedPhotos4 = photosPool4.burst && photosPool4.burst.slice(Start, End);
 
-    const newLoad = [...slicedPhotos1, ...slicedPhotos2, ...slicedPhotos3, ...slicedPhotos4];
-    const updatedAllPhotos = !allPhotos ? newLoad : merge(allPhotos, newLoad, 'downloadPage');
-    setAllPhotos(updatedAllPhotos);
-    setLoading(false);
-  };
+    let newLoad = [...slicedPhotos1, ...slicedPhotos2];
 
-  const getPhotosToShowQuick = async (photosPool) => {
-    const Start = pageNow * PerLoad - PerLoad;
-    const End = pageNow * PerLoad;
-    const slicedPhotos1 = photosPool.pexels.slice(Start, End);
-    const slicedPhotos2 = photosPool.unsplash.slice(Start, End);
+    if (photosPool4.kaboompics) {
+      newLoad = [...newLoad, ...slicedPhotos3];
+    }
 
-    const newLoad = [...slicedPhotos1, ...slicedPhotos2];
+    if (photosPool4.burst) {
+      newLoad = [...newLoad, ...slicedPhotos4];
+    }
+
     const updatedAllPhotos = !allPhotos ? newLoad : merge(allPhotos, newLoad, 'downloadPage');
     setAllPhotos(updatedAllPhotos);
     setLoading(false);
@@ -257,15 +260,10 @@ const BroadSearchPage = () => {
     }
   }, [pageNow]);
 
-  // console.log('photosPool', allPhotosPool);
-
   const clickFetchMore = () => {
     setPageNow(pageNow + 1);
     setLoading(true);
   };
-
-  // eslint-disable-next-line no-console
-  // console.log('allPhotos', allPhotos);
 
   return (
     <div>

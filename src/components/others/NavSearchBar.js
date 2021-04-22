@@ -10,7 +10,17 @@ const NavSearchBar = () => {
   const handleSearch = async (event) => {
     event.preventDefault();
     try {
-      history.push(`/search?q=${searchKeyword.value}`);
+      const query = searchKeyword.value.split(' ');
+      let qs = '';
+      for (let i = 0; i < query.length; i += 1) {
+        if (query[i]) {
+          if (qs) qs = qs.concat('+', query[i]);
+          else qs = query[i];
+        }
+      }
+      if (qs) {
+        history.push(`/search?q=${qs}`);
+      } else history.push('/discover');
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log(e);
