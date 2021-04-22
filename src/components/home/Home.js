@@ -3,7 +3,7 @@ import { Jumbotron } from 'react-bootstrap';
 import usePhotos from '../../hooks/usePhotos';
 import HomePhotoList from '../others/photo-list/HomePhotoList';
 import SearchBar from '../others/search-bar/SearchBar';
-import TagBar from '../others/TagBar';
+import BroadSearchTagBar from '../others/BroadSearchTagBar';
 import config from '../../config';
 
 const Home = ({
@@ -47,7 +47,7 @@ const Home = ({
           <SearchBar />
         </Jumbotron>
       </div>
-      <TagBar />
+      <BroadSearchTagBar />
       <HomePhotoList
         allPhotos={allPhotos}
         setAllPhotos={setAllPhotos}
