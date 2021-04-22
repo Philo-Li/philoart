@@ -692,12 +692,13 @@ input:invalid {
 
 .container-top-web {
   margin-top: 10rem;
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-left: 10%;
+  margin-right: 10%;
   margin-bottom: 10rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-self: center;
 }
 
 .website-link {
@@ -918,6 +919,26 @@ input:invalid {
   margin-bottom: 10%;
   margin-left: 10%;
   margin-right: 10%;
+}
+
+@media screen and (max-width: 800px) {
+  .about .header {
+    font-size: 2rem;
+    color: #777;
+  }
+  
+  .about .subheader {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .about .subheader2 {
+    font-size: 1rem;
+  }
+
+  .about .icon-check {
+    font-size: 1.5rem;
+  }
 }
 
 div.scrollmenu {

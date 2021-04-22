@@ -56,7 +56,7 @@ const Discover = () => {
           <p className="header">Discover</p>
         </div>
       </div>
-      <div>
+      <div className="p-3">
         <div className="container-profile profile-item subheader">
           <p>Nature</p>
         </div>

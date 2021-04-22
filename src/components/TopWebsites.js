@@ -13,8 +13,8 @@ const TopWebsites = () => {
   return (
     <div>
       <div className="top-web container-top-web">
-        <div className="profile-item">
-          <h1 className="header">Top Free Stock Photos Website:</h1>
+        <div className="">
+          <h3 className="header flex-center">Top Free Stock Photos Website:</h3>
         </div>
         <ol className="website-link">
           {website.map((obj) => (

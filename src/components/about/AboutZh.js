@@ -4,8 +4,7 @@ import {
   Image, Col, Card,
 } from 'react-bootstrap';
 import aboutImg4 from '../../img/aboutImg4.jpg';
-import AboutComponent1 from './AboutComponent1';
-import AboutComponent2 from './AboutComponent2';
+import AboutComponent from './AboutComponent';
 
 const img1 = 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1416&q=80';
 const img2 = 'https://images.unsplash.com/photo-1497030947858-3f40f1508e84?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80';
@@ -69,14 +68,16 @@ const AboutZh = () => {
           {msgToShow[0].subtitle}
         </h3>
       </div>
-      <AboutComponent2 msgToShow={msgToShow[1]} />
-      <AboutComponent1 msgToShow={msgToShow[2]} />
-      <AboutComponent2 msgToShow={msgToShow[3]} />
-      <Col>
-        <Card>
-          <Image src={img1} width="100%" />
-        </Card>
-      </Col>
+      <AboutComponent msgToShow={msgToShow[1]} />
+      <AboutComponent msgToShow={msgToShow[2]} />
+      <AboutComponent msgToShow={msgToShow[3]} />
+      <div className="p-3 container-about-row">
+        <Col>
+          <Card>
+            <Image src={img1} width="100%" />
+          </Card>
+        </Col>
+      </div>
       <div className="container-col-login">
         <div className="col-item-3 licence-msg">
           <h3>

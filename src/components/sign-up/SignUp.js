@@ -26,7 +26,7 @@ const SignUp = () => {
     setLoading(true);
     try {
       await signUp(variables);
-      history.push('/');
+      history.push('/signin');
     } catch (e) {
       setErrorInfo(e.message);
       setLoading(false);
