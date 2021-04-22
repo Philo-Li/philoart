@@ -42,7 +42,6 @@ const EditCollectionModal = ({
         .map((obj) => (obj.id === collectionNow.id ? updatedCollectionNow : obj));
       setTimeout(() => {
         setSuccessInfo('');
-        setShowEditCollectionModal(false);
         setAllCollections(updatedAllCollections);
       }, 2000);
       setTimeout(() => { setSuccessInfo(''); }, 3000);

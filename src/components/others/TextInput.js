@@ -16,7 +16,7 @@ const TextInput = ({ label, info, ...props }) => {
         </label>
       </div>
 
-      {meta.touched && meta.error ? (
+      {meta.error ? (
         <div className="error">{meta.error}</div>
       ) : null}
 
