@@ -40,7 +40,7 @@ const SearchPhotoCard = ({
         downloadPage: photo.downloadPage,
         creditWeb: photo.creditWeb,
         creditId: photo.creditId,
-        photographer: photo.photographer,
+        photographer: photo.photographer || photo.creditWeb,
         description: photo.description,
         tags: photo.tags,
         labels: photo.tags,

@@ -791,6 +791,22 @@ input:invalid {
   object-fit: cover;
 }
 
+.max-height-500 {
+  width: auto;
+  height: 600px;
+  overflow:hidden;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 600px) {
+  .max-height-500 {
+    width: auto;
+    height: 380px;
+    overflow:hidden;
+    object-fit: cover;
+  }
+}
+
 .max-width {
   width:10%;
   overflow:visible;

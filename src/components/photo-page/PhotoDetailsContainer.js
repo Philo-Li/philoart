@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import LazyLoad from 'react-lazyload';
-import { Image, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import useLikePhoto from '../../hooks/useLikePhoto';
 import useUnlikePhoto from '../../hooks/useUnlikePhoto';
 import useDownloadPhoto from '../../hooks/useDownloadPhoto';
@@ -72,7 +72,11 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
       <div className="photodetails-photo-item">
         <LazyLoad height={300} offset={[-100, 0]} debounce={500} once placeholder={<Placeholder />}>
           <Card>
-            <Image src={photoToShow.small} width="100%" />
+            <img
+              src={photoToShow.small}
+              className="max-height-500"
+              alt="collection cover"
+            />
           </Card>
         </LazyLoad>
       </div>
