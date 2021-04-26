@@ -4,7 +4,7 @@ The relative Node.js backend is here: [picky-api](https://github.com/LulalaP/pic
 
 ## ✔️ Website
 
-https://picky.vercel.app/
+https://picky.photos/
 
 ## 🚀 About Picky
 
