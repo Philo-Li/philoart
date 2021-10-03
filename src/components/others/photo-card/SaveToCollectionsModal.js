@@ -131,7 +131,7 @@ const SaveToCollectionsModal = ({
   };
 
   return (
-    <>
+    <div>
       <Modal
         show={showCollectModal}
         onHide={() => setShowCollectModal(false)}
@@ -171,7 +171,7 @@ const SaveToCollectionsModal = ({
           </div>
         </Modal.Body>
       </Modal>
-    </>
+    </div>
   );
 };
 

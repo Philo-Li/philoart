@@ -1,5 +1,5 @@
 {
-  "name": "picky",
+  "name": "philoart",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -17,7 +17,7 @@
     "date-fns": "^2.16.1",
     "dotenv": "^8.2.0",
     "formik": "^2.2.6",
-    "glamor": "^2.20.40",
+    "glamor": "^2.17.9",
     "got": "^11.8.1",
     "graphql": "^15.3.0",
     "http2": "^3.3.7",
@@ -33,7 +33,7 @@
     "react-lazyload": "^3.2.0",
     "react-masonry-css": "^1.0.14",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.1",
+    "react-scripts": "^1.1.5",
     "react-select": "^3.2.0",
     "react-spinners": "^0.10.6",
     "semantic-ui-react": "^2.0.3",

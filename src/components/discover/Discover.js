@@ -49,8 +49,6 @@ const Discover = () => {
 
   return (
     <div className="p-3 discover">
-      <>
-      </>
       <div className="p-3 container-profile">
         <div className="profile-item">
           <p className="header">Discover</p>

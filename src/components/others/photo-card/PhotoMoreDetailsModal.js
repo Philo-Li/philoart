@@ -5,7 +5,7 @@ const PhotoMoreDetailsModal = ({ photo }) => {
   const [show, setShow] = useState(false);
 
   return (
-    <>
+    <div>
       <button
         type="button"
         className="photodetails-card-btn-info photodetails-card-btn-item"
@@ -119,7 +119,7 @@ const PhotoMoreDetailsModal = ({ photo }) => {
           </div>
         </Modal.Body>
       </Modal>
-    </>
+    </div>
   );
 };
 

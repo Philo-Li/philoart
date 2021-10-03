@@ -30,8 +30,8 @@ import License from './components/license/License';
 import LicenseZh from './components/license/LicenseZh';
 import About from './components/about/About';
 import AboutZh from './components/about/AboutZh';
-import TopWebsites from './components/TopWebsites';
 import ContactUs from './components/ContactUs';
+import Create from './components/create/Create'
 import logo from './img/logo/logo1.svg';
 
 const App = () => {
@@ -51,31 +51,31 @@ const App = () => {
     if (authorizedUser) userPage = `/user/@${authorizedUser.username}`;
     return (
       <div>
-        <Navbar collapseOnSelect expand="md" bg="dark" variant="dark" fixed="sticky">
+        <Navbar collapseOnSelect expand="md" bg="white" variant="light" fixed="sticky">
           <Navbar.Brand href="/" className="container-row-navbar-brand">
             <img
               src={logo}
               width="30"
               height="30"
-              alt="Picky brand logo"
+              alt="Philo Art brand logo"
             />
-            Picky
+            Philo Art
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end light">
+          <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
             <Nav>
               <div className="container-row-navbar-searchbox">
-                <NavSearchBar placeholder="Search for free photos" />
+                <NavSearchBar placeholder="Search..." />
               </div>
             </Nav>
             <Nav className="justify-content-end container-row-0">
               <a className="navbar-link" href="/discover">Discover</a>
-              <a className="navbar-link" href="/license">License</a>
               <a className="navbar-link" href="/about">About</a>
               {authorizedUser && <a className="navbar-link" href={userPage}>Profile</a>}
               {authorizedUser && <a className="navbar-link" href="/user/edit">Settings</a>}
               {!authorizedUser && <a className="navbar-link" href="/signin">Login</a>}
               {authorizedUser && <button className="navbar-button-logout" type="submit" onClick={handleLogout}>Logout</button>}
+              {authorizedUser && <a href="/create" className="navbar-button-join">Create</a>}
               {!authorizedUser && <a href="/signup" className="navbar-button-join">Sign up</a>}
             </Nav>
           </Navbar.Collapse>
@@ -111,14 +111,14 @@ const App = () => {
             <Route path="/contact" exact>
               <ContactUs />
             </Route>
-            <Route path="/partner" exact>
-              <TopWebsites />
-            </Route>
             <Route path="/signin" exact>
               <SignIn />
             </Route>
             <Route path="/signup" exact>
               <SignUp />
+            </Route>
+            <Route path="/create" exact>
+              <Create />
             </Route>
             <Route path="/pickysearch" render={() => (<SearchPage authorizedUser={authorizedUser} />)}>
               {/* <SearchPage authorizedUser={authorizedUser} /> */}

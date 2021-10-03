@@ -10,6 +10,18 @@
   transition: 0.5s ease;
 }
 
+
+.jumbotron-slice-1 {
+  background-image: url("https://philoart.oss-cn-shanghai.aliyuncs.com/%2310/%2399.jpg");
+  background-size: cover;
+  height: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s ease;
+}
+
 .jumbotron .header {
   font-size: 3rem;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -366,10 +378,14 @@ input:invalid {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: 500;
+  color: black;
 }
 
 .container-row-navbar-searchbox {
   flex-grow: 1;
+  /* border: 2px;
+  border-color: black; */
 }
 
 .container-row-navbar-searchbox input[type=text] {
@@ -412,7 +428,7 @@ input:invalid {
 
 .navbar-button-logout {
   font-weight: light;
-  color: white;
+  color: black;
   background-color: transparent;
   border: none;
   padding: 8px 10px;
@@ -426,7 +442,8 @@ input:invalid {
 }
 
 .navbar-link {
-  color: white;
+  font-weight: 500;
+  color: black;
   background-color: transparent;
   border: none;
   padding: 8px 10px;
@@ -780,6 +797,13 @@ input:invalid {
 .max-height {
   width:100%;
   height:8rem;
+  overflow:hidden;
+  object-fit: cover;
+}
+
+.max-height-30 {
+  width:100%;
+  height:10rem;
   overflow:hidden;
   object-fit: cover;
 }

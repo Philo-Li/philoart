@@ -53,7 +53,7 @@ const EditCollectionModal = ({
   };
 
   return (
-    <>
+    <div>
       <Modal
         show={showEditCollectionModal}
         onHide={() => setShowEditCollectionModal(false)}
@@ -78,7 +78,7 @@ const EditCollectionModal = ({
           />
         </Modal.Body>
       </Modal>
-    </>
+    </div>
   );
 };
 

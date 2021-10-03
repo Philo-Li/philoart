@@ -25,7 +25,7 @@ const DeleteCollectionModal = ({
   };
 
   return (
-    <>
+    <div>
       <Modal
         show={showDeleteModal}
         onHide={() => setShowDeleteModal(false)}
@@ -58,7 +58,7 @@ const DeleteCollectionModal = ({
           </button>
         </Modal.Footer>
       </Modal>
-    </>
+    </div>
   );
 };
 

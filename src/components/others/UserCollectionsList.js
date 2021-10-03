@@ -40,8 +40,6 @@ const UserCollectionsList = ({ loadingList, allCollections, collectSinglePhoto }
 
   return (
     <div className="p-3 scrollmenu">
-      <>
-      </>
       <Masonry
         breakpointCols={breakpointColumnsObj}
         className="my-masonry-grid"

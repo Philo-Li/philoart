@@ -22,7 +22,7 @@ const Footer = () => {
   return (
     <div style={footerStyle}>
       <Card className="text-left text-light bg-dark" fluid="true">
-        <Card.Body>
+        {/* <Card.Body>
           <div className="footer-container">
             <Masonry
               breakpointCols={breakpointColumnsObj}
@@ -30,26 +30,23 @@ const Footer = () => {
               columnClassName="my-masonry-grid_column"
             >
               <div className="footer-container-col">
-                <h5 className="footer-subtitle">Picky</h5>
+                <h5 className="footer-subtitle">Philo Art</h5>
                 <a href="/about">About</a>
                 <a href="/signin">Sign in</a>
                 <a href="/signup">Sign up</a>
-                <a href="/partner">Top free photos website</a>
               </div>
               <div className="footer-container-col">
-                <h5 className="footer-subtitle">Free Stock Photos</h5>
+                <h5 className="footer-subtitle">Tools</h5>
                 <a href="/discover">Discover</a>
-                <a href="/collection/eTwvHyAuWHObb2sg7G_vE">Black and white</a>
-                <a href="/collection/SWKChRQP_Jd6yVaZl3J1a">Cute animals</a>
-                <a href="/collection/PTun9zoNAPO3Q61Py0tmf">Happy everyday</a>
+                <a href="https://picky.photos">Picky</a>
               </div>
               <div className="footer-container-col">
-                <h5 className="footer-subtitle">Contact us</h5>
+                <h5 className="footer-subtitle">Contact me</h5>
                 <a href="/contact">Submit website</a>
               </div>
             </Masonry>
           </div>
-        </Card.Body>
+        </Card.Body> */}
         <Card.Footer className="text-center text-light">
           <div>
             <Navbar.Brand href="/" className="text-light container-row-0">
@@ -60,12 +57,10 @@ const Footer = () => {
                 className="d-inline-block align-top"
                 alt="Free Stock Photos"
               />
-              Picky
+              Philo Art
             </Navbar.Brand>
           </div>
-          <p className="text-light">— Discover best free stock photos.</p>
           <Nav className="justify-content-end">
-            <Nav.Link className="text-light" href="/discover">Terms of Use</Nav.Link>
             <Nav.Link className="text-light" href="/license">License</Nav.Link>
           </Nav>
         </Card.Footer>
