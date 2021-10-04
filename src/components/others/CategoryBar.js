@@ -1,25 +1,25 @@
 import React from 'react';
-import CategoryCard from './photo-card/CategoryCard'
+import CategoryCard from './photo-card/CategoryCard';
 
 const CategoryBar = () => {
-  let category = [{
-    id: "123",
-    title: "Painting",
+  const category = [{
+    id: '123',
+    title: 'Painting',
     photoCount: 10,
-    cover: "https://kaboompics.com/cache/c/6/2/5/d/c625dd3a9fa6af4ee04481c1488b4f26cbcbb7bb.jpeg"
-    },
-    {
-      id: "1234",
-      title: "Drawing",
-      photoCount: 10,
-      cover: "https://kaboompics.com/cache/c/6/2/5/d/c625dd3a9fa6af4ee04481c1488b4f26cbcbb7bb.jpeg"
-    },
-    {
-      id: "1235",
-      title: "Photograph",
-      photoCount: 10,
-      cover: "https://kaboompics.com/cache/c/6/2/5/d/c625dd3a9fa6af4ee04481c1488b4f26cbcbb7bb.jpeg"
-    }];
+    cover: 'https://pbs.twimg.com/media/FADpaqoUcAcFB40?format=jpg&name=large',
+  },
+  {
+    id: '1234',
+    title: 'Drawing',
+    photoCount: 10,
+    cover: 'https://philoart.oss-cn-shanghai.aliyuncs.com/%2310/%2399.jpg',
+  },
+  {
+    id: '1235',
+    title: 'Photograph',
+    photoCount: 10,
+    cover: 'https://pbs.twimg.com/media/FALwz4FVEAkrVNV?format=jpg&name=4096x4096',
+  }];
 
   return (
     <div>
@@ -27,7 +27,7 @@ const CategoryBar = () => {
         <div className="p-3 container-row-0">
           {category.map((collection) => (
             <div key={collection.title}>
-              <CategoryCard collection = {collection} />
+              <CategoryCard collection={collection} />
             </div>
           ))}
         </div>

@@ -34,7 +34,7 @@ const NavSearchBar = ({ placeholder, searchRange }) => {
   return (
     <div>
       <Form onSubmit={handleSearch}>
-        <input {...searchKeyword} placeholder={placeholder} aria-label="Search" />
+        <input {...searchKeyword} placeholder={placeholder} aria-label="Search" className="container-row-navbar-searchbox" />
       </Form>
     </div>
   );

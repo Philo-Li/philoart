@@ -7,7 +7,7 @@ import '../../../MDB-Free_4.19.2/css/mdb.css';
 const INIT_COVER = galleryIcon;
 
 const CategoryCard = ({ collection }) => {
-  if(!collection) return null;
+  if (!collection) return null;
   const history = useHistory();
 
   const openCollection = (collectionId) => {
@@ -41,70 +41,10 @@ const CategoryCard = ({ collection }) => {
               {collection.photoCount}
               )
             </div>
-          
           </div>
         </Card.Title>
       </Card>
     </div>
-    // <div className="grid-item">
-    //   <LazyLoad height={300} offset={[-100, 0]} debounce={500} once placeholder={<Placeholder />}>
-    //     <div className="photo-card overlay">
-    //       <a href={`/photo/${photo.id}`}>
-    //         <img
-    //           src={photo.small}
-    //           width="100%"
-    //           alt="gird item"
-    //         />
-    //       </a>
-    //       <div>
-    //         <div id={photo.id} className="text-white">
-    //           <button
-    //             type="button"
-    //             className="photo-card-btn-icon photo-card-btn1"
-    //             onClick={() => downloadSinglePhoto()}
-    //           >
-    //             <i className="bi bi-download" />
-    //           </button>
-    //         </div>
-    //         <div id={photo.id} className="text-white">
-    //           <button type="button" className="photo-card-btn-icon photo-card-btn3" onClick={() => openCollectModal()}>
-    //             <i className="bi bi-plus-square" />
-    //           </button>
-    //           <SaveToCollectionsModal
-    //             photo={photo}
-    //             showCollectModal={showCollectModal}
-    //             setShowCollectModal={setShowCollectModal}
-    //           />
-    //         </div>
-    //         <div className="text-white">
-    //           <button
-    //             type="button"
-    //             className="photo-card-btn-icon photo-card-btn2"
-    //             onClick={() => likeSinglePhoto(photo)}
-    //           >
-    //             {!photo.isLiked && (<i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />)}
-    //             {photo.isLiked && (
-    //               <div className="red-icon">
-    //                 <i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />
-    //               </div>
-    //             )}
-    //           </button>
-    //         </div>
-    //         { authorizedUser && authorizedUser.username === 'picky' && (
-    //           <div className="text-white">
-    //             <button
-    //               type="button"
-    //               className="photo-card-btn-icon photo-card-btn5"
-    //               onClick={() => deleteSinglePhoto(photo)}
-    //             >
-    //               <i className="bi bi-trash-fill" />
-    //             </button>
-    //           </div>
-    //         )}
-    //       </div>
-    //     </div>
-    //   </LazyLoad>
-    // </div>
   );
 };
 

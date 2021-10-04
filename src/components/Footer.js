@@ -3,14 +3,14 @@ import React from 'react';
 import {
   Card, Navbar, Nav,
 } from 'react-bootstrap';
-import Masonry from 'react-masonry-css';
+// import Masonry from 'react-masonry-css';
 import logo from '../img/logo/logo1.svg';
 
-const breakpointColumnsObj = {
-  default: 3,
-  800: 2,
-  500: 1,
-};
+// const breakpointColumnsObj = {
+//   default: 3,
+//   800: 2,
+//   500: 1,
+// };
 
 const Footer = () => {
   const footerStyle = {
@@ -18,6 +18,10 @@ const Footer = () => {
     // fontStyle: 'italic',
     // fontSize: 16,
   };
+
+  // const openTwitter = async () => {
+  //   window.open('twitter.com/philo2022');
+  // };
 
   return (
     <div style={footerStyle}>
@@ -59,6 +63,36 @@ const Footer = () => {
               />
               Philo Art
             </Navbar.Brand>
+            <div className="container-social-row">
+              <i>Social media:</i>
+              <div id="instagram" className="text-white">
+                <button
+                  type="button"
+                  className="social-icon-btn"
+                  onClick={() => window.open('https://www.instagram.com/philoart2020/')}
+                >
+                  <i className="bi bi-instagram item-social-icon" />
+                </button>
+              </div>
+              <div id="youtube" className="text-white">
+                <button
+                  type="button"
+                  className="social-icon-btn"
+                  onClick={() => window.open('https://youtube.com/c/philoart')}
+                >
+                  <i className="bi bi-youtube item-social-icon" />
+                </button>
+              </div>
+              <div id="twitter" className="text-white">
+                <button
+                  type="button"
+                  className="social-icon-btn"
+                  onClick={() => window.open('https://twitter.com/philo2022')}
+                >
+                  <i className="bi bi-twitter item-social-icon" />
+                </button>
+              </div>
+            </div>
           </div>
           <Nav className="justify-content-end">
             <Nav.Link className="text-light" href="/license">License</Nav.Link>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Jumbotron } from 'react-bootstrap';
+// import { Jumbotron } from 'react-bootstrap';
 
 const License = () => {
   const allowed = ['All photos are free to use.', 'Commercial and non-commercial purposes.', 'Attribution is not required. Giving credit to the photographer is not necessary but always appreciated.', 'You can use, copy, edit, or share that photo. Be creative and edit them as you like.'];
@@ -7,12 +7,12 @@ const License = () => {
   return (
     <div>
       <div>
-        <Jumbotron className="licence">
+        {/* <Jumbotron className="licence">
           <h1 className="licence-header-bold-white">CC0 Licence</h1>
           <h3 className="licence-subheader">
             All photos can be downloaded and used for free.
           </h3>
-        </Jumbotron>
+        </Jumbotron> */}
       </div>
       <div className="container-col-licence">
         <div className="col-item-3">

@@ -31,8 +31,8 @@ import LicenseZh from './components/license/LicenseZh';
 import About from './components/about/About';
 import AboutZh from './components/about/AboutZh';
 import ContactUs from './components/ContactUs';
-import Create from './components/create/Create'
-import logo from './img/logo/logo1.svg';
+import Create from './components/create/Create';
+import logo from './img/logo/logo2.svg';
 
 const App = () => {
   const client = useApolloClient();

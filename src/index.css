@@ -1,5 +1,5 @@
 /* Home page jumbotron and search bar*/
-.jumbotron {
+/* .jumbotron {
   background-image: url("https://kaboompics.com/cache/7/3/7/1/b/7371b7a8de0b38d8906cdae62a3374526d4109d0.jpeg");
   background-size: cover;
   height: 30rem;
@@ -8,13 +8,13 @@
   justify-content: center;
   align-items: center;
   transition: 0.5s ease;
-}
+} */
 
 
 .jumbotron-slice-1 {
   background-image: url("https://philoart.oss-cn-shanghai.aliyuncs.com/%2310/%2399.jpg");
   background-size: cover;
-  height: 30rem;
+  height: 40rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -22,14 +22,36 @@
   transition: 0.5s ease;
 }
 
-.jumbotron .header {
+.jumbotron-slice-2 {
+  background-image: url("https://pbs.twimg.com/media/FALwz4FVEAkrVNV?format=jpg&name=4096x4096");
+  background-size: cover;
+  height: 40rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s ease;
+}
+
+.jumbotron-slice-3 {
+  background-image: url("https://pbs.twimg.com/media/FADpaqoUcAcFB40?format=jpg&name=large");
+  background-size: cover;
+  height: 40rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s ease;
+}
+
+.jumbotron-header {
   font-size: 3rem;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: white;
   transition: 0.5s ease;
 }
 
-.jumbotron .subheader {
+.jumbotron-subheader {
   font-size: 1.5rem;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: white;
@@ -37,6 +59,15 @@
 }
 
 @media screen and (max-width: 800px) {
+  .jumbotron-slice-1 {
+    height: 25rem;
+  }
+  .jumbotron-slice-2 {
+    height: 25rem;
+  }
+  .jumbotron-slice-3 {
+    height: 25rem;
+  }
   .jumbotron {
     height: 20rem;
   }
@@ -322,6 +353,17 @@ input:invalid {
   color: red;
 }
 
+.container-social-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item-social-icon {
+  margin: 0.5rem;
+  /* font-size: 1.5rem; */
+}
+
 .container-row-0 {
   display: flex;
   justify-content: center;
@@ -384,13 +426,12 @@ input:invalid {
 
 .container-row-navbar-searchbox {
   flex-grow: 1;
-  /* border: 2px;
-  border-color: black; */
+  border-color: black;
+  border-width: 1px;
+  border-radius: 5px;
 }
 
 .container-row-navbar-searchbox input[type=text] {
-  border: none;
-  border-radius: 5px;
   font-size: 15px;
   width: 100%;
   padding: 8px 20px;
@@ -410,12 +451,12 @@ input:invalid {
 /*forest green */
 .navbar-button-join {
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 700;
   color: white;
   background-color: rgb(34,139,34);
   border: none;
   border-radius: 5px;
-  padding: 0.2rem 1.2rem;
+  padding: 2px 10px;
   transition: ease 0.2s;
 }
 
@@ -430,8 +471,10 @@ input:invalid {
   font-weight: light;
   color: black;
   background-color: transparent;
-  border: none;
-  padding: 8px 10px;
+  border-radius: 5px;
+  border-width: 1px;
+  padding: 2px 10px;
+  margin-right: 5px;
   transition: ease 0.2s;
 }
 
@@ -589,6 +632,24 @@ input:invalid {
 
 .icon-list {
   font-size: 1.2rem;
+}
+
+.social-icon-btn {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.social-icon-btn-dark {
+  font-size: 3rem;
+  font-weight: bold;
+  color: grey;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .photo-card-btn-icon {

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import LazyLoad from 'react-lazyload';
 import { Card } from 'react-bootstrap';
+import YouTube from 'react-youtube-embed';
 import useLikePhoto from '../../hooks/useLikePhoto';
 import useUnlikePhoto from '../../hooks/useUnlikePhoto';
 import useDownloadPhoto from '../../hooks/useDownloadPhoto';
@@ -126,6 +127,7 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
       <div className="container-row-0">
         <PhotoMoreDetailsModal photo={photo} />
       </div>
+      <YouTube id="FrRtjyjd4Fc" />
     </div>
   );
 };
