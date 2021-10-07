@@ -3,19 +3,26 @@ import { gql } from '@apollo/react-hooks';
 export const PHOTO_DETAILS = gql`
   fragment photoDetails on Photo {
     id
-    width
-    height
-    color
-    tiny
-    small
-    large
-    downloadPage
-    creditWeb
-    creditId
-    photographer
+    title
+    titleZh
+    year
     description
-    labels
     tags
+    photoWidth
+    photoHeight
+    artworkWidth
+    artworkHeight
+    srcTiny
+    srcSmall
+    srcLarge
+    srcYoutube
+    color
+    artist
+    license
+    type
+    medium
+    status
+    relatedPhotos
   }
 `;
 

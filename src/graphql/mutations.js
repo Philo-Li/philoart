@@ -56,32 +56,48 @@ export const UPDATE_PROFILE = gql`
 
 export const CREATE_PHOTO = gql`
   mutation createPhoto(
-    $width: Int
-    $height: Int
-    $tiny: String
-    $small: String
-    $large: String
-    $color: String
-    $downloadPage: String
-    $creditWeb: String
-    $creditId: String
-    $photographer: String
+    $title: String!
+    $titleZh: String!
+    $year: Int!
     $description: String
     $tags: String
+    $photoWidth: Int
+    $photoHeight: Int
+    $artworkWidth: Int
+    $artworkHeight: Int
+    $srcTiny: String
+    $srcSmall: String
+    $srcLarge: String
+    $srcYoutube: String
+    $color: String
+    $artist: String
+    $license: String
+    $type: String
+    $medium: String
+    $status: String
+    $relatedPhotos: [String]
     ) {
     createPhoto(photo: {
-      width: $width
-      height: $height
-      tiny: $tiny
-      small: $small
-      large: $large
-      color: $color
-      creditWeb: $creditWeb
-      creditId: $creditId
-      photographer: $photographer
-      downloadPage: $downloadPage
+      title: $title
+      titleZh: $titleZh
+      year: $year
       description: $description
       tags: $tags
+      photoWidth: $photoWidth
+      photoHeight: $photoHeight
+      artworkWidth: $artworkWidth
+      artworkHeight: $artworkHeight
+      srcTiny: $srcTiny
+      srcSmall: $srcSmall
+      srcLarge: $srcLarge
+      srcYoutube: $srcYoutube
+      color: $color
+      artist: $artist
+      license: $license
+      type: $type
+      medium: $medium
+      status: $status
+      relatedPhotos: $relatedPhotos
     } ) {
       id
     }

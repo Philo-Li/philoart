@@ -4,7 +4,7 @@ import TagBar from './TagBar';
 const PhotoRelatedTagBar = ({ photo }) => {
   if (photo === undefined) return null;
 
-  const tags1 = photo.labels;
+  const tags1 = photo.tags;
 
   let tags = tags1.split(',');
 
