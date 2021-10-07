@@ -7,7 +7,6 @@ import { createClient } from 'pexels';
 import axios from 'axios';
 import config from '../../config';
 import SearchPagePhotoList from './SearchPagePhotoList';
-import BroadSearchTagBar from '../others/BroadSearchTagBar';
 import NavSearchBar from '../others/NavSearchBar';
 
 const baseUrl = 'https://api.unsplash.com/search/photos';
@@ -306,7 +305,6 @@ const BroadSearchPage = () => {
           <NavSearchBar placeholder={parsed.q} />
         </div>
       </div>
-      <BroadSearchTagBar />
       <SearchPagePhotoList
         allPhotos={allPhotos}
         setAllPhotos={setAllPhotos}

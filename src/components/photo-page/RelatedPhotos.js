@@ -9,7 +9,7 @@ const RelatedPhotos = ({
   const [allPhotos, setAllPhotos] = useState();
   const [loading, setLoading] = useState(false);
 
-  const tags1 = photoToShow && photoToShow.labels;
+  const tags1 = photoToShow && photoToShow.tags;
 
   const tags = tags1 && tags1.split(',');
 

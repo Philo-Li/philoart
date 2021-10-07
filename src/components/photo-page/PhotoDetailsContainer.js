@@ -3,6 +3,9 @@ import { useHistory } from 'react-router-dom';
 import LazyLoad from 'react-lazyload';
 import { Card } from 'react-bootstrap';
 import YouTube from 'react-youtube-embed';
+// import { MapInteractionCSS } from 'react-map-interaction';
+// import EXIF from 'exif-js';
+// import ImageMeta from '../../utils/ImageMeta';
 import useLikePhoto from '../../hooks/useLikePhoto';
 import useUnlikePhoto from '../../hooks/useUnlikePhoto';
 import useDownloadPhoto from '../../hooks/useDownloadPhoto';
@@ -28,7 +31,7 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
     <div style={mystyle}>
       <a href={`/photo/${photoToShow.id}`}>
         <img
-          src={photoToShow.tiny}
+          src={photoToShow.srcTiny}
           className="lazyload-img"
           width="100%"
           alt="gird item"
@@ -61,10 +64,10 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
 
   const photo = photoToShow;
 
-  const photoCredit = `Photographer: ${photo.photographer}`;
+  const photoCredit = `Photographer: ${photo.artist}`;
 
   const downloadSinglePhoto = async () => {
-    window.open(photo.downloadPage);
+    window.open(photo.srcLarge);
     await downloadPhoto({ id: photo.id });
   };
 
@@ -74,10 +77,13 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
         <LazyLoad height={300} offset={[-100, 0]} debounce={500} once placeholder={<Placeholder />}>
           <Card>
             <img
-              src={photoToShow.small}
+              src={photoToShow.srcSmall}
               className="max-height-500"
               alt="collection cover"
             />
+            {/* <MapInteractionCSS>
+              <img src={photoToShow.small} className="max-height-500" alt="gird item" />
+            </MapInteractionCSS> */}
           </Card>
         </LazyLoad>
       </div>
@@ -121,13 +127,24 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
         <p className="">
           From
           {' '}
-          <a href={photo.creditId} target="_">{photo.creditWeb}</a>
+          <a href={photo.id} target="_"> Philo Art </a>
         </p>
       </div>
       <div className="container-row-0">
         <PhotoMoreDetailsModal photo={photo} />
       </div>
-      <YouTube id="FrRtjyjd4Fc" />
+      {/* <div>
+        <h1>
+          Get EXIF data
+        </h1>
+        <ImageMeta />
+      </div> */}
+      <div className="container-row-0">
+        <div className="color-box" style={mystyle} />
+      </div>
+      <div className="photodetails-photo-item">
+        <YouTube id="FrRtjyjd4Fc" />
+      </div>
     </div>
   );
 };

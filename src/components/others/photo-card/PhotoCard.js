@@ -25,7 +25,7 @@ const PhotoCard = ({
     <div style={mystyle}>
       <a href={`/photo/${photo.id}`}>
         <img
-          src={photo.tiny}
+          src={photo.srcTiny}
           className="lazyload-img"
           width="100%"
           alt="gird item"
@@ -47,7 +47,7 @@ const PhotoCard = ({
   };
 
   const downloadSinglePhoto = async () => {
-    window.open(photo.downloadPage);
+    window.open(photo.srcLarge);
     await downloadPhoto({ id: photo.id });
   };
 
@@ -57,7 +57,7 @@ const PhotoCard = ({
         <div className="photo-card overlay">
           <a href={`/photo/${photo.id}`}>
             <img
-              src={photo.small}
+              src={photo.srcSmall}
               width="100%"
               alt="gird item"
             />
