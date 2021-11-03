@@ -1,0 +1,80 @@
+.about .header {
+font-size: 3rem;
+font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+color: #777;
+}
+
+.about .subheader {
+font-size: 2rem;
+font-weight: bold;
+font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.about .subheader2 {
+font-size: 1.5rem;
+font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.about .profile-details {
+    font-size: 1rem;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.about {
+    .about-footer {
+        font-size: 1rem;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+}
+
+.container-about {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-about-row-reverse {
+display: flex;
+flex-direction: row-reverse;
+justify-content: center;
+align-items: center;
+}
+
+.container-col-about-item {
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+
+.container-col-about {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+@media screen and (max-width: 800px) {
+.about .header {
+    font-size: 2rem;
+    color: #777;
+}
+
+.about .subheader {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.about .subheader2 {
+    font-size: 1rem;
+}
+
+.about .icon-check {
+    font-size: 1rem;
+}
+}

@@ -64,7 +64,7 @@ const Footer = () => {
               Philo Art
             </Navbar.Brand>
             <div className="container-social-row">
-              <i>Social media:</i>
+              {/* <i>Social media:</i> */}
               <div id="instagram" className="text-white">
                 <button
                   type="button"

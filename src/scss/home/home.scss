@@ -1,0 +1,190 @@
+/* .jumbotron {
+  background-image: url("https://kaboompics.com/cache/7/3/7/1/b/7371b7a8de0b38d8906cdae62a3374526d4109d0.jpeg");
+  background-size: cover;
+  height: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s ease;
+} */
+
+.jumbotron-slice-1 {
+  background-image: url("https://philoart.oss-cn-shanghai.aliyuncs.com/%2310/%2399.jpg");
+  background-size: cover;
+  height: 40rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s ease;
+}
+
+.jumbotron-slice-2 {
+  background-image: url("https://pbs.twimg.com/media/FALwz4FVEAkrVNV?format=jpg&name=4096x4096");
+  background-size: cover;
+  height: 40rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s ease;
+}
+
+.jumbotron-slice-3 {
+  background-image: url("https://pbs.twimg.com/media/FADpaqoUcAcFB40?format=jpg&name=large");
+  background-size: cover;
+  height: 40rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s ease;
+}
+
+.jumbotron-header {
+  font-size: 3rem;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  transition: 0.5s ease;
+}
+
+.jumbotron-subheader {
+  font-size: 1.5rem;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  transition: 0.5s ease;
+}
+
+@media screen and (max-width: 800px) {
+  .jumbotron-slice-1 {
+    height: 25rem;
+  }
+  .jumbotron-slice-2 {
+    height: 25rem;
+  }
+  .jumbotron-slice-3 {
+    height: 25rem;
+  }
+  .jumbotron {
+    height: 20rem;
+  }
+
+  .jumbotron .header {
+    font-size: 2rem;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    color: white;
+  }
+
+  .jumbotron .subheader {
+    font-size: 1rem;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+  }
+}
+
+.container-row-searchbar {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .jumbotron .searchbar input[type=text] {
+    flex-grow: 1;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    width: 100%;
+    padding: 8px 20px;
+    margin-left: 10px;
+  }
+  
+  .jumbotron .searchbar .container-row-searchbar {
+    background-color: rgb(95, 90, 90);
+    border: none;
+    flex-grow: 1;
+    border-radius: 5px;
+  }
+  
+  .search-button {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    margin-right: 15px;
+  }
+  
+  /* Style The Dropdown Button */
+  .searchbar .dropbtn {
+    background-color: transparent;
+    color: black;
+    width: 5rem;
+    padding: 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+  
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .searchbar .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .searchbar .dropdown-content {
+    display: none;
+    position: absolute;
+    width: 5rem;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    z-index: 1;
+  }
+  
+  .searchbar .dropdown-content button {
+    display: block;
+    background-color: white;
+    width: 5rem;
+    padding: 10px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .searchbar .dropdown-content button:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .searchbar .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .searchbar .icon-search {
+    font-size: 1.5rem;
+    /* margin-top: 10%; */
+    font-weight: bold;
+    color: #777;
+    background-color: transparent;
+  }
+  
+  .searchbar .search-btn {
+    text-align: center;
+    background-color: transparent;
+    font-weight: bold;
+    color: #f1f1f1;
+    background-color: transparent;
+    border: none;
+    border-radius: 100%;
+    width: 5rem;
+    height: 3.5rem;
+    margin: 10px, 20px;
+    transition: .5s ease;
+  }
+  
+  .searchbar .search-btn:hover {
+    background-color: #f1f1f1;
+  }

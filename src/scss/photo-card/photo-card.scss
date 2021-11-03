@@ -1,0 +1,156 @@
+.photo-card {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    width:100%;
+    height: 100%;
+  }
+  
+  .photo-card-btn1 {
+    position: absolute;
+    text-align: center;
+    margin-top: 30px;
+    top: -2rem;
+    right: .5rem;
+    opacity: 0;
+    transition: opacity .5s ease;
+  }
+  
+  .photo-card-btn2 {
+    position: absolute;
+    text-align: center;
+    margin-top: 30px;
+    top: -2rem;
+    right: 3rem;
+    opacity: 0;
+    transition: opacity .5s ease;
+  }
+  
+  .photo-card-btn3 {
+    position: absolute;
+    text-align: center;
+    margin-top: 30px;
+    top: -2rem;
+    right: 5.5rem;
+    opacity: 0;
+    transition: opacity .5s ease;
+  }
+  
+  .photo-card-btn4 {
+    position: absolute;
+    text-align: center;
+    margin-top: 30px;
+    top: -2rem;
+    right: 8rem;
+    opacity: 0;
+    transition: opacity .5s ease;
+  }
+  
+  .photo-card-btn5 {
+    position: absolute;
+    text-align: start;
+    margin-top: 30px;
+    top: -2rem;
+    right: 10.5rem;
+    opacity: 0;
+    transition: opacity .5s ease;
+  }
+  
+  .photo-card-btn-web {
+    position: absolute;
+    text-align: center;
+    margin-top: 30px;
+    font-size: 1rem;
+    top: -1.5rem;
+    right: 5.5rem;
+    opacity: 0;
+    transition: opacity .5s ease;
+  }
+  
+  .photo-card:hover .photo-card-btn1 {
+    opacity: 1;
+  }
+  
+  .photo-card:hover .photo-card-btn2 {
+    opacity: 1;
+  }
+  
+  .photo-card:hover .photo-card-btn3 {
+    opacity: 1;
+  }
+  
+  .photo-card:hover .photo-card-btn4 {
+    opacity: 1;
+  }
+  
+  .photo-card:hover .photo-card-btn5 {
+    opacity: 1;
+  }
+  
+  .photo-card:hover .photo-card-btn-web {
+    opacity: 1;
+  }
+  
+  .photo-card-img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    left: 0;
+  }
+  
+  /* When the screen is less than 600px wide, make photo button visible */
+  @media screen and (max-width: 600px) {
+    .photo-card:hover .photo-card-btn-web {
+      opacity: 0;
+    }
+  
+    .photo-card-btn1 {
+      font-size: 1.5rem;
+      right: .5rem;
+      opacity: 1;
+    }
+    
+    .photo-card-btn2 {
+      font-size: 1.5rem;
+      right: 2.5rem;
+      opacity: 1;
+    }
+    
+    .photo-card-btn3 {
+      font-size: 1.5rem;
+      right: 4.5rem;
+      opacity: 1;
+    }
+    
+    .photo-card-btn4 {
+      font-size: 1.5rem;
+      right: 6.5rem;
+      opacity: 0;
+    }
+  
+    .photo-card:hover .photo-card-btn4 {
+      opacity: 0;
+    }
+    
+    .photo-card-btn5 {
+      font-size: 1.5rem;
+      right: 8.5rem;
+      opacity: 0;
+    }
+  
+    .photo-card:hover .photo-card-btn5 {
+      opacity: 0;
+    }
+  }
+
+  .photo-card-btn-icon {
+    font-size: 1.5rem;
+    margin-top: 10%;
+    font-weight: bold;
+    color: white;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: auto;
+    height: auto;
+  }

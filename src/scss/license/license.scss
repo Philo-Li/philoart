@@ -1,0 +1,76 @@
+.container-col-license {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+.license {
+    background-image: url("https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1500&q=80");
+    background-size: cover;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .license-header-bold-white {
+    font-weight: bold;
+    color: white;
+  }
+  
+  .license-subheader {
+    color: white;
+  }
+  
+  .license-header-bold {
+    font-weight: bold;
+  }
+  
+  .license-icon-check {
+    padding: 10px 20px;
+    font-size: 2rem;
+    color: cornflowerblue;
+    width:50%;
+  }
+  
+  .license-icon-x {
+    padding: 10px 20px;
+    font-size: 2rem;
+    color: crimson;
+    width:50%;
+  }
+  
+  .license-msg-container {
+    display: flex;
+    align-items: center;
+    
+  }
+  
+  @media screen and (max-width: 800px) {
+    .license-header-bold-white {
+      font-size: 1.5rem;
+    }
+    .license-header-bold {
+      font-size: 1.5rem;
+    }
+    .license-subheader {
+      font-size: 1rem;
+    }
+    .license-subheader-footer {
+      font-size: 1rem;
+    }
+    .license-msg {
+      font-size: 1rem;
+    }
+    .license-icon-check {
+      font-size: 1.5rem;
+    }
+    .license-icon-x {
+      font-size: 1.5rem;
+    }
+  }

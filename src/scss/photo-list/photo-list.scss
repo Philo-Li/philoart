@@ -1,0 +1,48 @@
+.photo-list-container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    margin-top: 1rem;
+    margin-bottom: 5rem;
+  }
+  
+  .the-end {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+  }
+  
+  .the-end-title {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #777;
+    text-align-last: center;
+    margin-top: 10%;
+    margin-left: 15px;
+    margin-right: 15px;
+    background-color: white;
+    border: 2px solid lightgray;
+    padding: 0.5rem 1.5rem;
+    transition: ease 0.2s;
+  }
+
+  .my-masonry-grid {
+    display: -webkit-box; /* Not needed if autoprefixing */
+    display: -ms-flexbox; /* Not needed if autoprefixing */
+    display: flex;
+    margin-left: -15px; /* gutter size offset */
+    width: auto;
+  }
+  .my-masonry-grid_column {
+    padding-left: 15px; /* gutter size */
+    background-clip: padding-box;
+  }
+  
+  /* Style your items */
+  .my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
+    background: transparent;
+    margin-bottom: 15px;
+  }

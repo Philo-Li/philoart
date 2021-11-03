@@ -1,0 +1,71 @@
+.photodetails-card-btn-like {
+    font-size: 1.3rem;
+    margin-top: 10%;
+    font-weight: light;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 0.5rem 1.5rem;
+    transition: ease 0.2s;
+  }
+  
+  .photodetails-card-btn-like:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .photodetails-card-btn-collect {
+    font-size: 1.3rem;
+    margin-top: 10%;
+    font-weight: light;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 0.5rem 1.5rem;
+    transition: ease 0.2s;
+  }
+  
+  .photodetails-card-btn-collect:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .photodetails-card-btn-download {
+    font-size: 1.3rem;
+    margin-top: 10%;
+    font-weight: light;
+    color: white;
+    background-color: rgb(61, 131, 61);
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1.5rem;
+    transition: ease 0.2s;
+  }
+  
+  .photodetails-card-btn-download:hover {
+    background-color: rgb(96, 173, 96);
+    -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+  }
+  
+  .photodetails-card-btn-info {
+    font-size: 1rem;
+    margin-top: 10%;
+    font-weight: light;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 0.2rem 1rem;
+    transition: ease 0.2s;
+  }
+  
+  .photodetails-card-btn-item {
+    margin: 0.5rem;
+  }
+  
+  .photodetails-photo-item {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    padding: 0.2rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
