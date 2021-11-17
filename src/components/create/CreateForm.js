@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Button, Spinner } from 'react-bootstrap';
 import { Form } from 'formik';
+import PicturesWall from '../upload/uploadPhoto';
 
 import TextInput from '../others/TextInput';
 // title, year, description, tags, photoWidth, photoHeight, artworkWidth,
@@ -133,6 +134,8 @@ const CreateForm = ({ loading }) => (
         />
       </div>
     </div>
+
+    <PicturesWall />
 
     <div className="col-item-1">
       <TextInput

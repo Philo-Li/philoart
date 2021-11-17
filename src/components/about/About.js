@@ -1,7 +1,6 @@
 /* eslint-disable max-len */
 import React from 'react';
 import { Image, Card } from 'react-bootstrap';
-import logo from '../../img/logo/logo2.svg';
 
 const About = () => {
   const img1 = 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1416&q=80';
@@ -9,26 +8,26 @@ const About = () => {
     <div className="about">
       <div className="container-col-about">
         <div className="col-item-4">
-          <h1 className="header">About</h1>
+          <h1 className="header">Philo</h1>
         </div>
         <Card.Link href="/about/zh" className="col-item-3">中文</Card.Link>
         <div className="container-profile">
           <div className="profile-item">
-            <h1>Philo</h1>
-          </div>
-          <div className="profile-item">
-            <Image src={logo} width={150} height={150} magin={10} roundedCircle />
+            <Image src={img1} width={150} height={150} magin={10} roundedCircle />
           </div>
         </div>
         <div className="container-col-about">
-          <h1 className="subheader">Picky - Best Free Photo Stock Search Engine</h1>
-          <h3 className="subheader2">
-            Picky is on a mission to collect best free stock photos for you.
+          <h3 className="profile-details">
+            出生自中国南方一个风景优美的小山村，曾经的自由职业者，现在是一名软件工程师，未来还想继续搞物理。
           </h3>
-          <p>{img1}</p>
+          <h3 className="profile-details">
+            没有正经学过画画，误打误撞在24岁的这一年正式拿起了画笔，随后便沉迷上了这种创作形式，作品在小范围内获得了认可，并销往多地。
+          </h3>
+          <h3 className="profile-details">
+            这世界战争不停，争吵不息，满目疮痍。我想画一点温暖东西，治愈自己，也治愈他人。
+          </h3>
         </div>
         <div className="container-social-row">
-          <i>Social media:</i>
           <div id="instagram">
             <button
               type="button"
@@ -57,12 +56,12 @@ const About = () => {
             </button>
           </div>
         </div>
-      </div>
-      <div className="container-col-login">
-        <div className="col-item-3 licence-msg">
-          <h5>
-            If you have any questions or suggestions that might make the Picky experience even better, please let us know! You can get in touch with us at philoart42@gmail.com.
-          </h5>
+        <div className="container-col-login">
+          <div className="about-footer">
+            <p>
+              If you have any questions or suggestions, you can send email to philoart42@gmail.com.
+            </p>
+          </div>
         </div>
       </div>
     </div>
