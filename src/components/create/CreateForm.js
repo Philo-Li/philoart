@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Button, Spinner } from 'react-bootstrap';
 import { Form } from 'formik';
-import PicturesWall from '../upload/uploadPhoto';
+// import PicturesWall from '../upload/uploadPhoto';
 
 import TextInput from '../others/TextInput';
 // title, year, description, tags, photoWidth, photoHeight, artworkWidth,
@@ -39,22 +39,6 @@ const CreateForm = ({ loading }) => (
     <div className="container-row-signup">
       <div className="col-item-1">
         <TextInput
-          label="photoWidth"
-          name="photoWidth"
-          type="text"
-          placeholder=""
-        />
-      </div>
-      <div className="col-item-1">
-        <TextInput
-          label="photoHeight"
-          name="photoHeight"
-          type="text"
-          placeholder=""
-        />
-      </div>
-      <div className="col-item-1">
-        <TextInput
           label="type"
           name="type"
           type="text"
@@ -75,14 +59,6 @@ const CreateForm = ({ loading }) => (
         <TextInput
           label="artworkHeight"
           name="artworkHeight"
-          type="text"
-          placeholder=""
-        />
-      </div>
-      <div className="col-item-1">
-        <TextInput
-          label="color"
-          name="color"
           type="text"
           placeholder=""
         />
@@ -135,25 +111,7 @@ const CreateForm = ({ loading }) => (
       </div>
     </div>
 
-    <PicturesWall />
-
-    <div className="col-item-1">
-      <TextInput
-        label="srcTiny"
-        name="srcTiny"
-        type="text"
-        placeholder=""
-      />
-    </div>
-
-    <div className="col-item-1">
-      <TextInput
-        label="srcSmall"
-        name="srcSmall"
-        type="text"
-        placeholder=""
-      />
-    </div>
+    {/* <PicturesWall /> */}
 
     <div className="col-item-1">
       <TextInput
@@ -174,22 +132,13 @@ const CreateForm = ({ loading }) => (
     </div>
 
     <div className="col-item-1">
-      <TextInput
-        label="tags"
-        name="tags"
-        type="text"
-        placeholder=""
-      />
-    </div>
-
-    <div className="col-item-1">
       {!loading && (
-        <Button variant="primary" id="create-button" type="submit" block>
+        <Button variant="primary" id="create-button" type="submit">
           Create
         </Button>
       )}
       {loading && (
-        <Button variant="primary" id="create-button-loading" disabled block>
+        <Button variant="primary" id="create-button-loading" disabled>
           <Spinner
             as="span"
             animation="border"

@@ -12,13 +12,13 @@ const CategoryBar = () => {
     id: '1234',
     title: 'Drawing',
     photoCount: 10,
-    cover: 'https://philoart.oss-cn-shanghai.aliyuncs.com/%2310/%2399.jpg',
+    cover: 'https://philo-art.oss-cn-hangzhou.aliyuncs.com/gallery/2020-07-07%2002.08.49%201.jpg',
   },
   {
     id: '1235',
     title: 'Photograph',
     photoCount: 10,
-    cover: 'https://pbs.twimg.com/media/FALwz4FVEAkrVNV?format=jpg&name=4096x4096',
+    cover: 'https://philo-art.oss-cn-hangzhou.aliyuncs.com/gallery/2020-07-07%2003.13.41%201.jpg',
   }];
 
   return (

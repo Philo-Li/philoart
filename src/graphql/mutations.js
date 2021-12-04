@@ -60,38 +60,26 @@ export const CREATE_PHOTO = gql`
     $titleZh: String!
     $year: Int!
     $description: String
-    $tags: String
-    $photoWidth: Int
-    $photoHeight: Int
     $artworkWidth: Int
     $artworkHeight: Int
-    $srcTiny: String
-    $srcSmall: String
     $srcLarge: String
     $srcYoutube: String
-    $color: String
     $artist: String
     $license: String
     $type: String
     $medium: String
     $status: String
-    $relatedPhotos: [String]
+    $relatedPhotos: String
     ) {
     createPhoto(photo: {
       title: $title
       titleZh: $titleZh
       year: $year
       description: $description
-      tags: $tags
-      photoWidth: $photoWidth
-      photoHeight: $photoHeight
       artworkWidth: $artworkWidth
       artworkHeight: $artworkHeight
-      srcTiny: $srcTiny
-      srcSmall: $srcSmall
       srcLarge: $srcLarge
       srcYoutube: $srcYoutube
-      color: $color
       artist: $artist
       license: $license
       type: $type

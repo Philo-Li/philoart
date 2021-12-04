@@ -29,7 +29,7 @@ const SearchBar = () => {
         return;
       }
       if (searchRange === 'All') {
-        history.push(`/search?q=${searchKeyword.value}`);
+        history.push(`/pickysearch?q=${searchKeyword.value}`);
       } else {
         history.push(`/pickysearch?q=${searchKeyword.value}`);
       }

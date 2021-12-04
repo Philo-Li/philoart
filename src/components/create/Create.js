@@ -8,22 +8,16 @@ const initialValues = {
   titleZh: '无题',
   year: 2020,
   description: '',
-  tags: '',
-  photoWidth: 0,
-  photoHeight: 0,
   artworkWidth: 0,
   artworkHeight: 0,
-  srcTiny: '',
-  srcSmall: '',
   srcLarge: '',
   srcYoutube: '',
   artist: 'Philo',
   license: 'Philo Art License',
-  color: '',
   type: 'painting',
   medium: 'acrylic painting on canvas',
   status: 'available',
-  relatedPhotos: [],
+  relatedPhotos: '',
 };
 
 const Create = () => {
@@ -34,8 +28,8 @@ const Create = () => {
 
   const onSubmit = async (values) => {
     const {
-      title, titleZh, year, description, tags, photoWidth, photoHeight, artworkWidth,
-      artworkHeight, srcTiny, srcSmall, srcLarge, srcYoutube, color, artist,
+      title, titleZh, year, description, artworkWidth,
+      artworkHeight, srcLarge, srcYoutube, color, artist,
       license, type, medium, status,
     } = values;
     const variables = {
@@ -43,13 +37,8 @@ const Create = () => {
       titleZh,
       year,
       description,
-      tags,
-      photoWidth,
-      photoHeight,
       artworkWidth,
       artworkHeight,
-      srcTiny,
-      srcSmall,
       srcLarge,
       srcYoutube,
       color,
@@ -58,12 +47,13 @@ const Create = () => {
       type,
       medium,
       status,
-      relatedPhotos: [],
+      relatedPhotos: '',
     };
     setLoading(true);
     try {
       await createPhoto(variables);
       history.push('/');
+      setLoading(true);
     } catch (e) {
       setErrorInfo(e.message);
       setLoading(false);

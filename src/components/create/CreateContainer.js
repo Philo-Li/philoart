@@ -17,30 +17,16 @@ const validationSchema = yup.object().shape({
   year: yup
     .string()
     .required(),
-  tags: yup
-    .string(),
   description: yup
     .string(),
-  photoWidth: yup
-    .number(),
-  photoHeight: yup
-    .number(),
   artworkWidth: yup
     .number(),
   artworkHeight: yup
     .number(),
-  srcTiny: yup
-    .string()
-    .required(),
-  srcSmall: yup
-    .string()
-    .required(),
   srcLarge: yup
     .string()
     .required(),
   srcYoutube: yup
-    .string(),
-  color: yup
     .string(),
   artist: yup
     .string(),

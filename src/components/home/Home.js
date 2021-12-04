@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Tabs, Tab, Carousel } from 'react-bootstrap';
 import usePhotos from '../../hooks/usePhotos';
 import HomePhotoList from '../others/photo-list/HomePhotoList';
-// import SearchBar from '../others/search-bar/SearchBar';
+import SearchBar from '../others/search-bar/SearchBar';
 import CategoryBar from '../others/CategoryBar';
 import Discover from '../discover/Discover';
 import config from '../../config';
@@ -44,24 +44,25 @@ const Home = ({
       <div>
         <Carousel fade>
           <Carousel.Item>
-            <div className="d-block w-100 jumbotron-slice-1" alt="First slide" />
+            <div className="jumbotron-slice-1" alt="First slide" />
             <Carousel.Caption>
-              <h3 className="jumbotron-header">First slide label</h3>
-              <p className="jumbotron-subheader">Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              <SearchBar />
+              {/* <h3 className="jumbotron-header">First slide label</h3> */}
+              {/* <p className="jumbotron-subheader">Nulla vitae elit libero interdum.</p> */}
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
             <div className="jumbotron-slice-2" alt="Second slide" />
             <Carousel.Caption>
-              <h3 className="jumbotron-header">Second slide label</h3>
-              <p className="jumbotron-subheader">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              {/* <h3 className="jumbotron-header">Second slide label</h3> */}
+              {/* <p className="jumbotron-subheader">Lorem ipsum dolor adipiscing elit.</p> */}
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
             <div className="jumbotron-slice-3" alt="Third slide" />
             <Carousel.Caption>
-              <h3 className="jumbotron-header">Third slide label</h3>
-              <p className="jumbotron-subheader">Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+              {/* <h3 className="jumbotron-header">Third slide label</h3> */}
+              {/* <p className="jumbotron-subheader">Praesent nisl consectetur.</p> */}
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
