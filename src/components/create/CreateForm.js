@@ -111,8 +111,6 @@ const CreateForm = ({ loading }) => (
       </div>
     </div>
 
-    {/* <PicturesWall /> */}
-
     <div className="col-item-1">
       <TextInput
         label="srcLarge"

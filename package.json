@@ -3,8 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@ant-design/icons": "^4.7.0",
-    "@ant-design/icons-react": "^2.0.1",
     "@apollo/client": "^3.2.5",
     "@apollo/react-hooks": "^4.0.0",
     "@emotion/react": "^11.1.5",
@@ -13,7 +11,6 @@
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.3.0",
-    "antd": "^4.16.13",
     "apollo-link-context": "^1.0.20",
     "axios": "^0.21.1",
     "bootstrap": "^5.1.1",
@@ -55,7 +52,8 @@
     "stage": "cross-env NODE_ENV=stage node react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "keep": "serve -l 3000 -s build"
   },
   "eslintConfig": {
     "extends": [
