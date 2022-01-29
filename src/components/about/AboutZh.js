@@ -20,7 +20,7 @@ const AboutZh = () => {
           </div>
         </div>
       </div>
-      <div className="container-col-about about">
+      {/* <div className="container-col-about about">
         <h3 className="profile-details">
           出生自中国南方一个风景优美的小山村，曾经的自由职业者，现在是一名软件工程师。
         </h3>
@@ -30,7 +30,7 @@ const AboutZh = () => {
         <h3 className="profile-details">
           这世界战争不停，争吵不息，满目疮痍。我想画一点温暖东西，治愈自己，也治愈他人。
         </h3>
-      </div>
+      </div> */}
       <div className="container-social-row">
         <div id="instagram">
           <button
