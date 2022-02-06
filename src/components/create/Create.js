@@ -28,21 +28,21 @@ const Create = () => {
 
   const onSubmit = async (values) => {
     const {
-      title, titleZh, year, description, artworkWidth,
-      artworkHeight, srcLarge, srcYoutube, color, artist,
+      title, description, artworkWidth,
+      artworkHeight, srcLarge, srcYoutube,
       license, type, medium, status,
     } = values;
     const variables = {
       title,
-      titleZh,
-      year,
+      titleZh: '',
+      year: 2021,
       description,
       artworkWidth,
       artworkHeight,
       srcLarge,
       srcYoutube,
-      color,
-      artist,
+      color: '2',
+      artist: '1',
       license,
       type,
       medium,

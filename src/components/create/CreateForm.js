@@ -1,37 +1,63 @@
 import React from 'react';
-
+// eslint-disable-next-line no-unused-vars
+import { IKImage, IKContext, IKUpload } from 'imagekitio-react';
 import { Button, Spinner } from 'react-bootstrap';
 import { Form } from 'formik';
-// import PicturesWall from '../upload/uploadPhoto';
-
 import TextInput from '../others/TextInput';
-// title, year, description, tags, photoWidth, photoHeight, artworkWidth,
-//       artworkHeight, srcTiny, srcSmall, srcLarge, srcYoutube, color, artist,
-//       license, type, medium, status,
+import Previews from '../upload/uploadComponent';
+// import { Dropzone } from "dropzone";
+
+const urlEndpoint = 'https://ik.imagekit.io/6h6oyg1zvzr/';
+
+const onError = () => {
+
+};
+
+const onSuccess = () => {
+
+};
+
+const onChange = () => {
+  console.log('submit');
+};
+
 const CreateForm = ({ loading }) => (
   <Form>
+    <IKContext urlEndpoint={urlEndpoint}>
+      <IKUpload>
+        {/* <input type="file">1</input> */}
+        {/* <input type="submit" value="Submit" /> */}
+      </IKUpload>
+      <IKUpload
+        onError={onError}
+        onSuccess={onSuccess}
+      />
+
+      <IKUpload
+        fileName="file-name.jpg"
+        tags={['sample-tag1', 'sample-tag2']}
+        customCoordinates="10,10,10,10"
+        isPrivateFile={false}
+        useUniqueFileName
+        responseFields={['tags']}
+        folder="/sample-folder"
+        onChange={onChange}
+        onError={onError}
+        onSuccess={onSuccess}
+      />
+    </IKContext>
+    <Previews />
     <div className="container-row-signup">
+      {/* <IKImage
+        urlEndpoint={urlEndpoint}
+        path="default-image.jpg"
+        width="400"
+      /> */}
       <div className="col-item-1">
         <TextInput
           label="title"
           name="title"
           type="text"
-          placeholder=""
-        />
-      </div>
-      <div className="col-item-1">
-        <TextInput
-          label="titleZh"
-          name="titleZh"
-          type="text"
-          placeholder=""
-        />
-      </div>
-      <div className="col-item-1">
-        <TextInput
-          label="year"
-          name="year"
-          type="integer"
           placeholder=""
         />
       </div>
