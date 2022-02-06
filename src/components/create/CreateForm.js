@@ -1,51 +1,11 @@
 import React from 'react';
-// eslint-disable-next-line no-unused-vars
-import { IKImage, IKContext, IKUpload } from 'imagekitio-react';
 import { Button, Spinner } from 'react-bootstrap';
 import { Form } from 'formik';
 import TextInput from '../others/TextInput';
 import Previews from '../upload/uploadComponent';
-// import { Dropzone } from "dropzone";
-
-const urlEndpoint = 'https://ik.imagekit.io/6h6oyg1zvzr/';
-
-const onError = () => {
-
-};
-
-const onSuccess = () => {
-
-};
-
-const onChange = () => {
-  console.log('submit');
-};
 
 const CreateForm = ({ loading }) => (
   <Form>
-    <IKContext urlEndpoint={urlEndpoint}>
-      <IKUpload>
-        {/* <input type="file">1</input> */}
-        {/* <input type="submit" value="Submit" /> */}
-      </IKUpload>
-      <IKUpload
-        onError={onError}
-        onSuccess={onSuccess}
-      />
-
-      <IKUpload
-        fileName="file-name.jpg"
-        tags={['sample-tag1', 'sample-tag2']}
-        customCoordinates="10,10,10,10"
-        isPrivateFile={false}
-        useUniqueFileName
-        responseFields={['tags']}
-        folder="/sample-folder"
-        onChange={onChange}
-        onError={onError}
-        onSuccess={onSuccess}
-      />
-    </IKContext>
     <Previews />
     <div className="container-row-signup">
       {/* <IKImage
