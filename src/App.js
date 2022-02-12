@@ -32,6 +32,7 @@ import About from './components/about/About';
 import AboutZh from './components/about/AboutZh';
 import ContactUs from './components/ContactUs';
 import Create from './components/create/Create';
+import NFTBalance from './components/nft-market/NFTBalance';
 import logo from './img/logo/logo2.svg';
 
 const App = () => {
@@ -70,6 +71,7 @@ const App = () => {
             </Nav>
             <Nav className="justify-content-end container-row-0">
               <a className="navbar-link" href="/discover">Discover</a>
+              <a className="navbar-link" href="/nftmarket">NFT Market</a>
               <a className="navbar-link" href="/about">About</a>
               {authorizedUser && <a className="navbar-link" href={userPage}>Profile</a>}
               {authorizedUser && <a className="navbar-link" href="/user/edit">Settings</a>}
@@ -92,6 +94,9 @@ const App = () => {
           <Switch>
             <Route path="/discover" exact>
               <Discover />
+            </Route>
+            <Route path="/nftmarket" exact>
+              <NFTBalance />
             </Route>
             <Route path="/license" exact>
               <License />
