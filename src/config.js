@@ -15,4 +15,6 @@ export default {
   visitorID: process.env.REACT_APP_PICKY_VISITOR,
   unsplashApi: process.env.REACT_APP_UNSPLASH_ACCESS_KEY,
   pickyApi: process.env.REACT_APP_PICKY_API,
+  moralisAppID: process.env.REACT_APP_MORALIS_APPLICATION_ID,
+  moralisServerUrl: process.env.REACT_APP_MORALIS_SERVER_URL,
 };

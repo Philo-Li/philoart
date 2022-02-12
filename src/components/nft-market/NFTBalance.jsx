@@ -1,6 +1,7 @@
+/* eslint-disable max-len */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useMoralis, useNFTBalances } from 'react-moralis';
 import {
   Card, Image, Tooltip, Modal, Input, Skeleton,
@@ -32,13 +33,21 @@ const styles = {
 
 function NFTBalance() {
   const { data: NFTBalances } = useNFTBalances();
-  const { Moralis, chainId } = useMoralis();
+  // const { Moralis, chainId } = useMoralis();
   const [visible, setVisibility] = useState(false);
   const [receiverToSend, setReceiver] = useState(null);
   const [amountToSend, setAmount] = useState(null);
   const [nftToSend, setNftToSend] = useState(null);
   const [isPending, setIsPending] = useState(false);
   const { verifyMetadata } = useVerifyMetadata();
+
+  // eslint-disable-next-line object-curly-newline
+  const { Moralis, chainId, isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } = useMoralis();
+
+  useEffect(() => {
+    const connectorId = window.localStorage.getItem('connectorId');
+    if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) { enableWeb3({ provider: connectorId }); }
+  }, [isAuthenticated, isWeb3Enabled]);
 
   async function transfer(nft, amount, receiver) {
     console.log(nft, amount, receiver);

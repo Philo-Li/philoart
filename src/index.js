@@ -3,10 +3,14 @@ import ReactDOM from 'react-dom';
 import {
   ApolloClient, ApolloProvider, HttpLink, InMemoryCache,
 } from '@apollo/client';
+import { MoralisProvider } from 'react-moralis';
 import { setContext } from 'apollo-link-context';
 import config from './config';
 
 import App from './App';
+
+const MORALIS_APP_ID = config.moralisAppID;
+const MORALIS_SERVER_URL = config.moralisServerUrl;
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('picky-user-token');
@@ -26,8 +30,10 @@ const client = new ApolloClient({
 });
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
-    <App />
-  </ApolloProvider>,
+  <MoralisProvider appId={MORALIS_APP_ID} serverUrl={MORALIS_SERVER_URL}>
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
+  </MoralisProvider>,
   document.getElementById('root'),
 );
