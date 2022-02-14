@@ -8,11 +8,6 @@ const CreateForm = ({ loading }) => (
   <Form>
     <Previews />
     <div className="container-row-signup">
-      {/* <IKImage
-        urlEndpoint={urlEndpoint}
-        path="default-image.jpg"
-        width="400"
-      /> */}
       <div className="col-item-1">
         <TextInput
           label="title"
