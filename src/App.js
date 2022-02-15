@@ -6,6 +6,7 @@ import {
   BrowserRouter as Router,
   Switch, Route, Redirect,
 } from 'react-router-dom';
+import { useMoralis } from 'react-moralis';
 import { Nav } from 'react-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
 
@@ -40,6 +41,7 @@ const App = () => {
   const { authorizedUser } = useAuthorizedUser();
   const searchValue = useField('searchValue');
   const [newSearchValue, setNewSearchValue] = useState('');
+  const { authenticate } = useMoralis();
 
   const Menu = () => {
     const handleLogout = async (event) => {
@@ -78,6 +80,7 @@ const App = () => {
               {!authorizedUser && <a className="navbar-link" href="/signin">Login</a>}
               {authorizedUser && <button className="navbar-button-logout" type="submit" onClick={handleLogout}>Logout</button>}
               {authorizedUser && <a href="/create" className="navbar-button-join">Create</a>}
+              <button className="navbar-button-logout" type="submit" onClick={() => authenticate()}>Wallet</button>
               {!authorizedUser && <a href="/signup" className="navbar-button-join">Sign up</a>}
             </Nav>
           </Navbar.Collapse>
@@ -96,6 +99,12 @@ const App = () => {
               <Discover />
             </Route>
             <Route path="/nftmarket" exact>
+              <NFTBalance />
+            </Route>
+            <Route path="/nftbalance" exact>
+              <NFTBalance />
+            </Route>
+            <Route path="/transactions" exact>
               <NFTBalance />
             </Route>
             <Route path="/license" exact>
