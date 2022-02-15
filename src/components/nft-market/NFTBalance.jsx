@@ -78,10 +78,10 @@ function NFTBalance() {
     }
   }
 
-  // const handleTransferClick = (nft) => {
-  //   setNftToSend(nft);
-  //   setVisibility(true);
-  // };
+  const handleTransferClick = (nft) => {
+    setNftToSend(nft);
+    setVisibility(true);
+  };
 
   const handleChange = (e) => {
     setAmount(e.target.value);
@@ -110,7 +110,7 @@ function NFTBalance() {
                   nft = verifyMetadata(nft);
                   return (
                     <>
-                      <NFTCollectionCard nft={nft} chainId={chainId} />
+                      <NFTCollectionCard nft={nft} chainId={chainId} handleTransferClick={handleTransferClick} />
                     </>
                   );
                 })}
