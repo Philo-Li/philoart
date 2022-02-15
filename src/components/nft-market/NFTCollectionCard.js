@@ -1,10 +1,12 @@
-import React from 'react';
-import { Card, Button } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Card } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { getExplorer } from '../../utils/networks';
 import { getEllipsisTxt } from '../../utils/formatters';
 import galleryIcon from '../../img/galleryIcon.jpg';
-// import '../../index.css';
+import CollectionDropdownButton from './nft-dropdown-btn/CollectionDropdownButtonDotIcon';
+import BuyModal from './BuyModal';
+import ViewOnExplorerModal from './ViewOnExplorerModal';
 
 const INIT_COVER = galleryIcon;
 
@@ -12,6 +14,8 @@ const NFTCollectionCard = ({
   nft, chainId,
 }) => {
   const history = useHistory();
+  const [showViewOnExplorerModal, setShowViewOnExplorerModal] = useState(false);
+  const [showBuyModal, setShowBuyModal] = useState(false);
 
   const openCollection = (collectionId) => {
     history.push(`/collection/${collectionId}`);
@@ -39,31 +43,35 @@ const NFTCollectionCard = ({
         <Card.Subtitle>
           <div className="container-user-collection-list-title">
             {true && (
-              <div className="user-collection-list-title-padding-left">
+              <div className="">
                 {nft.name}
-                adress:
+              </div>
+            )}
+          </div>
+          <div className="container-user-collection-list-title">
+            {true && (
+              <div className="">
+                {nft.name}
                 {getEllipsisTxt(nft.token_address, 10)}
               </div>
             )}
           </div>
-          <div className="flex-center">
-            <Button
-              size="sm"
-              onClick={() => window.open(
-                `${getExplorer(chainId)}address/${nft.token_address
-                }`,
-                '_blank',
-              )}
-            >
-              blockchain
-            </Button>
-            <Button
-              size="sm"
-              height="10"
-              onClick={() => alert('Add marketplace smartcontract integration')}
-            >
-              Opensea
-            </Button>
+          <div className="user-collection-list-btn">
+            {true && (
+              <CollectionDropdownButton
+                setShowViewOnExplorerModal={setShowViewOnExplorerModal}
+                setShowBuyModal={setShowBuyModal}
+              />
+            )}
+            <ViewOnExplorerModal
+              url={`${getExplorer(chainId)}address/${nft.token_address}`}
+              showViewOnExplorerModal={showViewOnExplorerModal}
+              setShowViewOnExplorerModal={setShowViewOnExplorerModal}
+            />
+            <BuyModal
+              showBuyModal={showBuyModal}
+              setShowBuyModal={setShowBuyModal}
+            />
           </div>
         </Card.Subtitle>
       </Card>
