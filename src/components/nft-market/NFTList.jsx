@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import {
   useMoralis, useMoralisWeb3Api,
 } from 'react-moralis';
+import { nanoid } from 'nanoid';
 
 import {
   Modal, Input,
@@ -9,11 +11,16 @@ import {
 import Masonry from 'react-masonry-css';
 import { useVerifyMetadata } from '../../hooks/useVerifyMetadata';
 import AddressInput from './AddressInput';
-
+import LoadMore from '../others/button/LoadMore';
 import NFTListCard from './NFTListCard';
 import 'antd/dist/antd.css';
 
 const styles = {
+};
+
+const merge = (a, b, prop) => {
+  const reduced = a.filter((aitem) => !b.find((bitem) => aitem[prop] === bitem[prop]));
+  return reduced.concat(b);
 };
 
 const breakpointColumnsObj = {
@@ -29,15 +36,29 @@ function NFTList() {
   const [nftToSend, setNftToSend] = useState(null);
   const [isPending, setIsPending] = useState(false);
   const { verifyMetadata } = useVerifyMetadata();
+
   const [totalNFTs, setTotalNFTs] = useState();
+  const [nftsToShow, setnftsToShow] = useState();
+  const [pageNow, setPageNow] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const PerLoad = 10;
 
   // eslint-disable-next-line object-curly-newline
-  const { Moralis, chainId, isWeb3Enabled, isAuthenticated } = useMoralis();
+  const { Moralis, chainId } = useMoralis();
 
   const web3Api = useMoralisWeb3Api();
 
   useEffect(async () => {
-  }, [isAuthenticated, isWeb3Enabled]);
+    setLoading(true);
+    if (totalNFTs) {
+      const Start = pageNow * PerLoad - PerLoad;
+      const End = pageNow * PerLoad;
+      const newLoad = totalNFTs.slice(0, End);
+      // console.log('nftsToShow', nftsToShow, newLoad);
+      setnftsToShow(newLoad);
+      setLoading(false);
+    }
+  }, [pageNow]);
 
   async function transfer(nft, amount, receiver) {
     console.log(nft, amount, receiver);
@@ -73,6 +94,11 @@ function NFTList() {
     setAmount(e.target.value);
   };
 
+  const clickFetchMore = () => {
+    setPageNow(pageNow + 1);
+    setLoading(true);
+  };
+
   const getnfts = async (address) => {
     const res = await web3Api.token.getAllTokenIds({ chain: 'eth', address });
     // console.log('nfts', res.result);
@@ -89,11 +115,11 @@ function NFTList() {
         : [];
 
       setTotalNFTs(temp);
+      const newLoad = temp.slice(0, pageNow * PerLoad);
+      setnftsToShow(newLoad);
+      setLoading(false);
     }
   };
-
-  // console.log('NFTBalances', NFTBalances);
-  // console.log('chainId', chainId);
 
   return (
     <div style={{ padding: '15px', maxWidth: '1030px', width: '100%' }}>
@@ -116,26 +142,32 @@ function NFTList() {
               className="my-masonry-grid"
               columnClassName="my-masonry-grid_column"
             >
-              {totalNFTs
-                && totalNFTs.map((nft) => {
+              {nftsToShow
+                && nftsToShow.map((nft, index) => {
                   // Verify Metadata
                   // eslint-disable-next-line no-param-reassign
                   nft = verifyMetadata(nft);
-                  // console.log('this nft', nft);
                   return (
-                    <>
+                    <div key={nanoid()}>
                       <NFTListCard
                         nft={nft}
                         chainId={chainId}
                         handleTransferClick={handleTransferClick}
                       />
-                    </>
+                    </div>
                   );
                 })}
             </Masonry>
           </div>
         </div>
       </div>
+      {nftsToShow && (
+      <LoadMore
+        hasNextPage
+        loading={loading}
+        clickFetchMore={clickFetchMore}
+      />
+      )}
       <Modal
         title={`Transfer ${nftToSend?.name || 'NFT'}`}
         visible={visible}
