@@ -81,7 +81,8 @@ function NFTList() {
         ? res.result.map((nft) => {
           // console.log('here!!!', nft);
           const metadata = JSON.parse(nft.metadata);
-          const imageurl = `https://ipfs.io/ipfs/${metadata.image.substr(7)}`;
+          const url = metadata.image;
+          const imageurl = url.substr(0, 4) === 'ipfs' ? `https://ipfs.io/ipfs/${metadata.image.substr(7)}` : url;
           const newNft = { ...nft, metadata, image: metadata && imageurl };
           return metadata ? newNft : '';
         })
