@@ -34,7 +34,9 @@ import AboutZh from './components/about/AboutZh';
 import ContactUs from './components/ContactUs';
 import Create from './components/create/Create';
 import NFTBalance from './components/nft-market/NFTBalance';
+import NFTList from './components/nft-market/NFTList';
 import logo from './img/logo/logo2.svg';
+import './index.css';
 
 const App = () => {
   const client = useApolloClient();
@@ -74,6 +76,7 @@ const App = () => {
             <Nav className="justify-content-end container-row-0">
               <a className="navbar-link" href="/discover">Discover</a>
               <a className="navbar-link" href="/nftmarket">NFT Market</a>
+              <a className="navbar-link" href="/nftlist">NFT List</a>
               <a className="navbar-link" href="/about">About</a>
               {authorizedUser && <a className="navbar-link" href={userPage}>Profile</a>}
               {authorizedUser && <a className="navbar-link" href="/user/edit">Settings</a>}
@@ -106,6 +109,9 @@ const App = () => {
             </Route>
             <Route path="/transactions" exact>
               <NFTBalance />
+            </Route>
+            <Route path="/nftlist" exact>
+              <NFTList />
             </Route>
             <Route path="/license" exact>
               <License />
