@@ -55,9 +55,7 @@
     "yup": "^0.32.9"
   },
   "scripts": {
-    "start": "cross-env NODE_ENV=production react-scripts start",
-    "dev": "cross-env NODE_ENV=development react-scripts start",
-    "stage": "cross-env NODE_ENV=stage node react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

@@ -3,7 +3,7 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useState, useEffect } from 'react';
 import { useMoralis, useNFTBalances } from 'react-moralis';
-
+import { nanoid } from 'nanoid';
 import {
   Modal, Input,
 } from 'antd';
@@ -30,7 +30,8 @@ const styles = {
 };
 
 const breakpointColumnsObj = {
-  default: 3,
+  default: 4,
+  1250: 3,
   800: 2,
   500: 1,
 };
@@ -89,7 +90,7 @@ function NFTBalance() {
 
   console.log('NFTBalances', NFTBalances);
   return (
-    <div style={{ padding: '15px', maxWidth: '1030px', width: '100%' }}>
+    <div style={{ padding: '15px', width: '100%' }}>
       <div className="p-3 discover">
         <div className="p-3 container-profile">
           <div className="profile-item">
@@ -109,9 +110,9 @@ function NFTBalance() {
                   // eslint-disable-next-line no-param-reassign
                   nft = verifyMetadata(nft);
                   return (
-                    <>
+                    <div key={nanoid()}>
                       <NFTCollectionCard nft={nft} chainId={chainId} handleTransferClick={handleTransferClick} />
-                    </>
+                    </div>
                   );
                 })}
             </Masonry>

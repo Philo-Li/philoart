@@ -24,7 +24,8 @@ const merge = (a, b, prop) => {
 };
 
 const breakpointColumnsObj = {
-  default: 3,
+  default: 4,
+  1250: 3,
   800: 2,
   500: 1,
 };
@@ -43,7 +44,6 @@ function NFTList() {
   const [loading, setLoading] = useState(false);
   const PerLoad = 10;
 
-  // eslint-disable-next-line object-curly-newline
   const { Moralis, chainId } = useMoralis();
 
   const web3Api = useMoralisWeb3Api();
@@ -54,7 +54,6 @@ function NFTList() {
       const Start = pageNow * PerLoad - PerLoad;
       const End = pageNow * PerLoad;
       const newLoad = totalNFTs.slice(0, End);
-      // console.log('nftsToShow', nftsToShow, newLoad);
       setnftsToShow(newLoad);
       setLoading(false);
     }
@@ -122,7 +121,7 @@ function NFTList() {
   };
 
   return (
-    <div style={{ padding: '15px', maxWidth: '1030px', width: '100%' }}>
+    <div style={{ padding: '15px', width: '100%' }}>
       <div className="p-3 discover">
         <div className="p-3 container-profile">
           <div className="profile-item">
