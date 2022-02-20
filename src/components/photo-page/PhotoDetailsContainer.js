@@ -133,17 +133,11 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
       <div className="container-row-0">
         <PhotoMoreDetailsModal photo={photo} />
       </div>
-      {/* <div>
-        <h1>
-          Get EXIF data
-        </h1>
-        <ImageMeta />
-      </div> */}
       <div className="container-row-0">
         <div className="color-box" style={mystyle} />
       </div>
       <div className="photodetails-photo-item">
-        <YouTube id="FrRtjyjd4Fc" />
+        {photo.srcYoutube && (<YouTube id={photo.srcYoutube} />) }
       </div>
     </div>
   );
