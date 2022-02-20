@@ -1,3 +1,5 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 
@@ -21,6 +23,31 @@ const thumb = {
 };
 
 const thumbInner = {
+  display: 'flex',
+  minWidth: 0,
+  overflow: 'hidden',
+};
+
+const artworkContainer = {
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  marginTop: 16,
+};
+
+const artwork = {
+  display: 'inline-flex',
+  borderRadius: 2,
+  border: '1px solid #eaeaea',
+  marginBottom: 8,
+  marginRight: 8,
+  maxWidth: 450,
+  maxHeight: 300,
+  padding: 4,
+  boxSizing: 'border-box',
+};
+
+const artworkInner = {
   display: 'flex',
   minWidth: 0,
   overflow: 'hidden',
@@ -96,6 +123,14 @@ function Previews() {
     </div>
   ));
 
+  const artworks = files.map((file) => (
+    <div style={artwork} key={file.name}>
+      <div style={artworkInner}>
+        <img alt="selected" src={file.preview} style={img} />
+      </div>
+    </div>
+  ));
+
   useEffect(
     () => () => {
       // Make sure to revoke the data uris to avoid memory leaks
@@ -108,13 +143,14 @@ function Previews() {
     <section className="container">
       <div {...getRootProps({ className: 'dropzone', style })}>
         <input {...getInputProps()} />
-        {isDragActive ? (
+        { isDragActive ? (
           <p>Drop the files here ...</p>
-        ) : (
+        ) : files.length === 0 ? (
           <p>Drag and drop some files here, or click to select files</p>
-        )}
+        ) : null}
+        <aside style={artworkContainer}>{artworks}</aside>
       </div>
-      <aside style={thumbsContainer}>{thumbs}</aside>
+      {/* <aside style={thumbsContainer}>{thumbs}</aside> */}
     </section>
   );
 }
