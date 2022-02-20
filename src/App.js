@@ -26,7 +26,6 @@ import useField from './hooks/useField';
 import NavSearchBar from './components/others/NavSearchBar';
 import UserPage from './components/profile/UserPage';
 import SearchPage from './components/search/SearchPage';
-import BroadSearchPage from './components/search/BroadSearchPage';
 import License from './components/license/License';
 import LicenseZh from './components/license/LicenseZh';
 import About from './components/about/About';
@@ -138,13 +137,10 @@ const App = () => {
               <SignUp />
             </Route>
             <Route path="/create" exact>
-              <Create />
+              <Create authorizedUser={authorizedUser} />
             </Route>
-            <Route path="/pickysearch" render={() => (<SearchPage authorizedUser={authorizedUser} />)}>
+            <Route path="/search" render={() => (<SearchPage authorizedUser={authorizedUser} />)}>
               {/* <SearchPage authorizedUser={authorizedUser} /> */}
-            </Route>
-            <Route path="/search" render={() => (<BroadSearchPage />)}>
-              {/* <BroadSearchPage /> */}
             </Route>
             <Route path="/user" exact>
               <UserPage />

@@ -16,7 +16,7 @@ const Home = ({
   const [key, setKey] = useState('home');
 
   const variables = {
-    username: config.pickyAdmin,
+    username: config.philoartAdmin,
     checkUserLike: !authorizedUser ? config.visitorID : authorizedUser.id,
     first: 20,
   };
