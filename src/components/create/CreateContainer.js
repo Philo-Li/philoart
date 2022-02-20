@@ -11,36 +11,12 @@ const validationSchema = yup.object().shape({
   title: yup
     .string()
     .required(),
-  titleZh: yup
-    .string()
-    .required(),
-  year: yup
-    .string()
-    .required(),
   description: yup
-    .string(),
-  artworkWidth: yup
-    .number(),
-  artworkHeight: yup
-    .number(),
-  srcLarge: yup
-    .string()
-    .required(),
-  srcYoutube: yup
-    .string(),
-  artist: yup
     .string(),
   license: yup
     .string(),
   type: yup
     .string(),
-  medium: yup
-    .string(),
-  status: yup
-    .string(),
-  relatedPhotos: yup
-    .array()
-    .of(yup.string()),
 });
 
 const CreateContainer = ({

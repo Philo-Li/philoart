@@ -567,6 +567,24 @@ div.scrollmenu a:hover {
   width: 100%;
   height: 100;
 }
+.container-row-normal-inputbox {
+  flex-grow: 1;
+  border-color: rgba(0, 0, 0, 0.25);
+  border-width: 1px;
+  border-radius: 5px;
+}
+
+.container-row-normal-inputbox input[type=text]{
+  font-size: 15px;
+  width: 100%;
+  padding: 8px 20px;
+}
+
+.textarea{
+  font-size: 15px;
+  width: 100%;
+  padding: 8px 20px;
+}
 
 .text-1rem {
   font-size: 1rem;

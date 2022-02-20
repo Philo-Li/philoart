@@ -3,14 +3,34 @@ import { Button, Spinner } from 'react-bootstrap';
 import { Form } from 'formik';
 import TextInput from '../others/TextInput';
 import Previews from '../upload/uploadComponent';
+import TextInputDescription from '../others/TextInputDescription';
 
 const CreateForm = ({ loading }) => (
   <Form>
     <Previews />
+    {/* <div className="col-item-1">
+      <Input
+        label="title"
+        name="title"
+        type="text"
+        addonBefore="title"
+        placeholder="title"
+      />
+    </div>
+    <div className="col-item-1">
+      <TextArea
+        rows={4}
+        maxLength={6}
+        label="description"
+        name="description"
+        type="text"
+        placeholder="description"
+      />
+    </div> */}
     <div className="container-row-signup">
       <div className="col-item-1">
         <TextInput
-          label="title"
+          label="Title"
           name="title"
           type="text"
           placeholder=""
@@ -19,8 +39,18 @@ const CreateForm = ({ loading }) => (
     </div>
     <div className="container-row-signup">
       <div className="col-item-1">
+        <TextInputDescription
+          label="Description"
+          name="description"
+          type="text"
+          placeholder=""
+        />
+      </div>
+    </div>
+    <div className="container-row-signup">
+      <div className="col-item-1">
         <TextInput
-          label="type"
+          label="Type"
           name="type"
           type="text"
           placeholder=""
@@ -28,6 +58,16 @@ const CreateForm = ({ loading }) => (
       </div>
     </div>
     <div className="container-row-signup">
+      <div className="col-item-1">
+        <TextInput
+          label="license"
+          name="license"
+          type="text"
+          placeholder=""
+        />
+      </div>
+    </div>
+    {/* <div className="container-row-signup">
       <div className="col-item-1">
         <TextInput
           label="artworkWidth"
@@ -44,9 +84,9 @@ const CreateForm = ({ loading }) => (
           placeholder=""
         />
       </div>
-    </div>
+    </div> */}
 
-    <div className="container-row-signup">
+    {/* <div className="container-row-signup">
       <div className="col-item-1">
         <TextInput
           label="artist"
@@ -71,48 +111,11 @@ const CreateForm = ({ loading }) => (
           placeholder=""
         />
       </div>
-    </div>
-
-    <div className="container-row-signup">
-      <div className="col-item-1">
-        <TextInput
-          label="medium"
-          name="medium"
-          type="text"
-          placeholder=""
-        />
-      </div>
-      <div className="col-item-1">
-        <TextInput
-          label="srcYoutube"
-          name="srcYoutube"
-          type="text"
-          placeholder=""
-        />
-      </div>
-    </div>
-
-    <div className="col-item-1">
-      <TextInput
-        label="srcLarge"
-        name="srcLarge"
-        type="text"
-        placeholder=""
-      />
-    </div>
-
-    <div className="col-item-1">
-      <TextInput
-        label="description"
-        name="description"
-        type="text"
-        placeholder=""
-      />
-    </div>
+    </div> */}
 
     <div className="col-item-1">
       {!loading && (
-        <Button variant="primary" id="create-button" type="submit">
+        <Button variant="primary" id="create-button" type="submit" block="true">
           Create
         </Button>
       )}
