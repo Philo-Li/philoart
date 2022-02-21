@@ -20,7 +20,7 @@ const validationSchema = yup.object().shape({
 });
 
 const CreateContainer = ({
-  initialValues, onSubmit, errorInfo, loading,
+  initialValues, onSubmit, errorInfo, loading, files, setFiles,
 }) => (
   <div className="container-col-login">
     <div className="container-profile">
@@ -41,7 +41,14 @@ const CreateContainer = ({
       validationSchema={validationSchema}
       onSubmit={onSubmit}
     >
-      {({ handleSubmit }) => <CreateForm onSubmit={handleSubmit} loading={loading} />}
+      {({ handleSubmit }) => (
+        <CreateForm
+          onSubmit={handleSubmit}
+          loading={loading}
+          files={files}
+          setFiles={setFiles}
+        />
+      )}
     </Formik>
   </div>
 );

@@ -1,9 +1,8 @@
 /* eslint-disable no-nested-ternary */
-/* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 
-const thumbsContainer = {
+const thumbContainer = {
   display: 'flex',
   flexDirection: 'row',
   flexWrap: 'wrap',
@@ -16,38 +15,13 @@ const thumb = {
   border: '1px solid #eaeaea',
   marginBottom: 8,
   marginRight: 8,
-  width: 100,
-  height: 100,
-  padding: 4,
-  boxSizing: 'border-box',
-};
-
-const thumbInner = {
-  display: 'flex',
-  minWidth: 0,
-  overflow: 'hidden',
-};
-
-const artworkContainer = {
-  display: 'flex',
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  marginTop: 16,
-};
-
-const artwork = {
-  display: 'inline-flex',
-  borderRadius: 2,
-  border: '1px solid #eaeaea',
-  marginBottom: 8,
-  marginRight: 8,
   maxWidth: 450,
   maxHeight: 300,
   padding: 4,
   boxSizing: 'border-box',
 };
 
-const artworkInner = {
+const thumbInner = {
   display: 'flex',
   minWidth: 0,
   overflow: 'hidden',
@@ -87,8 +61,9 @@ const rejectStyle = {
   borderColor: '#ff1744',
 };
 
-function Previews() {
-  const [files, setFiles] = useState([]);
+function Previews({ files, setFiles }) {
+  // const [files, setFiles] = useState([]);
+  if (!files) return null;
   const {
     getRootProps,
     getInputProps,
@@ -98,7 +73,7 @@ function Previews() {
   } = useDropzone({
     // accept: "image/*",
     onDrop: (acceptedFiles) => {
-      console.log('accepted', acceptedFiles);
+      // console.log('accepted', acceptedFiles);
       setFiles(
         acceptedFiles.map((file) => Object.assign(file, { preview: URL.createObjectURL(file) })),
       );
@@ -123,14 +98,6 @@ function Previews() {
     </div>
   ));
 
-  const artworks = files.map((file) => (
-    <div style={artwork} key={file.name}>
-      <div style={artworkInner}>
-        <img alt="selected" src={file.preview} style={img} />
-      </div>
-    </div>
-  ));
-
   useEffect(
     () => () => {
       // Make sure to revoke the data uris to avoid memory leaks
@@ -148,9 +115,8 @@ function Previews() {
         ) : files.length === 0 ? (
           <p>Drag and drop some files here, or click to select files</p>
         ) : null}
-        <aside style={artworkContainer}>{artworks}</aside>
+        <aside style={thumbContainer}>{thumbs}</aside>
       </div>
-      {/* <aside style={thumbsContainer}>{thumbs}</aside> */}
     </section>
   );
 }

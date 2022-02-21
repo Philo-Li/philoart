@@ -1,10 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
+import axios from 'axios';
 import { css } from '@emotion/react';
 import { useHistory } from 'react-router-dom';
 import PacmanLoader from 'react-spinners/PacmanLoader';
 import CreateContainer from './CreateContainer';
 import useCreatePhoto from '../../hooks/useCreatePhoto';
+import config from '../../config';
 
 const override = css`
   display: flex;
@@ -13,6 +15,8 @@ const override = css`
   margin: 3rem;
   margin-bottom: 6rem;
 `;
+
+const baseUrl = config.philoartApi;
 
 // const initialValues = {
 //   title: 'Untitled',
@@ -45,6 +49,7 @@ const Create = ({
   const [errorInfo, setErrorInfo] = useState('');
   const [loading, setLoading] = useState(false);
   const [createPhoto] = useCreatePhoto();
+  const [files, setFiles] = useState([]);
 
   if (authorizedUser === undefined) {
     return (
@@ -56,29 +61,43 @@ const Create = ({
 
   const onSubmit = async (values) => {
     const {
-      title, description,
-      license, type,
+      title, description, license, type,
     } = values;
-    const variables = {
-      title,
-      titleZh: 'untitled',
-      year: new Date().getFullYear(),
-      description,
-      artworkWidth: 0,
-      artworkHeight: 0,
-      srcLarge: 'https://images.pexels.com/photos/63901/pexels-photo-63901.jpeg?cs=srgb&dl=pexels-skitterphoto-63901.jpg&fm=jpg',
-      srcYoutube: '',
-      color: '2',
-      artist: '1',
-      license,
-      type,
-      medium: '',
-      status: 'unavailable',
-      relatedPhotos: '',
-    };
+
     setLoading(true);
-    console.log('submit', variables);
     try {
+      // get secure url from our server
+      const { url } = await axios.get(`${baseUrl}/s3Url/${authorizedUser.id}`).then((res) => res.data);
+
+      // post the image direct to the s3 bucket
+      await fetch(url, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'image/jpeg',
+        },
+        body: files[0],
+      });
+
+      const imageUrl = url.split('?')[0];
+
+      // store the image data to the server
+      const variables = {
+        title,
+        titleZh: 'untitled',
+        year: new Date().getFullYear(),
+        description,
+        artworkWidth: 0,
+        artworkHeight: 0,
+        srcLarge: imageUrl,
+        srcYoutube: '',
+        color: '2',
+        artist: '1',
+        license,
+        type,
+        medium: '',
+        status: 'unavailable',
+        relatedPhotos: '',
+      };
       await createPhoto(variables);
       history.push('/');
       setLoading(false);
@@ -90,12 +109,16 @@ const Create = ({
   };
 
   return (
-    <CreateContainer
-      initialValues={initialValues}
-      onSubmit={onSubmit}
-      errorInfo={errorInfo}
-      loading={loading}
-    />
+    <div>
+      <CreateContainer
+        initialValues={initialValues}
+        onSubmit={onSubmit}
+        errorInfo={errorInfo}
+        loading={loading}
+        files={files}
+        setFiles={setFiles}
+      />
+    </div>
   );
 };
 
