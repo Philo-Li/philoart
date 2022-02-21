@@ -9,7 +9,7 @@ const ContactUs = () => (
       </div>
       <div className="col-item-3">
         <h5>
-          If you have any questions or suggestions that might make the Picky experience even better, please let us know! You can get in touch with us at philoart42@gmail.com.
+          If you have any questions or suggestions that might make the PhiloArt experience even better, please let us know! You can get in touch with us at philoart42@gmail.com.
         </h5>
       </div>
     </div>

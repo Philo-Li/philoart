@@ -3,14 +3,14 @@ import React from 'react';
 import {
   Card, Navbar, Nav,
 } from 'react-bootstrap';
-// import Masonry from 'react-masonry-css';
+import Masonry from 'react-masonry-css';
 import logo from '../img/logo/logo1.svg';
 
-// const breakpointColumnsObj = {
-//   default: 3,
-//   800: 2,
-//   500: 1,
-// };
+const breakpointColumnsObj = {
+  default: 3,
+  800: 2,
+  500: 1,
+};
 
 const Footer = () => {
   const footerStyle = {
@@ -26,7 +26,7 @@ const Footer = () => {
   return (
     <div style={footerStyle}>
       <Card className="text-left text-light bg-dark" fluid="true">
-        {/* <Card.Body>
+        <Card.Body>
           <div className="footer-container">
             <Masonry
               breakpointCols={breakpointColumnsObj}
@@ -34,7 +34,7 @@ const Footer = () => {
               columnClassName="my-masonry-grid_column"
             >
               <div className="footer-container-col">
-                <h5 className="footer-subtitle">Philo Art</h5>
+                <h5 className="footer-subtitle">PhiloArt</h5>
                 <a href="/about">About</a>
                 <a href="/signin">Sign in</a>
                 <a href="/signup">Sign up</a>
@@ -45,12 +45,12 @@ const Footer = () => {
                 <a href="https://picky.photos">Picky</a>
               </div>
               <div className="footer-container-col">
-                <h5 className="footer-subtitle">Contact me</h5>
-                <a href="/contact">Submit website</a>
+                <h5 className="footer-subtitle">Contact us</h5>
+                <a href="/contact">Suggestions</a>
               </div>
             </Masonry>
           </div>
-        </Card.Body> */}
+        </Card.Body>
         <Card.Footer className="text-center text-light">
           <div>
             <Navbar.Brand href="/" className="text-light container-row-0">
@@ -61,10 +61,10 @@ const Footer = () => {
                 className="d-inline-block align-top"
                 alt="Free Stock Photos"
               />
-              Philo Art
+              PhiloArt
             </Navbar.Brand>
-            <div className="container-social-row">
-              {/* <i>Social media:</i> */}
+            <div>- For creator</div>
+            {/* <div className="container-social-row">
               <div id="instagram" className="text-white">
                 <button
                   type="button"
@@ -92,7 +92,7 @@ const Footer = () => {
                   <i className="bi bi-twitter item-social-icon" />
                 </button>
               </div>
-            </div>
+            </div> */}
           </div>
           <Nav className="justify-content-end">
             <Nav.Link className="text-light" href="/license">License</Nav.Link>

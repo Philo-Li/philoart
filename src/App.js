@@ -61,9 +61,9 @@ const App = () => {
               src={logo}
               width="30"
               height="30"
-              alt="Philo Art brand logo"
+              alt="PhiloArt brand logo"
             />
-            Philo Art
+            PhiloArt
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
