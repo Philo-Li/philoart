@@ -52,7 +52,7 @@ const App = () => {
     };
 
     let userPage;
-    if (authorizedUser) userPage = `/user/@${authorizedUser.username}`;
+    if (authorizedUser) userPage = `/user/${authorizedUser.username}`;
     return (
       <div>
         <Navbar collapseOnSelect expand="md" bg="white" variant="light" fixed="sticky">

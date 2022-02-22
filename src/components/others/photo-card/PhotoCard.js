@@ -96,7 +96,7 @@ const PhotoCard = ({
                 )}
               </button>
             </div>
-            { authorizedUser && authorizedUser.username === 'picky' && (
+            { authorizedUser && authorizedUser.username === 'philo' && (
               <div className="text-white">
                 <button
                   type="button"
