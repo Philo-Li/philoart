@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Nav, Image, Tab, Row, Col,
 } from 'react-bootstrap';
@@ -7,6 +7,7 @@ import PacmanLoader from 'react-spinners/PacmanLoader';
 import EditProfile from './edit-profile/EditProfile';
 import ChangePassword from './change-password/ChangePassword';
 import DeleteAccount from './delete-account/DeleteAccount';
+import useAuthorizedUser from '../../hooks/useAuthorizedUser';
 
 const override = css`
   display: flex;
@@ -16,8 +17,17 @@ const override = css`
   margin-bottom: 6rem;
 `;
 
-const Settings = ({ authorizedUser }) => {
-  if (authorizedUser === undefined) {
+const Settings = () => {
+  const { authorizedUser } = useAuthorizedUser();
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    if (authorizedUser) {
+      setUser(authorizedUser);
+    }
+  }, [authorizedUser]);
+
+  if (!authorizedUser) {
     return (
       <div className="col-item-3">
         <PacmanLoader color="#9B9B9B" loading css={override} size={50} />
@@ -25,8 +35,8 @@ const Settings = ({ authorizedUser }) => {
     );
   }
 
-  const profileImage = authorizedUser.profileImage
-    ? authorizedUser.profileImage
+  const profileImage = user
+    ? user.profileImage
     : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
 
   return (
@@ -36,7 +46,7 @@ const Settings = ({ authorizedUser }) => {
           <Image src={profileImage} width={100} height={100} magin={10} roundedCircle />
         </div>
         <div className="profile-item">
-          <h1>{authorizedUser.username}</h1>
+          <h1>{user && user.username}</h1>
         </div>
       </div>
       <Tab.Container id="left-tabs-example" defaultActiveKey="first">
@@ -57,7 +67,7 @@ const Settings = ({ authorizedUser }) => {
           <Col sm={9}>
             <Tab.Content>
               <Tab.Pane eventKey="first">
-                <EditProfile authorizedUser={authorizedUser} />
+                <EditProfile user={user} />
               </Tab.Pane>
               <Tab.Pane eventKey="second">
                 <ChangePassword />

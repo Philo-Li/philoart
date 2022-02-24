@@ -59,12 +59,12 @@ const EditProfileForm = ({ loading }) => (
 
       <div className="col-item-1">
         {!loading && (
-          <Button variant="primary" id="edit-profile-button" type="submit" block>
+          <Button variant="primary" id="edit-profile-button" type="submit" block="true">
             Update
           </Button>
         )}
         {loading && (
-          <Button variant="primary" id="edit-profile-button-loading" disabled block>
+          <Button variant="primary" id="edit-profile-button-loading" disabled block="true">
             <Spinner
               as="span"
               animation="border"

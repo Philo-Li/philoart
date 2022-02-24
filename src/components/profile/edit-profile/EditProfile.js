@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 import useUpdateProfile from '../../../hooks/useUpdateProfile';
 import EditProfileContainer from './EditProfileContainer';
 
-const EditProfile = ({ authorizedUser }) => {
+const EditProfile = ({ user }) => {
   const [updateProfile] = useUpdateProfile();
   const [errorInfo, setErrorInfo] = useState('');
   const [successInfo, setSuccessInfo] = useState('');
   const [loading, setLoading] = useState(false);
 
+  if (!user) return null;
+
   const initialValues = {
-    firstName: authorizedUser.firstName,
-    lastName: authorizedUser.lastName || '',
-    email: authorizedUser.email,
-    username: authorizedUser.username,
+    firstName: user.firstName,
+    lastName: user.lastName || '',
+    email: user.email,
+    username: user.username,
     password: '',
   };
 
