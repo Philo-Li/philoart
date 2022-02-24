@@ -7,7 +7,7 @@ import {
   Switch, Route, Redirect,
 } from 'react-router-dom';
 import { useMoralis } from 'react-moralis';
-import { Nav } from 'react-bootstrap';
+import { Nav, NavDropdown } from 'react-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
 
 import Home from './components/home/Home';
@@ -76,16 +76,24 @@ const App = () => {
               </div>
             </Nav>
             <Nav className="justify-content-end container-row-0">
+              <NavDropdown title="NFTs" id="basic-nav-dropdown">
+                <NavDropdown.Item href="/nftmarket">NFT Market</NavDropdown.Item>
+                <NavDropdown.Item href="/nftlist">NFT List</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <button className="navbar-button-logout" type="submit" onClick={() => authenticate()}>Wallet</button>
+              </NavDropdown>
               <a className="navbar-link" href="/discover">Discover</a>
-              <a className="navbar-link" href="/nftmarket">NFT Market</a>
-              <a className="navbar-link" href="/nftlist">NFT List</a>
               <a className="navbar-link" href="/about">About</a>
-              {token && <a className="navbar-link" href={userPage}>Profile</a>}
-              {token && <a className="navbar-link" href="/user/edit">Settings</a>}
               {!token && <a className="navbar-link" href="/signin">Login</a>}
-              {token && <button className="navbar-button-logout" type="submit" onClick={handleLogout}>Logout</button>}
+              {token && (
+                <NavDropdown title="My Account" id="basic-nav-dropdown">
+                  <NavDropdown.Item href={userPage}>Profile</NavDropdown.Item>
+                  <NavDropdown.Item href="/user/edit">Settings</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  {token && <button className="navbar-button-logout" type="submit" onClick={handleLogout}>Logout</button>}
+                </NavDropdown>
+              )}
               {token && <a href="/create" className="navbar-button-join">Create</a>}
-              <button className="navbar-button-logout" type="submit" onClick={() => authenticate()}>Wallet</button>
               {!token && <a href="/signup" className="navbar-button-join">Sign up</a>}
             </Nav>
           </Navbar.Collapse>
@@ -149,7 +157,7 @@ const App = () => {
               <UserPage />
             </Route>
             <Route path="/user/edit" exact>
-              <Settings authorizedUser={authorizedUser} />
+              <Settings />
             </Route>
             <Route path="/user/:username" exact>
               <Profile authorizedUser={authorizedUser} />
