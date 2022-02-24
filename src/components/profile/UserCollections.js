@@ -22,9 +22,10 @@ const breakpointColumnsObj = {
   500: 1,
 };
 
-const UserCollections = ({ authorizedUser }) => {
+const UserCollections = () => {
   const [loading, setLoading] = useState(false);
   const [allCollections, setAllCollections] = useState();
+  const authUsername = localStorage.getItem('philoart-username');
 
   let { username } = useParams();
   username = username.substr(1, username.length - 1);
@@ -67,7 +68,7 @@ const UserCollections = ({ authorizedUser }) => {
         {allCollections.map((collection) => (
           <CollectionCard
             key={collection.id}
-            showEditButton={authorizedUser && (username === authorizedUser.username)}
+            showEditButton={username === authUsername}
             collection={collection}
             allCollections={allCollections}
             setAllCollections={setAllCollections}

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import usePhotos from '../../hooks/usePhotos';
 import HomePhotoList from '../others/photo-list/HomePhotoList';
-import config from '../../config';
 
 const RelatedPhotos = ({
-  authorizedUser, photoToShow,
+  photoToShow,
 }) => {
   const [allPhotos, setAllPhotos] = useState();
   const [loading, setLoading] = useState(false);
+  const userId = localStorage.getItem('philoart-userId');
 
   const tags1 = photoToShow && photoToShow.tags;
 
@@ -15,7 +15,7 @@ const RelatedPhotos = ({
 
   const variables = {
     searchKeyword: tags && tags[0],
-    checkUserLike: !authorizedUser ? config.visitorID : authorizedUser.id,
+    checkUserLike: userId,
     first: 10,
   };
 
@@ -30,7 +30,7 @@ const RelatedPhotos = ({
       setAllPhotos(temp);
       setLoading(false);
     }
-  }, [photos, authorizedUser]);
+  }, [photos]);
 
   const clickFetchMore = () => {
     fetchMore();

@@ -4,7 +4,6 @@ import Masonry from 'react-masonry-css';
 import LoadMore from '../others/button/LoadMore';
 import SearchPhotoCard from './SearchPhotoCard';
 import useCreateAndLikePhoto from '../../hooks/useCreateAndLikePhoto';
-import useAuthorizedUser from '../../hooks/useAuthorizedUser';
 import useUnlikeAndDeletePhoto from '../../hooks/useUnlikeAndDeletePhoto';
 
 const breakpointColumnsObj = {
@@ -16,13 +15,13 @@ const breakpointColumnsObj = {
 const SearchPagePhotoListContainer = ({
   allPhotos, setAllPhotos, clickFetchMore, loading,
 }) => {
-  const { authorizedUser } = useAuthorizedUser();
   const [createAndLikePhoto] = useCreateAndLikePhoto();
   const [unlikeAndDeletePhoto] = useUnlikeAndDeletePhoto();
   const history = useHistory();
+  const token = localStorage.getItem('philoart-token');
 
   const likeSinglePhoto = async (photo) => {
-    if (!authorizedUser) {
+    if (!token) {
       history.push('/signin');
     } else {
       const temp = allPhotos
@@ -64,7 +63,6 @@ const SearchPagePhotoListContainer = ({
             <SearchPhotoCard
               key={photo.downloadPage}
               photo={photo}
-              authorizedUser={authorizedUser}
               likeSinglePhoto={likeSinglePhoto}
             />
           ))}

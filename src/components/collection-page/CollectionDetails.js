@@ -17,17 +17,19 @@ const override = css`
   margin-bottom: 6rem;
 `;
 
-const CollectionDetails = ({ authorizedUser }) => {
+const CollectionDetails = () => {
   const { id } = useParams();
   const [allPhotos, setAllPhotos] = useState();
   const [collectionNow, setCollectionNow] = useState();
   const [showEditCollectionModal, setShowEditCollectionModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [loading, setLoading] = useState(false);
+  const userId = localStorage.getItem('philoart-userId');
+  const username = localStorage.getItem('philoart-username');
 
   const variables = {
     id,
-    checkUserLike: !authorizedUser ? 'lq3d6VSwSwDlv3mqJr7RE' : authorizedUser.id,
+    checkUserLike: userId,
     first: 30,
   };
 
@@ -87,7 +89,7 @@ const CollectionDetails = ({ authorizedUser }) => {
       </div>
       <div className="container-collection-title">
         <div className="collection-dropbtn">
-          {authorizedUser && collectionNow.user.username === authorizedUser.username && (
+          {username && collectionNow.user.username === username && (
             <CollectionDropdownButton
               setShowEditCollectionModal={setShowEditCollectionModal}
               setShowDeleteModal={setShowDeleteModal}

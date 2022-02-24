@@ -42,16 +42,15 @@ const initialValues = {
   type: 'painting',
 };
 
-const Create = ({
-  authorizedUser,
-}) => {
+const Create = () => {
   const history = useHistory();
   const [errorInfo, setErrorInfo] = useState('');
   const [loading, setLoading] = useState(false);
   const [createPhoto] = useCreatePhoto();
   const [files, setFiles] = useState([]);
+  const userId = localStorage.getItem('philoart-userId');
 
-  if (authorizedUser === undefined) {
+  if (!userId) {
     return (
       <div className="col-item-3">
         <PacmanLoader color="#9B9B9B" loading css={override} size={50} />
@@ -67,7 +66,7 @@ const Create = ({
     setLoading(true);
     try {
       // get secure url from our server
-      const { url } = await axios.get(`${baseUrl}/s3Url/${authorizedUser.id}`).then((res) => res.data);
+      const { url } = await axios.get(`${baseUrl}/s3Url/${userId}`).then((res) => res.data);
 
       // post the image direct to the s3 bucket
       await fetch(url, {

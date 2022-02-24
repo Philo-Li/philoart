@@ -250,9 +250,9 @@ export const DELETE_PHOTO = gql`
 `;
 
 export const EDIT_COLLECTION = gql`
-mutation editCollection( $collectionId: ID!, $newTitle: String!, $newDescription: String! ){
-  editCollection(edit: {collectionId: $collectionId, newTitle: $newTitle, newDescription: $newDescription} ) {
-    id
+  mutation editCollection( $collectionId: ID!, $newTitle: String!, $newDescription: String! ){
+    editCollection(edit: {collectionId: $collectionId, newTitle: $newTitle, newDescription: $newDescription} ) {
+      id
   }
 }
 `;

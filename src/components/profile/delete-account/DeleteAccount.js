@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import DeleteAccountModal from './DeleteAccountModal';
 
-const DeleteAccount = ({ authorizedUser }) => {
+const DeleteAccount = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const token = localStorage.getItem('philoart-token');
 
-  if (!authorizedUser) return null;
+  if (!token) return null;
 
   return (
     <div className="p-3">
@@ -20,7 +21,6 @@ const DeleteAccount = ({ authorizedUser }) => {
         </div>
       </div>
       <DeleteAccountModal
-        authorizedUser={authorizedUser}
         showDeleteModal={showDeleteModal}
         setShowDeleteModal={setShowDeleteModal}
       />

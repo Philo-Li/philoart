@@ -7,7 +7,6 @@ import usePhotos from '../../hooks/usePhotos';
 import HomePhotoList from '../others/photo-list/HomePhotoList';
 import RelatedTagBar from '../others/RelatedTagBar';
 import NavSearchBar from '../others/NavSearchBar';
-import config from '../../config';
 
 const override = css`
   display: flex;
@@ -16,16 +15,17 @@ const override = css`
   margin-top: 3rem;
 `;
 
-const SearchPage = ({ authorizedUser }) => {
+const SearchPage = () => {
   const [allPhotos, setAllPhotos] = useState();
   const [loading, setLoading] = useState(false);
   const location = useLocation();
   const parsed = queryString.parse(location.search);
+  const userId = localStorage.getItem('philoart-userId');
 
   const variables = {
     searchKeyword: parsed.q,
-    checkUserLike: !authorizedUser ? config.visitorID : authorizedUser.id,
-    first: 15,
+    checkUserLike: userId,
+    first: 20,
   };
 
   const { photos, fetchMore, hasNextPage } = usePhotos(variables);

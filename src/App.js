@@ -45,6 +45,9 @@ const App = () => {
   const { authenticate } = useMoralis();
 
   const Menu = () => {
+    const token = localStorage.getItem('philoart-token');
+    const username = localStorage.getItem('philoart-username');
+
     const handleLogout = async (event) => {
       event.preventDefault();
       localStorage.clear();
@@ -52,7 +55,7 @@ const App = () => {
     };
 
     let userPage;
-    if (authorizedUser) userPage = `/user/${authorizedUser.username}`;
+    if (token) userPage = `/user/@${username}`;
     return (
       <div>
         <Navbar collapseOnSelect expand="md" bg="white" variant="light" fixed="sticky">
@@ -77,13 +80,13 @@ const App = () => {
               <a className="navbar-link" href="/nftmarket">NFT Market</a>
               <a className="navbar-link" href="/nftlist">NFT List</a>
               <a className="navbar-link" href="/about">About</a>
-              {authorizedUser && <a className="navbar-link" href={userPage}>Profile</a>}
-              {authorizedUser && <a className="navbar-link" href="/user/edit">Settings</a>}
-              {!authorizedUser && <a className="navbar-link" href="/signin">Login</a>}
-              {authorizedUser && <button className="navbar-button-logout" type="submit" onClick={handleLogout}>Logout</button>}
-              {authorizedUser && <a href="/create" className="navbar-button-join">Create</a>}
+              {token && <a className="navbar-link" href={userPage}>Profile</a>}
+              {token && <a className="navbar-link" href="/user/edit">Settings</a>}
+              {!token && <a className="navbar-link" href="/signin">Login</a>}
+              {token && <button className="navbar-button-logout" type="submit" onClick={handleLogout}>Logout</button>}
+              {token && <a href="/create" className="navbar-button-join">Create</a>}
               <button className="navbar-button-logout" type="submit" onClick={() => authenticate()}>Wallet</button>
-              {!authorizedUser && <a href="/signup" className="navbar-button-join">Sign up</a>}
+              {!token && <a href="/signup" className="navbar-button-join">Sign up</a>}
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -137,9 +140,9 @@ const App = () => {
               <SignUp />
             </Route>
             <Route path="/create" exact>
-              <Create authorizedUser={authorizedUser} />
+              <Create />
             </Route>
-            <Route path="/search" render={() => (<SearchPage authorizedUser={authorizedUser} />)}>
+            <Route path="/search" render={() => (<SearchPage />)}>
               {/* <SearchPage authorizedUser={authorizedUser} /> */}
             </Route>
             <Route path="/user" exact>
@@ -150,21 +153,20 @@ const App = () => {
             </Route>
             <Route path="/user/:username" exact>
               <Profile authorizedUser={authorizedUser} />
-              <UserLikes authorizedUser={authorizedUser} />
+              <UserLikes />
             </Route>
             <Route path="/user/:username/collections" exact>
               <Profile authorizedUser={authorizedUser} />
-              <UserCollections authorizedUser={authorizedUser} />
+              <UserCollections />
             </Route>
             <Route path="/photo/:id" exact>
-              <PhotoDetails authorizedUser={authorizedUser} />
+              <PhotoDetails />
             </Route>
             <Route path="/collection/:id" exact>
-              <CollectionDetails authorizedUser={authorizedUser} />
+              <CollectionDetails />
             </Route>
             <Route path="/" exact>
               <Home
-                authorizedUser={authorizedUser}
                 searchValue={searchValue}
                 newSearchValue={newSearchValue}
                 setNewSearchValue={setNewSearchValue}

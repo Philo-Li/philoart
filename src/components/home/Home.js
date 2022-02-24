@@ -8,16 +8,16 @@ import Discover from '../discover/Discover';
 import config from '../../config';
 import '../../MDB-Free_4.19.2/css/mdb.css';
 
-const Home = ({
-  authorizedUser,
-}) => {
+const Home = () => {
   const [allPhotos, setAllPhotos] = useState();
   const [loading, setLoading] = useState(false);
   const [key, setKey] = useState('home');
 
+  const userId = localStorage.getItem('philoart-userId');
+
   const variables = {
     username: config.philoartAdmin,
-    checkUserLike: !authorizedUser ? config.visitorID : authorizedUser.id,
+    checkUserLike: userId,
     first: 20,
   };
 
@@ -32,7 +32,7 @@ const Home = ({
       setAllPhotos(temp);
       setLoading(false);
     }
-  }, [photos, authorizedUser]);
+  }, [photos]);
 
   const clickFetchMore = () => {
     fetchMore();

@@ -7,13 +7,15 @@ import useDownloadPhoto from '../../../hooks/useDownloadPhoto';
 import '../../../MDB-Free_4.19.2/css/mdb.css';
 
 const PhotoCard = ({
-  photo, authorizedUser, likeSinglePhoto,
+  photo, likeSinglePhoto,
 }) => {
   if (!photo) return null;
   const [deletePhoto] = useDeletePhoto();
   const [downloadPhoto] = useDownloadPhoto();
   const history = useHistory();
   const [showCollectModal, setShowCollectModal] = useState(false);
+
+  const username = localStorage.getItem('philoart-username');
 
   const bgColor = photo.color || '#84B0B3';
 
@@ -39,7 +41,7 @@ const PhotoCard = ({
   };
 
   const openCollectModal = async () => {
-    if (!authorizedUser) {
+    if (!username) {
       history.push('/signin');
     } else {
       setShowCollectModal(true);
@@ -96,7 +98,7 @@ const PhotoCard = ({
                 )}
               </button>
             </div>
-            { authorizedUser && authorizedUser.username === 'philo' && (
+            { username === 'philo' && (
               <div className="text-white">
                 <button
                   type="button"

@@ -4,7 +4,6 @@ import { Modal, Alert } from 'react-bootstrap';
 import useDeleteUser from '../../../hooks/useDeleteUser';
 
 const DeleteAccountModal = ({
-  authorizedUser,
   showDeleteModal,
   setShowDeleteModal,
 }) => {
@@ -12,10 +11,11 @@ const DeleteAccountModal = ({
   const [successInfo, setSuccessInfo] = useState('');
   const [deleteUser] = useDeleteUser();
   const history = useHistory();
+  const userId = localStorage.getItem('philoart-userId');
 
   const deleteAccount = async () => {
     try {
-      await deleteUser({ id: authorizedUser.id });
+      await deleteUser({ id: userId });
       setSuccessInfo('Account is deleted');
       setTimeout(() => { setSuccessInfo(''); setShowDeleteModal(false); history.push('/'); }, 3000);
     } catch (e) {

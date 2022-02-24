@@ -4,31 +4,31 @@ import usePhoto from '../../hooks/usePhoto';
 import PhotoRelatedTagBar from '../others/PhotoRelatedTagBar';
 import PhotoDetailsContainer from './PhotoDetailsContainer';
 import RelatedPhotos from './RelatedPhotos';
-import config from '../../config';
 
-const PhotoDetails = ({ authorizedUser }) => {
+const PhotoDetails = () => {
   const [photoToShow, setPhotoToShow] = useState();
   const { id } = useParams();
+  const userId = localStorage.getItem('philoart-userId');
+
   const { photo } = usePhoto({
     id,
-    checkUserLike: !authorizedUser ? config.visitorID : authorizedUser.id,
+    checkUserLike: userId,
   });
 
   useEffect(() => {
     if (photo) {
       setPhotoToShow(photo);
     }
-  }, [photo, authorizedUser]);
+  }, [photo]);
 
   return (
     <div>
       <PhotoDetailsContainer
         photoToShow={photoToShow}
         setPhotoToShow={setPhotoToShow}
-        authorizedUser={authorizedUser}
       />
       <PhotoRelatedTagBar photo={photoToShow} />
-      <RelatedPhotos authorizedUser={authorizedUser} photoToShow={photoToShow} />
+      <RelatedPhotos photoToShow={photoToShow} />
     </div>
   );
 };

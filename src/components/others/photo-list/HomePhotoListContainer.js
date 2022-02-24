@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import Masonry from 'react-masonry-css';
 import LoadMore from '../button/LoadMore';
 import useLikePhoto from '../../../hooks/useLikePhoto';
-import useAuthorizedUser from '../../../hooks/useAuthorizedUser';
 import PhotoCard from '../photo-card/PhotoCard';
 import useUnlikePhoto from '../../../hooks/useUnlikePhoto';
 
@@ -22,13 +21,13 @@ const breakpointColumnsObj2 = {
 const HomePhotoListContainer = ({
   allPhotos, setAllPhotos, clickFetchMore, loading, column, hasNextPage,
 }) => {
-  const { authorizedUser } = useAuthorizedUser();
   const [likePhoto] = useLikePhoto();
   const [unlikePhoto] = useUnlikePhoto();
   const history = useHistory();
+  const token = localStorage.getItem('philoart-token');
 
   const likeSinglePhoto = async (photo) => {
-    if (!authorizedUser) {
+    if (!token) {
       history.push('/signin');
     } else {
       const temp = allPhotos
@@ -54,7 +53,6 @@ const HomePhotoListContainer = ({
             <PhotoCard
               key={photo.id}
               photo={photo}
-              authorizedUser={authorizedUser}
               likeSinglePhoto={likeSinglePhoto}
             />
           ))}

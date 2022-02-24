@@ -60,10 +60,10 @@ const Settings = ({ authorizedUser }) => {
                 <EditProfile authorizedUser={authorizedUser} />
               </Tab.Pane>
               <Tab.Pane eventKey="second">
-                <ChangePassword authorizedUser={authorizedUser} />
+                <ChangePassword />
               </Tab.Pane>
               <Tab.Pane eventKey="third">
-                <DeleteAccount authorizedUser={authorizedUser} />
+                <DeleteAccount />
               </Tab.Pane>
             </Tab.Content>
           </Col>

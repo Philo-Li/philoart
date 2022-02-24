@@ -6,12 +6,13 @@ import useCreatePhoto from '../../hooks/useCreatePhoto';
 import '../../MDB-Free_4.19.2/css/mdb.css';
 
 const SearchPhotoCard = ({
-  photo, authorizedUser, likeSinglePhoto, collectSinglePhoto,
+  photo, likeSinglePhoto, collectSinglePhoto,
 }) => {
   if (!photo) return null;
   const [createPhoto] = useCreatePhoto();
 
   const bgColor = photo.color || '#84B0B3';
+  const username = localStorage.getItem('philoart-username');
 
   const mystyle = {
     backgroundColor: bgColor,
@@ -103,7 +104,7 @@ const SearchPhotoCard = ({
                 <p>{photo.creditWeb}</p>
               </button>
             </div>
-            { authorizedUser && authorizedUser.username === 'picky' && (
+            { username === 'philo' && (
               <div className="text-white">
                 <button
                   type="button"

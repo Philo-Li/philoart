@@ -12,12 +12,13 @@ import useDownloadPhoto from '../../hooks/useDownloadPhoto';
 import SaveToCollectionsModal from '../others/photo-card/SaveToCollectionsModal';
 import PhotoMoreDetailsModal from '../others/photo-card/PhotoMoreDetailsModal';
 
-const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) => {
+const PhotoDetailContainer = ({ photoToShow, setPhotoToShow }) => {
   const [likePhoto] = useLikePhoto();
   const [unlikePhoto] = useUnlikePhoto();
   const [downloadPhoto] = useDownloadPhoto();
   const [showCollectModal, setShowCollectModal] = useState(false);
   const history = useHistory();
+  const userId = localStorage.getItem('philoart-userId');
 
   if (!photoToShow) return null;
 
@@ -41,7 +42,7 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
   );
 
   const likeSinglePhoto = async () => {
-    if (!authorizedUser) {
+    if (!userId) {
       history.push('/signin');
     } else {
       const temp = { ...photoToShow, isLiked: !photoToShow.isLiked };
@@ -55,7 +56,7 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow, authorizedUser }) =
   };
 
   const openCollectModal = async () => {
-    if (!authorizedUser) {
+    if (!userId) {
       history.push('/signin');
     } else {
       setShowCollectModal(true);
