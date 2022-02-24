@@ -6,16 +6,22 @@ import YouTube from 'react-youtube-embed';
 import useLikePhoto from '../../hooks/useLikePhoto';
 import useUnlikePhoto from '../../hooks/useUnlikePhoto';
 import useDownloadPhoto from '../../hooks/useDownloadPhoto';
+import DropdownButton from '../others/button/edit-photo-btn/DropdownButton';
 import SaveToCollectionsModal from '../others/photo-card/SaveToCollectionsModal';
 import PhotoMoreDetailsModal from '../others/photo-card/PhotoMoreDetailsModal';
+import DeletePhotoModal from './DeletePhotoModal';
 
 const PhotoDetailContainer = ({ photoToShow, setPhotoToShow }) => {
   const [likePhoto] = useLikePhoto();
   const [unlikePhoto] = useUnlikePhoto();
   const [downloadPhoto] = useDownloadPhoto();
   const [showCollectModal, setShowCollectModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  // eslint-disable-next-line no-unused-vars
+  const [showEditModal, setShowEditModal] = useState(false);
   const history = useHistory();
   const userId = localStorage.getItem('philoart-userId');
+  const username = localStorage.getItem('philoart-username');
 
   if (!photoToShow) return null;
 
@@ -85,6 +91,21 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow }) => {
           </Card>
         </LazyLoad>
       </div>
+      <div className="container-collection-title">
+        <div className="collection-dropbtn">
+          {photo.user.username === username && (
+            <DropdownButton
+              setShowEditModal={setShowEditModal}
+              setShowDeleteModal={setShowDeleteModal}
+            />
+          )}
+        </div>
+      </div>
+      <DeletePhotoModal
+        photo={photo}
+        showDeleteModal={showDeleteModal}
+        setShowDeleteModal={setShowDeleteModal}
+      />
       <div className="container-row-photodetail-btn">
         <div className="">
           <button

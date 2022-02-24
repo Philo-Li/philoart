@@ -46,6 +46,9 @@ export const GET_PHOTO = gql`
   query getPhoto($id: ID!, $checkUserLike: ID) {
     photo(id: $id) {
       ...photoDetails
+      user {
+        username
+      }
       likeCount
       collectionCount
       downloadCount
