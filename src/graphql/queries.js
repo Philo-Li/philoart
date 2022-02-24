@@ -21,7 +21,13 @@ export const GET_PHOTOS = gql`
     ) {
       edges {
         node {
-          ...photoDetails
+          id
+          title
+          srcTiny
+          srcSmall
+          srcLarge
+          artist
+          status
           isLiked(checkUserLike: $checkUserLike)
         }
         cursor
@@ -34,7 +40,6 @@ export const GET_PHOTOS = gql`
       }
     }
   }
-  ${PHOTO_DETAILS}
 `;
 
 export const GET_PHOTO = gql`
