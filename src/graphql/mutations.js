@@ -256,3 +256,9 @@ export const EDIT_COLLECTION = gql`
   }
 }
 `;
+
+export const FOLLOW_USER = gql`
+  mutation followUser( $userId: ID! ) {
+    followUser( userId: $userId )
+  }
+`;
