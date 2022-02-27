@@ -59,7 +59,7 @@ const PhotoCard = ({
         <div className="photo-card overlay">
           <a href={`/photo/${photo.id}`}>
             <img
-              src={photo.srcSmall}
+              src={photo.srcTiny}
               width="100%"
               alt="gird item"
             />

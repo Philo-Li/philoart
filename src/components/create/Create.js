@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { css } from '@emotion/react';
+import { nanoid } from 'nanoid';
 import { useHistory } from 'react-router-dom';
 import PacmanLoader from 'react-spinners/PacmanLoader';
 import CreateContainer from './CreateContainer';
@@ -66,7 +67,8 @@ const Create = () => {
     setLoading(true);
     try {
       // get secure url from our server
-      const { url } = await axios.get(`${baseUrl}/s3Url/${userId}`).then((res) => res.data);
+      const photoId = nanoid();
+      const { url } = await axios.get(`${baseUrl}/s3Url/${photoId}`).then((res) => res.data);
 
       // post the image direct to the s3 bucket
       await fetch(url, {
@@ -81,6 +83,7 @@ const Create = () => {
 
       // store the image data to the server
       const variables = {
+        photoId,
         title,
         titleZh: 'untitled',
         year: new Date().getFullYear(),

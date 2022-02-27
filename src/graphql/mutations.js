@@ -56,6 +56,7 @@ export const UPDATE_PROFILE = gql`
 
 export const CREATE_PHOTO = gql`
   mutation createPhoto(
+    $photoId: String
     $title: String!
     $titleZh: String!
     $year: Int!
@@ -72,6 +73,7 @@ export const CREATE_PHOTO = gql`
     $relatedPhotos: String
     ) {
     createPhoto(photo: {
+      photoId: $photoId
       title: $title
       titleZh: $titleZh
       year: $year
