@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Tabs, Tab, Carousel } from 'react-bootstrap';
 import usePhotos from '../../hooks/usePhotos';
 import HomePhotoList from '../others/photo-list/HomePhotoList';
@@ -14,6 +15,7 @@ const Home = () => {
   const [key, setKey] = useState('home');
 
   const userId = localStorage.getItem('philoart-userId');
+  const baseUrl = 'https://media.philoart.io/photos.json';
 
   const variables = {
     username: config.philoartAdmin,
@@ -23,7 +25,7 @@ const Home = () => {
 
   const { photos, fetchMore, hasNextPage } = usePhotos(variables);
 
-  useEffect(() => {
+  useEffect(async () => {
     if (photos) {
       const temp = photos && photos.edges
         ? photos.edges.map((edge) => edge.node)
@@ -31,6 +33,10 @@ const Home = () => {
 
       setAllPhotos(temp);
       setLoading(false);
+    } else {
+      const temp = await axios.get(baseUrl).then((res) => res.data);
+
+      setAllPhotos(temp);
     }
   }, [photos]);
 
