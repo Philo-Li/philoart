@@ -28,6 +28,7 @@ export const GET_PHOTOS = gql`
           srcLarge
           artist
           status
+          tags
           isLiked(checkUserLike: $checkUserLike)
         }
         cursor

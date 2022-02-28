@@ -37,6 +37,11 @@ import NFTList from './components/nft-market/NFTList';
 import logo from './img/logo/logo2.svg';
 import './index.css';
 
+const navStyle = {
+  // fontStyle: 'bold',
+  fontSize: '1rem',
+};
+
 const App = () => {
   const client = useApolloClient();
   const { authorizedUser } = useAuthorizedUser();
@@ -57,7 +62,7 @@ const App = () => {
     let userPage;
     if (token) userPage = `/user/@${username}`;
     return (
-      <div>
+      <div style={navStyle}>
         <Navbar collapseOnSelect expand="md" bg="white" variant="light" fixed="sticky">
           <Navbar.Brand href="/" className="container-row-navbar-brand">
             <img
@@ -76,7 +81,7 @@ const App = () => {
               </div>
             </Nav>
             <Nav className="justify-content-end container-row-0">
-              <NavDropdown title="NFTs" id="basic-nav-dropdown">
+              <NavDropdown title="NFTs" id="basic-nav-dropdown" style={navStyle}>
                 <NavDropdown.Item href="/nftmarket">NFT Market</NavDropdown.Item>
                 <NavDropdown.Item href="/nftlist">NFT List</NavDropdown.Item>
                 <NavDropdown.Divider />

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Tabs, Tab, Carousel } from 'react-bootstrap';
 import usePhotos from '../../hooks/usePhotos';
 import HomePhotoList from '../others/photo-list/HomePhotoList';
-import SearchBar from '../others/search-bar/SearchBar';
+// import SearchBar from '../others/search-bar/SearchBar';
 import CategoryBar from '../others/CategoryBar';
 import Discover from '../discover/Discover';
 import config from '../../config';
@@ -52,7 +52,7 @@ const Home = () => {
           <Carousel.Item>
             <div className="jumbotron-slice-1" alt="First slide" />
             <Carousel.Caption>
-              <SearchBar />
+              {/* <SearchBar /> */}
               {/* <h3 className="jumbotron-header">First slide label</h3> */}
               {/* <p className="jumbotron-subheader">Nulla vitae elit libero interdum.</p> */}
             </Carousel.Caption>

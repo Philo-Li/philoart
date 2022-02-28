@@ -11,7 +11,7 @@ const TagBar = ({ tagToShow }) => {
         <div className="p-3 container-row-tag">
           {tags.map((tag) => (
             <div key={tag}>
-              <Link to={`/pickysearch?q=${tag}`}>{tag}</Link>
+              <Link to={`/search?q=${tag}`}>{tag}</Link>
             </div>
           ))}
         </div>

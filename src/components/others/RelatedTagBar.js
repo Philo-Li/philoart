@@ -13,7 +13,7 @@ const RelatedTagBar = ({ allPhotos }) => {
   }
 
   const photo = allPhotos[1] || allPhotos[0];
-  const tags1 = photo.labels;
+  const tags1 = photo.tags;
 
   let tags = tags1.split(',');
 

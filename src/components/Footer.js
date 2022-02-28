@@ -14,9 +14,8 @@ const breakpointColumnsObj = {
 
 const Footer = () => {
   const footerStyle = {
-    // color: 'green',
     // fontStyle: 'italic',
-    // fontSize: 16,
+    fontSize: '1rem',
   };
 
   // const openTwitter = async () => {
