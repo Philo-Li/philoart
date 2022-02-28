@@ -6,19 +6,19 @@ const CategoryBar = () => {
     id: '123',
     title: 'Painting',
     photoCount: 10,
-    cover: 'https://pbs.twimg.com/media/FADpaqoUcAcFB40?format=jpg&name=large',
+    cover: 'https://cdn.philoart.io/c/700x700/zu3VmDeCCM55iPp2zZAVZ.jpg',
   },
   {
     id: '1234',
-    title: 'Drawing',
+    title: 'Digital Art',
     photoCount: 10,
-    cover: 'https://philo-art.oss-cn-hangzhou.aliyuncs.com/gallery/2020-07-07%2002.08.49%201.jpg',
+    cover: 'https://cdn.philoart.io/e/700x700/psYTmeZf1z6O2jukzPlyl.jpg',
   },
   {
     id: '1235',
     title: 'Photograph',
     photoCount: 10,
-    cover: 'https://philo-art.oss-cn-hangzhou.aliyuncs.com/gallery/2020-07-07%2003.13.41%201.jpg',
+    cover: 'https://cdn.philoart.io/8/700x700/Ho0OQ4zzTXzg7sUsOeTMF.jpg',
   }];
 
   return (
