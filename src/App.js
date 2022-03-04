@@ -15,8 +15,6 @@ import Discover from './components/discover/Discover';
 import Footer from './components/Footer';
 import Profile from './components/profile/Profile';
 import Settings from './components/profile/Settings';
-import UserLikes from './components/profile/UserLikes';
-import UserCollections from './components/profile/UserCollections';
 import PhotoDetails from './components/photo-page/PhotoDetails';
 import CollectionDetails from './components/collection-page/CollectionDetails';
 import SignIn from './components/sign-in/SignIn';
@@ -24,7 +22,6 @@ import SignUp from './components/sign-up/SignUp';
 import useAuthorizedUser from './hooks/useAuthorizedUser';
 import useField from './hooks/useField';
 import NavSearchBar from './components/others/NavSearchBar';
-import UserPage from './components/profile/UserPage';
 import SearchPage from './components/search/SearchPage';
 import License from './components/license/License';
 import LicenseZh from './components/license/LicenseZh';
@@ -60,7 +57,7 @@ const App = () => {
     };
 
     let userPage;
-    if (token) userPage = `/user/@${username}`;
+    if (token) userPage = `/@${username}`;
     return (
       <div style={navStyle}>
         <Navbar collapseOnSelect expand="md" bg="white" variant="light" fixed="sticky">
@@ -158,19 +155,11 @@ const App = () => {
             <Route path="/search" render={() => (<SearchPage />)}>
               {/* <SearchPage authorizedUser={authorizedUser} /> */}
             </Route>
-            <Route path="/user" exact>
-              <UserPage />
-            </Route>
             <Route path="/user/edit" exact>
               <Settings />
             </Route>
-            <Route path="/user/:username" exact>
+            <Route path="/:username" exact>
               <Profile authorizedUser={authorizedUser} />
-              <UserLikes />
-            </Route>
-            <Route path="/user/:username/collections" exact>
-              <Profile authorizedUser={authorizedUser} />
-              <UserCollections />
             </Route>
             <Route path="/photo/:id" exact>
               <PhotoDetails />

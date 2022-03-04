@@ -1,9 +1,11 @@
-import React from 'react';
-import { useHistory, useParams } from 'react-router-dom';
-import { Nav, Image } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { Image, Tabs, Tab } from 'react-bootstrap';
+import UserCollections from './UserCollections';
+import UserLikes from './UserLikes';
 
 const Profile = ({ authorizedUser }) => {
-  const history = useHistory();
+  const [key, setKey] = useState('likes');
   let { username } = useParams();
   username = username.substr(1, username.length - 1);
 
@@ -11,8 +13,6 @@ const Profile = ({ authorizedUser }) => {
     ? authorizedUser.profileImage
     : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
 
-  const userPage = `/user/@${username}`;
-  const userPageCollections = `/user/@${username}/collections`;
   return (
     <div className="p-3">
       <div className="container-profile">
@@ -23,14 +23,19 @@ const Profile = ({ authorizedUser }) => {
           <h1>{username}</h1>
         </div>
       </div>
-      <Nav variant="tabs" defaultActiveKey={history.location.pathname}>
-        <Nav.Item>
-          <Nav.Link href={userPage}>Likes</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link href={userPageCollections} eventKey={userPageCollections}>Collections</Nav.Link>
-        </Nav.Item>
-      </Nav>
+      <Tabs
+        id="controlled-tab-example"
+        activeKey={key}
+        onSelect={(k) => setKey(k)}
+        className="mb-3"
+      >
+        <Tab eventKey="likes" title="Likes">
+          <UserLikes />
+        </Tab>
+        <Tab eventKey="collections" title="Collections">
+          <UserCollections />
+        </Tab>
+      </Tabs>
     </div>
   );
 };
