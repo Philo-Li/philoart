@@ -7,7 +7,7 @@ import HomePhotoList from '../others/photo-list/HomePhotoList';
 import CategoryBar from '../others/CategoryBar';
 import Discover from '../discover/Discover';
 import config from '../../config';
-import '../../MDB-Free_4.19.2/css/mdb.css';
+// import '../../MDB-Free_4.19.2/css/mdb.css';
 
 const Home = () => {
   const [allPhotos, setAllPhotos] = useState();
@@ -53,22 +53,22 @@ const Home = () => {
             <div className="jumbotron-slice-1" alt="First slide" />
             <Carousel.Caption>
               {/* <SearchBar /> */}
-              {/* <h3 className="jumbotron-header">First slide label</h3> */}
-              {/* <p className="jumbotron-subheader">Nulla vitae elit libero interdum.</p> */}
+              <h3 className="jumbotron-header">Share your creations to the world.</h3>
+              <p className="jumbotron-subheader">Create, and Post it</p>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
             <div className="jumbotron-slice-2" alt="Second slide" />
             <Carousel.Caption>
-              {/* <h3 className="jumbotron-header">Second slide label</h3> */}
-              {/* <p className="jumbotron-subheader">Lorem ipsum dolor adipiscing elit.</p> */}
+              <h3 className="jumbotron-header">Create, Mint, and Sell</h3>
+              <p className="jumbotron-subheader">Discover the best NFTs.</p>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
             <div className="jumbotron-slice-3" alt="Third slide" />
             <Carousel.Caption>
-              {/* <h3 className="jumbotron-header">Third slide label</h3> */}
-              {/* <p className="jumbotron-subheader">Praesent nisl consectetur.</p> */}
+              <h3 className="jumbotron-header">Discover the best artworks.</h3>
+              <p className="jumbotron-subheader">Free for personal use and download.</p>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
