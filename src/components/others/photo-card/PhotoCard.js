@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { nanoid } from 'nanoid';
 import LazyLoad from 'react-lazyload';
 import SaveToCollectionsModal from './SaveToCollectionsModal';
 import useDeletePhoto from '../../../hooks/useDeletePhoto';
@@ -13,7 +12,7 @@ const PhotoCard = ({
   if (!photo) {
     const bgColor = 'https://cdn.philoart.io/color/700x700/bgcolor.jpg';
     return (
-      <div className="grid-item" key={nanoid()}>
+      <div className="grid-item">
         <LazyLoad height={300} offset={[-100, 0]} debounce={500} once placeholder={<Placeholder />}>
           <img
             src={bgColor}

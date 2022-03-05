@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Masonry from 'react-masonry-css';
+import { nanoid } from 'nanoid';
 import LoadMore from '../button/LoadMore';
 import useLikePhoto from '../../../hooks/useLikePhoto';
 import PhotoCard from '../photo-card/PhotoCard';
@@ -50,11 +51,12 @@ const HomePhotoListContainer = ({
           columnClassName="my-masonry-grid_column"
         >
           {allPhotos.map((photo) => (
-            <PhotoCard
-              key={photo.id}
-              photo={photo}
-              likeSinglePhoto={likeSinglePhoto}
-            />
+            <div key={nanoid()}>
+              <PhotoCard
+                photo={photo}
+                likeSinglePhoto={likeSinglePhoto}
+              />
+            </div>
           ))}
         </Masonry>
       </div>
