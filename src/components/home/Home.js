@@ -34,7 +34,7 @@ const Home = () => {
       setAllPhotos(temp);
       setLoading(false);
     } else {
-      const temp = await axios.get(baseUrl).then((res) => res.data);
+      const temp = await axios.get(baseUrl).then((res) => res.data.node);
 
       setAllPhotos(temp);
     }

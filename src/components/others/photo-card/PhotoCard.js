@@ -9,22 +9,8 @@ import '../../../MDB-Free_4.19.2/css/mdb.css';
 const PhotoCard = ({
   photo, likeSinglePhoto,
 }) => {
-  if (!photo) {
-    const bgColor = 'https://cdn.philoart.io/color/700x700/bgcolor.jpg';
-    return (
-      <div className="grid-item">
-        <LazyLoad height={300} offset={[-100, 0]} debounce={500} once placeholder={<Placeholder />}>
-          <img
-            src={bgColor}
-            className="lazyload-img"
-            width="100%"
-            alt="gird item"
-          />
-        </LazyLoad>
-      </div>
-    );
-  }
   if (!photo) return null;
+
   const [deletePhoto] = useDeletePhoto();
   const [downloadPhoto] = useDownloadPhoto();
   const history = useHistory();
