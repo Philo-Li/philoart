@@ -57,7 +57,7 @@ const EditProfileForm = ({ loading }) => (
         />
       </div>
 
-      <div className="col-item-1">
+      <div className="d-grid gap-2 margin-tb-2rem">
         {!loading && (
           <Button variant="primary" id="edit-profile-button" type="submit" block="true">
             Update

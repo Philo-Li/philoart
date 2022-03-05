@@ -7,6 +7,7 @@ import PacmanLoader from 'react-spinners/PacmanLoader';
 import EditProfile from './edit-profile/EditProfile';
 import ChangePassword from './change-password/ChangePassword';
 import DeleteAccount from './delete-account/DeleteAccount';
+import UpdateAvatar from './update-avatar/UpdateAvatar';
 import useAuthorizedUser from '../../hooks/useAuthorizedUser';
 
 const override = css`
@@ -35,7 +36,7 @@ const Settings = () => {
     );
   }
 
-  const profileImage = user
+  const profileImage = user && user.profileImage
     ? user.profileImage
     : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
 
@@ -49,12 +50,15 @@ const Settings = () => {
           <h1>{user && user.username}</h1>
         </div>
       </div>
-      <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+      <Tab.Container id="left-tabs-example" defaultActiveKey="default">
         <Row>
           <Col sm={3}>
             <Nav variant="pills" className="flex-column">
               <Nav.Item>
-                <Nav.Link eventKey="first">Edit Profile</Nav.Link>
+                <Nav.Link eventKey="default">Edit Profile</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey="first">Update Avatar</Nav.Link>
               </Nav.Item>
               <Nav.Item>
                 <Nav.Link eventKey="second">Change Password</Nav.Link>
@@ -66,8 +70,11 @@ const Settings = () => {
           </Col>
           <Col sm={9}>
             <Tab.Content>
-              <Tab.Pane eventKey="first">
+              <Tab.Pane eventKey="default">
                 <EditProfile user={user} />
+              </Tab.Pane>
+              <Tab.Pane eventKey="first">
+                <UpdateAvatar profileImage={profileImage} />
               </Tab.Pane>
               <Tab.Pane eventKey="second">
                 <ChangePassword />

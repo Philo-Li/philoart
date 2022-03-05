@@ -29,6 +29,7 @@ export const GET_PHOTOS = gql`
           artist
           status
           tags
+          color
           isLiked(checkUserLike: $checkUserLike)
         }
         cursor

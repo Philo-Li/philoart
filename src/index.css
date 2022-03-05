@@ -785,6 +785,11 @@ body {
   transition: 0.5s ease;
 }
 
+.margin-tb-2rem {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
 .wrapper {
   display: flex;
   flex-wrap: wrap-reverse;
