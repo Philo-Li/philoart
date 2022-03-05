@@ -67,7 +67,7 @@ const Create = () => {
     setLoading(true);
     try {
       // get secure url from our server
-      const photoId = nanoid();
+      const photoId = `${userId}-${nanoid()}`;
       const { url } = await axios.get(`${baseUrl}/s3Url/${photoId}`).then((res) => res.data);
 
       // post the image direct to the s3 bucket
