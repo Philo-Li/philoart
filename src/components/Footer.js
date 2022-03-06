@@ -62,7 +62,7 @@ const Footer = () => {
               />
               PhiloArt
             </Navbar.Brand>
-            <div>- Share your creations to the world.</div>
+            <div>- Share your artworks with the world.</div>
             {/* <div className="container-social-row">
               <div id="instagram" className="text-white">
                 <button

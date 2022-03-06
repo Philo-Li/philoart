@@ -264,3 +264,9 @@ export const FOLLOW_USER = gql`
     followUser( userId: $userId )
   }
 `;
+
+export const UPDATE_AVATAR = gql`
+  mutation updateAvatar( $url: String! ) {
+    updateAvatar( url: $url )
+  }
+`;

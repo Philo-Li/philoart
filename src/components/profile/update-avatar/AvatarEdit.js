@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Avatar from 'react-avatar-edit';
 import {
-  Image, Alert, Button, Spinner,
+  Alert, Button, Spinner,
 } from 'react-bootstrap';
 
 const AvatarEdit = ({
-  onSubmit, profileImage, errorInfo, successInfo, loading,
+  onSubmit, errorInfo, successInfo, loading, setPreview,
 }) => {
-  const [preview, setPreview] = useState('');
-
   const onClose = () => {
     setPreview(null);
   };
@@ -29,14 +27,15 @@ const AvatarEdit = ({
           {successInfo}
         </Alert>
       )}
-      <div className="container-profile">
+      <div className="container-col">
         <Avatar
           width={390}
           height={295}
           onCrop={onCrop}
           onClose={onClose}
         />
-        <Image src={preview || profileImage} alt="Preview" width={150} height={150} magin={10} roundedCircle />
+        {/* <Image src={preview || profileImage} alt="Preview"
+        width={150} height={150} magin={10} roundedCircle /> */}
       </div>
       <div className="d-grid gap-2 margin-tb-2rem">
         {!loading && (

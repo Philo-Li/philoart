@@ -21,6 +21,8 @@ const override = css`
 const Settings = () => {
   const { authorizedUser } = useAuthorizedUser();
   const [user, setUser] = useState();
+  const userId = localStorage.getItem('philoart-userId');
+  const [preview, setPreview] = useState('');
 
   useEffect(() => {
     if (authorizedUser) {
@@ -44,7 +46,7 @@ const Settings = () => {
     <div className="p-3">
       <div className="container-profile">
         <div className="profile-item">
-          <Image src={profileImage} width={100} height={100} magin={10} roundedCircle />
+          <Image src={preview || profileImage} width={100} height={100} magin={10} roundedCircle />
         </div>
         <div className="profile-item">
           <h1>{user && user.username}</h1>
@@ -74,7 +76,7 @@ const Settings = () => {
                 <EditProfile user={user} />
               </Tab.Pane>
               <Tab.Pane eventKey="first">
-                <UpdateAvatar profileImage={profileImage} />
+                <UpdateAvatar userId={userId} preview={preview} setPreview={setPreview} />
               </Tab.Pane>
               <Tab.Pane eventKey="second">
                 <ChangePassword />

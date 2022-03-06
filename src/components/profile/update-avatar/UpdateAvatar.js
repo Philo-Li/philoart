@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import AvatarEdit from './AvatarEdit';
 import useUpdateAvatar from '../../../hooks/useUpdateAvatar';
+import saveToS3 from '../../../utils/saveToS3';
 
-const UpdateAvatar = ({ profileImage }) => {
+const UpdateAvatar = ({ userId, preview, setPreview }) => {
   const [updateAvatar] = useUpdateAvatar();
   const [errorInfo, setErrorInfo] = useState('');
   const [successInfo, setSuccessInfo] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const onSubmit = async (values) => {
-    const variables = {
-      currentPassword: values.currentPassword,
-      newPassword: values.newPassword,
-    };
+  const onSubmit = async () => {
     setLoading(true);
 
     try {
-      await updateAvatar(variables);
+      const photoId = `${userId}-avatar`;
+      const buf = Buffer.from(preview.replace(/^data:image\/\w+;base64,/, ''), 'base64');
+      const imageUrl = await saveToS3(photoId, buf);
+      await updateAvatar({ url: imageUrl });
       setSuccessInfo('Avatar updated');
       setTimeout(() => { setSuccessInfo(''); }, 3000);
     } catch (e) {
@@ -32,7 +32,8 @@ const UpdateAvatar = ({ profileImage }) => {
       errorInfo={errorInfo}
       successInfo={successInfo}
       loading={loading}
-      profileImage={profileImage}
+      preview={preview}
+      setPreview={setPreview}
     />
   );
 };
