@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Modal, Alert } from 'react-bootstrap';
