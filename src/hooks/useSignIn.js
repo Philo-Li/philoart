@@ -6,14 +6,15 @@ const useSignIn = () => {
   const [mutate, result] = useMutation(AUTHORIZE);
   const apolloClient = useApolloClient();
 
-  const signIn = async ({ username, password }) => {
-    const payload = await mutate({ variables: { username, password } });
+  const signIn = async ({ email, password }) => {
+    const payload = await mutate({ variables: { email, password } });
     const { data } = payload;
 
     if (data && data.authorize) {
-      localStorage.setItem('philoart-token', data.authorize.accessToken);
-      localStorage.setItem('philoart-userId', data.authorize.user.id);
-      localStorage.setItem('philoart-username', data.authorize.user.username);
+      localStorage.setItem('token', data.authorize.accessToken);
+      localStorage.setItem('expirationTime', data.authorize.expiresAt);
+      localStorage.setItem('userId', data.authorize.user.id);
+      localStorage.setItem('username', data.authorize.user.username);
       apolloClient.resetStore();
     }
     return payload;

@@ -8,9 +8,10 @@ import SignInForm from './SignInForm';
 import logo from '../../img/logo/logo2.svg';
 
 const validationSchema = Yup.object().shape({
-  username: Yup
+  email: Yup
     .string()
-    .required('Username is required'),
+    .email('Invalid email address')
+    .required('Email is required'),
   password: Yup
     .string()
     .required('Password is required'),

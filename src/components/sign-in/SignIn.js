@@ -4,7 +4,7 @@ import useSignIn from '../../hooks/useSignIn';
 import SignInContainer from './SignInContainer';
 
 const initialValues = {
-  username: '',
+  email: '',
   password: '',
 };
 
@@ -15,10 +15,10 @@ const SignIn = () => {
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async (values) => {
-    const { username, password } = values;
+    const { email, password } = values;
     setLoading(true);
     try {
-      await signIn({ username, password });
+      await signIn({ email, password });
       history.push('/');
     } catch (e) {
       setErrorInfo(e.message);

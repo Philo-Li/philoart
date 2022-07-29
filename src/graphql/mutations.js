@@ -2,9 +2,10 @@ import { gql } from '@apollo/react-hooks';
 import { USER_DETAILS } from './fragment';
 
 export const AUTHORIZE = gql`
-  mutation authorize($username: String!, $password: String!) {
-    authorize(credentials: { username: $username, password: $password }) {
+  mutation authorize($email: String!, $password: String!) {
+    authorize(credentials: { email: $email, password: $password }) {
       accessToken
+      expiresAt
       user {
         username
         id
