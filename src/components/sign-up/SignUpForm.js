@@ -46,14 +46,14 @@ const SignUpForm = ({ loading }) => (
         />
       </div>
 
-      <div className="col-item-1">
+      <div className="col-item-1 margin-tb-2rem">
         {!loading && (
-          <Button variant="primary" id="signup-button" type="submit" block>
+          <Button variant="dark" id="signup-button" type="submit" block="true">
             Sign up
           </Button>
         )}
         {loading && (
-          <Button variant="primary" id="signup-button-loading" disabled block>
+          <Button variant="dark" id="signup-button-loading" disabled block="true">
             <Spinner
               as="span"
               animation="border"

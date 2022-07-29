@@ -11,11 +11,11 @@ const validationSchema = Yup.object({
     .email('Invalid email address')
     .required('Required'),
   username: Yup.string()
-    .max(20, 'Must be 20 characters or less')
+    .max(50, 'Must be 50 characters or less')
     .matches('^[a-zA-Z0-9_]*$', 'Invalid username')
     .required('Required'),
   password: Yup.string()
-    .min(6, 'Must be 6 characters or more')
+    .min(8, 'Password length must be greater than or equal to 8')
     .required('Required'),
   confirmPassword: Yup.string()
     .required()
