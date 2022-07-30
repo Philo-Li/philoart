@@ -59,12 +59,11 @@ export const CREATE_PHOTO = gql`
   mutation createPhoto(
     $photoId: String
     $title: String!
-    $titleZh: String!
     $year: Int!
     $description: String
     $artworkWidth: Int
     $artworkHeight: Int
-    $srcLarge: String
+    $imageUrl: String
     $srcYoutube: String
     $artist: String
     $license: String
@@ -76,12 +75,11 @@ export const CREATE_PHOTO = gql`
     createPhoto(photo: {
       photoId: $photoId
       title: $title
-      titleZh: $titleZh
       year: $year
       description: $description
       artworkWidth: $artworkWidth
       artworkHeight: $artworkHeight
-      srcLarge: $srcLarge
+      imageUrl: $imageUrl
       srcYoutube: $srcYoutube
       artist: $artist
       license: $license

@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 import PacmanLoader from 'react-spinners/PacmanLoader';
 import CreateContainer from './CreateContainer';
 import useCreatePhoto from '../../hooks/useCreatePhoto';
+import saveToS3 from '../../utils/saveToS3';
 import config from '../../config';
 
 const override = css`
@@ -49,7 +50,7 @@ const Create = () => {
   const [loading, setLoading] = useState(false);
   const [createPhoto] = useCreatePhoto();
   const [files, setFiles] = useState([]);
-  const userId = localStorage.getItem('philoart-userId');
+  const userId = localStorage.getItem('userId');
 
   if (!userId) {
     return (
@@ -66,31 +67,18 @@ const Create = () => {
 
     setLoading(true);
     try {
-      // get secure url from our server
-      const photoId = `${userId}-${nanoid()}`;
-      const { url } = await axios.get(`${baseUrl}/s3Url/${photoId}`).then((res) => res.data);
-
-      // post the image direct to the s3 bucket
-      await fetch(url, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'image/jpeg',
-        },
-        body: files[0],
-      });
-
-      const imageUrl = url.split('?')[0];
+      const imageKey = `${userId}-${nanoid(7)}`;
+      const imageUrl = await saveToS3(imageKey, files[0]);
 
       // store the image data to the server
       const variables = {
-        photoId,
+        photoId: imageKey,
         title,
-        titleZh: 'untitled',
         year: new Date().getFullYear(),
         description,
         artworkWidth: 0,
         artworkHeight: 0,
-        srcLarge: imageUrl,
+        imageUrl,
         srcYoutube: '',
         color: '2',
         artist: '1',
