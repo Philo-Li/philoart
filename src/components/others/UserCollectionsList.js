@@ -4,7 +4,7 @@ import BeatLoader from 'react-spinners/BeatLoader';
 import { Card } from 'react-bootstrap';
 import Masonry from 'react-masonry-css';
 import galleryIcon from '../../img/galleryIcon.jpg';
-import '../../MDB-Free_4.19.2/css/mdb.css';
+import '../../mdb.css';
 
 const override = css`
   display: flex;

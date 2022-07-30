@@ -2,7 +2,7 @@ import React from 'react';
 import { Card } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import galleryIcon from '../../../img/galleryIcon.jpg';
-import '../../../MDB-Free_4.19.2/css/mdb.css';
+import '../../../mdb.css';
 
 const INIT_COVER = galleryIcon;
 

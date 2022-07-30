@@ -1,7 +1,7 @@
 import axios from 'axios';
 import config from '../config';
 
-const baseUrl = config.philoartApi;
+const baseUrl = config.restApi;
 
 const saveToS3 = async (photoId, buf) => {
   const { url } = await axios.get(`${baseUrl}/s3Url/${photoId}`).then((res) => res.data);

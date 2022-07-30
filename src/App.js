@@ -6,7 +6,6 @@ import {
   BrowserRouter as Router,
   Switch, Route, Redirect,
 } from 'react-router-dom';
-import { useMoralis } from 'react-moralis';
 import { Nav, NavDropdown } from 'react-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
 
@@ -29,13 +28,10 @@ import About from './components/about/About';
 import AboutZh from './components/about/AboutZh';
 import ContactUs from './components/ContactUs';
 import Create from './components/create/Create';
-import NFTBalance from './components/nft-market/NFTBalance';
-import NFTList from './components/nft-market/NFTList';
 import logo from './img/logo/logo2.svg';
 import './index.css';
 
 const navStyle = {
-  // fontStyle: 'bold',
   fontSize: '1rem',
 };
 
@@ -44,11 +40,11 @@ const App = () => {
   const { authorizedUser } = useAuthorizedUser();
   const searchValue = useField('searchValue');
   const [newSearchValue, setNewSearchValue] = useState('');
-  const { authenticate } = useMoralis();
+  // const { authenticate } = useMoralis();
 
   const Menu = () => {
-    const token = localStorage.getItem('philoart-token');
-    const username = localStorage.getItem('philoart-username');
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('username');
 
     const handleLogout = async (event) => {
       event.preventDefault();
@@ -78,12 +74,6 @@ const App = () => {
               </div>
             </Nav>
             <Nav className="justify-content-end container-row-0">
-              <NavDropdown title="NFTs" id="basic-nav-dropdown" style={navStyle}>
-                <NavDropdown.Item href="/nftmarket">NFT Market</NavDropdown.Item>
-                <NavDropdown.Item href="/nftlist">NFT List</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <button className="navbar-button-logout" type="submit" onClick={() => authenticate()}>Wallet</button>
-              </NavDropdown>
               <a className="navbar-link" href="/discover">Discover</a>
               <a className="navbar-link" href="/about">About</a>
               {!token && <a className="navbar-link" href="/signin">Login</a>}
@@ -112,18 +102,6 @@ const App = () => {
           <Switch>
             <Route path="/discover" exact>
               <Discover />
-            </Route>
-            <Route path="/nftmarket" exact>
-              <NFTBalance />
-            </Route>
-            <Route path="/nftbalance" exact>
-              <NFTBalance />
-            </Route>
-            <Route path="/transactions" exact>
-              <NFTBalance />
-            </Route>
-            <Route path="/nftlist" exact>
-              <NFTList />
             </Route>
             <Route path="/license" exact>
               <License />

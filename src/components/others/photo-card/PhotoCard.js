@@ -4,7 +4,7 @@ import LazyLoad from 'react-lazyload';
 import SaveToCollectionsModal from './SaveToCollectionsModal';
 import useDeletePhoto from '../../../hooks/useDeletePhoto';
 import useDownloadPhoto from '../../../hooks/useDownloadPhoto';
-import '../../../MDB-Free_4.19.2/css/mdb.css';
+import '../../../mdb.css';
 
 const PhotoCard = ({
   photo, likeSinglePhoto,
