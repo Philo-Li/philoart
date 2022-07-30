@@ -25,7 +25,7 @@ const HomePhotoListContainer = ({
   const [likePhoto] = useLikePhoto();
   const [unlikePhoto] = useUnlikePhoto();
   const history = useHistory();
-  const token = localStorage.getItem('philoart-token');
+  const token = localStorage.getItem('token');
 
   const likeSinglePhoto = async (photo) => {
     if (!token) {

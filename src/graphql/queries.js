@@ -26,6 +26,7 @@ export const GET_PHOTOS = gql`
           srcTiny
           srcSmall
           srcLarge
+          srcOriginal
           artist
           status
           tags

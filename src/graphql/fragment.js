@@ -4,7 +4,6 @@ export const PHOTO_DETAILS = gql`
   fragment photoDetails on Photo {
     id
     title
-    titleZh
     year
     description
     tags
@@ -15,6 +14,7 @@ export const PHOTO_DETAILS = gql`
     srcTiny
     srcSmall
     srcLarge
+    srcOriginal
     srcYoutube
     color
     artist
