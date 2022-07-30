@@ -16,7 +16,7 @@ const PhotoCard = ({
   const history = useHistory();
   const [showCollectModal, setShowCollectModal] = useState(false);
 
-  const username = localStorage.getItem('philoart-username');
+  const username = localStorage.getItem('username');
 
   const bgColor = photo.color || '#84B0B3';
 
@@ -59,11 +59,15 @@ const PhotoCard = ({
       <LazyLoad height={300} offset={[-100, 0]} debounce={500} once placeholder={<Placeholder />}>
         <div className="photo-card overlay">
           <a href={`/photo/${photo.id}`}>
-            <img
-              src={photo.srcTiny}
-              width="100%"
-              alt="gird item"
-            />
+            <picture>
+              <source media="(max-width: 800px)" srcSet={photo.srcTiny} alt="" />
+              <source media="(max-width: 2100px)" srcSet={photo.srcLarge} alt="" />
+              <img
+                src={photo.srcSmall}
+                width="100%"
+                alt="gird item"
+              />
+            </picture>
           </a>
           <div>
             <div id={photo.id} className="text-white">
