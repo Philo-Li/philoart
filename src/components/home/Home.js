@@ -61,7 +61,7 @@ const Home = () => {
             <div className="jumbotron-slice-2" alt="Second slide" />
             <Carousel.Caption>
               <h3 className="jumbotron-header">Create, Mint, and Sell</h3>
-              <p className="jumbotron-subheader">Discover the best NFTs.</p>
+              <p className="jumbotron-subheader">Discover the best NFTs(Upcoming).</p>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
