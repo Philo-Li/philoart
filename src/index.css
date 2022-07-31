@@ -738,9 +738,23 @@
   justify-content: center;
   align-items: center;
   margin-top: 10%;
-  margin-bottom: 10%;
   margin-left: 10%;
   margin-right: 10%;
+}
+
+.container-row-about {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
+}
+
+container-col-about-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 @media screen and (max-width: 800px) {
@@ -1394,6 +1408,10 @@ div.scrollmenu a:hover {
 
 .margin-1rem {
   margin: 1rem;
+}
+
+.font-1rem {
+  font-size: 0.8rem;
 }
 
 .more-photos-btn {

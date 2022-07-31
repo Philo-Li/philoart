@@ -78,7 +78,7 @@ const App = () => {
               <a className="navbar-link" href="/about">About</a>
               {!token && <a className="navbar-link" href="/signin">Login</a>}
               {token && (
-                <NavDropdown title="My Account" id="basic-nav-dropdown">
+                <NavDropdown className="navbar-link" title="My Account" id="basic-nav-dropdown">
                   <NavDropdown.Item href={userPage}>Profile</NavDropdown.Item>
                   <NavDropdown.Item href="/user/edit">Settings</NavDropdown.Item>
                   <NavDropdown.Divider />
