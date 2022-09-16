@@ -21,7 +21,7 @@ const override = css`
 const Settings = () => {
   const { authorizedUser } = useAuthorizedUser();
   const [user, setUser] = useState();
-  const userId = localStorage.getItem('philoart-userId');
+  const userId = localStorage.getItem('userId');
   const [preview, setPreview] = useState('');
 
   useEffect(() => {

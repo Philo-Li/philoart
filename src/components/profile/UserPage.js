@@ -29,10 +29,10 @@ const UserPage = () => {
       </div>
       <Nav variant="tabs" defaultActiveKey={history.location.pathname}>
         <Nav.Item>
-          <Nav.Link href={`${url}/@${authorizedUser.username}`}>Likes</Nav.Link>
+          <Nav.Link href={`${url}/${authorizedUser.username}`}>Likes</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link href={`${url}/@${authorizedUser.username}/collections`} eventKey={`${url}/${authorizedUser.id}/collections`}>Collections</Nav.Link>
+          <Nav.Link href={`${url}/${authorizedUser.username}/collections`} eventKey={`${url}/${authorizedUser.id}/collections`}>Collections</Nav.Link>
         </Nav.Item>
       </Nav>
 
