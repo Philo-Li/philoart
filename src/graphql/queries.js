@@ -83,7 +83,7 @@ export const GET_USER = gql`
       isFollowed(checkUserFollow: $checkUserFollow)
       profileImage
       description
-      articleCount
+      photoCount
       followerCount
     }
   }

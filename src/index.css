@@ -776,6 +776,60 @@ container-col-about-icon {
     font-size: 1rem;
   }
 }
+.button-follow {
+  font-weight: light;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.85);
+  border-radius: 5px;
+  border-width: 1px;
+  padding: 2px 10px;
+  margin-right: 5px;
+  transition: ease 0.2s;
+}
+
+.button-follow:hover {
+  color: lightgrey;
+  -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
+
+.button-unfollow {
+  font-weight: light;
+  color: black;
+  background-color: transparent;
+  border-radius: 5px;
+  border-width: 1px;
+  padding: 2px 10px;
+  margin-right: 5px;
+  transition: ease 0.2s;
+}
+
+.button-unfollow:hover {
+  color: lightgrey;
+  -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
+
+.user-description {
+  padding: 1rem;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.button-follow:disabled {
+  font-weight: light;
+  color: black;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  border-width: 1px;
+  padding: 2px 10px;
+  margin-right: 5px;
+  transition: ease 0.2s;
+}
+
+.discover-author-list a {
+  color: black;
+}
+
 body {
   min-height: 100vh;
   scroll-behavior: smooth;

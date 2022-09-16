@@ -53,7 +53,7 @@ const App = () => {
     };
 
     let userPage;
-    if (token) userPage = `/@${username}`;
+    if (token) userPage = `/${username}`;
     return (
       <div style={navStyle}>
         <Navbar collapseOnSelect expand="md" bg="white" variant="light" fixed="sticky">

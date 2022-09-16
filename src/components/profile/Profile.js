@@ -35,6 +35,7 @@ const Profile = () => {
       setUserNow(user);
       setFollow(user.isFollowed);
     }
+    // console.log(user, variables, username);
   }, [user]);
 
   const handleFollowUser = async () => {
@@ -69,7 +70,7 @@ const Profile = () => {
       )}
       <div className="container-profile">
         <div className="profile-item">
-          {`${userNow ? userNow.articleCount : 0} articles`}
+          {`${userNow ? userNow.photoCount : 0} artworks`}
         </div>
         {/* <div className="profile-item">
           {`${userNow ? userNow.followingCount : 0} followings`}

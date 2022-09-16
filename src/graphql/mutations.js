@@ -264,8 +264,21 @@ export const FOLLOW_USER = gql`
   }
 `;
 
+export const UNFOLLOW_USER = gql`
+  mutation unfollowUser( $userId: ID! ) {
+    unfollowUser( userId: $userId )
+  }
+`;
+
 export const UPDATE_AVATAR = gql`
   mutation updateAvatar( $url: String! ) {
     updateAvatar( url: $url )
   }
 `;
+
+export default {
+  AUTHORIZE,
+  EDIT_COLLECTION,
+  UNFOLLOW_USER,
+  FOLLOW_USER,
+};
