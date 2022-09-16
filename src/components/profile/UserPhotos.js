@@ -1,32 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import useUserLikes from '../../hooks/useUserLikes';
+import usePhotos from '../../hooks/usePhotos';
 import HomePhotoList from '../others/photo-list/HomePhotoList';
 
-const UserLikes = () => {
+const UserPhotos = () => {
   const [allPhotos, setAllPhotos] = useState();
   const [loading, setLoading] = useState(false);
   const { username } = useParams();
-  const userId = localStorage.getItem('philoart-userId');
+  const userId = localStorage.getItem('userId');
 
   const variables = {
     username,
     checkUserLike: userId,
-    first: 15,
+    first: 20,
   };
 
-  const { likes, fetchMore, hasNextPage } = useUserLikes(variables);
+  const { photos, fetchMore, hasNextPage } = usePhotos(variables);
 
   useEffect(() => {
-    if (likes) {
-      const temp = likes && likes.edges
-        ? likes.edges.map((edge) => edge.node.photo)
+    if (photos) {
+      const temp = photos && photos.edges
+        ? photos.edges.map((edge) => edge.node)
         : [];
 
       setAllPhotos(temp);
       setLoading(false);
     }
-  }, [likes]);
+  }, [photos]);
 
   const clickFetchMore = () => {
     fetchMore();
@@ -46,4 +46,4 @@ const UserLikes = () => {
   );
 };
 
-export default UserLikes;
+export default UserPhotos;

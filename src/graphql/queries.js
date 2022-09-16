@@ -10,6 +10,7 @@ export const GET_PHOTOS = gql`
     $first: Int
     $after: String
     $checkUserLike: ID
+    $checkUserCollect: ID
   ) {
     photos(
       orderBy: $orderBy
@@ -32,6 +33,7 @@ export const GET_PHOTOS = gql`
           tags
           color
           isLiked(checkUserLike: $checkUserLike)
+          isCollected(checkUserCollect: $checkUserCollect)
         }
         cursor
       }
@@ -46,7 +48,7 @@ export const GET_PHOTOS = gql`
 `;
 
 export const GET_PHOTO = gql`
-  query getPhoto($id: ID!, $checkUserLike: ID) {
+  query getPhoto($id: ID!, $checkUserLike: ID, $checkUserCollect: ID) {
     photo(id: $id) {
       ...photoDetails
       user {
@@ -56,6 +58,7 @@ export const GET_PHOTO = gql`
       collectionCount
       downloadCount
       isLiked(checkUserLike: $checkUserLike)
+      isCollected(checkUserCollect: $checkUserCollect)
     }
   }
   ${PHOTO_DETAILS}
@@ -68,6 +71,22 @@ export const GET_AUTHORIZED_USER = gql`
     }
   }
   ${USER_DETAILS}
+`;
+
+export const GET_USER = gql`
+  query getUser($username: String!, $checkUserFollow: ID) {
+    user(username: $username) {
+      id
+      firstName
+      lastName
+      username
+      isFollowed(checkUserFollow: $checkUserFollow)
+      profileImage
+      description
+      articleCount
+      followerCount
+    }
+  }
 `;
 
 export const GET_USER_LIKES = gql`
@@ -259,3 +278,8 @@ export const GET_USER_COLLECTIONS_PLUS = gql`
   }
   ${COLLECTION_DETAILS}
 `;
+
+export default {
+  GET_USER,
+  GET_USER_COLLECTIONS_PLUS,
+};

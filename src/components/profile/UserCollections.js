@@ -25,7 +25,7 @@ const breakpointColumnsObj = {
 const UserCollections = () => {
   const [loading, setLoading] = useState(false);
   const [allCollections, setAllCollections] = useState();
-  const authUsername = localStorage.getItem('philoart-username');
+  const authUsername = localStorage.getItem('username');
 
   let { username } = useParams();
   username = username.substr(1, username.length - 1);
