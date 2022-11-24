@@ -33,7 +33,7 @@ const About = () => {
       ],
     },
     {
-      title: '谁需要 PhiloArt?',
+      title: 'Whos need PhiloArt?',
       imgFirst: true,
       img: { srcTiny: img3, srcSmall: img3, srcLarge: img3 },
       msgList: [

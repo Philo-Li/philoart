@@ -4,11 +4,33 @@ The relative Node.js backend is here: [Philo-Art-Backend](https://github.com/Lul
 
 ## ✔️ Website
 
-https://art-philo.com/
+https://philoart.io/
 
-## 🚀 About Picky
+## 🚀 PhiloArt - Made for creators!
 
 - Personal ArtWork Gallery
+- Outstanding personal artwork site + high quality gallery
+- Help you publish and manage your work more easily
+- and faster access to the best free copyrighted images
+
+- What you can do with PhiloArt?
+  - Upload, manage and publish your work with rich protocols
+  - Discover and follow favorite artists and get instant updates
+  - Discover, search and download high quality free copyrighted images for free
+  - Like your favorite images and curate your own collections
+
+- Who needs PhiloArt?
+  - Artist
+  - Photographer
+  - Creator
+  - Designer
+  - And you
+
+- Why choose PhiloArt?
+  - Easily and quickly publish and manage your work with multiple protocols
+  - Discover best works and free copyrighted works
+  - Follow favorite artists
+  - Encourage creativity, inspire and enhance creativity
 
 ## 🐛 Found a bug?
 
