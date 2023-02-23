@@ -76,8 +76,13 @@ const CreateForm = ({
       </div>
     </div>
     <div className="col-item-1">
-      {!loading && (
+      {!loading && files[0] && (
         <Button variant="primary" id="create-button" type="submit" block="true">
+          Create
+        </Button>
+      )}
+      {!loading && !files[0] && (
+        <Button variant="primary" id="create-button" type="submit" block="true" disabled>
           Create
         </Button>
       )}
