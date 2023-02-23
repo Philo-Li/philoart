@@ -53,6 +53,7 @@ const Create = () => {
   const [license, setLicense] = useState('CC BY');
   const [type, setType] = useState('Photograph');
   const [status, setStatus] = useState('None');
+  const [checked, setChecked] = useState(false);
   const userId = localStorage.getItem('userId');
 
   if (!userId) {
@@ -79,15 +80,12 @@ const Create = () => {
         title,
         year: new Date().getFullYear(),
         description,
-        artworkWidth: 0,
-        artworkHeight: 0,
         imageUrl,
-        srcYoutube: '',
         license,
         type,
-        medium: '',
         status,
       };
+      // console.log(`type:${type}+checked:${checked}+status:${status}license:${license}`);
       await createPhoto(variables);
       history.push('/');
       setLoading(false);
@@ -96,6 +94,10 @@ const Create = () => {
       setLoading(false);
       setTimeout(() => { setErrorInfo(''); }, 3000);
     }
+  };
+
+  const handleCheckboxChange = () => {
+    setChecked(!checked);
   };
 
   return (
@@ -110,6 +112,7 @@ const Create = () => {
         setLicense={setLicense}
         setType={setType}
         setStatus={setStatus}
+        handleCheckboxChange={handleCheckboxChange}
       />
     </div>
   );

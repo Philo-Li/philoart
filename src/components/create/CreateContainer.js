@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 import { Formik } from 'formik';
 import { Image, Alert } from 'react-bootstrap';
@@ -16,7 +17,7 @@ const validationSchema = yup.object().shape({
 });
 
 const CreateContainer = ({
-  initialValues, onSubmit, errorInfo, loading, files, setFiles, setLicense, setType, setStatus,
+  initialValues, onSubmit, errorInfo, loading, files, setFiles, setLicense, setType, setStatus, handleCheckboxChange, checked,
 }) => (
   <div className="container-col-login">
     <div className="container-profile">
@@ -46,6 +47,8 @@ const CreateContainer = ({
           setLicense={setLicense}
           setType={setType}
           setStatus={setStatus}
+          handleCheckboxChange={handleCheckboxChange}
+          checked={checked}
         />
       )}
     </Formik>
