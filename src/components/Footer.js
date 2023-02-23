@@ -63,6 +63,18 @@ const Footer = () => {
               PhiloArt
             </Navbar.Brand>
             <div>- Share your artworks with the world.</div>
+            <div className="container-social-row">
+              <div id="twitter">
+                Created by Philo
+                <button
+                  type="button"
+                  className="social-icon-btn color-dark"
+                  onClick={() => window.open('https://twitter.com/philo2022')}
+                >
+                  <i className="bi bi-twitter item-social-icon" />
+                </button>
+              </div>
+            </div>
             {/* <div className="container-social-row">
               <div id="instagram" className="text-white">
                 <button
