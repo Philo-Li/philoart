@@ -13,14 +13,10 @@ const validationSchema = yup.object().shape({
     .required(),
   description: yup
     .string(),
-  license: yup
-    .string(),
-  type: yup
-    .string(),
 });
 
 const CreateContainer = ({
-  initialValues, onSubmit, errorInfo, loading, files, setFiles,
+  initialValues, onSubmit, errorInfo, loading, files, setFiles, setLicense, setType, setStatus,
 }) => (
   <div className="container-col-login">
     <div className="container-profile">
@@ -47,6 +43,9 @@ const CreateContainer = ({
           loading={loading}
           files={files}
           setFiles={setFiles}
+          setLicense={setLicense}
+          setType={setType}
+          setStatus={setStatus}
         />
       )}
     </Formik>

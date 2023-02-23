@@ -50,6 +50,9 @@ const Create = () => {
   const [loading, setLoading] = useState(false);
   const [createPhoto] = useCreatePhoto();
   const [files, setFiles] = useState([]);
+  const [license, setLicense] = useState('CC BY');
+  const [type, setType] = useState('Photograph');
+  const [status, setStatus] = useState('None');
   const userId = localStorage.getItem('userId');
 
   if (!userId) {
@@ -62,7 +65,7 @@ const Create = () => {
 
   const onSubmit = async (values) => {
     const {
-      title, description, license, type,
+      title, description,
     } = values;
 
     setLoading(true);
@@ -80,13 +83,10 @@ const Create = () => {
         artworkHeight: 0,
         imageUrl,
         srcYoutube: '',
-        color: '2',
-        artist: '1',
         license,
         type,
         medium: '',
-        status: 'unavailable',
-        relatedPhotos: '',
+        status,
       };
       await createPhoto(variables);
       history.push('/');
@@ -107,6 +107,9 @@ const Create = () => {
         loading={loading}
         files={files}
         setFiles={setFiles}
+        setLicense={setLicense}
+        setType={setType}
+        setStatus={setStatus}
       />
     </div>
   );
