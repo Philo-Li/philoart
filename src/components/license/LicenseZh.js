@@ -1,61 +1,117 @@
-import React from 'react';
-// import { Jumbotron } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Tabs, Tab } from 'react-bootstrap';
+
+// const options = ['CC BY', 'CC BY-SA', 'CC BY-NC', 'CC BY-NC-SA', 'CC-BY-ND', 'CC BY-NC-ND'];
 
 const LicenseZh = () => {
-  const allowed = ['所有照片均可免费使用。', '包括商业和非商业用途。', '不需要注明出处。标注摄影师不是必须的，但总是值得赞赏。', '你可以使用、复制、编辑或分享该照片。欢迎按照你喜欢的方式用其进行创造。'];
-  const notallowed = ['照片中可识别的人不能以恶意或令人反感的方式出现。', '在没有修改之前，不要销售未经修改的照片或视频副本，例如作为海报、印刷品或实物产品。', '不要暗示图片上的人或品牌对你的产品有认可。', '不要将照片直接作为您自己的作品进行宣传，或宣称自己是照片作者。'];
+  const [key, setKey] = useState('CC BY');
+  const licneses = [
+    {
+      name: 'CC BY',
+      description: 'This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format, so long as attribution is given to the creator. The license allows for commercial use.',
+      allowed: ['BY  – Credit must be given to the creator'],
+      notallowed: [],
+    },
+    {
+      name: 'CC BY-SA',
+      description: 'This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format, so long as attribution is given to the creator. The license allows for commercial use. If you remix, adapt, or build upon the material, you must license the modified material under identical terms.',
+      allowed: [
+        'BY  – Credit must be given to the creator',
+      ],
+      notallowed: [
+        'SA  – Adaptations must be shared under the same terms',
+      ],
+    },
+    {
+      name: 'CC BY-NC',
+      description: 'This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format for noncommercial purposes only, and only so long as attribution is given to the creator. ',
+      allowed: [
+        'BY  – Credit must be given to the creator',
+      ],
+      notallowed: [
+        'NC  – Only noncommercial uses of the work are permitted',
+      ],
+    },
+    {
+      name: 'CC BY-NC-SA',
+      description: 'This license allows reusers to distribute, remix, adapt, and build upon the material in any medium or format for noncommercial purposes only, and only so long as attribution is given to the creator. If you remix, adapt, or build upon the material, you must license the modified material under identical terms. ',
+      allowed: [
+        'BY  – Credit must be given to the creator',
+      ],
+      notallowed: [
+        'NC  – Only noncommercial uses of the work are permitted',
+        'SA  – Adaptations must be shared under the same terms',
+      ],
+    },
+    {
+      name: 'CC BY-ND',
+      description: 'This license allows reusers to copy and distribute the material in any medium or format in unadapted form only, and only so long as attribution is given to the creator. The license allows for commercial use. ',
+      allowed: [
+        'BY  – Credit must be given to the creator',
+      ],
+      notallowed: [
+        'ND  – No derivatives or adaptations of the work are permitted',
+      ],
+    },
+    {
+      name: 'CC BY-NC-ND',
+      description: 'This license allows reusers to copy and distribute the material in any medium or format in unadapted form only, for noncommercial purposes only, and only so long as attribution is given to the creator. ',
+      allowed: [
+        'BY  – Credit must be given to the creator',
+      ],
+      notallowed: [
+        'NC  – Only noncommercial uses of the work are permitted',
+        'ND  – No derivatives or adaptations of the work are permitted',
+      ],
+    },
+  ];
   return (
     <div>
-      <div>
-        {/* <Jumbotron className="license">
-          <h1 className="license-header-bold-white">CC0 license</h1>
-          <h3 className="license-subheader">
-            所有图片均可免费下载和免费使用。
-          </h3>
-        </Jumbotron> */}
-      </div>
       <div className="container-col-license">
         <div className="col-item-3">
-          <h1 className="license-header-bold">可以做什么?</h1>
+          <h1 className="license-header-bold">About CC Licenses</h1>
         </div>
-        <a href="/license/zh" className="col-item-3">中文</a>
-        <a href="https://creativecommons.org/publicdomain/zero/1.0/" className="col-item-3">CC0 license</a>
-        {allowed.map((msg) => (
-          <div className="col-item-1" key={msg}>
-            <div className="license-msg-container">
+        {/* <a href="/license/zh" className="col-item-3">中文</a> */}
+        <a href="https://creativecommons.org/about/cclicenses/" className="col-item-3">About CC licenses</a>
+        <Tabs
+          id="controlled-tab-example"
+          activeKey={key}
+          onSelect={(k) => setKey(k)}
+          className="mb-3"
+        >
+          {licneses.map((license) => (
+            <Tab eventKey={license.name} title={license.name}>
               <div>
-                <i className="bi bi-check2 license-icon-check" />
+                {license.allowed.map((msg) => (
+                  <div className="col-item-1" key={msg}>
+                    <div className="license-msg-container">
+                      <div>
+                        <i className="bi bi-check2 license-icon-check" />
+                      </div>
+                      <div>
+                        <h5 className="license-msg">{msg}</h5>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
               <div>
-                <h5 className="license-msg">{msg}</h5>
+                {license.notallowed.map((msg) => (
+                  <div className="col-item-1" key={msg}>
+                    <div className="license-msg-container">
+                      <div>
+                        <i className="bi bi-x license-icon-x" />
+                      </div>
+                      <div>
+                        <h5 className="license-msg">{msg}</h5>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className="container-col-license">
-        <div className="col-item-3">
-          <h1 className="license-header-bold">不可以做什么?</h1>
-        </div>
-        {notallowed.map((msg) => (
-          <div className="col-item-1" key={msg}>
-            <div className="license-msg-container">
-              <div>
-                <i className="bi bi-x license-icon-x" />
-              </div>
-              <div>
-                <h5 className="license-msg">{msg}</h5>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className="container-col-login">
-        <div className="license-msg">
-          <h5>
-            除了上述提到的之外，如果你还想将图片用于其他用途，请仔细阅读原图片站点的用户协议。
-          </h5>
-        </div>
+            </Tab>
+          ))}
+        </Tabs>
       </div>
     </div>
   );
