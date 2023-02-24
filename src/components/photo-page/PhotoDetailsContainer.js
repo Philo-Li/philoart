@@ -20,8 +20,8 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow }) => {
   // eslint-disable-next-line no-unused-vars
   const [showEditModal, setShowEditModal] = useState(false);
   const history = useHistory();
-  const userId = localStorage.getItem('philoart-userId');
-  const username = localStorage.getItem('philoart-username');
+  const userId = localStorage.getItem('userId');
+  const username = localStorage.getItem('username');
 
   if (!photoToShow) return null;
 

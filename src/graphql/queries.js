@@ -28,7 +28,6 @@ export const GET_PHOTOS = gql`
           srcSmall
           srcLarge
           srcOriginal
-          artist
           status
           tags
           color

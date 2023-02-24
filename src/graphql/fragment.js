@@ -7,22 +7,16 @@ export const PHOTO_DETAILS = gql`
     year
     description
     tags
-    photoWidth
-    photoHeight
-    artworkWidth
-    artworkHeight
     srcTiny
     srcSmall
     srcLarge
     srcOriginal
     srcYoutube
     color
-    artist
     license
     type
-    medium
     status
-    relatedPhotos
+    allowDownload
   }
 `;
 
