@@ -20,23 +20,6 @@ const override = css`
 
 const baseUrl = config.philoartApi;
 
-// const initialValues = {
-//   title: 'Untitled',
-//   titleZh: '无题',
-//   year: new Date().getFullYear(),
-//   description: '',
-//   artworkWidth: 0,
-//   artworkHeight: 0,
-//   srcLarge: '',
-//   srcYoutube: '',
-//   artist: 'Philo',
-//   license: 'Philo Art License',
-//   type: 'painting',
-//   medium: 'acrylic painting on canvas',
-//   status: 'available',
-//   relatedPhotos: '',
-// };
-
 const initialValues = {
   title: 'Untitled',
   description: '',
@@ -50,11 +33,12 @@ const Create = () => {
   const [loading, setLoading] = useState(false);
   const [createPhoto] = useCreatePhoto();
   const [files, setFiles] = useState([]);
-  const [license, setLicense] = useState('CC BY');
+  const [license, setLicense] = useState('CC BY-NC');
   const [type, setType] = useState('Photograph');
   const [status, setStatus] = useState('None');
   const [checked, setChecked] = useState(false);
   const userId = localStorage.getItem('userId');
+  const username = localStorage.getItem('username');
 
   if (!userId) {
     return (
@@ -84,10 +68,11 @@ const Create = () => {
         license,
         type,
         status,
+        allowDownload: checked,
       };
       // console.log(`type:${type}+checked:${checked}+status:${status}license:${license}`);
       await createPhoto(variables);
-      history.push('/');
+      history.push(`/${username}`);
       setLoading(false);
     } catch (e) {
       setErrorInfo(e.message);

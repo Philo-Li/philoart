@@ -5,7 +5,7 @@ const options = ['CC BY', 'CC BY-SA', 'CC BY-NC', 'CC BY-NC-SA', 'CC-BY-ND', 'CC
 
 // eslint-disable-next-line no-unused-vars
 const LicenseButton = ({ setLicense }) => {
-  const [selected, setSelected] = useState('CC BY');
+  const [selected, setSelected] = useState('CC BY-NC');
 
   useEffect(() => {
     // setLicense(options[selectedIndex]);
