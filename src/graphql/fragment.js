@@ -17,6 +17,7 @@ export const PHOTO_DETAILS = gql`
     type
     status
     allowDownload
+    createdAt
   }
 `;
 

@@ -69,3 +69,42 @@
     justify-content: center;
     align-items: center;
   }
+
+.container-row-primary {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding-top: 14px;
+}
+
+.photo-details-author-name {
+  display: flex;
+  flex-flow: row;
+  align-items: flex-start;
+  color: black;
+  padding-top: 8px;
+  font-size: 1rem;
+  padding-top: 10px;
+  padding: 8px 10px;
+}
+
+.photo-details-author-avatar {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  margin-top: 3px;
+  margin-left: 10px;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+}
+
+.photo-details-date {
+  display: flex;
+  flex-flow: row;
+  align-items: flex-end;
+  color: #777;
+  padding-top: 12px;
+  font-size: 0.9rem;
+  padding: 8px 10px;
+}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import LazyLoad from 'react-lazyload';
 import { Card } from 'react-bootstrap';
+import { format } from 'date-fns';
 import YouTube from 'react-youtube-embed';
 import useLikePhoto from '../../hooks/useLikePhoto';
 import useUnlikePhoto from '../../hooks/useUnlikePhoto';
@@ -68,12 +69,15 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow }) => {
 
   const photo = photoToShow;
 
-  const photoCredit = `Photographer: ${photo.artist}`;
-
   const downloadSinglePhoto = async () => {
     window.open(photo.srcLarge);
     await downloadPhoto({ id: photo.id });
   };
+
+  const publishedDate = format(new Date(photo.createdAt), 'PP');
+  // console.log('photo', photo, publishedDate, photo.createdAt);
+  const initProfileImage = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
+  const { profileImage } = photo.user;
 
   return (
     <div className="p-3">
@@ -139,15 +143,16 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow }) => {
           </button>
         </div>
       </div>
-      <div className="container-row-0">
-        <h5>{photoCredit}</h5>
-      </div>
-      <div className="col-item-collection-description">
-        <p className="">
-          From
-          {' '}
-          <a href={photo.id} target="_"> Philo Art </a>
-        </p>
+      <div className="container-row-0 container-row-primary">
+        <a href={`/${photo.user.username}`}>
+          <div className="">
+            <img src={profileImage || initProfileImage} alt="user avatar" className="photo-details-author photo-details-author-avatar" />
+          </div>
+        </a>
+        <a href={`/${photo.user.username}`}>
+          <div className="photo-details-author-name">{`${photo.user.firstName} ${photo.user.lastName || ''}`}</div>
+        </a>
+        <div className="photo-detials-date">{publishedDate}</div>
       </div>
       <div className="container-row-0">
         <PhotoMoreDetailsModal photo={photo} />
