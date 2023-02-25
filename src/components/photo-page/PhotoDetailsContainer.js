@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import LazyLoad from 'react-lazyload';
 import { Card } from 'react-bootstrap';
 import { format } from 'date-fns';
+import { nanoid } from 'nanoid';
 import YouTube from 'react-youtube-embed';
 import useLikePhoto from '../../hooks/useLikePhoto';
 import useUnlikePhoto from '../../hooks/useUnlikePhoto';
@@ -114,7 +115,11 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow }) => {
         setShowDeleteModal={setShowDeleteModal}
       />
       <div className="container-row-0">
-        {allColors && allColors.map((c) => <Colorbox color={c} />)}
+        {allColors && allColors.map((c) => (
+          <div key={nanoid()}>
+            <Colorbox color={c} />
+          </div>
+        ))}
         <div className="color-box" style={{ backgroundColor: bgColor }} />
       </div>
       <div className="container-row-0 container-row-primary">
