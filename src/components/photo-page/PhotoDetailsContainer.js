@@ -33,8 +33,7 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow }) => {
     backgroundColor: bgColor,
   };
 
-  const allColors = photoToShow.allColors.slice(1, -1).split('","');
-  console.log(allColors);
+  const allColors = photoToShow.allColors.split(',');
 
   const Placeholder = () => (
     <div style={mystyle}>
@@ -167,18 +166,6 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow }) => {
         </div>
       </div>
       <div className="container-row-0">
-        <div className="container-photo-title">
-          <h1 className="photo-title">
-            Title:
-            {photo.title}
-          </h1>
-          <p className="photo-description">
-            Description:
-            {photo.description}
-          </p>
-        </div>
-      </div>
-      <div className="container-row-0">
         <div className="container-row-0">
           <div className="row-item-0">
             <div className="container-col-details">
@@ -210,6 +197,18 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow }) => {
               {photo.downloadCount}
             </div>
           </div>
+        </div>
+      </div>
+      <div className="container-row-0">
+        <div className="container-photo-title">
+          <h1 className="photo-title">
+            Title:
+            {photo.title}
+          </h1>
+          <p className="photo-description">
+            Description:
+            {photo.description}
+          </p>
         </div>
       </div>
       <div className="photodetails-photo-item">

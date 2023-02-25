@@ -662,6 +662,10 @@
   text-align: left;
 }
 
+.color-box {
+  width: 10px;
+}
+
 .container-col-license {
   display: flex;
   flex-direction: column;
