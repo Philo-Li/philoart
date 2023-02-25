@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* .jumbotron {
   background-image: url("https://kaboompics.com/cache/7/3/7/1/b/7371b7a8de0b38d8906cdae62a3374526d4109d0.jpeg");
   background-size: cover;
@@ -641,6 +642,24 @@
   padding-top: 12px;
   font-size: 0.9rem;
   padding: 8px 10px;
+}
+
+.container-photo-title {
+  width: 100%;
+  max-width: 200px;
+  /* 可根据需要进行调整 */
+  margin: 0 auto;
+  text-align: left;
+}
+
+.photo-title {
+  font-size: 24px;
+  text-align: left;
+}
+
+.photo-description {
+  font-size: 16px;
+  text-align: left;
 }
 
 .container-col-license {

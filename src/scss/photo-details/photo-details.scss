@@ -108,3 +108,20 @@
   font-size: 0.9rem;
   padding: 8px 10px;
 }
+
+.container-photo-title {
+  width: 100%;
+  max-width: 200px; /* 可根据需要进行调整 */
+  margin: 0 auto;
+  text-align: left;
+}
+
+.photo-title {
+  font-size: 24px;
+  text-align: left;
+}
+
+.photo-description {
+  font-size: 16px;
+  text-align: left;
+}
