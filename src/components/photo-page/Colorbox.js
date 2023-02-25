@@ -4,7 +4,11 @@ const Colorbox = ({ color }) => (
   <div>
     <div className="scrollmenu">
       <div className="">
-        <div className="color-box" style={{ backgroundColor: color }} />
+        <div className="colorbox" style={{ backgroundColor: color }}>
+          <div className="colorbox-colorname">
+            {color}
+          </div>
+        </div>
       </div>
     </div>
   </div>

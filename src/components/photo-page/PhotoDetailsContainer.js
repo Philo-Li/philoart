@@ -119,7 +119,6 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow }) => {
             <Colorbox color={c} />
           </div>
         ))}
-        <div className="color-box" style={{ backgroundColor: bgColor }} />
       </div>
       <div className="container-row-0 container-row-primary">
         <a href={`/${photo.user.username}`}>
