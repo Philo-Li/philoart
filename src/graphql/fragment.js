@@ -13,10 +13,12 @@ export const PHOTO_DETAILS = gql`
     srcOriginal
     srcYoutube
     color
+    allColors
     license
     type
     status
     allowDownload
+    createdAt
   }
 `;
 

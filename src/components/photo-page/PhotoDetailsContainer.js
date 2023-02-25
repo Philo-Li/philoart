@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import LazyLoad from 'react-lazyload';
 import { Card } from 'react-bootstrap';
+import { format } from 'date-fns';
+import { nanoid } from 'nanoid';
 import YouTube from 'react-youtube-embed';
 import useLikePhoto from '../../hooks/useLikePhoto';
 import useUnlikePhoto from '../../hooks/useUnlikePhoto';
 import useDownloadPhoto from '../../hooks/useDownloadPhoto';
 import DropdownButton from '../others/button/edit-photo-btn/DropdownButton';
 import SaveToCollectionsModal from '../others/photo-card/SaveToCollectionsModal';
-import PhotoMoreDetailsModal from '../others/photo-card/PhotoMoreDetailsModal';
 import DeletePhotoModal from './DeletePhotoModal';
+import Colorbox from './Colorbox';
 
 const PhotoDetailContainer = ({ photoToShow, setPhotoToShow }) => {
   const [likePhoto] = useLikePhoto();
@@ -30,6 +32,8 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow }) => {
   const mystyle = {
     backgroundColor: bgColor,
   };
+
+  const allColors = photoToShow.allColors.split(',');
 
   const Placeholder = () => (
     <div style={mystyle}>
@@ -68,12 +72,15 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow }) => {
 
   const photo = photoToShow;
 
-  const photoCredit = `Photographer: ${photo.artist}`;
-
   const downloadSinglePhoto = async () => {
     window.open(photo.srcLarge);
     await downloadPhoto({ id: photo.id });
   };
+
+  const publishedDate = format(new Date(photo.createdAt), 'PP');
+  // console.log('photo', photo, publishedDate, photo.createdAt);
+  const initProfileImage = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
+  const { profileImage } = photo.user;
 
   return (
     <div className="p-3">
@@ -106,6 +113,24 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow }) => {
         showDeleteModal={showDeleteModal}
         setShowDeleteModal={setShowDeleteModal}
       />
+      <div className="container-row-0">
+        {allColors && allColors.map((c) => (
+          <div key={nanoid()}>
+            <Colorbox color={c} />
+          </div>
+        ))}
+      </div>
+      <div className="container-row-0 container-row-primary">
+        <a href={`/${photo.user.username}`}>
+          <div className="">
+            <img src={profileImage || initProfileImage} alt="user avatar" className="photo-details-author photo-details-author-avatar" />
+          </div>
+        </a>
+        <a href={`/${photo.user.username}`}>
+          <div className="photo-details-author-name">{`${photo.user.firstName} ${photo.user.lastName || ''}`}</div>
+        </a>
+        <div className="photo-detials-date">{publishedDate}</div>
+      </div>
       <div className="container-row-photodetail-btn">
         <div className="">
           <button
@@ -140,20 +165,50 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow }) => {
         </div>
       </div>
       <div className="container-row-0">
-        <h5>{photoCredit}</h5>
-      </div>
-      <div className="col-item-collection-description">
-        <p className="">
-          From
-          {' '}
-          <a href={photo.id} target="_"> Philo Art </a>
-        </p>
+        <div className="container-row-0">
+          <div className="row-item-0">
+            <div className="container-col-details">
+              <div className="subtitle">
+                Likes
+              </div>
+              <div>
+                {photo.likeCount}
+              </div>
+            </div>
+          </div>
+          <div className="row-item-0">
+            <div className="container-col-details">
+              <div className="subtitle">
+                Collections
+              </div>
+              <div>
+                {photo.collectionCount}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-item-0">
+          <div className="container-col-details">
+            <div className="subtitle">
+              Downloads
+            </div>
+            <div>
+              {photo.downloadCount}
+            </div>
+          </div>
+        </div>
       </div>
       <div className="container-row-0">
-        <PhotoMoreDetailsModal photo={photo} />
-      </div>
-      <div className="container-row-0">
-        <div className="color-box" style={mystyle} />
+        <div className="container-photo-title">
+          <h1 className="photo-title">
+            Title:
+            {photo.title}
+          </h1>
+          <p className="photo-description">
+            Description:
+            {photo.description}
+          </p>
+        </div>
       </div>
       <div className="photodetails-photo-item">
         {photo.srcYoutube && (<YouTube id={photo.srcYoutube} />) }

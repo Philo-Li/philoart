@@ -52,6 +52,8 @@ export const GET_PHOTO = gql`
       ...photoDetails
       user {
         username
+        firstName
+        lastName
       }
       likeCount
       collectionCount
