@@ -32,8 +32,9 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow }) => {
   const mystyle = {
     backgroundColor: bgColor,
   };
-
-  const allColors = photoToShow.allColors.split(',');
+  console.log(photoToShow.allColors);
+  const allColors = photoToShow.allColors && photoToShow.allColors.split(',');
+  console.log(allColors);
 
   const Placeholder = () => (
     <div style={mystyle}>

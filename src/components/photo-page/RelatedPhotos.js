@@ -7,7 +7,7 @@ const RelatedPhotos = ({
 }) => {
   const [allPhotos, setAllPhotos] = useState();
   const [loading, setLoading] = useState(false);
-  const userId = localStorage.getItem('philoart-userId');
+  const userId = localStorage.getItem('userId');
 
   const tags1 = photoToShow && photoToShow.tags;
 
