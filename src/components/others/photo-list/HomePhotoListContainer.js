@@ -10,7 +10,7 @@ import useUnlikePhoto from '../../../hooks/useUnlikePhoto';
 const breakpointColumnsObj = {
   default: 3,
   800: 2,
-  500: 2,
+  500: 1,
 };
 
 const breakpointColumnsObj2 = {

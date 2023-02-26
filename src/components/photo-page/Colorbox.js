@@ -2,7 +2,7 @@ import React from 'react';
 
 const Colorbox = ({ color }) => (
   <div>
-    <div className="scrollmenu">
+    <div className="">
       <div className="">
         <div className="colorbox" style={{ backgroundColor: color }}>
           <div className="colorbox-colorname">

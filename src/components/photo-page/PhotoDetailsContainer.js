@@ -32,8 +32,9 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow }) => {
   const mystyle = {
     backgroundColor: bgColor,
   };
-
-  const allColors = photoToShow.allColors.split(',');
+  console.log(photoToShow.allColors);
+  const allColors = photoToShow.allColors && photoToShow.allColors.split(',');
+  console.log(allColors);
 
   const Placeholder = () => (
     <div style={mystyle}>
@@ -84,20 +85,6 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow }) => {
 
   return (
     <div className="p-3">
-      <div className="photodetails-photo-item">
-        <LazyLoad height={300} offset={[-100, 0]} debounce={500} once placeholder={<Placeholder />}>
-          <Card>
-            <img
-              src={photoToShow.srcSmall}
-              className="max-height-500"
-              alt="collection cover"
-            />
-            {/* <MapInteractionCSS>
-              <img src={photoToShow.small} className="max-height-500" alt="gird item" />
-            </MapInteractionCSS> */}
-          </Card>
-        </LazyLoad>
-      </div>
       <div className="container-collection-title">
         <div className="collection-dropbtn">
           {photo.user.username === username && (
@@ -113,6 +100,20 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow }) => {
         showDeleteModal={showDeleteModal}
         setShowDeleteModal={setShowDeleteModal}
       />
+      <div className="photodetails-photo-item">
+        <LazyLoad height={300} offset={[-100, 0]} debounce={500} once placeholder={<Placeholder />}>
+          <Card>
+            <img
+              src={photoToShow.srcSmall}
+              className="max-height-500"
+              alt="collection cover"
+            />
+            {/* <MapInteractionCSS>
+              <img src={photoToShow.small} className="max-height-500" alt="gird item" />
+            </MapInteractionCSS> */}
+          </Card>
+        </LazyLoad>
+      </div>
       <div className="container-row-0">
         {allColors && allColors.map((c) => (
           <div key={nanoid()}>
