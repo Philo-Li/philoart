@@ -542,6 +542,7 @@
   border-radius: 5px;
   padding: 0.5rem 1.5rem;
   transition: ease 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .photodetails-card-btn-like:hover {
@@ -557,6 +558,7 @@
   border-radius: 5px;
   padding: 0.5rem 1.5rem;
   transition: ease 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .photodetails-card-btn-collect:hover {
@@ -573,6 +575,7 @@
   border-radius: 5px;
   padding: 0.5rem 1.5rem;
   transition: ease 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .photodetails-card-btn-download:hover {
@@ -591,6 +594,7 @@
   border-radius: 5px;
   padding: 0.5rem 1.5rem;
   transition: ease 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .photodetails-card-btn-info {
@@ -685,10 +689,6 @@
 .colorbox-colorname {
   color: white;
   text-align: center;
-}
-
-button {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .container-details-title-btn {
