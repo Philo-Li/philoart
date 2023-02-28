@@ -27,8 +27,7 @@ const UserCollections = () => {
   const [allCollections, setAllCollections] = useState();
   const authUsername = localStorage.getItem('username');
 
-  let { username } = useParams();
-  username = username.substr(1, username.length - 1);
+  const { username } = useParams();
   const { collections, fetchMore, hasNextPage } = useCollections({
     username,
     first: 30,
