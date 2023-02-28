@@ -121,94 +121,102 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow }) => {
           </div>
         ))}
       </div>
-      <div className="container-row-0 container-row-primary">
-        <a href={`/${photo.user.username}`}>
-          <div className="">
-            <img src={profileImage || initProfileImage} alt="user avatar" className="photo-details-author photo-details-author-avatar" />
+      <div className="container-details-title-btn">
+        <div className="container-row-0">
+          <div className="container-photo-title">
+            <Card>
+              <Card.Title>
+                <h1 className="photo-title">
+                  {photo.title}
+                </h1>
+              </Card.Title>
+              <Card.Footer>
+                <p className="photo-description">
+                  {photo.description || 'No description'}
+                </p>
+              </Card.Footer>
+            </Card>
           </div>
-        </a>
-        <a href={`/${photo.user.username}`}>
-          <div className="photo-details-author-name">{`${photo.user.firstName} ${photo.user.lastName || ''}`}</div>
-        </a>
-        <div className="photo-detials-date">{publishedDate}</div>
-      </div>
-      <div className="container-row-photodetail-btn">
-        <div className="">
-          <button
-            type="button"
-            className="photodetails-card-btn-like container-row-0 photodetails-card-btn-item"
-            onClick={() => likeSinglePhoto(photo)}
-          >
-            <div className="">
-              {!photo.isLiked && (<i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />)}
-              {photo.isLiked && (
-                <div className="red-icon">
-                  <i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />
-                </div>
-              )}
-            </div>
-          </button>
         </div>
         <div>
-          <button type="button" className="photodetails-card-btn-collect photodetails-card-btn-item" onClick={() => openCollectModal()}>
-            <i className="bi bi-plus-square" />
-          </button>
-          <SaveToCollectionsModal
-            photo={photo}
-            showCollectModal={showCollectModal}
-            setShowCollectModal={setShowCollectModal}
-          />
-        </div>
-        <div className="photodetails-card-btn-item">
-          <button type="button" className="photodetails-card-btn-download" onClick={() => downloadSinglePhoto()}>
-            <i className="bi bi-download" />
-          </button>
-        </div>
-      </div>
-      <div className="container-row-0">
-        <div className="container-row-0">
-          <div className="row-item-0">
-            <div className="container-col-details">
-              <div className="subtitle">
-                Likes
+          <div className="container-row-0 container-row-primary">
+            <a href={`/${photo.user.username}`}>
+              <div className="">
+                <img src={profileImage || initProfileImage} alt="user avatar" className="photo-details-author photo-details-author-avatar" />
               </div>
-              <div>
-                {photo.likeCount}
-              </div>
-            </div>
+            </a>
+            <a href={`/${photo.user.username}`}>
+              <div className="photo-details-author-name">{`${photo.user.firstName} ${photo.user.lastName || ''}`}</div>
+            </a>
+            <div className="photo-detials-date">{publishedDate}</div>
           </div>
-          <div className="row-item-0">
-            <div className="container-col-details">
-              <div className="subtitle">
-                Collections
-              </div>
-              <div>
-                {photo.collectionCount}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-item-0">
-          <div className="container-col-details">
-            <div className="subtitle">
-              Downloads
+          <div className="container-row-photodetail-btn">
+            <div className="">
+              <button
+                type="button"
+                className="photodetails-card-btn-like container-row-0 photodetails-card-btn-item"
+                onClick={() => likeSinglePhoto(photo)}
+              >
+                <div className="">
+                  {!photo.isLiked && (<i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />)}
+                  {photo.isLiked && (
+                    <div className="red-icon">
+                      <i className={photo.isLiked ? 'bi bi-heart-fill' : 'bi bi-heart'} />
+                    </div>
+                  )}
+                </div>
+              </button>
             </div>
             <div>
-              {photo.downloadCount}
+              <button type="button" className="photodetails-card-btn-collect photodetails-card-btn-item" onClick={() => openCollectModal()}>
+                <i className="bi bi-plus-square" />
+              </button>
+              <SaveToCollectionsModal
+                photo={photo}
+                showCollectModal={showCollectModal}
+                setShowCollectModal={setShowCollectModal}
+              />
+            </div>
+            <div className="photodetails-card-btn-item">
+              <button type="button" className="photodetails-card-btn-download" onClick={() => downloadSinglePhoto()}>
+                <i className="bi bi-download" />
+              </button>
             </div>
           </div>
-        </div>
-      </div>
-      <div className="container-row-0">
-        <div className="container-photo-title">
-          <h1 className="photo-title">
-            Title:
-            {photo.title}
-          </h1>
-          <p className="photo-description">
-            Description:
-            {photo.description}
-          </p>
+          <div className="container-row-0">
+            <div className="container-row-0">
+              <div className="row-item-0">
+                <div className="container-col-details">
+                  <div className="subtitle">
+                    Likes
+                  </div>
+                  <div>
+                    {photo.likeCount}
+                  </div>
+                </div>
+              </div>
+              <div className="row-item-0">
+                <div className="container-col-details">
+                  <div className="subtitle">
+                    Collections
+                  </div>
+                  <div>
+                    {photo.collectionCount}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-item-0">
+              <div className="container-col-details">
+                <div className="subtitle">
+                  Downloads
+                </div>
+                <div>
+                  {photo.downloadCount}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div className="photodetails-photo-item">

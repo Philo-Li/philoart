@@ -111,14 +111,17 @@
 
 .container-photo-title {
   width: 100%;
-  max-width: 200px; /* 可根据需要进行调整 */
+  max-width: 300px; /* 可根据需要进行调整 */
   margin: 0 auto;
   text-align: left;
 }
 
 .photo-title {
   font-size: 24px;
-  text-align: left;
+  padding-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .photo-description {
@@ -134,4 +137,26 @@
 .colorbox-colorname {
   color: white;
   text-align: center;
+}
+
+button {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.container-details-title-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-details-title-btn > * {
+  margin: 0 10px; /* 设置元素间距，如果需要的话 */
+}
+
+.container-details-title-btn > :first-child {
+  margin-left: 0; /* 如果需要取消第一个元素的左侧间距 */
+}
+
+.container-details-title-btn > :last-child {
+  margin-right: 0; /* 如果需要取消最后一个元素的右侧间距 */
 }
