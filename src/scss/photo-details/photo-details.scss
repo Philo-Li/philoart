@@ -45,6 +45,18 @@
     -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
     box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
   }
+
+  .photodetails-card-btn-download-disabled {
+    font-size: 1.3rem;
+    margin-top: 10%;
+    font-weight: light;
+    color: white;
+    background-color: rgba(151, 151, 151, 0.963);
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1.5rem;
+    transition: ease 0.2s;
+  }
   
   .photodetails-card-btn-info {
     font-size: 1rem;
@@ -111,14 +123,17 @@
 
 .container-photo-title {
   width: 100%;
-  max-width: 200px; /* 可根据需要进行调整 */
+  max-width: 300px; /* 可根据需要进行调整 */
   margin: 0 auto;
   text-align: left;
 }
 
 .photo-title {
   font-size: 24px;
-  text-align: left;
+  padding-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .photo-description {
@@ -134,4 +149,28 @@
 .colorbox-colorname {
   color: white;
   text-align: center;
+}
+
+button {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.container-details-title-btn {
+  display: flex;
+  margin-top: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-details-title-btn > * {
+  margin: 0 30px; /* 设置元素间距，如果需要的话 */
+}
+
+.container-details-title-btn > :first-child {
+  margin-left: 0; /* 如果需要取消第一个元素的左侧间距 */
+  width: 300px; 
+}
+
+.container-details-title-btn > :last-child {
+  margin-right: 0; /* 如果需要取消最后一个元素的右侧间距 */
 }

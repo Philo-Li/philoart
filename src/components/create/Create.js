@@ -70,7 +70,6 @@ const Create = () => {
         status,
         allowDownload: checked,
       };
-      // console.log(`type:${type}+checked:${checked}+status:${status}license:${license}`);
       await createPhoto(variables);
       history.push(`/${username}`);
       setLoading(false);
