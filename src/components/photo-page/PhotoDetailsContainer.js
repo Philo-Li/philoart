@@ -176,9 +176,16 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow }) => {
               />
             </div>
             <div className="photodetails-card-btn-item">
-              <button type="button" className="photodetails-card-btn-download" onClick={() => downloadSinglePhoto()}>
-                <i className="bi bi-download" />
-              </button>
+              {photo.allowDownload && (
+                <button type="button" className="photodetails-card-btn-download" onClick={() => downloadSinglePhoto()}>
+                  <i className="bi bi-download" />
+                </button>
+              )}
+              {!photo.allowDownload && (
+                <button type="button" className="photodetails-card-btn-download-disabled" disabled>
+                  <i className="bi bi-download" />
+                </button>
+              )}
             </div>
           </div>
           <PhotoInfo photo={photo} />
