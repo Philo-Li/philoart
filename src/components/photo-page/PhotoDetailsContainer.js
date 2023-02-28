@@ -12,6 +12,7 @@ import DropdownButton from '../others/button/edit-photo-btn/DropdownButton';
 import SaveToCollectionsModal from '../others/photo-card/SaveToCollectionsModal';
 import DeletePhotoModal from './DeletePhotoModal';
 import Colorbox from './Colorbox';
+import PhotoInfo from './PhotoInfo';
 
 const PhotoDetailContainer = ({ photoToShow, setPhotoToShow }) => {
   const [likePhoto] = useLikePhoto();
@@ -108,9 +109,6 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow }) => {
               className="max-height-500"
               alt="collection cover"
             />
-            {/* <MapInteractionCSS>
-              <img src={photoToShow.small} className="max-height-500" alt="gird item" />
-            </MapInteractionCSS> */}
           </Card>
         </LazyLoad>
       </div>
@@ -183,40 +181,7 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow }) => {
               </button>
             </div>
           </div>
-          <div className="container-row-0">
-            <div className="container-row-0">
-              <div className="row-item-0">
-                <div className="container-col-details">
-                  <div className="subtitle">
-                    Likes
-                  </div>
-                  <div>
-                    {photo.likeCount}
-                  </div>
-                </div>
-              </div>
-              <div className="row-item-0">
-                <div className="container-col-details">
-                  <div className="subtitle">
-                    Collections
-                  </div>
-                  <div>
-                    {photo.collectionCount}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-item-0">
-              <div className="container-col-details">
-                <div className="subtitle">
-                  Downloads
-                </div>
-                <div>
-                  {photo.downloadCount}
-                </div>
-              </div>
-            </div>
-          </div>
+          <PhotoInfo photo={photo} />
         </div>
       </div>
       <div className="photodetails-photo-item">

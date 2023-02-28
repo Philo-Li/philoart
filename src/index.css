@@ -681,18 +681,20 @@ button {
 
 .container-details-title-btn {
   display: flex;
+  margin-top: 30px;
   justify-content: center;
   align-items: center;
 }
 
 .container-details-title-btn > * {
-  margin: 0 10px;
+  margin: 0 30px;
   /* 设置元素间距，如果需要的话 */
 }
 
 .container-details-title-btn > :first-child {
   margin-left: 0;
   /* 如果需要取消第一个元素的左侧间距 */
+  width: 300px;
 }
 
 .container-details-title-btn > :last-child {
