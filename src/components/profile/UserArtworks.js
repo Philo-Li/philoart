@@ -6,9 +6,8 @@ import HomePhotoList from '../others/photo-list/HomePhotoList';
 const UserArtworks = () => {
   const [allPhotos, setAllPhotos] = useState();
   const [loading, setLoading] = useState(false);
-  let { username } = useParams();
-  username = username.substr(1, username.length - 1);
-  const userId = localStorage.getItem('philoart-userId');
+  const { username } = useParams();
+  const userId = localStorage.getItem('userId');
 
   const variables = {
     username,
