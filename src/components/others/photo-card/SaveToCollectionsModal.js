@@ -102,6 +102,7 @@ const SaveToCollectionsModal = ({
         description: '',
         public: true,
         photoId: photo.id,
+        cover: photo.srcTiny,
       };
       await createCollectionAndCollectPhoto(variables);
     } catch (e) {
