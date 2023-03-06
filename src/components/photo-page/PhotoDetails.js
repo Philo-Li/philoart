@@ -8,7 +8,7 @@ import RelatedPhotos from './RelatedPhotos';
 const PhotoDetails = () => {
   const [photoToShow, setPhotoToShow] = useState();
   const { id } = useParams();
-  const userId = localStorage.getItem('philoart-userId');
+  const userId = localStorage.getItem('userId');
 
   const { photo } = usePhoto({
     id,
