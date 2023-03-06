@@ -1,6 +1,6 @@
 # Philo Art
 
-The relative Node.js backend is here: [Philo-Art-Backend](https://github.com/LulalaP/philo-art-backend)
+The relative Node.js backend is here: [PhiloArt-Backend](https://github.com/Philo-Li/philo-art-backend)
 
 ## ✔️ Website
 
