@@ -143,12 +143,14 @@ export const CREATE_COLLECTION_AND_COLLECT_PHOTO = gql`
     $description: String
     $public: Boolean!
     $photoId: ID!
+    $cover: String
     ) {
       createCollectionAndCollectPhoto(collection: {
       title: $title
       description: $description
       public: $public
       photoId: $photoId
+      cover: $cover
     } ) {
       id
       collection {

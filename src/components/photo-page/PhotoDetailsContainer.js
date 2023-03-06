@@ -128,10 +128,13 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow }) => {
                   {photo.title}
                 </h1>
               </Card.Title>
-              <Card.Footer>
+              <Card.Body>
                 <p className="photo-description">
                   {photo.description || 'No description'}
                 </p>
+              </Card.Body>
+              <Card.Footer>
+                {`Status: ${photo.status}`}
               </Card.Footer>
             </Card>
           </div>

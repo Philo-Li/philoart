@@ -70,15 +70,18 @@ const PhotoCard = ({
             </picture>
           </a>
           <div>
-            <div id={photo.id} className="text-white">
-              <button
-                type="button"
-                className="photo-card-btn-icon photo-card-btn1"
-                onClick={() => downloadSinglePhoto()}
-              >
-                <i className="bi bi-download" />
-              </button>
-            </div>
+            {photo.allowDownload
+              && (
+              <div id={photo.id} className="text-white">
+                <button
+                  type="button"
+                  className="photo-card-btn-icon photo-card-btn1"
+                  onClick={() => downloadSinglePhoto()}
+                >
+                  <i className="bi bi-download" />
+                </button>
+              </div>
+              )}
             <div id={photo.id} className="text-white">
               <button type="button" className="photo-card-btn-icon photo-card-btn3" onClick={() => openCollectModal()}>
                 <i className="bi bi-plus-square" />
