@@ -23,7 +23,7 @@ const baseUrl = config.philoartApi;
 const initialValues = {
   title: 'Untitled',
   description: '',
-  license: 'Philo Art License',
+  license: 'CC BY-NC',
   type: 'painting',
 };
 

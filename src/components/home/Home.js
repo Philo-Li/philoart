@@ -3,22 +3,19 @@ import axios from 'axios';
 import { Tabs, Tab, Carousel } from 'react-bootstrap';
 import usePhotos from '../../hooks/usePhotos';
 import HomePhotoList from '../others/photo-list/HomePhotoList';
-// import SearchBar from '../others/search-bar/SearchBar';
+import Latest from './Latest';
 import CategoryBar from '../others/CategoryBar';
 import Discover from '../discover/Discover';
-import config from '../../config';
-// import '../../MDB-Free_4.19.2/css/mdb.css';
 
 const Home = () => {
   const [allPhotos, setAllPhotos] = useState();
   const [loading, setLoading] = useState(false);
   const [key, setKey] = useState('home');
 
-  const userId = localStorage.getItem('philoart-userId');
+  const userId = localStorage.getItem('userId');
   const baseUrl = 'https://media.philoart.io/photos.json';
 
   const variables = {
-    username: config.philoartAdmin,
     checkUserLike: userId,
     first: 20,
   };
@@ -91,6 +88,9 @@ const Home = () => {
         </Tab>
         <Tab eventKey="collections" title="Collections">
           <Discover />
+        </Tab>
+        <Tab eventKey="latest" title="Latest">
+          <Latest />
         </Tab>
       </Tabs>
     </div>
