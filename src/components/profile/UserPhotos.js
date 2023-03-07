@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import usePhotos from '../../hooks/usePhotos';
 import HomePhotoList from '../others/photo-list/HomePhotoList';
 
-const UserPhotos = () => {
+const UserPhotos = ({ type }) => {
   const [allPhotos, setAllPhotos] = useState();
   const [loading, setLoading] = useState(false);
   const { username } = useParams();
@@ -13,6 +13,7 @@ const UserPhotos = () => {
     username,
     checkUserLike: userId,
     first: 20,
+    searchKeyword: type,
   };
 
   const { photos, fetchMore, hasNextPage } = usePhotos(variables);

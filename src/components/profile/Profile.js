@@ -12,7 +12,7 @@ import useUnfollowUser from '../../hooks/useUnfollowUser';
 const initProfileImage = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
 
 const Profile = () => {
-  const [key, setKey] = useState('photos');
+  const [key, setKey] = useState('photograph');
   const [followUser] = useFollowUser();
   const [unfollowUser] = useUnfollowUser();
   const [profileImage, setProfileImage] = useState(initProfileImage);
@@ -98,8 +98,14 @@ const Profile = () => {
         onSelect={(k) => setKey(k)}
         className="mb-3"
       >
-        <Tab eventKey="photos" title="Photos">
-          <UserPhotos />
+        <Tab eventKey="photograph" title="Photograph">
+          <UserPhotos type="Photograph" />
+        </Tab>
+        <Tab eventKey="painting" title="Painting">
+          <UserPhotos type="Painting" />
+        </Tab>
+        <Tab eventKey="digitalart" title="Digital Art">
+          <UserPhotos type="Digital Art" />
         </Tab>
         {/* <Tab eventKey="articles" title="Articles">
           <UserArtworks username={username} setProfileImage={setProfileImage} />
