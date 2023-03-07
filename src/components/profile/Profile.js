@@ -34,6 +34,7 @@ const Profile = () => {
     if (user) {
       setUserNow(user);
       setFollow(user.isFollowed);
+      setProfileImage(user.profileImage || initProfileImage);
     }
     // console.log(user, variables, username);
   }, [user]);
@@ -98,7 +99,7 @@ const Profile = () => {
         className="mb-3"
       >
         <Tab eventKey="photos" title="Photos">
-          <UserPhotos username={username} setProfileImage={setProfileImage} />
+          <UserPhotos />
         </Tab>
         {/* <Tab eventKey="articles" title="Articles">
           <UserArtworks username={username} setProfileImage={setProfileImage} />

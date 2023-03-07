@@ -1,46 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import { Tabs, Tab, Carousel } from 'react-bootstrap';
-import usePhotos from '../../hooks/usePhotos';
-import HomePhotoList from '../others/photo-list/HomePhotoList';
 import Latest from './Latest';
+import TypeList from './TypeList';
 import CategoryBar from '../others/CategoryBar';
 import Discover from '../discover/Discover';
 
 const Home = () => {
-  const [allPhotos, setAllPhotos] = useState();
-  const [loading, setLoading] = useState(false);
-  const [key, setKey] = useState('home');
-
-  const userId = localStorage.getItem('userId');
-  const baseUrl = 'https://media.philoart.io/photos.json';
-
-  const variables = {
-    checkUserLike: userId,
-    first: 20,
-  };
-
-  const { photos, fetchMore, hasNextPage } = usePhotos(variables);
-
-  useEffect(async () => {
-    if (photos) {
-      const temp = photos && photos.edges
-        ? photos.edges.map((edge) => edge.node)
-        : [];
-
-      setAllPhotos(temp);
-      setLoading(false);
-    } else {
-      const temp = await axios.get(baseUrl).then((res) => res.data.node);
-
-      setAllPhotos(temp);
-    }
-  }, [photos]);
-
-  const clickFetchMore = () => {
-    fetchMore();
-    setLoading(true);
-  };
+  const [key, setKey] = useState('photograph');
 
   return (
     <div>
@@ -77,7 +43,7 @@ const Home = () => {
         onSelect={(k) => setKey(k)}
         className="mb-3"
       >
-        <Tab eventKey="home" title="Home">
+        {/* <Tab eventKey="home" title="Home">
           <HomePhotoList
             allPhotos={allPhotos}
             setAllPhotos={setAllPhotos}
@@ -85,6 +51,15 @@ const Home = () => {
             loading={loading}
             hasNextPage={hasNextPage}
           />
+        </Tab> */}
+        <Tab eventKey="photograph" title="Photograph">
+          <TypeList type="Photograph" />
+        </Tab>
+        <Tab eventKey="painting" title="Painting">
+          <TypeList type="Painting" />
+        </Tab>
+        <Tab eventKey="digitalart" title="Digital Art">
+          <TypeList type="Digital Art" />
         </Tab>
         <Tab eventKey="collections" title="Collections">
           <Discover />

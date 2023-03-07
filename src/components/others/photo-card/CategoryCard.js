@@ -37,9 +37,6 @@ const CategoryCard = ({ collection }) => {
           <div className="container-user-collection-list-title">
             <div className="user-collection-list-title">
               {collection.title}
-              (
-              {collection.photoCount}
-              )
             </div>
           </div>
         </Card.Title>
