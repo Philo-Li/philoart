@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
-const options = ['Photograph', 'Painting', 'Digital Art'];
+const options = ['Photograph', 'Painting', 'Digital Art', 'Drawing'];
 
 // eslint-disable-next-line no-unused-vars
 const TypeButton = ({ setType }) => {
