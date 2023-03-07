@@ -15,7 +15,7 @@ const CategoryBar = () => {
   {
     id: 'YddPZXbgHkBRf4MVkDpXM',
     title: 'Photograph',
-    cover: 'https://cdn.philoart.io/8/700x700/Ho0OQ4zzTXzg7sUsOeTMF.jpg',
+    cover: 'https://cdn.philoart.io/700x700/8/FS4MIHl-LbgSc25.jpg',
   }];
 
   return (
