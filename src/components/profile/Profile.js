@@ -107,6 +107,9 @@ const Profile = () => {
         <Tab eventKey="digitalart" title="Digital Art">
           <UserPhotos type="Digital Art" />
         </Tab>
+        <Tab eventKey="drawing" title="Drawing">
+          <UserPhotos type="Drawing" />
+        </Tab>
         {/* <Tab eventKey="articles" title="Articles">
           <UserArtworks username={username} setProfileImage={setProfileImage} />
         </Tab> */}

@@ -17,7 +17,7 @@ const validationSchema = yup.object().shape({
 });
 
 const CreateContainer = ({
-  initialValues, onSubmit, errorInfo, loading, files, setFiles, setLicense, setType, setStatus, handleCheckboxChange, checked,
+  initialValues, onSubmit, successInfo, errorInfo, loading, files, setFiles, setLicense, setType, setStatus, handleCheckboxChange, checked,
 }) => (
   <div className="container-col-login">
     <div className="container-profile">
@@ -52,6 +52,11 @@ const CreateContainer = ({
         />
       )}
     </Formik>
+    {successInfo && (
+    <Alert variant="success">
+      {successInfo}
+    </Alert>
+    )}
   </div>
 );
 

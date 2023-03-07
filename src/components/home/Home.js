@@ -61,6 +61,9 @@ const Home = () => {
         <Tab eventKey="digitalart" title="Digital Art">
           <TypeList type="Digital Art" />
         </Tab>
+        <Tab eventKey="drawing" title="Drawing">
+          <TypeList type="Drawing" />
+        </Tab>
         <Tab eventKey="collections" title="Collections">
           <Discover />
         </Tab>
