@@ -29,6 +29,7 @@ const initialValues = {
 
 const Create = () => {
   const history = useHistory();
+  const [successInfo, setSuccessInfo] = useState('');
   const [errorInfo, setErrorInfo] = useState('');
   const [loading, setLoading] = useState(false);
   const [createPhoto] = useCreatePhoto();
@@ -71,8 +72,9 @@ const Create = () => {
         allowDownload: checked,
       };
       await createPhoto(variables);
-      history.push(`/${username}`);
       setLoading(false);
+      setSuccessInfo('Photo is uploaded successfully!');
+      setTimeout(() => { setSuccessInfo(''); history.push(`/${username}`); }, 3000);
     } catch (e) {
       setErrorInfo(e.message);
       setLoading(false);
@@ -89,6 +91,7 @@ const Create = () => {
       <CreateContainer
         initialValues={initialValues}
         onSubmit={onSubmit}
+        successInfo={successInfo}
         errorInfo={errorInfo}
         loading={loading}
         files={files}
