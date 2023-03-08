@@ -105,7 +105,7 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow }) => {
         <LazyLoad height={300} offset={[-100, 0]} debounce={500} once placeholder={<Placeholder />}>
           <Card>
             <img
-              src={photoToShow.srcSmall}
+              src={photoToShow.srcLarge}
               className="max-height-500"
               alt="collection cover"
             />
