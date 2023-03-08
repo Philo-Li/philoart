@@ -3,6 +3,7 @@ import React from 'react';
 import { Button, Spinner } from 'react-bootstrap';
 import { Form } from 'formik';
 
+import TextInputDescription from '../../others/TextInputDescription';
 import TextInput from '../../others/TextInput';
 
 const EditProfileForm = ({ loading }) => (
@@ -43,6 +44,15 @@ const EditProfileForm = ({ loading }) => (
           info=" (only letters, numbers, and underscores)"
           name="username"
           type="username"
+          placeholder=""
+        />
+      </div>
+
+      <div className="col-item-1">
+        <TextInputDescription
+          label="Description"
+          name="description"
+          type="text"
           placeholder=""
         />
       </div>
