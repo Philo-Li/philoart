@@ -60,7 +60,7 @@ const PhotoCard = ({
         <div className="photo-card overlay">
           <a href={`/photo/${photo.id}`}>
             <picture>
-              <source media="(max-width: 800px)" srcSet={photo.srcTiny} alt="" />
+              <source media="(max-width: 800px)" srcSet={photo.srcSmall} alt="" />
               <source media="(max-width: 2100px)" srcSet={photo.srcLarge} alt="" />
               <img
                 src={photo.srcSmall}
