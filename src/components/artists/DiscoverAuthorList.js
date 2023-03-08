@@ -33,7 +33,7 @@ const DiscoverAuthorList = ({
       >
         {allUsers.map((user) => (
           <Card key={nanoid()}>
-            <a href={`/@${user.username}`}>
+            <a href={`/${user.username}`}>
               <div className="container-profile">
                 <ProfileDetailCard
                   userNow={user}
