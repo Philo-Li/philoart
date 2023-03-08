@@ -18,6 +18,8 @@ const validationSchema = Yup.object({
     .max(20, 'Must be 20 characters or less')
     .matches('^[a-zA-Z0-9_]*$', 'Invalid username')
     .required('Required'),
+  description: Yup.string()
+    .trim(),
   password: Yup.string()
     .min(6, 'Must be 6 characters or more'),
 });

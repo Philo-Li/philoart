@@ -136,6 +136,9 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow }) => {
               <Card.Footer>
                 {`Status: ${photo.status}`}
               </Card.Footer>
+              <Card.Footer>
+                {`License: ${photo.license}`}
+              </Card.Footer>
             </Card>
           </div>
         </div>

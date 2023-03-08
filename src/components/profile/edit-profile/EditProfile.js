@@ -15,6 +15,7 @@ const EditProfile = ({ user }) => {
     lastName: user.lastName || '',
     email: user.email,
     username: user.username,
+    description: user.description,
     password: '',
   };
 
@@ -24,6 +25,7 @@ const EditProfile = ({ user }) => {
       lastName: values.lastName,
       email: values.email,
       username: values.username,
+      description: values.description,
       password: values.password,
     };
     setLoading(true);

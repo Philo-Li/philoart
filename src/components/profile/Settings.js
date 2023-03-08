@@ -30,6 +30,8 @@ const Settings = () => {
     }
   }, [authorizedUser]);
 
+  console.log(authorizedUser);
+
   if (!authorizedUser) {
     return (
       <div className="col-item-3">
