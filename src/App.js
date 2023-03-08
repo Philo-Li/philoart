@@ -28,6 +28,7 @@ import About from './components/about/About';
 import AboutZh from './components/about/AboutZh';
 import ContactUs from './components/ContactUs';
 import Create from './components/create/Create';
+import DiscoverArtists from './components/artists/Discover';
 import logo from './img/logo/logo2.svg';
 import './index.css';
 import TokenExpireModal from './components/others/TokenExpireModal';
@@ -90,7 +91,9 @@ const App = () => {
             </Nav>
             <Nav className="justify-content-end container-row-0">
               <a className="navbar-link" href="/discover">Discover</a>
+              <a className="navbar-link" href="/artist">Artist</a>
               <a className="navbar-link" href="/about">About</a>
+              <a className="navbar-link" href="/license">License</a>
               {!token && <a className="navbar-link" href="/signin">Login</a>}
               {token && (
                 <NavDropdown className="navbar-link" title="My Account" id="basic-nav-dropdown">
@@ -121,6 +124,9 @@ const App = () => {
           <Switch>
             <Route path="/discover" exact>
               <Discover />
+            </Route>
+            <Route path="/artists" exact>
+              <DiscoverArtists />
             </Route>
             <Route path="/license" exact>
               <License />
