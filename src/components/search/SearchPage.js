@@ -20,7 +20,7 @@ const SearchPage = () => {
   const [loading, setLoading] = useState(false);
   const location = useLocation();
   const parsed = queryString.parse(location.search);
-  const userId = localStorage.getItem('philoart-userId');
+  const userId = localStorage.getItem('userId');
 
   const variables = {
     searchKeyword: parsed.q,

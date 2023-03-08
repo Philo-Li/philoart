@@ -92,6 +92,38 @@ export const GET_USER = gql`
   }
 `;
 
+export const GET_USERS = gql`
+  query getUsers(
+    $first: Int
+    $after: String
+  ) {
+    users(
+      first: $first
+      after: $after
+    ) {
+      edges {
+        node {
+          id
+          username
+          firstName
+          lastName
+          profileImage
+          photoCount
+          followerCount
+          followingCount
+        }
+        cursor
+      }
+      pageInfo {
+        endCursor
+        startCursor
+        totalCount
+        hasNextPage
+      }
+    }
+  }
+`;
+
 export const GET_USER_LIKES = gql`
   query getLikes(
     $orderBy: AllLikesOrderBy
@@ -284,5 +316,6 @@ export const GET_USER_COLLECTIONS_PLUS = gql`
 
 export default {
   GET_USER,
+  GET_USERS,
   GET_USER_COLLECTIONS_PLUS,
 };
