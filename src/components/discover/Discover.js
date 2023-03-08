@@ -58,43 +58,43 @@ const Discover = () => {
         <div className="container-profile profile-item subheader">
           <p>Nature</p>
         </div>
-        <DiscoverCollectionList allCollections={allCollections} category="nature" />
+        <DiscoverCollectionList allCollections={allCollections} category="Nature" />
       </div>
       <div className="p-3">
         <div className="container-profile profile-item subheader">
           <p>Human</p>
         </div>
-        <DiscoverCollectionList allCollections={allCollections} category="human" />
+        <DiscoverCollectionList allCollections={allCollections} category="Human" />
       </div>
       <div className="p-3">
         <div className="container-profile profile-item subheader">
           <p>Mood</p>
         </div>
-        <DiscoverCollectionList allCollections={allCollections} category="mood" />
+        <DiscoverCollectionList allCollections={allCollections} category="Mood" />
       </div>
       <div className="p-3">
         <div className="container-profile profile-item subheader">
           <p>Delicious food</p>
         </div>
-        <DiscoverCollectionList allCollections={allCollections} category="food" />
+        <DiscoverCollectionList allCollections={allCollections} category="Food" />
       </div>
       <div className="p-3">
         <div className="container-profile profile-item subheader">
           <p>Animals</p>
         </div>
-        <DiscoverCollectionList allCollections={allCollections} category="animals" />
+        <DiscoverCollectionList allCollections={allCollections} category="Animals" />
       </div>
       <div className="p-3">
         <div className="container-profile profile-item subheader">
           <p>Light and shadow</p>
         </div>
-        <DiscoverCollectionList allCollections={allCollections} category="light" />
+        <DiscoverCollectionList allCollections={allCollections} category="Light And Shadow" />
       </div>
       <div className="p-3">
         <div className="container-profile profile-item subheader">
           <p>On the Road</p>
         </div>
-        <DiscoverCollectionList allCollections={allCollections} category="road" />
+        <DiscoverCollectionList allCollections={allCollections} category="Street Photography" />
       </div>
       <div className="p-3">
         <div className="container-profile profile-item subheader">

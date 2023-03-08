@@ -52,6 +52,9 @@ const Home = () => {
             hasNextPage={hasNextPage}
           />
         </Tab> */}
+        <Tab eventKey="collections" title="Collections">
+          <Discover />
+        </Tab>
         <Tab eventKey="photograph" title="Photograph">
           <TypeList type="Photograph" />
         </Tab>
@@ -63,9 +66,6 @@ const Home = () => {
         </Tab>
         <Tab eventKey="drawing" title="Drawing">
           <TypeList type="Drawing" />
-        </Tab>
-        <Tab eventKey="collections" title="Collections">
-          <Discover />
         </Tab>
         <Tab eventKey="latest" title="Latest">
           <Latest />
