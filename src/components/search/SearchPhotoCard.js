@@ -3,7 +3,6 @@ import React from 'react';
 import LazyLoad from 'react-lazyload';
 import SaveToCollectionsModal from '../others/photo-card/SaveToCollectionsModal';
 import useCreatePhoto from '../../hooks/useCreatePhoto';
-import '../../MDB-Free_4.19.2/css/mdb.css';
 
 const SearchPhotoCard = ({
   photo, likeSinglePhoto, collectSinglePhoto,
@@ -12,7 +11,7 @@ const SearchPhotoCard = ({
   const [createPhoto] = useCreatePhoto();
 
   const bgColor = photo.color || '#84B0B3';
-  const username = localStorage.getItem('philoart-username');
+  const username = localStorage.getItem('username');
 
   const mystyle = {
     backgroundColor: bgColor,

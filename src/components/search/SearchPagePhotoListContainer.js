@@ -18,7 +18,7 @@ const SearchPagePhotoListContainer = ({
   const [createAndLikePhoto] = useCreateAndLikePhoto();
   const [unlikeAndDeletePhoto] = useUnlikeAndDeletePhoto();
   const history = useHistory();
-  const token = localStorage.getItem('philoart-token');
+  const token = localStorage.getItem('token');
 
   const likeSinglePhoto = async (photo) => {
     if (!token) {

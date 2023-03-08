@@ -85,7 +85,7 @@ const App = () => {
           <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
             <Nav>
               <div className="container-row-navbar-searchbox">
-                <NavSearchBar placeholder="Search..." />
+                <NavSearchBar placeholder="Search Food" />
               </div>
             </Nav>
             <Nav className="justify-content-end container-row-0">
