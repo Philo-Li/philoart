@@ -71,7 +71,7 @@ const CreateForm = ({
       <div className="container-row-license-item">
         <input className="form-check-input" type="checkbox" checked={checked} value="" id="flexCheckChecked" onChange={handleCheckboxChange} />
         <label className="form-check-label" htmlFor="flexCheckChecked">
-          Allow download
+          Download not allowed
         </label>
       </div>
     </div>

@@ -37,7 +37,7 @@ const Create = () => {
   const [license, setLicense] = useState('CC BY-NC');
   const [type, setType] = useState('Photograph');
   const [status, setStatus] = useState('None');
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(true);
   const userId = localStorage.getItem('userId');
   const username = localStorage.getItem('username');
 
