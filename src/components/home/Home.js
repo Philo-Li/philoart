@@ -6,7 +6,7 @@ import CategoryBar from '../others/CategoryBar';
 import Discover from '../discover/Discover';
 
 const Home = () => {
-  const [key, setKey] = useState('photograph');
+  const [key, setKey] = useState('freetouse');
 
   return (
     <div>
@@ -54,6 +54,9 @@ const Home = () => {
         </Tab> */}
         <Tab eventKey="collections" title="Collections">
           <Discover />
+        </Tab>
+        <Tab eventKey="freetouse" title="Free to Use">
+          <TypeList type="Free to Use" />
         </Tab>
         <Tab eventKey="photograph" title="Photograph">
           <TypeList type="Photograph" />
