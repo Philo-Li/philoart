@@ -30,7 +30,7 @@ const CollectionDetails = () => {
   const variables = {
     id,
     checkUserLike: userId,
-    first: 5,
+    first: 20,
   };
 
   const { collection, fetchMore, hasNextPage } = useCollection(variables);
