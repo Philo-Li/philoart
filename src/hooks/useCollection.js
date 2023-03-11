@@ -46,6 +46,7 @@ const useCollection = (variables) => {
   return {
     collection: data ? data.collection : undefined,
     fetchMore: handleFetchMore,
+    hasNextPage: data && data.collection.photos.pageInfo.hasNextPage,
     refetch,
     loading,
     ...result,

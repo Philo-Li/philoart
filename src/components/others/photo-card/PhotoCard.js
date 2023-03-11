@@ -50,7 +50,7 @@ const PhotoCard = ({
   };
 
   const downloadSinglePhoto = async () => {
-    window.open(photo.srcLarge);
+    window.open(photo.srcOriginal);
     await downloadPhoto({ id: photo.id });
   };
 

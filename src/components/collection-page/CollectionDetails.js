@@ -24,13 +24,13 @@ const CollectionDetails = () => {
   const [showEditCollectionModal, setShowEditCollectionModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [loading, setLoading] = useState(false);
-  const userId = localStorage.getItem('philoart-userId');
-  const username = localStorage.getItem('philoart-username');
+  const userId = localStorage.getItem('userId');
+  const username = localStorage.getItem('username');
 
   const variables = {
     id,
     checkUserLike: userId,
-    first: 30,
+    first: 5,
   };
 
   const { collection, fetchMore, hasNextPage } = useCollection(variables);

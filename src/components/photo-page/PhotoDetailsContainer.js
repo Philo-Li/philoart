@@ -75,7 +75,7 @@ const PhotoDetailContainer = ({ photoToShow, setPhotoToShow }) => {
   const photo = photoToShow;
 
   const downloadSinglePhoto = async () => {
-    window.open(photo.srcLarge);
+    window.open(photo.srcOriginal);
     await downloadPhoto({ id: photo.id });
   };
 

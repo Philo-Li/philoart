@@ -94,6 +94,7 @@ const App = () => {
               <a className="navbar-link" href="/artists">Artist</a>
               <a className="navbar-link" href="/about">About</a>
               <a className="navbar-link" href="/license">License</a>
+              <a className="navbar-link" href="https://github.com/philo-li/philoart">GitHub</a>
               {!token && <a className="navbar-link" href="/signin">Login</a>}
               {token && (
                 <NavDropdown className="navbar-link" title="My Account" id="basic-nav-dropdown">
