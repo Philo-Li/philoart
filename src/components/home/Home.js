@@ -4,6 +4,7 @@ import Latest from './Latest';
 import TypeList from './TypeList';
 import CategoryBar from '../others/CategoryBar';
 import Discover from '../discover/Discover';
+import SearchBar from '../others/search-bar/SearchBar';
 
 const Home = () => {
   const [key, setKey] = useState('freetouse');
@@ -15,7 +16,7 @@ const Home = () => {
           <Carousel.Item>
             <div className="jumbotron-slice-1" alt="First slide" />
             <Carousel.Caption>
-              {/* <SearchBar /> */}
+              <SearchBar />
               <h3 className="jumbotron-header">Share your artworks with the world.</h3>
               <p className="jumbotron-subheader">Create, and Post it</p>
             </Carousel.Caption>
