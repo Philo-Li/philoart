@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 500 500" style="enable-background:new 0 0 500 500;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#SVGID_2_);}
+	.st1{display:none;}
+	.st2{fill:url(#SVGID_3_);}
+	.st3{display:inline;}
+	.st4{clip-path:url(#SVGID_4_);}
+	.st5{fill:url(#SVGID_5_);}
+	.st6{fill:#FFFFFF;}
+	.st7{display:inline;fill:#FFFFFF;stroke:#000000;stroke-miterlimit:10;}
+	.st8{fill:url(#SVGID_6_);stroke:#000000;stroke-miterlimit:10;}
+	.st9{display:inline;fill:url(#SVGID_7_);}
+	.st10{fill:url(#SVGID_8_);}
+	.st11{fill:url(#SVGID_9_);}
+	.st12{display:inline;fill:url(#SVGID_10_);stroke:#000000;stroke-miterlimit:10;}
+</style>
+<g id="图层_11">
+	<g>
+		<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="36.5" y1="249" x2="461.5" y2="249">
+			<stop  offset="1" style="stop-color:#000000"/>
+			<stop  offset="1" style="stop-color:#FFFFFF"/>
+		</linearGradient>
+		<circle class="st0" cx="249" cy="249" r="212.5"/>
+		<path d="M249,37c28.62,0,56.38,5.61,82.52,16.66c25.24,10.68,47.92,25.96,67.39,45.43c19.47,19.47,34.76,42.14,45.43,67.39
+			C455.39,192.62,461,220.38,461,249s-5.61,56.38-16.66,82.52c-10.68,25.24-25.96,47.92-45.43,67.39
+			c-19.47,19.47-42.14,34.76-67.39,45.43C305.38,455.39,277.62,461,249,461s-56.38-5.61-82.52-16.66
+			c-25.24-10.68-47.92-25.96-67.39-45.43c-19.47-19.47-34.76-42.14-45.43-67.39C42.61,305.38,37,277.62,37,249
+			s5.61-56.38,16.66-82.52c10.68-25.24,25.96-47.92,45.43-67.39c19.47-19.47,42.14-34.76,67.39-45.43C192.62,42.61,220.38,37,249,37
+			 M249,36C131.36,36,36,131.36,36,249s95.36,213,213,213s213-95.36,213-213S366.64,36,249,36L249,36z"/>
+	</g>
+</g>
+<g id="图层_11_x5F_复制" class="st1">
+</g>
+<g id="图层_1">
+	<g>
+		<linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="169.5" y1="263.5" x2="209.5" y2="263.5">
+			<stop  offset="1" style="stop-color:#FFFFFF"/>
+			<stop  offset="1" style="stop-color:#000000"/>
+		</linearGradient>
+		<rect x="169.5" y="122.5" class="st2" width="40" height="282"/>
+		<path d="M209,123v281h-39V123H209 M210,122h-41v283h41V122L210,122z"/>
+	</g>
+</g>
+<g id="图层_1_x5F_复制" class="st1">
+</g>
+<g id="图层_5" class="st1">
+	<g class="st3">
+		<g>
+			<defs>
+				<circle id="SVGID_1_" cx="265" cy="195" r="13"/>
+			</defs>
+			<clipPath id="SVGID_4_">
+				<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+			</clipPath>
+			<g class="st4">
+			</g>
+		</g>
+		<path d="M265,183c6.62,0,12,5.38,12,12s-5.38,12-12,12s-12-5.38-12-12S258.38,183,265,183 M265,182c-7.18,0-13,5.82-13,13
+			s5.82,13,13,13c7.18,0,13-5.82,13-13S272.18,182,265,182L265,182z"/>
+	</g>
+</g>
+<g id="图层_10">
+	<g>
+		<linearGradient id="SVGID_5_" gradientUnits="userSpaceOnUse" x1="252.5" y1="195" x2="277.5" y2="195">
+			<stop  offset="0" style="stop-color:#000000"/>
+			<stop  offset="0" style="stop-color:#FFFFFF"/>
+		</linearGradient>
+		<circle class="st5" cx="265" cy="195" r="12.5"/>
+		<path d="M265,183c6.62,0,12,5.38,12,12s-5.38,12-12,12s-12-5.38-12-12S258.38,183,265,183 M265,182c-7.18,0-13,5.82-13,13
+			s5.82,13,13,13s13-5.82,13-13S272.18,182,265,182L265,182z"/>
+	</g>
+</g>
+<g id="图层_6" class="st1">
+	<g class="st3">
+		<rect x="65.5" y="122.5" class="st6" width="282" height="40"/>
+		<path d="M347,123v39H66v-39H347 M348,122H65v41h283V122L348,122z"/>
+	</g>
+	<g class="st3">
+		<rect x="65.5" y="222.5" class="st6" width="282" height="40"/>
+		<path d="M347,223v39H66v-39H347 M348,222H65v41h283V222L348,222z"/>
+	</g>
+	<g id="图层_8" class="st3">
+	</g>
+</g>
+<g id="图层_7" class="st1">
+</g>
+<g id="图层_3" class="st1">
+	<path class="st7" d="M221,122v36.98l101,33.52c-3.72,9.19-101,70.5-101,70.5c68.93,0.35,119.77-18.39,139-70.5
+		C347.61,145.9,298.91,124.01,221,122l0.5,26"/>
+</g>
+<g id="图层_4">
+	<linearGradient id="SVGID_6_" gradientUnits="userSpaceOnUse" x1="223.5" y1="193.8316" x2="356.5" y2="193.8316">
+		<stop  offset="0" style="stop-color:#000000"/>
+		<stop  offset="0" style="stop-color:#FFFFFF"/>
+	</linearGradient>
+	<path class="st8" d="M223.5,124.5c100-10,133,18,133,69c0,42-29,77-133,71v-40c63,11,92-5,93-30c0-26.43-34.33-43.57-93-31V124.5z"
+		/>
+</g>
+<g id="图层_4_x5F_复制" class="st1">
+	<g>
+		<linearGradient id="SVGID_7_" gradientUnits="userSpaceOnUse" x1="36.5" y1="249" x2="461.5" y2="249">
+			<stop  offset="1" style="stop-color:#FFFFFF"/>
+			<stop  offset="1" style="stop-color:#000000"/>
+		</linearGradient>
+		<circle class="st9" cx="249" cy="249" r="212.5"/>
+		<path class="st3" d="M249,37c28.62,0,56.38,5.61,82.52,16.66c25.24,10.68,47.92,25.96,67.39,45.43
+			c19.47,19.47,34.76,42.14,45.43,67.39C455.39,192.62,461,220.38,461,249s-5.61,56.38-16.66,82.52
+			c-10.68,25.24-25.96,47.92-45.43,67.39c-19.47,19.47-42.14,34.76-67.39,45.43C305.38,455.39,277.62,461,249,461
+			s-56.38-5.61-82.52-16.66c-25.24-10.68-47.92-25.96-67.39-45.43c-19.47-19.47-34.76-42.14-45.43-67.39
+			C42.61,305.38,37,277.62,37,249s5.61-56.38,16.66-82.52c10.68-25.24,25.96-47.92,45.43-67.39c19.47-19.47,42.14-34.76,67.39-45.43
+			C192.62,42.61,220.38,37,249,37 M249,36C131.36,36,36,131.36,36,249s95.36,213,213,213s213-95.36,213-213S366.64,36,249,36L249,36
+			z"/>
+	</g>
+	<g class="st3">
+		<linearGradient id="SVGID_8_" gradientUnits="userSpaceOnUse" x1="169.5" y1="263.5" x2="209.5" y2="263.5">
+			<stop  offset="0" style="stop-color:#FFFFFF"/>
+			<stop  offset="0" style="stop-color:#000000"/>
+		</linearGradient>
+		<rect x="169.5" y="122.5" class="st10" width="40" height="282"/>
+		<path d="M209,123v281h-39V123H209 M210,122h-41v283h41V122L210,122z"/>
+	</g>
+	<g class="st3">
+		<linearGradient id="SVGID_9_" gradientUnits="userSpaceOnUse" x1="252.5" y1="195" x2="277.5" y2="195">
+			<stop  offset="0" style="stop-color:#FFFFFF"/>
+			<stop  offset="0" style="stop-color:#000000"/>
+		</linearGradient>
+		<circle class="st11" cx="265" cy="195" r="12.5"/>
+		<path d="M265,183c6.62,0,12,5.38,12,12s-5.38,12-12,12s-12-5.38-12-12S258.38,183,265,183 M265,182c-7.18,0-13,5.82-13,13
+			s5.82,13,13,13c7.18,0,13-5.82,13-13S272.18,182,265,182L265,182z"/>
+	</g>
+	<linearGradient id="SVGID_10_" gradientUnits="userSpaceOnUse" x1="223.5" y1="193.8316" x2="356.5" y2="193.8316">
+		<stop  offset="0" style="stop-color:#FFFFFF"/>
+		<stop  offset="0" style="stop-color:#000000"/>
+	</linearGradient>
+	<path class="st12" d="M223.5,124.5c100-10,133,18,133,69c0,42-29,77-133,71v-40c63,11,92-5,93-30c0-26.43-34.33-43.57-93-31V124.5z
+		"/>
+</g>
+</svg>

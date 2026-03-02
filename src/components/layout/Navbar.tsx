@@ -1,140 +1,83 @@
 "use client";
 
+import { FormEvent, MouseEvent, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { useState } from "react";
+import RBNavbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import Form from "react-bootstrap/Form";
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
 
-  // TODO: Replace with auth state from context/store
   const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
   const username = typeof window !== "undefined" ? localStorage.getItem("username") : null;
 
-  const handleLogout = () => {
+  const [keyword, setKeyword] = useState("");
+
+  const profileHref = useMemo(() => (username ? `/${username}` : "/signin"), [username]);
+
+  const handleSearch = (event: FormEvent) => {
+    event.preventDefault();
+    const q = keyword.trim();
+    router.push(q ? `/search?q=${encodeURIComponent(q)}` : "/discover");
+  };
+
+  const handleLogout = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
     localStorage.clear();
-    window.location.href = "/";
+    router.push("/");
+    router.refresh();
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-white border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          {/* Logo */}
-          <div className="flex items-center">
-            <Link href="/" className="flex items-center gap-2 text-xl font-semibold text-gray-900">
-              <svg className="w-8 h-8" viewBox="0 0 32 32" fill="currentColor">
-                <circle cx="16" cy="16" r="14" stroke="currentColor" strokeWidth="2" fill="none" />
-                <text x="16" y="21" textAnchor="middle" fontSize="14" fontWeight="bold">P</text>
-              </svg>
-              PhiloArt
-            </Link>
-          </div>
+    <div style={{ fontSize: "1rem" }}>
+      <RBNavbar collapseOnSelect expand="md" bg="white" variant="light" sticky="top">
+        <div className="container-fluid">
+          <RBNavbar.Brand href="/" className="container-row-navbar-brand">
+            <img src="/img/logo/logo2.svg" width="30" height="30" alt="PhiloArt brand logo" />
+            PhiloArt
+          </RBNavbar.Brand>
+          <RBNavbar.Toggle aria-controls="basic-navbar-nav" />
+          <RBNavbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+            <Nav>
+              <div className="container-row-navbar-searchbox">
+                <Form onSubmit={handleSearch}>
+                  <input
+                    value={keyword}
+                    onChange={(e) => setKeyword(e.target.value)}
+                    placeholder="Search Food"
+                    aria-label="Search"
+                    className="container-row-navbar-searchbox"
+                  />
+                </Form>
+              </div>
+            </Nav>
+            <Nav className="justify-content-end container-row-0">
+              <Link className="navbar-link" href="/discover">Discover</Link>
+              <Link className="navbar-link" href="/artists">Artist</Link>
+              <Link className="navbar-link" href="/about">About</Link>
+              <Link className="navbar-link" href="/license">License</Link>
+              <a className="navbar-link" href="https://github.com/philo-li/philoart">GitHub</a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-6">
-            <Link href="/discover" className="text-gray-600 hover:text-gray-900">
-              Discover
-            </Link>
-            <Link href="/artists" className="text-gray-600 hover:text-gray-900">
-              Artists
-            </Link>
-            <Link href="/about" className="text-gray-600 hover:text-gray-900">
-              About
-            </Link>
-            <Link href="/license" className="text-gray-600 hover:text-gray-900">
-              License
-            </Link>
-
-            {!token ? (
-              <>
-                <Link href="/signin" className="text-gray-600 hover:text-gray-900">
-                  Login
-                </Link>
-                <Link
-                  href="/signup"
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-                >
-                  Sign up
-                </Link>
-              </>
-            ) : (
-              <>
-                <Link
-                  href="/create"
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-                >
-                  Create
-                </Link>
-                <div className="relative group">
-                  <button className="text-gray-600 hover:text-gray-900">
-                    My Account
+              {!token && <Link className="navbar-link" href="/signin">Login</Link>}
+              {token && (
+                <NavDropdown className="navbar-link" title="My Account" id="basic-nav-dropdown">
+                  <NavDropdown.Item href={profileHref}>Profile</NavDropdown.Item>
+                  <NavDropdown.Item href="/user/edit">Settings</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <button className="navbar-button-logout" type="button" onClick={handleLogout}>
+                    Logout
                   </button>
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden group-hover:block">
-                    <Link
-                      href={`/${username}`}
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                    >
-                      Profile
-                    </Link>
-                    <Link
-                      href="/user/edit"
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                    >
-                      Settings
-                    </Link>
-                    <hr className="my-1" />
-                    <button
-                      onClick={handleLogout}
-                      className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
-                    >
-                      Logout
-                    </button>
-                  </div>
-                </div>
-              </>
-            )}
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-600 hover:text-gray-900"
-            >
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                {isMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
-          </div>
+                </NavDropdown>
+              )}
+              {token && <Link href="/create" className="navbar-button-join">Create</Link>}
+              {!token && <Link href="/signup" className="navbar-button-join">Sign up</Link>}
+            </Nav>
+          </RBNavbar.Collapse>
         </div>
-
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden py-4 space-y-2">
-            <Link href="/discover" className="block py-2 text-gray-600">Discover</Link>
-            <Link href="/artists" className="block py-2 text-gray-600">Artists</Link>
-            <Link href="/about" className="block py-2 text-gray-600">About</Link>
-            <Link href="/license" className="block py-2 text-gray-600">License</Link>
-            {!token ? (
-              <>
-                <Link href="/signin" className="block py-2 text-gray-600">Login</Link>
-                <Link href="/signup" className="block py-2 text-blue-600">Sign up</Link>
-              </>
-            ) : (
-              <>
-                <Link href="/create" className="block py-2 text-blue-600">Create</Link>
-                <Link href={`/${username}`} className="block py-2 text-gray-600">Profile</Link>
-                <Link href="/user/edit" className="block py-2 text-gray-600">Settings</Link>
-                <button onClick={handleLogout} className="block py-2 text-gray-600">Logout</button>
-              </>
-            )}
-          </div>
-        )}
-      </div>
-    </nav>
+      </RBNavbar>
+    </div>
   );
 }
