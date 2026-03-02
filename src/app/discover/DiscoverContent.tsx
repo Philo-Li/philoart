@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useLazyQuery } from "@apollo/client";
 import { GET_PHOTOS } from "@/graphql/queries";
 import { PhotoGrid } from "@/components/photo";
@@ -21,15 +21,15 @@ export default function DiscoverContent({ initialPhotos, initialPageInfo }: Disc
 
   const userId = typeof window !== "undefined" ? localStorage.getItem("userId") : null;
 
-  const [fetchMorePhotos, { loading }] = useLazyQuery<PhotosData>(GET_PHOTOS, {
-    onCompleted: (data) => {
-      if (data?.photos) {
-        const newPhotos = data.photos.edges.map((edge) => edge.node);
-        setPhotos((prev) => [...prev, ...newPhotos]);
-        setPageInfo(data.photos.pageInfo);
-      }
-    },
-  });
+  const [fetchMorePhotos, { loading, data: fetchMoreData }] = useLazyQuery<PhotosData>(GET_PHOTOS);
+
+  useEffect(() => {
+    if (!fetchMoreData?.photos) return;
+
+    const newPhotos = fetchMoreData.photos.edges.map((edge) => edge.node);
+    setPhotos((prev) => [...prev, ...newPhotos]);
+    setPageInfo(fetchMoreData.photos.pageInfo);
+  }, [fetchMoreData]);
 
   const handleLoadMore = useCallback(() => {
     if (loading || !pageInfo?.hasNextPage) return;
