@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useMutation } from "@apollo/client";
 import Image from "next/image";
 import { CREATE_PHOTO } from "@/graphql/mutations";
+import { uploadImageToS3 } from "@/lib/upload";
 
 const TYPES = ["Photograph", "Painting", "Digital Art", "Drawing"];
 const STATUSES = ["Published", "Draft"];
@@ -30,6 +31,7 @@ export default function CreatePage() {
 
   // Check auth
   const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
+  const userId = typeof window !== "undefined" ? localStorage.getItem("userId") : null;
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -80,13 +82,16 @@ export default function CreatePage() {
 
     try {
       setUploading(true);
+      if (!userId) {
+        throw new Error("Missing user id");
+      }
 
-      // TODO: Upload image to S3 and get URL
-      // For now, we'll use a placeholder
-      const imageUrl = imagePreview; // Replace with actual S3 upload
+      const photoId = `${userId}-${crypto.randomUUID().slice(0, 8)}`;
+      const imageUrl = await uploadImageToS3(photoId, imageFile);
 
       await createPhoto({
         variables: {
+          photoId,
           title: formData.title,
           description: formData.description || undefined,
           year: new Date().getFullYear(),
@@ -98,7 +103,7 @@ export default function CreatePage() {
         },
       });
 
-      router.push("/");
+      router.push(`/${localStorage.getItem("username") || ""}`);
     } catch (err) {
       console.error("Create error:", err);
       setError("Failed to create artwork. Please try again.");
