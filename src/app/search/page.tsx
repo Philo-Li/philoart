@@ -1,9 +1,6 @@
 import { Metadata } from "next";
 import SearchClient from "./SearchClient";
 
-// Edge Runtime for Cloudflare Pages
-export const runtime = 'edge';
-
 interface Props {
   searchParams: Promise<{ q?: string; type?: string }>;
 }
