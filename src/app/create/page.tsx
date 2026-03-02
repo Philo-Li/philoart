@@ -31,13 +31,6 @@ export default function CreatePage() {
   // Check auth
   const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
-  if (!token) {
-    if (typeof window !== "undefined") {
-      router.push("/signin");
-    }
-    return null;
-  }
-
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -62,6 +55,14 @@ export default function CreatePage() {
       reader.readAsDataURL(file);
     }
   }, []);
+
+  // Redirect if not authenticated
+  if (!token) {
+    if (typeof window !== "undefined") {
+      router.push("/signin");
+    }
+    return null;
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
