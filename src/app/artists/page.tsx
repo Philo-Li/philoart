@@ -1,36 +1,36 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
+import Card from "react-bootstrap/Card";
+import Masonry from "react-masonry-css";
 import { useQuery } from "@apollo/client";
 import { GET_USERS } from "@/graphql/queries";
+import type { User } from "@/types";
 
-interface User {
-  id: string;
-  username: string;
-  firstName?: string;
-  lastName?: string;
-  profileImage?: string;
-  photoCount?: number;
-  followerCount?: number;
-}
+const breakpointColumnsObj = {
+  default: 3,
+  800: 2,
+  500: 1,
+};
 
 export default function ArtistsPage() {
   const { data, loading, fetchMore } = useQuery(GET_USERS, {
-    variables: { first: 20 },
+    variables: { first: 30 },
+    fetchPolicy: "cache-and-network",
   });
 
-  const users: User[] = data?.users?.edges?.map((edge: { node: User }) => edge.node) ?? [];
+  const users: User[] = data?.users?.edges?.map((edge: { node: User }) => edge.node) || [];
   const hasNextPage = data?.users?.pageInfo?.hasNextPage ?? false;
 
-  const defaultAvatar = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
+  const initProfileImage =
+    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
 
-  const handleLoadMore = () => {
+  const clickFetchMore = () => {
     if (!hasNextPage) return;
-
     fetchMore({
       variables: {
-        after: data.users.pageInfo.endCursor,
+        after: data?.users?.pageInfo?.endCursor,
       },
       updateQuery: (prev, { fetchMoreResult }) => {
         if (!fetchMoreResult) return prev;
@@ -44,57 +44,78 @@ export default function ArtistsPage() {
     });
   };
 
-  return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Artists</h1>
-      <p className="text-gray-600 mb-8">Discover talented creators on PhiloArt</p>
-
-      {loading && users.length === 0 ? (
-        <div className="flex justify-center py-12">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900" />
+  if (loading && users.length === 0) {
+    return (
+      <div className="discover">
+        <div className="p-3 container-profile">
+          <div className="profile-item">
+            <p className="header">Discover</p>
+          </div>
         </div>
-      ) : (
-        <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {users.map((user) => (
-              <Link
-                key={user.id}
-                href={`/${user.username}`}
-                className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow"
-              >
-                <div className="flex flex-col items-center text-center">
-                  <Image
-                    src={user.profileImage || defaultAvatar}
-                    alt={user.firstName || user.username}
-                    width={80}
-                    height={80}
-                    className="rounded-full mb-4"
-                  />
-                  <h3 className="font-semibold text-gray-900">
-                    {user.firstName} {user.lastName || ""}
-                  </h3>
-                  <p className="text-sm text-gray-500 mb-4">@{user.username}</p>
-                  <div className="flex gap-4 text-sm text-gray-600">
-                    <span>{user.photoCount || 0} artworks</span>
-                    <span>{user.followerCount || 0} followers</span>
+        <div className="col-item-3 p-5">Loading...</div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="p-3 discover">
+      <div className="p-3 container-profile">
+        <div className="profile-item">
+          <p className="header">Discover Artists</p>
+        </div>
+      </div>
+      <div className="p-3 discover-author-list">
+        <Masonry
+          breakpointCols={breakpointColumnsObj}
+          className="my-masonry-grid"
+          columnClassName="my-masonry-grid_column"
+        >
+          {users.map((user) => (
+            <Card key={user.id}>
+              <Link href={`/${user.username}`}>
+                <div className="p-3">
+                  <div className="container-profile">
+                    <div className="profile-item">
+                      <Image
+                        src={user.profileImage || initProfileImage}
+                        width={80}
+                        height={80}
+                        alt={user.username}
+                        className="rounded-circle"
+                      />
+                    </div>
+                    <div className="profile-item">
+                      <h3>{`${user.firstName || ""} ${user.lastName || ""}`.trim() || user.username}</h3>
+                    </div>
+                  </div>
+                  {user.description && (
+                    <div className="container-profile">
+                      <div className="user-description">{user.description}</div>
+                    </div>
+                  )}
+                  <div className="container-profile">
+                    <div className="profile-item">{`${user.photoCount || 0} artworks`}</div>
+                    <div className="profile-item">{`${user.followerCount || 0} followers`}</div>
                   </div>
                 </div>
               </Link>
-            ))}
-          </div>
+            </Card>
+          ))}
+        </Masonry>
 
-          {hasNextPage && (
-            <div className="flex justify-center mt-8">
-              <button
-                onClick={handleLoadMore}
-                className="px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800"
-              >
-                Load More
+        <div>
+          {hasNextPage ? (
+            <div className="row-item-2">
+              <button className="more-photos-btn" type="button" onClick={clickFetchMore}>
+                <i className="bi bi-three-dots" />
+                More artists
               </button>
             </div>
+          ) : (
+            <h3 className="the-end-title">The end</h3>
           )}
-        </>
-      )}
+        </div>
+      </div>
     </div>
   );
 }
