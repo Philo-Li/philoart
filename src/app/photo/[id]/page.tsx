@@ -3,6 +3,9 @@ import { getClient } from "@/lib/apollo-client";
 import { GET_PHOTO } from "@/graphql/queries";
 import PhotoDetailClient from "./PhotoDetailClient";
 
+// Edge Runtime for Cloudflare Pages
+export const runtime = 'edge';
+
 // ISR: Revalidate every 60 seconds
 export const revalidate = 60;
 

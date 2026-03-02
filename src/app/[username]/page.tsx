@@ -3,6 +3,9 @@ import { getClient } from "@/lib/apollo-client";
 import { GET_USER } from "@/graphql/queries";
 import ProfileClient from "./ProfileClient";
 
+// Edge Runtime for Cloudflare Pages
+export const runtime = 'edge';
+
 // ISR: Revalidate every 60 seconds
 export const revalidate = 60;
 
