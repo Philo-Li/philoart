@@ -1,7 +1,35 @@
 import { Suspense } from "react";
+import { getClient } from "@/lib/apollo-client";
+import { GET_PHOTOS } from "@/graphql/queries";
 import HomeContent from "./HomeContent";
+import type { Photo, Connection } from "@/types";
 
-export default function Home() {
+// ISR: Revalidate every 60 seconds
+export const revalidate = 60;
+
+interface PhotosData {
+  photos: Connection<Photo>;
+}
+
+async function getInitialPhotos() {
+  try {
+    const { data } = await getClient().query<PhotosData>({
+      query: GET_PHOTOS,
+      variables: { first: 20 },
+    });
+    return {
+      photos: data.photos.edges.map((edge) => edge.node),
+      pageInfo: data.photos.pageInfo,
+    };
+  } catch (error) {
+    console.error("Failed to fetch photos:", error);
+    return { photos: [], pageInfo: null };
+  }
+}
+
+export default async function Home() {
+  const { photos: initialPhotos, pageInfo } = await getInitialPhotos();
+
   return (
     <div>
       {/* Hero Section */}
@@ -56,7 +84,10 @@ export default function Home() {
       <section className="max-w-7xl mx-auto px-4 py-8">
         <h2 className="text-2xl font-bold mb-6">Latest Artworks</h2>
         <Suspense fallback={<PhotoGridSkeleton />}>
-          <HomeContent />
+          <HomeContent
+            initialPhotos={initialPhotos}
+            initialPageInfo={pageInfo}
+          />
         </Suspense>
       </section>
     </div>

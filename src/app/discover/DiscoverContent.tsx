@@ -6,7 +6,7 @@ import { GET_PHOTOS } from "@/graphql/queries";
 import { PhotoGrid } from "@/components/photo";
 import type { Photo, PageInfo, Connection } from "@/types";
 
-interface HomeContentProps {
+interface DiscoverContentProps {
   initialPhotos: Photo[];
   initialPageInfo: PageInfo | null;
 }
@@ -15,7 +15,7 @@ interface PhotosData {
   photos: Connection<Photo>;
 }
 
-export default function HomeContent({ initialPhotos, initialPageInfo }: HomeContentProps) {
+export default function DiscoverContent({ initialPhotos, initialPageInfo }: DiscoverContentProps) {
   const [photos, setPhotos] = useState<Photo[]>(initialPhotos);
   const [pageInfo, setPageInfo] = useState<PageInfo | null>(initialPageInfo);
 
@@ -36,7 +36,7 @@ export default function HomeContent({ initialPhotos, initialPageInfo }: HomeCont
 
     fetchMorePhotos({
       variables: {
-        first: 20,
+        first: 24,
         after: pageInfo.endCursor,
         checkUserLike: userId || undefined,
         checkUserCollect: userId || undefined,
@@ -44,24 +44,12 @@ export default function HomeContent({ initialPhotos, initialPageInfo }: HomeCont
     });
   }, [loading, pageInfo, fetchMorePhotos, userId]);
 
-  const handleLike = async (photo: Photo) => {
-    // TODO: Implement like functionality
-    console.log("Like photo:", photo.id);
-  };
-
-  const handleDownload = async (photo: Photo) => {
-    // TODO: Implement download tracking
-    console.log("Download photo:", photo.id);
-  };
-
   return (
     <PhotoGrid
       photos={photos}
       loading={loading}
       hasNextPage={pageInfo?.hasNextPage ?? false}
       onLoadMore={handleLoadMore}
-      onLike={handleLike}
-      onDownload={handleDownload}
     />
   );
 }

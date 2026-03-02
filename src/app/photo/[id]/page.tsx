@@ -3,6 +3,9 @@ import { getClient } from "@/lib/apollo-client";
 import { GET_PHOTO } from "@/graphql/queries";
 import PhotoDetailClient from "./PhotoDetailClient";
 
+// ISR: Revalidate every 60 seconds
+export const revalidate = 60;
+
 interface Props {
   params: Promise<{ id: string }>;
 }

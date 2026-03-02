@@ -3,6 +3,9 @@ import { getClient } from "@/lib/apollo-client";
 import { GET_USER } from "@/graphql/queries";
 import ProfileClient from "./ProfileClient";
 
+// ISR: Revalidate every 60 seconds
+export const revalidate = 60;
+
 interface Props {
   params: Promise<{ username: string }>;
 }
