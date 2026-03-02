@@ -1,7 +1,7 @@
 "use client";
 
 import { Photo } from "@/types";
-import { PhotoCard } from "./PhotoCard";
+import PhotoCard from "./PhotoCard";
 
 interface PhotoGridProps {
   photos: Photo[];
