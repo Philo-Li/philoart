@@ -1,7 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import Image from "next/image";
+import { FormEvent, useState } from "react";
+import Alert from "react-bootstrap/Alert";
+import Button from "react-bootstrap/Button";
+import Spinner from "react-bootstrap/Spinner";
+import Form from "react-bootstrap/Form";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/navigation";
 import { AUTHORIZE } from "@/graphql/mutations";
@@ -10,101 +15,71 @@ export default function SignInPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [errorInfo, setErrorInfo] = useState("");
   const [authorize, { loading }] = useMutation(AUTHORIZE);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+    setErrorInfo("");
     try {
       const { data } = await authorize({
         variables: { email, password },
       });
-
       if (data?.authorize) {
         const { accessToken, expiresAt, user } = data.authorize;
-
-        // Store auth data
         localStorage.setItem("token", accessToken);
         localStorage.setItem("expirationTime", expiresAt);
         localStorage.setItem("userId", user.id);
         localStorage.setItem("username", user.username);
-
-        // Redirect to home
         router.push("/");
         router.refresh();
       }
-    } catch (err) {
-      setError("Invalid email or password");
-      console.error("Login error:", err);
+    } catch (e: unknown) {
+      setErrorInfo(e instanceof Error ? e.message : "Sign in failed");
+      setTimeout(() => setErrorInfo(""), 3000);
     }
   };
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center px-4">
-      <div className="w-full max-w-md">
-        <div className="bg-white rounded-lg shadow-lg p-8">
-          <h1 className="text-2xl font-bold text-center mb-6">Sign In</h1>
-
-          {error && (
-            <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-600 rounded-lg text-sm">
-              {error}
-            </div>
-          )}
-
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-                Password
-              </label>
-              <input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full py-3 bg-gray-900 text-white rounded-lg font-medium hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {loading ? (
-                <span className="flex items-center justify-center gap-2">
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
-                  Signing in...
-                </span>
-              ) : (
-                "Sign In"
-              )}
-            </button>
-          </form>
-
-          <p className="mt-6 text-center text-sm text-gray-600">
-            Don&apos;t have an account?{" "}
-            <Link href="/signup" className="text-blue-600 hover:underline">
-              Sign up
-            </Link>
-          </p>
+    <div className="container-col-login">
+      <div className="container-profile">
+        <div className="profile-item">
+          <h1>Login</h1>
         </div>
+        <div className="profile-item">
+          <Image src="/img/logo/logo2.svg" width={150} height={150} alt="logo" className="rounded-circle" />
+        </div>
+      </div>
+
+      {errorInfo && <Alert variant="danger">{errorInfo}</Alert>}
+
+      <Form onSubmit={handleSubmit}>
+        <div className="col-item-1">
+          <Form.Label>Email</Form.Label>
+          <Form.Control value={email} onChange={(e) => setEmail(e.target.value)} type="email" />
+        </div>
+        <div className="col-item-1">
+          <Form.Label>Password</Form.Label>
+          <Form.Control value={password} onChange={(e) => setPassword(e.target.value)} type="password" />
+        </div>
+        <div className="col-item-1 margin-tb-2rem">
+          {!loading && (
+            <Button variant="dark" id="login-button" type="submit">
+              Login
+            </Button>
+          )}
+          {loading && (
+            <Button variant="dark" id="login-button-loading" disabled>
+              <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
+              <span className="sr-only">Loading...</span>
+            </Button>
+          )}
+        </div>
+      </Form>
+
+      <div className="login-info flex-center">
+        Don&apos;t have an account?
+        <Link href="/signup">Join</Link>
       </div>
     </div>
   );

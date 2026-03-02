@@ -249,10 +249,10 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
   const defaultAvatar = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
-      <div className="mb-8">
+    <div className="p-3">
+      <div className="photodetails-photo-item">
         <div
-          className="relative w-full rounded-lg overflow-hidden"
+          className="relative w-full overflow-hidden"
           style={{ backgroundColor: photo.color || "#f3f4f6" }}
         >
           <Image
@@ -267,7 +267,7 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
       </div>
 
       {photo.allColors && (
-        <div className="flex gap-2 mb-6">
+        <div className="container-row-0">
           {photo.allColors.map((color, index) => (
             <div
               key={index}
@@ -279,100 +279,86 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
         </div>
       )}
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">{photo.title}</h1>
-          <p className="text-gray-600 mb-6">{photo.description || "No description"}</p>
-
-          <div className="flex flex-wrap gap-4 text-sm text-gray-500">
-            {photo.status && (
-              <span className="px-3 py-1 bg-gray-100 rounded-full">Status: {photo.status}</span>
-            )}
-            {photo.license && (
-              <span className="px-3 py-1 bg-gray-100 rounded-full">License: {photo.license}</span>
-            )}
-            {photo.type && (
-              <span className="px-3 py-1 bg-gray-100 rounded-full">Type: {photo.type}</span>
-            )}
+      <div className="container-details-title-btn">
+        <div className="container-row-0">
+          <div className="container-photo-title">
+            <div className="card">
+              <div className="card-body">
+                <h1 className="photo-title">{photo.title}</h1>
+                <p className="photo-description">{photo.description || "No description"}</p>
+              </div>
+              <div className="card-footer">{`Status: ${photo.status || "None"}`}</div>
+              <div className="card-footer">{`License: ${photo.license || "N/A"}`}</div>
+            </div>
           </div>
         </div>
 
-        <div className="space-y-6">
-          <div className="flex items-center gap-4">
+        <div>
+          <div className="container-row-0 container-row-primary">
             <Link href={`/${photo.user?.username}`}>
-              <Image
-                src={photo.user?.profileImage || defaultAvatar}
-                alt={photo.user?.firstName || "Author"}
-                width={48}
-                height={48}
-                className="rounded-full"
-              />
+              <img src={photo.user?.profileImage || defaultAvatar} alt="user avatar" className="photo-details-author-avatar" />
             </Link>
             <div>
               <Link
                 href={`/${photo.user?.username}`}
-                className="font-medium text-gray-900 hover:text-blue-600"
+                className="photo-details-author-name"
               >
                 {photo.user?.firstName} {photo.user?.lastName || ""}
               </Link>
-              <p className="text-sm text-gray-500">{formatDate(photo.createdAt)}</p>
+              <p className="photo-details-date">{formatDate(photo.createdAt)}</p>
             </div>
           </div>
 
-          <div className="flex gap-6 text-sm text-gray-600">
-            <span>{photo.likeCount || 0} likes</span>
-            <span>{photo.collectionCount || 0} collections</span>
-            <span>{photo.downloadCount || 0} downloads</span>
-          </div>
-
-          <div className="flex flex-wrap gap-3">
-            <button
-              onClick={handleLike}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors ${
-                photo.isLiked
-                  ? "bg-red-50 border-red-200 text-red-600"
-                  : "border-gray-300 hover:bg-gray-50"
-              }`}
-            >
-              <svg
-                className={`w-5 h-5 ${photo.isLiked ? "fill-current" : ""}`}
-                viewBox="0 0 24 24"
-                fill={photo.isLiked ? "currentColor" : "none"}
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-              </svg>
-              {photo.isLiked ? "Liked" : "Like"}
-            </button>
-
-            {photo.allowDownload && (
+          <div className="container-row-photodetail-btn">
+            <div>
               <button
-                onClick={handleDownload}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700"
+                onClick={handleLike}
+                className="photodetails-card-btn-like container-row-0 photodetails-card-btn-item"
               >
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                  <polyline points="7 10 12 15 17 10" />
-                  <line x1="12" y1="15" x2="12" y2="3" />
-                </svg>
-                Download
+                <i className={photo.isLiked ? "bi bi-heart-fill" : "bi bi-heart"} />
               </button>
-            )}
+            </div>
 
-            <button
-              onClick={() => (userId ? setShowCollectModal(true) : (window.location.href = "/signin"))}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors ${
-                photo.isCollected
-                  ? "bg-amber-50 border-amber-200 text-amber-700"
-                  : "border-gray-300 hover:bg-gray-50"
-              }`}
-            >
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill={photo.isCollected ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2">
-                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
-              </svg>
-              {photo.isCollected ? "Saved" : "Save"}
-            </button>
+            <div>
+              <button
+                onClick={() => (userId ? setShowCollectModal(true) : (window.location.href = "/signin"))}
+                className="photodetails-card-btn-collect photodetails-card-btn-item"
+              >
+                <i className="bi bi-plus-square" />
+              </button>
+            </div>
+
+            <div className="photodetails-card-btn-item">
+              {photo.allowDownload ? (
+                <button onClick={handleDownload} className="photodetails-card-btn-download">
+                  <i className="bi bi-download" />
+                </button>
+              ) : (
+                <button className="photodetails-card-btn-download-disabled" disabled>
+                  <i className="bi bi-download" />
+                </button>
+              )}
+            </div>
+          </div>
+          <div className="container-row-0">
+            <div className="row-item-0">
+              <div className="container-col-details">
+                <div className="subtitle">Likes</div>
+                <div>{photo.likeCount || 0}</div>
+              </div>
+            </div>
+            <div className="row-item-0">
+              <div className="container-col-details">
+                <div className="subtitle">Collections</div>
+                <div>{photo.collectionCount || 0}</div>
+              </div>
+            </div>
+            <div className="row-item-0">
+              <div className="container-col-details">
+                <div className="subtitle">Downloads</div>
+                <div>{photo.downloadCount || 0}</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

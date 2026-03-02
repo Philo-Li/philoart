@@ -1,65 +1,90 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import aboutImg4 from "../img/aboutImg4.jpg";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Learn about PhiloArt - a platform for artists to showcase their work",
+  description: "About PhiloArt",
 };
+
+const img1 =
+  "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1416&q=80";
+const img2 =
+  "https://images.unsplash.com/photo-1497030947858-3f40f1508e84?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80";
+const img3 =
+  "https://images.unsplash.com/3/doctype-hi-res.jpg?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1492&q=80";
 
 export default function AboutPage() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12">
-      <h1 className="text-4xl font-bold text-gray-900 mb-8">About PhiloArt</h1>
-
-      <div className="prose prose-lg max-w-none">
-        <p className="text-xl text-gray-600 mb-8">
-          PhiloArt is a platform for artists, photographers, and designers to showcase,
-          manage, and publish their work to the world.
-        </p>
-
-        <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Our Mission</h2>
-        <p className="text-gray-600 mb-6">
-          We believe that art should be accessible to everyone. Our mission is to provide
-          a beautiful, easy-to-use platform where creators can share their work and connect
-          with art lovers from around the world.
-        </p>
-
-        <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Features</h2>
-        <ul className="list-disc list-inside text-gray-600 space-y-2 mb-6">
-          <li>Upload and showcase your artworks</li>
-          <li>Organize your work into collections</li>
-          <li>Connect with other artists and art enthusiasts</li>
-          <li>Flexible licensing options including Creative Commons</li>
-          <li>High-quality image hosting and optimization</li>
-        </ul>
-
-        <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Supported Artwork Types</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          {["Photograph", "Painting", "Digital Art", "Drawing"].map((type) => (
-            <div key={type} className="bg-gray-100 rounded-lg p-4 text-center">
-              <span className="font-medium text-gray-900">{type}</span>
-            </div>
-          ))}
+    <div className="about">
+      <div className="container-col-login">
+        <div className="col-item-4">
+          <h1 className="header-bold">About PhiloArt</h1>
         </div>
+        <Link href="/about/zh" className="col-item-3">
+          中文
+        </Link>
+      </div>
 
-        <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Get Started</h2>
-        <p className="text-gray-600 mb-6">
-          Ready to share your art with the world?
-        </p>
+      <div className="container-col-about">
+        <h1 className="subheader">PhiloArt - Made for creators!</h1>
+      </div>
+      <div className="container-col-about">
+        <h1 className="subheader">Outstanding personal artwork site + high quality gallery</h1>
+        <h3 className="subheader2">Help you publish and manage your work more easily</h3>
+        <h3 className="subheader2">and faster access to the best free copyrighted images</h3>
+      </div>
 
-        <div className="flex gap-4">
-          <Link
-            href="/signup"
-            className="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700"
-          >
-            Create Account
-          </Link>
-          <Link
-            href="/discover"
-            className="px-6 py-3 border border-gray-300 rounded-lg font-medium hover:bg-gray-50"
-          >
-            Explore Artworks
-          </Link>
+      <div className="container-row-about p-3">
+        <div className="container-col-about-item p-3">
+          <img src={img2} width="100%" alt="about" />
+        </div>
+        <div className="container-col-about-item p-3">
+          <h2 className="subheader">What you can do with PhiloArt?</h2>
+          <p><i className="bi bi-download icon-check" /> Upload, manage and publish your work with rich protocols</p>
+          <p><i className="bi bi-search icon-check" /> Discover and follow favorite artists and get instant updates</p>
+          <p><i className="bi bi-heart icon-check" /> Discover and download high quality free copyrighted images</p>
+          <p><i className="bi bi-plus-square icon-check" /> Like your favorite images and curate your own collections</p>
+        </div>
+      </div>
+
+      <div className="container-about-row-reverse p-3">
+        <div className="container-col-about-item p-3">
+          <img src={img3} width="100%" alt="about" />
+        </div>
+        <div className="container-col-about-item p-3">
+          <h2 className="subheader">Whos need PhiloArt?</h2>
+          <p><i className="bi bi-palette icon-check" /> Artist</p>
+          <p><i className="bi bi-camera icon-check" /> Photographer</p>
+          <p><i className="bi bi-pencil icon-check" /> Creator</p>
+          <p><i className="bi bi-shop icon-check" /> Designer</p>
+          <p><i className="bi bi-emoji-sunglasses icon-check" /> ...And you</p>
+        </div>
+      </div>
+
+      <div className="container-row-about p-3">
+        <div className="container-col-about-item p-3">
+          <img src={aboutImg4.src} width="100%" alt="about" />
+        </div>
+        <div className="container-col-about-item p-3">
+          <h2 className="subheader">Why choose PhiloArt?</h2>
+          <p><i className="bi bi-check2 icon-check" /> Publish and manage your work with multiple protocols</p>
+          <p><i className="bi bi-check2 icon-check" /> Discover best works and free copyrighted works</p>
+          <p><i className="bi bi-check2 icon-check" /> Follow favorite artists</p>
+          <p><i className="bi bi-check2 icon-check" /> Encourage creativity and inspiration</p>
+        </div>
+      </div>
+
+      <div className="p-3 container-about-row">
+        <img src={img1} width="100%" alt="about" />
+      </div>
+
+      <div className="container-col-login">
+        <div className="col-item-3 licence-msg text-1rem">
+          <p>
+            If you have any questions or suggestions that might make the PhiloArt experience even
+            better, please let us know at philoart42@gmail.com.
+          </p>
         </div>
       </div>
     </div>

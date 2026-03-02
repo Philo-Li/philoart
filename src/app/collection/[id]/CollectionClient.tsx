@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/navigation";
@@ -145,9 +144,8 @@ export default function CollectionClient({ initialCollection }: Props) {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
-      {/* Collection Header */}
-      <div className="mb-8">
+    <div className="p-3">
+      <div>
         {collection.cover && (
           <div className="relative h-48 md:h-64 rounded-lg overflow-hidden mb-6">
             <Image
@@ -164,40 +162,45 @@ export default function CollectionClient({ initialCollection }: Props) {
         )}
 
         {!collection.cover && (
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">{liveCollection.title}</h1>
+          <div className="container-col-collection-details">
+            <div className="col-item-collection-title">
+              <h1 className="header-bold">{liveCollection.title}</h1>
+            </div>
+          </div>
         )}
 
-        {liveCollection.description && (
-          <p className="text-gray-600 mb-4">{liveCollection.description}</p>
-        )}
+        {liveCollection.description && <p className="col-item-collection-description">{liveCollection.description}</p>}
 
-        <div className="flex items-center gap-4 text-sm text-gray-600 mb-4">
+        <div className="container-col-collection-details">
           {liveCollection.user && (
-            <Link
-              href={`/${liveCollection.user.username}`}
-              className="hover:text-blue-600"
-            >
-              By @{liveCollection.user.username}
-            </Link>
+            <div className="col-item-collection-description">
+              <p>
+                Collected by {liveCollection.user.username}
+              </p>
+            </div>
           )}
-          <span>{liveCollection.photoCount || 0} photos</span>
+          <div className="col-item-collection-description">
+            <p>{liveCollection.photoCount || 0} photos</p>
+          </div>
         </div>
 
         {isOwner && (
-          <div className="flex gap-3">
+          <div className="container-collection-title">
+            <div className="collection-dropbtn">
             <button
               onClick={() => setShowEditModal(true)}
-              className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+              className="more-photos-btn"
             >
               Edit Collection
             </button>
             <button
               onClick={handleDelete}
               disabled={deleting}
-              className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50"
+              className="delete-btn"
             >
               {deleting ? "Deleting..." : "Delete Collection"}
             </button>
+            </div>
           </div>
         )}
 
@@ -220,13 +223,13 @@ export default function CollectionClient({ initialCollection }: Props) {
           </div>
 
           {hasNextPage && (
-            <div className="flex justify-center mt-8">
+            <div className="row-item-2">
               <button
                 onClick={handleLoadMore}
                 disabled={loading}
-                className="px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 disabled:opacity-50"
+                className="more-photos-btn"
               >
-                {loading ? "Loading..." : "Load More"}
+                {loading ? "Loading..." : "More photos"}
               </button>
             </div>
           )}
