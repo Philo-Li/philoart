@@ -8,8 +8,6 @@ const nextConfig: NextConfig = {
         hostname: "**",
       },
     ],
-    // Use unoptimized images for Cloudflare Pages compatibility
-    unoptimized: true,
   },
 };
 
