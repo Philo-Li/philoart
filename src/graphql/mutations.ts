@@ -67,7 +67,11 @@ export const CREATE_PHOTO = gql`
     $title: String!
     $year: Int!
     $description: String
-    $imageUrl: String
+    $imageKey: String!
+    $srcOriginal: String!
+    $srcLarge: String!
+    $srcSmall: String!
+    $srcTiny: String!
     $srcYoutube: String
     $license: String
     $type: String
@@ -80,7 +84,11 @@ export const CREATE_PHOTO = gql`
         title: $title
         year: $year
         description: $description
-        imageUrl: $imageUrl
+        imageKey: $imageKey
+        srcOriginal: $srcOriginal
+        srcLarge: $srcLarge
+        srcSmall: $srcSmall
+        srcTiny: $srcTiny
         srcYoutube: $srcYoutube
         license: $license
         type: $type

@@ -9,7 +9,7 @@ import Form from "react-bootstrap/Form";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@apollo/client";
 import { CREATE_PHOTO } from "@/graphql/mutations";
-import { uploadImageToS3 } from "@/lib/upload";
+import { uploadImageToServer } from "@/lib/upload";
 
 const LICENSES = ["CC BY", "CC BY-SA", "CC BY-NC", "CC BY-NC-SA", "CC BY-ND", "CC BY-NC-ND"];
 const TYPES = ["Photograph", "Painting", "Digital Art", "Drawing"];
@@ -58,7 +58,7 @@ export default function CreatePage() {
     setLoading(true);
     try {
       const photoId = `${userId}-${crypto.randomUUID().slice(0, 8)}`;
-      const imageUrl = await uploadImageToS3(photoId, file);
+      const uploadResult = await uploadImageToServer(photoId, file);
 
       await createPhoto({
         variables: {
@@ -66,7 +66,11 @@ export default function CreatePage() {
           title,
           year: new Date().getFullYear(),
           description,
-          imageUrl,
+          imageKey: uploadResult.imageKey,
+          srcOriginal: uploadResult.original,
+          srcLarge: uploadResult.large,
+          srcSmall: uploadResult.small,
+          srcTiny: uploadResult.tiny,
           license,
           type,
           status,

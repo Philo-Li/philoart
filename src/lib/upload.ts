@@ -1,5 +1,9 @@
-interface S3UrlResponse {
-  url: string;
+export interface UploadResponse {
+  imageKey: string;
+  original: string;
+  large: string;
+  small: string;
+  tiny: string;
 }
 
 function getRestApiBase() {
@@ -10,30 +14,33 @@ function getRestApiBase() {
   return base.replace(/\/+$/, "");
 }
 
-export async function uploadImageToS3(photoId: string, file: File): Promise<string> {
+function getAuthToken(): string | null {
+  if (typeof window === "undefined") return null;
+  return localStorage.getItem("token");
+}
+
+export async function uploadImageToServer(
+  photoId: string,
+  file: File
+): Promise<UploadResponse> {
   const baseUrl = getRestApiBase();
+  const token = getAuthToken();
 
-  const signedUrlRes = await fetch(`${baseUrl}/s3Url/${photoId}`);
-  if (!signedUrlRes.ok) {
-    throw new Error(`Failed to get upload URL (${signedUrlRes.status})`);
-  }
+  const formData = new FormData();
+  formData.append("image", file);
 
-  const { url } = (await signedUrlRes.json()) as S3UrlResponse;
-  if (!url) {
-    throw new Error("Invalid upload URL response");
-  }
-
-  const uploadRes = await fetch(url, {
-    method: "PUT",
+  const res = await fetch(`${baseUrl}/upload/${photoId}`, {
+    method: "POST",
     headers: {
-      "Content-Type": file.type || "application/octet-stream",
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
     },
-    body: file,
+    body: formData,
   });
 
-  if (!uploadRes.ok) {
-    throw new Error(`Failed to upload file (${uploadRes.status})`);
+  if (!res.ok) {
+    const error = await res.json().catch(() => ({ error: "Upload failed" }));
+    throw new Error(error.error || `Upload failed (${res.status})`);
   }
 
-  return url.split("?")[0];
+  return res.json();
 }

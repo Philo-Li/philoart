@@ -14,7 +14,7 @@ import Form from "react-bootstrap/Form";
 import { useMutation, useQuery } from "@apollo/client";
 import { GET_AUTHORIZED_USER } from "@/graphql/queries";
 import { UPDATE_PROFILE, CHANGE_PASSWORD, DELETE_USER, UPDATE_AVATAR } from "@/graphql/mutations";
-import { uploadImageToS3 } from "@/lib/upload";
+import { uploadImageToServer } from "@/lib/upload";
 
 export default function SettingsPage() {
   const router = useRouter();
@@ -153,8 +153,9 @@ export default function SettingsPage() {
     setSuccessInfo("");
     try {
       const photoId = `${userId}-avatar`;
-      const imageUrl = await uploadImageToS3(photoId, avatarFile);
-      await updateAvatar({ variables: { url: imageUrl } });
+      const uploadResult = await uploadImageToServer(photoId, avatarFile);
+      // Use the tiny version for avatar
+      await updateAvatar({ variables: { url: uploadResult.tiny } });
       setSuccessInfo("Avatar updated");
       clearMessageSoon();
     } catch (e: unknown) {
