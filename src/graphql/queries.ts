@@ -32,6 +32,12 @@ export const GET_PHOTOS = gql`
           tags
           color
           allowDownload
+          user {
+            username
+            firstName
+            lastName
+            profileImage
+          }
           isLiked(checkUserLike: $checkUserLike)
           isCollected(checkUserCollect: $checkUserCollect)
         }

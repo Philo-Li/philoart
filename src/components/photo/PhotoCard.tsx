@@ -11,30 +11,32 @@ interface PhotoCardProps {
   onDownload?: (photo: Photo) => void;
 }
 
+const defaultAvatar = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
+
 export default function PhotoCard({ photo, onLike, onDownload }: PhotoCardProps) {
-  const [isHovered, setIsHovered] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
 
   if (!photo) return null;
 
   const bgColor = photo.color || "#84B0B3";
 
-  const handleDownload = async () => {
+  const handleDownload = (e: React.MouseEvent) => {
+    e.stopPropagation();
     if (photo.srcOriginal) {
       window.open(photo.srcOriginal);
     }
     onDownload?.(photo);
   };
 
-  const handleLike = () => {
+  const handleLike = (e: React.MouseEvent) => {
+    e.stopPropagation();
     onLike?.(photo);
   };
 
   return (
-    <div
-      className="relative group overflow-hidden rounded-lg"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+    <Link
+      href={`/photo/${photo.id}`}
+      className="block relative group overflow-hidden rounded-lg cursor-pointer"
     >
       {/* Placeholder background */}
       <div
@@ -43,34 +45,44 @@ export default function PhotoCard({ photo, onLike, onDownload }: PhotoCardProps)
       />
 
       {/* Image */}
-      <Link href={`/photo/${photo.id}`}>
-        <div className="relative aspect-auto">
-          <Image
-            src={photo.srcSmall || photo.srcTiny || ""}
-            alt={photo.title || "Artwork"}
-            width={400}
-            height={300}
-            className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
-            onLoad={() => setImageLoaded(true)}
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          />
-        </div>
-      </Link>
+      <div className="relative aspect-auto">
+        <Image
+          src={photo.srcSmall || photo.srcTiny || ""}
+          alt={photo.title || "Artwork"}
+          width={400}
+          height={300}
+          className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+          onLoad={() => setImageLoaded(true)}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        />
+      </div>
 
       {/* Overlay with actions */}
       <div
-        className={`absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent transition-opacity duration-300 ${
-          isHovered ? "opacity-100" : "opacity-0"
-        }`}
+        className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent transition-opacity duration-300 opacity-0 group-hover:opacity-100 pointer-events-none"
       >
-        <div className="absolute bottom-0 left-0 right-0 p-4 flex items-center justify-between">
-          {/* Left side - Title */}
-          <Link href={`/photo/${photo.id}`} className="text-white text-sm font-medium truncate max-w-[60%]">
-            {photo.title}
-          </Link>
+        <div className="absolute bottom-0 left-0 right-0 p-4 flex items-center justify-between pointer-events-auto">
+          {/* Left side - Author */}
+          <div
+            className="flex items-center gap-2 min-w-0"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              window.location.href = `/${photo.user?.username}`;
+            }}
+          >
+            <img
+              src={photo.user?.profileImage || defaultAvatar}
+              alt=""
+              className="w-7 h-7 rounded-full object-cover flex-shrink-0"
+            />
+            <span className="text-white text-sm font-medium truncate hover:underline">
+              {photo.user?.firstName}{photo.user?.lastName ? ` ${photo.user.lastName}` : ""}
+            </span>
+          </div>
 
           {/* Right side - Actions */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-shrink-0">
             {/* Like button */}
             <button
               onClick={handleLike}
@@ -105,6 +117,6 @@ export default function PhotoCard({ photo, onLike, onDownload }: PhotoCardProps)
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
