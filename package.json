@@ -22,10 +22,13 @@
     "bootstrap-icons": "^1.13.1",
     "graphql": "^16.9.0",
     "next": "^15.1.0",
+    "next-mdx-remote": "^6.0.0",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.0.0",
-    "react-masonry-css": "^1.0.16"
+    "react-masonry-css": "^1.0.16",
+    "remark": "^15.0.1",
+    "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.13.16",
