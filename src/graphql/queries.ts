@@ -31,6 +31,8 @@ export const GET_PHOTOS = gql`
           status
           tags
           color
+          width
+          height
           allowDownload
           user {
             username

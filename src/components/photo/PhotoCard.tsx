@@ -19,6 +19,7 @@ export default function PhotoCard({ photo, onLike, onDownload }: PhotoCardProps)
   if (!photo) return null;
 
   const bgColor = photo.color || "#84B0B3";
+  const aspectRatio = photo.width && photo.height ? photo.width / photo.height : 4 / 3;
 
   const handleDownload = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -38,20 +39,20 @@ export default function PhotoCard({ photo, onLike, onDownload }: PhotoCardProps)
       href={`/photo/${photo.id}`}
       className="block relative group overflow-hidden rounded-lg cursor-pointer"
     >
-      {/* Placeholder background */}
+      {/* Color placeholder with correct aspect ratio */}
       <div
-        className="absolute inset-0 transition-opacity duration-300"
-        style={{ backgroundColor: bgColor, opacity: imageLoaded ? 0 : 1 }}
-      />
-
-      {/* Image */}
-      <div className="relative aspect-auto">
+        className="w-full"
+        style={{ aspectRatio, backgroundColor: bgColor }}
+      >
         <Image
           src={photo.srcSmall || photo.srcTiny || ""}
           alt={photo.title || "Artwork"}
-          width={400}
-          height={300}
-          className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+          width={photo.width || 400}
+          height={photo.height || 300}
+          loading="lazy"
+          className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-105 ${
+            imageLoaded ? "opacity-100" : "opacity-0"
+          }`}
           onLoad={() => setImageLoaded(true)}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
