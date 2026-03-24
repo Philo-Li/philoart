@@ -1,0 +1,14 @@
+{
+  "blogTitle": "PhiloArt 博客",
+  "blogDescription": "摄影、艺术与创作故事",
+  "blogSeoDescription": "摄影技巧、艺术洞见、创意教程，以及来自 PhiloArt 的故事——一个面向艺术家和摄影师的平台。",
+  "categories": "分类",
+  "allPosts": "全部文章",
+  "relatedPosts": "相关文章",
+  "categoryNames": {
+    "Photography": "摄影",
+    "Art & Culture": "艺术与文化",
+    "Tutorial": "教程",
+    "News & Updates": "新闻动态"
+  }
+}

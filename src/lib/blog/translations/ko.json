@@ -1,0 +1,14 @@
+{
+  "blogTitle": "PhiloArt 블로그",
+  "blogDescription": "사진, 예술, 그리고 창작 이야기",
+  "blogSeoDescription": "사진 팁, 예술 통찰, 창작 튜토리얼, PhiloArt의 이야기.",
+  "categories": "카테고리",
+  "allPosts": "모든 글",
+  "relatedPosts": "관련 글",
+  "categoryNames": {
+    "Photography": "사진",
+    "Art & Culture": "예술 & 문화",
+    "Tutorial": "튜토리얼",
+    "News & Updates": "소식"
+  }
+}

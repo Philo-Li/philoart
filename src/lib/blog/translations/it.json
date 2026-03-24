@@ -1,0 +1,14 @@
+{
+  "blogTitle": "Blog PhiloArt",
+  "blogDescription": "Fotografia, arte e storie creative",
+  "blogSeoDescription": "Consigli di fotografia, approfondimenti artistici, tutorial creativi e storie da PhiloArt.",
+  "categories": "Categorie",
+  "allPosts": "Tutti gli articoli",
+  "relatedPosts": "Articoli correlati",
+  "categoryNames": {
+    "Photography": "Fotografia",
+    "Art & Culture": "Arte e Cultura",
+    "Tutorial": "Tutorial",
+    "News & Updates": "Novità"
+  }
+}

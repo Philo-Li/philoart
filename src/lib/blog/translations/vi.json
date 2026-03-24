@@ -1,0 +1,14 @@
+{
+  "blogTitle": "Blog PhiloArt",
+  "blogDescription": "Nhiếp ảnh, nghệ thuật và câu chuyện sáng tạo",
+  "blogSeoDescription": "Mẹo chụp ảnh, góc nhìn nghệ thuật, hướng dẫn sáng tạo và câu chuyện từ PhiloArt.",
+  "categories": "Danh mục",
+  "allPosts": "Tất cả bài viết",
+  "relatedPosts": "Bài viết liên quan",
+  "categoryNames": {
+    "Photography": "Nhiếp ảnh",
+    "Art & Culture": "Nghệ thuật & Văn hóa",
+    "Tutorial": "Hướng dẫn",
+    "News & Updates": "Tin tức"
+  }
+}

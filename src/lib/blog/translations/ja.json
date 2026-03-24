@@ -1,0 +1,14 @@
+{
+  "blogTitle": "PhiloArt ブログ",
+  "blogDescription": "写真、アート、クリエイティブなストーリー",
+  "blogSeoDescription": "写真のヒント、アートの洞察、クリエイティブなチュートリアル、PhiloArtからのストーリー。",
+  "categories": "カテゴリー",
+  "allPosts": "すべての記事",
+  "relatedPosts": "関連記事",
+  "categoryNames": {
+    "Photography": "写真",
+    "Art & Culture": "アート＆カルチャー",
+    "Tutorial": "チュートリアル",
+    "News & Updates": "ニュース"
+  }
+}
