@@ -59,6 +59,7 @@ export default function Navbar() {
               <Link className="navbar-link" href="/artists">Artist</Link>
               <Link className="navbar-link" href="/about">About</Link>
               <Link className="navbar-link" href="/license">License</Link>
+              <Link className="navbar-link" href="/blog">Blog</Link>
               <a className="navbar-link" href="https://github.com/philo-li/philoart">GitHub</a>
 
               {!token && <Link className="navbar-link" href="/signin">Login</Link>}
