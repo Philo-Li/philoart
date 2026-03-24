@@ -10,13 +10,13 @@ import {
 import { isValidBlogLocale } from "@/lib/blog/utils";
 
 interface LocaleBlogPageProps {
-  params: Promise<{ locale: string; slug?: string[] }>;
+  params: Promise<{ username: string; slug?: string[] }>;
 }
 
 export async function generateMetadata({
   params,
 }: LocaleBlogPageProps): Promise<Metadata> {
-  const { locale, slug } = await params;
+  const { username: locale, slug } = await params;
   if (!isValidBlogLocale(locale)) notFound();
 
   const site = buildBlogSite(locale);
@@ -64,7 +64,7 @@ export async function generateMetadata({
 export default async function LocaleBlogPage({
   params,
 }: LocaleBlogPageProps) {
-  const { locale, slug } = await params;
+  const { username: locale, slug } = await params;
   if (!isValidBlogLocale(locale)) notFound();
 
   const site = buildBlogSite(locale);
@@ -102,9 +102,9 @@ export async function generateStaticParams() {
   return SUPPORTED_LOCALES.flatMap((locale) => {
     const site = buildBlogSite(locale);
     const slugs = Object.keys(site.posts).map((key) => ({
-      locale,
+      username: locale,
       slug: key.split("/"),
     }));
-    return [{ locale, slug: undefined }, ...slugs];
+    return [{ username: locale, slug: undefined }, ...slugs];
   });
 }

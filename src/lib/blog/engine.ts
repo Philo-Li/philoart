@@ -7,12 +7,7 @@ import type {
   BlogSiteData,
   BlogTranslations,
 } from "./types";
-
 const MARKDOWN_EXTENSIONS = new Set([".md", ".mdx"]);
-
-const SUPPORTED_LOCALES = [
-  "en", "zh", "ja", "zh-TW", "de", "fr", "ko", "es", "it", "vi",
-];
 
 const translationCache = new Map<string, BlogTranslations>();
 
@@ -216,4 +211,4 @@ export function getBlogTranslations(locale: string): BlogTranslations {
   return loadTranslations(locale);
 }
 
-export { SUPPORTED_LOCALES };
+export { SUPPORTED_LOCALES } from "./types";

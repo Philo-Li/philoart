@@ -1,10 +1,43 @@
-import type { ReactNode } from "react";
+import type { ReactNode, HTMLAttributes, AnchorHTMLAttributes, TdHTMLAttributes } from "react";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import Image from "next/image";
 import type { BlogPost, BlogListItem } from "@/lib/blog/types";
 import BlogCTA from "./BlogCTA";
 import RelatedPosts from "./RelatedPosts";
+
+interface HeadingProps extends HTMLAttributes<HTMLHeadingElement> {
+  children?: ReactNode;
+}
+interface ParagraphProps extends HTMLAttributes<HTMLParagraphElement> {
+  children?: ReactNode;
+}
+interface AnchorProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
+  children?: ReactNode;
+  href?: string;
+}
+interface ListProps extends HTMLAttributes<HTMLUListElement | HTMLOListElement> {
+  children?: ReactNode;
+}
+interface ListItemProps extends HTMLAttributes<HTMLLIElement> {
+  children?: ReactNode;
+}
+interface BlockquoteProps extends HTMLAttributes<HTMLQuoteElement> {
+  children?: ReactNode;
+}
+interface TableProps extends HTMLAttributes<HTMLTableElement> {
+  children?: ReactNode;
+}
+interface TableSectionProps extends HTMLAttributes<HTMLTableSectionElement> {
+  children?: ReactNode;
+}
+interface TableCellProps extends TdHTMLAttributes<HTMLTableCellElement> {
+  children?: ReactNode;
+}
+interface CodeProps extends HTMLAttributes<HTMLElement> {
+  children?: ReactNode;
+  className?: string;
+}
 
 interface BlogArticleProps {
   post: BlogPost;
@@ -18,7 +51,7 @@ function nodeText(children: ReactNode): string {
   if (Array.isArray(children)) return children.map(nodeText).join("");
   if (typeof children === "number") return children.toString();
   if (children && typeof children === "object" && "props" in children) {
-    return nodeText((children as any).props.children);
+    return nodeText((children as { props: { children: ReactNode } }).props.children);
   }
   return "";
 }
@@ -46,7 +79,7 @@ function formatDate(dateString?: string): string {
 
 const markdownComponents = {
   BlogCTA,
-  h2: ({ children, ...props }: any) => {
+  h2: ({ children, ...props }: HeadingProps) => {
     const id = props.id ?? slugifyHeading(nodeText(children));
     return (
       <h2 id={id} className="text-3xl font-bold text-gray-900 scroll-mt-24 mt-12 mb-4" {...props}>
@@ -54,7 +87,7 @@ const markdownComponents = {
       </h2>
     );
   },
-  h3: ({ children, ...props }: any) => {
+  h3: ({ children, ...props }: HeadingProps) => {
     const id = props.id ?? slugifyHeading(nodeText(children));
     return (
       <h3 id={id} className="text-2xl font-semibold text-gray-900 scroll-mt-24 mt-8 mb-3" {...props}>
@@ -62,10 +95,10 @@ const markdownComponents = {
       </h3>
     );
   },
-  p: ({ children, ...props }: any) => (
+  p: ({ children, ...props }: ParagraphProps) => (
     <p className="text-base leading-relaxed text-gray-600 mb-6" {...props}>{children}</p>
   ),
-  a: ({ children, href, className, style, ...props }: any) => {
+  a: ({ children, href, className, style, ...props }: AnchorProps) => {
     const hasCustomStyling = style || className;
     return (
       <a
@@ -80,35 +113,35 @@ const markdownComponents = {
       </a>
     );
   },
-  ul: ({ children, ...props }: any) => (
+  ul: ({ children, ...props }: ListProps) => (
     <ul className="list-disc space-y-2 pl-6 text-base text-gray-600 mb-6" {...props}>{children}</ul>
   ),
-  ol: ({ children, ...props }: any) => (
+  ol: ({ children, ...props }: ListProps) => (
     <ol className="list-decimal space-y-2 pl-6 text-base text-gray-600 mb-6" {...props}>{children}</ol>
   ),
-  li: ({ children, ...props }: any) => (
+  li: ({ children, ...props }: ListItemProps) => (
     <li className="leading-relaxed" {...props}>{children}</li>
   ),
-  blockquote: ({ children, ...props }: any) => (
+  blockquote: ({ children, ...props }: BlockquoteProps) => (
     <blockquote className="border-l-4 border-blue-300 pl-6 text-gray-600 italic my-6" {...props}>
       {children}
     </blockquote>
   ),
-  table: ({ children, ...props }: any) => (
-    <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white shadow-sm my-6" {...props}>
-      <table className="min-w-full divide-y divide-gray-200 text-base">{children}</table>
+  table: ({ children, ...props }: TableProps) => (
+    <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white shadow-sm my-6">
+      <table className="min-w-full divide-y divide-gray-200 text-base" {...props}>{children}</table>
     </div>
   ),
-  thead: ({ children, ...props }: any) => (
+  thead: ({ children, ...props }: TableSectionProps) => (
     <thead className="bg-gray-50 uppercase tracking-wide text-sm text-gray-500" {...props}>{children}</thead>
   ),
-  th: ({ children, ...props }: any) => (
+  th: ({ children, ...props }: TableCellProps) => (
     <th className="px-4 py-3 text-left font-semibold" {...props}>{children}</th>
   ),
-  td: ({ children, ...props }: any) => (
+  td: ({ children, ...props }: TableCellProps) => (
     <td className="px-4 py-3 text-gray-600 align-top" {...props}>{children}</td>
   ),
-  code: ({ children, className, ...props }: any) => {
+  code: ({ children, className, ...props }: CodeProps) => {
     const content = Array.isArray(children) ? children.join("") : (children ?? "");
     const normalized = typeof content === "string" ? content.replace(/\n$/, "") : "";
     if (className?.includes("language-")) {

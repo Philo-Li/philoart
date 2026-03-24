@@ -1,4 +1,4 @@
-import { SUPPORTED_LOCALES } from "./engine";
+import { SUPPORTED_LOCALES } from "./types";
 
 export function resolveBlogHref(locale: string, slug?: string): string {
   const base = locale === "en" ? "/blog" : `/${locale}/blog`;
@@ -13,5 +13,5 @@ export function normalizeBlogPath(pathname: string): string {
 }
 
 export function isValidBlogLocale(locale: string): boolean {
-  return SUPPORTED_LOCALES.includes(locale);
+  return (SUPPORTED_LOCALES as readonly string[]).includes(locale);
 }

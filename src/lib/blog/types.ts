@@ -1,3 +1,9 @@
+export const SUPPORTED_LOCALES = [
+  "en", "zh", "ja", "zh-TW", "de", "fr", "ko", "es", "it", "vi",
+] as const;
+
+export type SupportedLocale = (typeof SUPPORTED_LOCALES)[number];
+
 export interface BlogMeta {
   title: string;
   description?: string;
