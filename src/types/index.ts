@@ -15,6 +15,16 @@ export interface Photo {
   license?: string;
   type?: string;
   status?: string;
+  width?: number;
+  height?: number;
+  cameraMake?: string;
+  cameraModel?: string;
+  lens?: string;
+  focalLength?: number;
+  aperture?: number;
+  shutterSpeed?: string;
+  iso?: number;
+  dateTaken?: string;
   allowDownload?: boolean;
   createdAt?: string;
   user?: User;

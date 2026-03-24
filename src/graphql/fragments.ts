@@ -17,6 +17,16 @@ export const PHOTO_DETAILS = gql`
     license
     type
     status
+    width
+    height
+    cameraMake
+    cameraModel
+    lens
+    focalLength
+    aperture
+    shutterSpeed
+    iso
+    dateTaken
     allowDownload
     createdAt
   }

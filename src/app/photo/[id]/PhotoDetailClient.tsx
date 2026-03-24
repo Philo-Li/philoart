@@ -246,13 +246,18 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
     });
   };
 
+  const hasExifData =
+    photo.cameraMake || photo.cameraModel || photo.lens ||
+    photo.focalLength || photo.aperture || photo.shutterSpeed || photo.iso;
+
   const defaultAvatar = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
 
   return (
-    <div className="p-3">
-      <div className="photodetails-photo-item">
+    <div className="max-w-6xl mx-auto px-4 py-6">
+      {/* Photo Image */}
+      <div className="flex justify-center mb-6">
         <div
-          className="relative w-full overflow-hidden"
+          className="relative w-full overflow-hidden rounded-lg"
           style={{ backgroundColor: photo.color || "#f3f4f6" }}
         >
           <Image
@@ -266,12 +271,13 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
         </div>
       </div>
 
-      {photo.allColors && (
-        <div className="container-row-0">
+      {/* Color Palette */}
+      {photo.allColors && photo.allColors.length > 0 && (
+        <div className="flex gap-2 justify-center mb-8">
           {photo.allColors.map((color, index) => (
             <div
               key={index}
-              className="w-8 h-8 rounded-full border border-gray-200"
+              className="w-8 h-8 rounded-full border border-gray-200 cursor-pointer hover:scale-110 transition-transform"
               style={{ backgroundColor: color }}
               title={color}
             />
@@ -279,99 +285,156 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
         </div>
       )}
 
-      <div className="container-details-title-btn">
-        <div className="container-row-0">
-          <div className="container-photo-title">
-            <div className="card">
-              <div className="card-body">
-                <h1 className="photo-title">{photo.title}</h1>
-                <p className="photo-description">{photo.description || "No description"}</p>
-              </div>
-              <div className="card-footer">{`Status: ${photo.status || "None"}`}</div>
-              <div className="card-footer">{`License: ${photo.license || "N/A"}`}</div>
-            </div>
+      {/* Main Info Section */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+        {/* Left: Title & Description */}
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900 mb-3">{photo.title}</h1>
+          {photo.description && (
+            <p className="text-gray-600 leading-relaxed mb-4">{photo.description}</p>
+          )}
+          <div className="flex gap-4 text-sm text-gray-500">
+            {photo.status && <span>Status: {photo.status}</span>}
+            {photo.license && <span>License: {photo.license}</span>}
+            {photo.type && <span>Type: {photo.type}</span>}
           </div>
         </div>
 
+        {/* Right: Author & Actions */}
         <div>
-          <div className="container-row-0 container-row-primary">
-            <Link href={`/${photo.user?.username}`}>
-              <img src={photo.user?.profileImage || defaultAvatar} alt="user avatar" className="photo-details-author-avatar" />
-            </Link>
+          {/* Author */}
+          <Link href={`/${photo.user?.username}`} className="flex items-center gap-3 mb-5 group">
+            <img
+              src={photo.user?.profileImage || defaultAvatar}
+              alt="avatar"
+              className="w-12 h-12 rounded-full object-cover"
+            />
             <div>
-              <Link
-                href={`/${photo.user?.username}`}
-                className="photo-details-author-name"
-              >
+              <p className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors">
                 {photo.user?.firstName} {photo.user?.lastName || ""}
-              </Link>
-              <p className="photo-details-date">{formatDate(photo.createdAt)}</p>
+              </p>
+              <p className="text-sm text-gray-500">{formatDate(photo.createdAt)}</p>
             </div>
-          </div>
+          </Link>
 
-          <div className="container-row-photodetail-btn">
-            <div>
+          {/* Action Buttons */}
+          <div className="flex items-center gap-3 mb-5">
+            <button
+              onClick={handleLike}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors ${
+                photo.isLiked
+                  ? "bg-red-50 border-red-200 text-red-600"
+                  : "border-gray-300 text-gray-700 hover:bg-gray-50"
+              }`}
+            >
+              <i className={photo.isLiked ? "bi bi-heart-fill" : "bi bi-heart"} />
+              <span className="text-sm">{photo.likeCount || 0}</span>
+            </button>
+
+            <button
+              onClick={() => (userId ? setShowCollectModal(true) : (window.location.href = "/signin"))}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors ${
+                photo.isCollected
+                  ? "bg-blue-50 border-blue-200 text-blue-600"
+                  : "border-gray-300 text-gray-700 hover:bg-gray-50"
+              }`}
+            >
+              <i className={photo.isCollected ? "bi bi-bookmark-fill" : "bi bi-plus-square"} />
+              <span className="text-sm">{photo.collectionCount || 0}</span>
+            </button>
+
+            {photo.allowDownload ? (
               <button
-                onClick={handleLike}
-                className="photodetails-card-btn-like container-row-0 photodetails-card-btn-item"
+                onClick={handleDownload}
+                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-green-600 text-white hover:bg-green-700 transition-colors"
               >
-                <i className={photo.isLiked ? "bi bi-heart-fill" : "bi bi-heart"} />
+                <i className="bi bi-download" />
+                <span className="text-sm">{photo.downloadCount || 0}</span>
               </button>
-            </div>
-
-            <div>
+            ) : (
               <button
-                onClick={() => (userId ? setShowCollectModal(true) : (window.location.href = "/signin"))}
-                className="photodetails-card-btn-collect photodetails-card-btn-item"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-300 text-white cursor-not-allowed"
+                disabled
               >
-                <i className="bi bi-plus-square" />
+                <i className="bi bi-download" />
+                <span className="text-sm">{photo.downloadCount || 0}</span>
               </button>
-            </div>
-
-            <div className="photodetails-card-btn-item">
-              {photo.allowDownload ? (
-                <button onClick={handleDownload} className="photodetails-card-btn-download">
-                  <i className="bi bi-download" />
-                </button>
-              ) : (
-                <button className="photodetails-card-btn-download-disabled" disabled>
-                  <i className="bi bi-download" />
-                </button>
-              )}
-            </div>
-          </div>
-          <div className="container-row-0">
-            <div className="row-item-0">
-              <div className="container-col-details">
-                <div className="subtitle">Likes</div>
-                <div>{photo.likeCount || 0}</div>
-              </div>
-            </div>
-            <div className="row-item-0">
-              <div className="container-col-details">
-                <div className="subtitle">Collections</div>
-                <div>{photo.collectionCount || 0}</div>
-              </div>
-            </div>
-            <div className="row-item-0">
-              <div className="container-col-details">
-                <div className="subtitle">Downloads</div>
-                <div>{photo.downloadCount || 0}</div>
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
 
+      {/* Photo Details Section */}
+      {(hasExifData || photo.width) && (
+        <section className="mb-10 pt-8 border-t">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Photo Details</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {photo.width && photo.height && (
+              <DetailItem
+                icon="bi bi-aspect-ratio"
+                label="Dimensions"
+                value={`${photo.width} × ${photo.height}`}
+              />
+            )}
+            {(photo.cameraMake || photo.cameraModel) && (
+              <DetailItem
+                icon="bi bi-camera"
+                label="Camera"
+                value={[photo.cameraMake, photo.cameraModel].filter(Boolean).join(" ")}
+              />
+            )}
+            {photo.lens && (
+              <DetailItem icon="bi bi-circle" label="Lens" value={photo.lens} />
+            )}
+            {photo.focalLength && (
+              <DetailItem
+                icon="bi bi-search"
+                label="Focal Length"
+                value={`${photo.focalLength}mm`}
+              />
+            )}
+            {photo.aperture && (
+              <DetailItem
+                icon="bi bi-record-circle"
+                label="Aperture"
+                value={`ƒ/${photo.aperture}`}
+              />
+            )}
+            {photo.shutterSpeed && (
+              <DetailItem
+                icon="bi bi-stopwatch"
+                label="Shutter Speed"
+                value={photo.shutterSpeed}
+              />
+            )}
+            {photo.iso && (
+              <DetailItem
+                icon="bi bi-sun"
+                label="ISO"
+                value={String(photo.iso)}
+              />
+            )}
+            {photo.dateTaken && (
+              <DetailItem
+                icon="bi bi-calendar-event"
+                label="Date Taken"
+                value={formatDate(photo.dateTaken)}
+              />
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* Related Tags */}
       {relatedTags.length > 0 && (
-        <section className="mt-10 pt-8 border-t">
+        <section className="mb-10 pt-8 border-t">
           <h3 className="text-lg font-semibold text-gray-900 mb-3">Related Tags</h3>
           <div className="flex flex-wrap gap-2">
             {relatedTags.map((tag) => (
               <Link
                 key={tag}
                 href={`/search?q=${encodeURIComponent(tag)}`}
-                className="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-sm text-gray-700"
+                className="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-sm text-gray-700 transition-colors"
               >
                 {tag}
               </Link>
@@ -380,6 +443,7 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
         </section>
       )}
 
+      {/* Similar Photos */}
       {relatedPhotos.length > 0 && (
         <section className="mt-10 pt-8 border-t">
           <h3 className="text-2xl font-bold text-gray-900 mb-6">Similar Photos</h3>
@@ -396,7 +460,7 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
               <button
                 onClick={handleLoadMoreRelated}
                 disabled={relatedLoading}
-                className="px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 disabled:opacity-50"
+                className="px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 disabled:opacity-50 transition-colors"
               >
                 {relatedLoading ? "Loading..." : "Load More Similar Photos"}
               </button>
@@ -405,6 +469,7 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
         </section>
       )}
 
+      {/* Collect Modal */}
       {showCollectModal && (
         <div className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center p-4">
           <div className="w-full max-w-xl bg-white rounded-xl shadow-xl p-6 max-h-[80vh] overflow-auto">
@@ -477,6 +542,18 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
           </div>
         </div>
       )}
+    </div>
+  );
+}
+
+function DetailItem({ icon, label, value }: { icon: string; label: string; value: string }) {
+  return (
+    <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
+      <i className={`${icon} text-gray-400 text-lg mt-0.5`} />
+      <div>
+        <p className="text-xs text-gray-500">{label}</p>
+        <p className="text-sm font-medium text-gray-900">{value}</p>
+      </div>
     </div>
   );
 }
