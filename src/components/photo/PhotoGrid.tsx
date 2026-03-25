@@ -39,7 +39,7 @@ export default function PhotoGrid({
   return (
     <div>
       {/* Masonry-like grid */}
-      <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4">
+      <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-3 space-y-3">
         {photos.map((photo) => (
           <div key={photo.id} className="break-inside-avoid">
             <PhotoCard

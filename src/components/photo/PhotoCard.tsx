@@ -37,7 +37,7 @@ export default function PhotoCard({ photo, onLike, onDownload }: PhotoCardProps)
   return (
     <Link
       href={`/photo/${photo.id}`}
-      className="block relative group overflow-hidden rounded-lg cursor-pointer"
+      className="block relative group overflow-hidden cursor-pointer"
     >
       {/* Color placeholder with correct aspect ratio */}
       <div
