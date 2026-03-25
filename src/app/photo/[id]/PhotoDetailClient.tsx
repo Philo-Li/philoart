@@ -268,25 +268,7 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
       {photo.allColors && (
         <div className="flex gap-2 px-6 py-3 justify-center">
           {photo.allColors.split(",").map((c) => c.trim()).filter(Boolean).map((color, index) => (
-            <div
-              key={index}
-              role="button"
-              onClick={() => {
-                navigator.clipboard.writeText(color);
-              }}
-              title={`Click to copy ${color}`}
-              style={{
-                backgroundColor: color,
-                width: 28,
-                height: 28,
-                borderRadius: "50%",
-                border: "1px solid rgba(0,0,0,0.1)",
-                cursor: "pointer",
-                transition: "transform 0.15s",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.2)")}
-              onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
-            />
+            <ColorDot key={index} color={color} />
           ))}
         </div>
       )}
@@ -481,5 +463,59 @@ function DetailItem({ icon, label, value }: { icon: string; label: string; value
       <span className="text-gray-400 w-24">{label}</span>
       <span className="text-gray-700">{value}</span>
     </li>
+  );
+}
+
+function ColorDot({ color }: { color: string }) {
+  const [copied, setCopied] = useState(false);
+  const [hovered, setHovered] = useState(false);
+
+  const handleClick = () => {
+    navigator.clipboard.writeText(color);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  };
+
+  return (
+    <div
+      style={{ position: "relative", display: "inline-block" }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => { setHovered(false); setCopied(false); }}
+    >
+      <div
+        role="button"
+        onClick={handleClick}
+        style={{
+          backgroundColor: color,
+          width: 28,
+          height: 28,
+          borderRadius: "50%",
+          border: "1px solid rgba(0,0,0,0.1)",
+          cursor: "pointer",
+          transform: hovered ? "scale(1.2)" : "scale(1)",
+          transition: "transform 0.15s",
+        }}
+      />
+      {hovered && (
+        <div
+          style={{
+            position: "absolute",
+            bottom: "100%",
+            left: "50%",
+            transform: "translateX(-50%)",
+            marginBottom: 6,
+            padding: "4px 8px",
+            borderRadius: 6,
+            backgroundColor: "#1f2937",
+            color: "#fff",
+            fontSize: 12,
+            whiteSpace: "nowrap",
+            pointerEvents: "none",
+          }}
+        >
+          {copied ? "Copied!" : color}
+        </div>
+      )}
+    </div>
   );
 }
