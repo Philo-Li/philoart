@@ -42,12 +42,12 @@ export default function Navbar() {
         {/* Search */}
         <form onSubmit={handleSearch} className="flex-1 max-w-md">
           <div className="relative">
-            <i className="bi bi-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm" />
+            <i className="bi bi-search absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm pointer-events-none" />
             <input
               value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
               placeholder="Search photos..."
-              className="w-full pl-9 pr-3 py-2 text-sm bg-gray-100 rounded-full border-none outline-none focus:bg-white focus:ring-1 focus:ring-gray-300 transition-colors placeholder-gray-400"
+              className="w-full pl-10 pr-4 py-2 text-sm bg-gray-50 border border-gray-200 rounded-full outline-none focus:bg-white focus:border-gray-300 transition-colors placeholder-gray-400"
             />
           </div>
         </form>
@@ -114,9 +114,9 @@ export default function Navbar() {
           {/* Mobile menu toggle */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="min-[1000px]:hidden p-1.5 text-gray-600 hover:text-gray-900"
+            className="min-[1000px]:hidden p-1 text-gray-600 hover:text-gray-900"
           >
-            <i className={`bi ${menuOpen ? "bi-x-lg" : "bi-list"} text-xl`} />
+            <i className={`bi ${menuOpen ? "bi-x-lg" : "bi-list"} text-2xl`} />
           </button>
         </div>
       </div>

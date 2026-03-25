@@ -190,43 +190,43 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
           </div>
         </Link>
 
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-2">
           <button
             onClick={handleLike}
-            className={`p-2 rounded-md border transition-colors ${
+            className={`w-9 h-9 flex items-center justify-center rounded-lg border transition-colors ${
               photo.isLiked
                 ? "bg-red-50 border-red-200 text-red-500"
-                : "border-gray-200 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                : "border-gray-300 text-gray-600 hover:bg-gray-50 hover:text-gray-900"
             }`}
           >
-            <i className={`${photo.isLiked ? "bi bi-heart-fill" : "bi bi-heart"} text-[15px]`} />
+            <i className={`${photo.isLiked ? "bi bi-heart-fill" : "bi bi-heart"} text-lg`} />
           </button>
 
           <button
             onClick={() => (userId ? setShowCollectModal(true) : (window.location.href = "/signin"))}
-            className={`p-2 rounded-md border transition-colors ${
+            className={`w-9 h-9 flex items-center justify-center rounded-lg border transition-colors ${
               photo.isCollected
                 ? "bg-blue-50 border-blue-200 text-blue-500"
-                : "border-gray-200 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                : "border-gray-300 text-gray-600 hover:bg-gray-50 hover:text-gray-900"
             }`}
           >
-            <i className={`${photo.isCollected ? "bi bi-bookmark-fill" : "bi bi-plus-lg"} text-[15px]`} />
+            <i className={`${photo.isCollected ? "bi bi-bookmark-fill" : "bi bi-plus-lg"} text-lg`} />
           </button>
 
           {photo.allowDownload ? (
             <button
               onClick={handleDownload}
-              className="flex items-center gap-1.5 px-4 py-2 rounded-md bg-gray-900 text-white text-sm hover:bg-gray-800 transition-colors ml-1"
+              className="flex items-center gap-2 h-9 px-5 rounded-lg bg-gray-900 text-white text-sm font-medium hover:bg-gray-800 transition-colors"
             >
-              <i className="bi bi-download text-xs" />
+              <i className="bi bi-download text-sm" />
               Download
             </button>
           ) : (
             <button
-              className="flex items-center gap-1.5 px-4 py-2 rounded-md bg-gray-200 text-gray-400 text-sm cursor-not-allowed ml-1"
+              className="flex items-center gap-2 h-9 px-5 rounded-lg bg-gray-200 text-gray-400 text-sm cursor-not-allowed"
               disabled
             >
-              <i className="bi bi-download text-xs" />
+              <i className="bi bi-download text-sm" />
               Download
             </button>
           )}
