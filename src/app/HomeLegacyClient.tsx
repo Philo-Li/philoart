@@ -119,10 +119,10 @@ export default function HomeLegacyClient() {
           <p className="text-sm md:text-base uppercase tracking-[0.3em] text-white/60 mb-4 font-light">
             Photography &middot; Art &middot; Creation
           </p>
-          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-white mb-5 tracking-wide leading-tight">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-5 tracking-wide leading-tight">
             Share Your Art
             <br />
-            <span className="italic font-normal">With the World</span>
+            <span className="italic">With the World</span>
           </h1>
           <p className="text-base md:text-lg text-white/70 mb-10 max-w-md font-light leading-relaxed">
             Discover, create, and collect beautiful photography and art from artists around the globe
