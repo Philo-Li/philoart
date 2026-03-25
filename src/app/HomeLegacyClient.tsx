@@ -157,7 +157,7 @@ export default function HomeLegacyClient() {
               className="w-full h-48 sm:h-56 object-cover transition-transform duration-300 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-black/30 flex items-center justify-center transition-colors group-hover:bg-black/40">
-              <p className="text-white text-xl font-semibold">{collection.title}</p>
+              <p className="text-white text-2xl md:text-3xl font-bold">{collection.title}</p>
             </div>
           </Link>
         ))}
