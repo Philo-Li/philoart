@@ -133,7 +133,7 @@ export default function HomeLegacyClient() {
               />
               <button
                 type="submit"
-                className="absolute right-2 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-white/10 hover:bg-white/25 active:scale-95 transition-all duration-200"
+                className="absolute right-2 top-1/2 -translate-y-1/2 p-2.5 rounded-full hover:bg-white/15 active:scale-95 transition-all duration-200"
               >
                 <i className="bi bi-search text-white" />
               </button>
