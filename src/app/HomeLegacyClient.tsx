@@ -26,7 +26,7 @@ const homeCategories = [
   {
     id: "yibOLLFlIQtchyC6b5osL",
     title: "Digital Art",
-    cover: "https://cdn.philoart.io/e/700x700/psYTmeZf1z6O2jukzPlyl.jpg",
+    cover: "https://cdn.philoart.io/1200x1200/c/FS4MIHl-sfW8jH_.jpg",
   },
 ];
 
