@@ -319,26 +319,26 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
         )}
 
         {/* Published + License */}
-        <div className="space-y-1.5 mb-6">
+        <div style={{ display: "flex", flexDirection: "column", gap: 6, marginBottom: 24 }}>
           {photo.createdAt && (
-            <div className="flex items-center gap-2 text-sm text-gray-400">
+            <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 14, color: "#6b7280" }}>
               <i className="bi bi-calendar3" />
               <span>Published {formatDate(photo.createdAt)}</span>
             </div>
           )}
           {photo.license && (
-            <div className="flex items-center gap-2 text-sm text-gray-400">
+            <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 14, color: "#6b7280" }}>
               <i className="bi bi-shield-check" />
-              <span>Licensed under the <Link href="/license" className="underline hover:text-gray-600">{photo.license}</Link></span>
+              <span>Licensed under the <Link href="/license" style={{ color: "#6b7280", textDecoration: "underline" }}>{photo.license}</Link></span>
             </div>
           )}
         </div>
 
         {/* EXIF / Photo Details (collapsible) */}
         {(hasExifData || photo.width) && (
-          <details className="mb-6">
-            <summary className="text-sm text-gray-500 cursor-pointer hover:text-gray-700 select-none">
-              <i className="bi bi-camera mr-1.5" />Photo Details
+          <details style={{ marginBottom: 24 }}>
+            <summary style={{ fontSize: 14, color: "#6b7280", cursor: "pointer" }}>
+              <i className="bi bi-camera" style={{ marginRight: 6 }} />Photo Details
             </summary>
             <ul className="mt-3 space-y-2 text-sm">
               {photo.width && photo.height && (
