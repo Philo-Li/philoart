@@ -286,10 +286,26 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
 
           {/* Right: Share */}
           <div className="flex items-center gap-2 flex-shrink-0">
-            <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-gray-200 text-sm text-gray-600 hover:bg-gray-50 transition-colors">
-              <i className="bi bi-share" />
+            <div
+              role="button"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 6,
+                height: 36,
+                padding: "0 14px",
+                borderRadius: 8,
+                border: "1px solid #d1d5db",
+                color: "#4b5563",
+                fontSize: 14,
+                cursor: "pointer",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#f9fafb")}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
+            >
+              <i className="bi bi-share" style={{ fontSize: 14 }} />
               Share
-            </button>
+            </div>
           </div>
         </div>
 
