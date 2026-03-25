@@ -116,9 +116,6 @@ export default function HomeLegacyClient() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
         <div className="absolute inset-0 flex flex-col items-center justify-end pb-20 md:pb-24 px-6 text-center">
-          <p className="text-sm md:text-base uppercase tracking-[0.3em] text-white/60 mb-4 font-light">
-            Photography &middot; Art &middot; Creation
-          </p>
           <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-5 tracking-wide leading-tight">
             Share Your Art
             <br />
