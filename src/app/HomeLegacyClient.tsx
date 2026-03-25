@@ -108,7 +108,7 @@ export default function HomeLegacyClient() {
       {/* Hero */}
       <section className="relative h-[70vh] min-h-[480px] max-h-[720px] overflow-hidden">
         <Image
-          src="https://cdn.philoart.io/b/1200x1200/ejt2Vbza56UViZTf2vEHY.jpg"
+          src="https://cdn.philoart.io/700x700/8/FS4MIHl-LbgSc25.jpg"
           alt="PhiloArt Hero"
           fill
           className="object-cover"
