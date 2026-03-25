@@ -6,19 +6,11 @@ import Image from "next/image";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import Carousel from "react-bootstrap/Carousel";
-import Card from "react-bootstrap/Card";
-import Masonry from "react-masonry-css";
 import { useQuery } from "@apollo/client";
 import { GET_COLLECTIONS } from "@/graphql/queries";
 import { usePhotos } from "@/hooks";
 import { PhotoGrid } from "@/components/photo";
 import type { Collection } from "@/types";
-
-const breakpointColumnsObj = {
-  default: 3,
-  800: 2,
-  500: 1,
-};
 
 const homeCategories = [
   {
@@ -77,36 +69,25 @@ function CollectionsTab() {
   }
 
   return (
-    <div className="p-3">
-      <Masonry
-        breakpointCols={breakpointColumnsObj}
-        className="my-masonry-grid"
-        columnClassName="my-masonry-grid_column"
-      >
-        {collections.map((collection) => (
-          <Card key={collection.id}>
-            <Link href={`/collection/${collection.id}`} className="view zoom overlay">
-              <Image
-                src={collection.cover || "https://cdn.philoart.io/700x700/8/FS4MIHl-LbgSc25.jpg"}
-                alt={collection.title}
-                width={700}
-                height={460}
-                className="max-height-30"
-              />
-              <div className="mask flex-center rgba-blue-light white-text">
-                <p>{collection.title}</p>
-              </div>
-            </Link>
-            <Card.Title>
-              <div className="container-user-collection-list-title">
-                <div className="user-collection-list-title">
-                  {collection.title}
-                </div>
-              </div>
-            </Card.Title>
-          </Card>
-        ))}
-      </Masonry>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+      {collections.map((collection) => (
+        <Link
+          key={collection.id}
+          href={`/collection/${collection.id}`}
+          className="group relative block overflow-hidden rounded-lg"
+        >
+          <Image
+            src={collection.cover || "https://cdn.philoart.io/700x700/8/FS4MIHl-LbgSc25.jpg"}
+            alt={collection.title}
+            width={700}
+            height={460}
+            className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-black/30 flex items-center justify-center transition-colors group-hover:bg-black/40">
+            <p className="text-white text-lg font-semibold">{collection.title}</p>
+          </div>
+        </Link>
+      ))}
     </div>
   );
 }
@@ -156,32 +137,25 @@ export default function HomeLegacyClient() {
         </Carousel>
       </div>
 
-      <div className="scrollmenu">
-        <div className="p-3 container-row-0">
-          {homeCategories.map((collection) => (
-            <div key={collection.title} className="p-3">
-              <Card>
-                <Link href={`/collection/${collection.id}`} className="view zoom overlay">
-                  <Image
-                    src={collection.cover}
-                    width={700}
-                    height={460}
-                    alt={collection.title}
-                    className="max-height-30"
-                  />
-                  <div className="mask flex-center rgba-blue-light white-text">
-                    <p>{collection.title}</p>
-                  </div>
-                </Link>
-                <Card.Title>
-                  <div className="container-user-collection-list-title">
-                    <div className="user-collection-list-title">{collection.title}</div>
-                  </div>
-                </Card.Title>
-              </Card>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 px-4 py-6">
+        {homeCategories.map((collection) => (
+          <Link
+            key={collection.title}
+            href={`/collection/${collection.id}`}
+            className="group relative block overflow-hidden rounded-lg"
+          >
+            <Image
+              src={collection.cover}
+              width={700}
+              height={460}
+              alt={collection.title}
+              className="w-full h-48 sm:h-56 object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-black/30 flex items-center justify-center transition-colors group-hover:bg-black/40">
+              <p className="text-white text-xl font-semibold">{collection.title}</p>
             </div>
-          ))}
-        </div>
+          </Link>
+        ))}
       </div>
 
       <Tabs

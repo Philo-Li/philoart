@@ -42,17 +42,16 @@ export default function Navbar() {
           <RBNavbar.Toggle aria-controls="basic-navbar-nav" />
           <RBNavbar.Collapse id="basic-navbar-nav" className="justify-content-end">
             <Nav>
-              <div className="container-row-navbar-searchbox">
-                <Form onSubmit={handleSearch}>
-                  <input
-                    value={keyword}
-                    onChange={(e) => setKeyword(e.target.value)}
-                    placeholder="Search Food"
-                    aria-label="Search"
-                    className="container-row-navbar-searchbox"
-                  />
-                </Form>
-              </div>
+              <Form onSubmit={handleSearch} className="d-flex align-items-center">
+                <input
+                  value={keyword}
+                  onChange={(e) => setKeyword(e.target.value)}
+                  placeholder="Search photos..."
+                  aria-label="Search"
+                  className="form-control border-gray-300"
+                  style={{ fontSize: "15px", borderRadius: "5px", padding: "6px 16px" }}
+                />
+              </Form>
             </Nav>
             <Nav className="justify-content-end container-row-0">
               <Link className="navbar-link" href="/discover">Discover</Link>
