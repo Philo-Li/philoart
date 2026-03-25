@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useMemo, useCallback } from "react";
 import { Photo } from "@/types";
 import PhotoCard from "./PhotoCard";
 
@@ -12,6 +13,43 @@ interface PhotoGridProps {
   onDownload?: (photo: Photo) => void;
 }
 
+function useColumns() {
+  const getColumns = () => {
+    if (typeof window === "undefined") return 4;
+    const w = window.innerWidth;
+    if (w < 640) return 1;
+    if (w < 1024) return 2;
+    if (w < 1280) return 3;
+    return 4;
+  };
+
+  const ref = useRef(getColumns());
+
+  useEffect(() => {
+    const onResize = () => {
+      ref.current = getColumns();
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  return ref;
+}
+
+function distributeToColumns(photos: Photo[], columnCount: number): Photo[][] {
+  const columns: Photo[][] = Array.from({ length: columnCount }, () => []);
+  const heights = new Array(columnCount).fill(0);
+
+  for (const photo of photos) {
+    const ratio = photo.width && photo.height ? photo.height / photo.width : 0.75;
+    const shortest = heights.indexOf(Math.min(...heights));
+    columns[shortest].push(photo);
+    heights[shortest] += ratio;
+  }
+
+  return columns;
+}
+
 export default function PhotoGrid({
   photos,
   loading,
@@ -20,6 +58,35 @@ export default function PhotoGrid({
   onLike,
   onDownload,
 }: PhotoGridProps) {
+  const sentinelRef = useRef<HTMLDivElement>(null);
+  const columnsRef = useColumns();
+
+  // Infinite scroll
+  const handleIntersect = useCallback(
+    (entries: IntersectionObserverEntry[]) => {
+      if (entries[0]?.isIntersecting && hasNextPage && !loading && onLoadMore) {
+        onLoadMore();
+      }
+    },
+    [hasNextPage, loading, onLoadMore]
+  );
+
+  useEffect(() => {
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+
+    const observer = new IntersectionObserver(handleIntersect, {
+      rootMargin: "400px",
+    });
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, [handleIntersect]);
+
+  const columns = useMemo(
+    () => distributeToColumns(photos, columnsRef.current),
+    [photos, columnsRef]
+  );
+
   if (!photos.length && loading) {
     return (
       <div className="flex justify-center items-center py-20">
@@ -38,36 +105,27 @@ export default function PhotoGrid({
 
   return (
     <div className="p-1.5">
-      {/* Masonry-like grid */}
-      <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-1.5 space-y-1.5">
-        {photos.map((photo) => (
-          <div key={photo.id} className="break-inside-avoid">
-            <PhotoCard
-              photo={photo}
-              onLike={onLike}
-              onDownload={onDownload}
-            />
+      <div className="flex gap-1.5">
+        {columns.map((column, colIndex) => (
+          <div key={colIndex} className="flex-1 flex flex-col gap-1.5">
+            {column.map((photo) => (
+              <PhotoCard
+                key={photo.id}
+                photo={photo}
+                onLike={onLike}
+                onDownload={onDownload}
+              />
+            ))}
           </div>
         ))}
       </div>
 
-      {/* Load more button */}
-      {hasNextPage && (
-        <div className="flex justify-center mt-8">
-          <button
-            onClick={onLoadMore}
-            disabled={loading}
-            className="px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {loading ? (
-              <span className="flex items-center gap-2">
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
-                Loading...
-              </span>
-            ) : (
-              "Load More"
-            )}
-          </button>
+      {/* Sentinel for infinite scroll */}
+      <div ref={sentinelRef} className="h-1" />
+
+      {loading && (
+        <div className="flex justify-center py-8">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900" />
         </div>
       )}
     </div>
