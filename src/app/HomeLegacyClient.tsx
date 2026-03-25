@@ -21,7 +21,7 @@ const homeCategories = [
   {
     id: "eEWmzhJf3hR7E0NiJU98l",
     title: "Paintings",
-    cover: "https://cdn.philoart.io/c/700x700/zu3VmDeCCM55iPp2zZAVZ.jpg",
+    cover: "https://cdn.philoart.io/1200x1200/8/FS4MIHl-MK0Dc80.jpg",
   },
   {
     id: "yibOLLFlIQtchyC6b5osL",
