@@ -264,6 +264,33 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
         />
       </div>
 
+      {/* Color Palette */}
+      {photo.allColors && (
+        <div className="flex gap-2 px-6 py-3">
+          {photo.allColors.split(",").map((c) => c.trim()).filter(Boolean).map((color, index) => (
+            <div
+              key={index}
+              role="button"
+              onClick={() => {
+                navigator.clipboard.writeText(color);
+              }}
+              title={`Click to copy ${color}`}
+              style={{
+                backgroundColor: color,
+                width: 28,
+                height: 28,
+                borderRadius: "50%",
+                border: "1px solid rgba(0,0,0,0.1)",
+                cursor: "pointer",
+                transition: "transform 0.15s",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.2)")}
+              onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+            />
+          ))}
+        </div>
+      )}
+
       {/* Below Photo: Info Section */}
       <div className="mx-auto px-6">
         <div className="flex items-center justify-between py-5">
@@ -340,19 +367,6 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
           </details>
         )}
 
-        {/* Color Palette */}
-        {photo.allColors && (
-          <div className="flex gap-1.5 mb-6">
-            {photo.allColors.split(",").map((c) => c.trim()).filter(Boolean).map((color, index) => (
-              <div
-                key={index}
-                className="w-6 h-6 rounded-full border border-gray-200 cursor-pointer hover:scale-125 transition-transform"
-                style={{ backgroundColor: color }}
-                title={color}
-              />
-            ))}
-          </div>
-        )}
 
         {/* Related Tags */}
         {relatedTags.length > 0 && (
