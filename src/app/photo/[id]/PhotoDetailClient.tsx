@@ -172,35 +172,21 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
 
   return (
     <div>
-      {/* Full-width Photo */}
-      <div className="w-full flex justify-center">
-        <Image
-          src={photo.srcOriginal || photo.srcLarge || photo.srcSmall || ""}
-          alt={photo.title || "Artwork"}
-          width={photo.width || 1200}
-          height={photo.height || 800}
-          className="max-w-full max-h-[85vh] object-contain"
-          priority
-        />
-      </div>
-
-      {/* Info Section */}
-      <div className="max-w-4xl mx-auto px-6 py-8">
-        {/* Author + Actions Row */}
-        <div className="flex items-center justify-between mb-6">
-          <Link href={`/${photo.user?.username}`} className="flex items-center gap-3 group">
-            <img
-              src={photo.user?.profileImage || defaultAvatar}
-              alt="avatar"
-              className="w-10 h-10 rounded-full object-cover"
-            />
-            <div>
-              <p className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors text-sm">
-                {photo.user?.firstName} {photo.user?.lastName || ""}
-              </p>
-              <p className="text-xs text-gray-400">{formatDate(photo.createdAt)}</p>
-            </div>
-          </Link>
+      {/* Author + Actions Bar */}
+      <div className="max-w-4xl mx-auto px-6 py-3 flex items-center justify-between">
+        <Link href={`/${photo.user?.username}`} className="flex items-center gap-3 group">
+          <img
+            src={photo.user?.profileImage || defaultAvatar}
+            alt="avatar"
+            className="w-10 h-10 rounded-full object-cover"
+          />
+          <div>
+            <p className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors text-sm">
+              {photo.user?.firstName} {photo.user?.lastName || ""}
+            </p>
+            <p className="text-xs text-gray-400">{formatDate(photo.createdAt)}</p>
+          </div>
+        </Link>
 
           <div className="flex items-center gap-2">
             <button
@@ -245,8 +231,22 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
               </button>
             )}
           </div>
-        </div>
+      </div>
 
+      {/* Full-width Photo */}
+      <div className="w-full flex justify-center mb-6">
+        <Image
+          src={photo.srcOriginal || photo.srcLarge || photo.srcSmall || ""}
+          alt={photo.title || "Artwork"}
+          width={photo.width || 1200}
+          height={photo.height || 800}
+          className="max-w-full max-h-[85vh] object-contain"
+          priority
+        />
+      </div>
+
+      {/* Info Section */}
+      <div className="max-w-4xl mx-auto px-6 py-6">
         {/* Title & Description */}
         <h1 className="text-xl font-bold text-gray-900 mb-2">{photo.title}</h1>
         {photo.description && (
