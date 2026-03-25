@@ -172,69 +172,66 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
 
   return (
     <div>
-      {/* Author + Actions Bar */}
-      <div className="max-w-4xl mx-auto px-6 py-3 flex items-center justify-between">
+      {/* Top Bar: Author + Actions */}
+      <div className="max-w-[1100px] mx-auto px-6 py-3 flex items-center justify-between">
         <Link href={`/${photo.user?.username}`} className="flex items-center gap-3 group">
           <img
             src={photo.user?.profileImage || defaultAvatar}
             alt="avatar"
-            className="w-10 h-10 rounded-full object-cover"
+            className="w-9 h-9 rounded-full object-cover"
           />
           <div>
-            <p className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors text-sm">
+            <p className="font-semibold text-gray-900 group-hover:underline text-sm leading-tight">
               {photo.user?.firstName} {photo.user?.lastName || ""}
             </p>
-            <p className="text-xs text-gray-400">{formatDate(photo.createdAt)}</p>
           </div>
         </Link>
 
-          <div className="flex items-center gap-2">
-            <button
-              onClick={handleLike}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md border text-sm transition-colors ${
-                photo.isLiked
-                  ? "bg-red-50 border-red-200 text-red-600"
-                  : "border-gray-200 text-gray-600 hover:bg-gray-50"
-              }`}
-            >
-              <i className={photo.isLiked ? "bi bi-heart-fill" : "bi bi-heart"} />
-              {photo.likeCount || 0}
-            </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={handleLike}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md border text-sm transition-colors ${
+              photo.isLiked
+                ? "bg-red-50 border-red-200 text-red-600"
+                : "border-gray-200 text-gray-600 hover:bg-gray-50"
+            }`}
+          >
+            <i className={photo.isLiked ? "bi bi-heart-fill" : "bi bi-heart"} />
+          </button>
 
-            <button
-              onClick={() => (userId ? setShowCollectModal(true) : (window.location.href = "/signin"))}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md border text-sm transition-colors ${
-                photo.isCollected
-                  ? "bg-blue-50 border-blue-200 text-blue-600"
-                  : "border-gray-200 text-gray-600 hover:bg-gray-50"
-              }`}
-            >
-              <i className={photo.isCollected ? "bi bi-bookmark-fill" : "bi bi-bookmark"} />
-              {photo.collectionCount || 0}
-            </button>
+          <button
+            onClick={() => (userId ? setShowCollectModal(true) : (window.location.href = "/signin"))}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md border text-sm transition-colors ${
+              photo.isCollected
+                ? "bg-blue-50 border-blue-200 text-blue-600"
+                : "border-gray-200 text-gray-600 hover:bg-gray-50"
+            }`}
+          >
+            <i className={photo.isCollected ? "bi bi-bookmark-fill" : "bi bi-bookmark"} />
+          </button>
 
-            {photo.allowDownload ? (
-              <button
-                onClick={handleDownload}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-gray-900 text-white text-sm hover:bg-gray-800 transition-colors"
-              >
-                <i className="bi bi-download" />
-                Download
-              </button>
-            ) : (
-              <button
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-gray-200 text-gray-400 text-sm cursor-not-allowed"
-                disabled
-              >
-                <i className="bi bi-download" />
-                Download
-              </button>
-            )}
-          </div>
+          {photo.allowDownload ? (
+            <button
+              onClick={handleDownload}
+              className="flex items-center gap-1.5 px-4 py-1.5 rounded-md bg-gray-900 text-white text-sm hover:bg-gray-800 transition-colors"
+            >
+              <i className="bi bi-download" />
+              Download
+            </button>
+          ) : (
+            <button
+              className="flex items-center gap-1.5 px-4 py-1.5 rounded-md bg-gray-200 text-gray-400 text-sm cursor-not-allowed"
+              disabled
+            >
+              <i className="bi bi-download" />
+              Download
+            </button>
+          )}
+        </div>
       </div>
 
-      {/* Full-width Photo */}
-      <div className="w-full flex justify-center mb-6">
+      {/* Photo */}
+      <div className="w-full flex justify-center bg-gray-50 py-4">
         <Image
           src={photo.srcOriginal || photo.srcLarge || photo.srcSmall || ""}
           alt={photo.title || "Artwork"}
@@ -245,39 +242,50 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
         />
       </div>
 
-      {/* Info Section */}
-      <div className="max-w-4xl mx-auto px-6 py-6">
-        {/* Title & Description */}
-        <h1 className="text-base font-semibold text-gray-900 mb-2">{photo.title}</h1>
-        {photo.description && (
-          <p className="text-gray-600 leading-relaxed mb-4">{photo.description}</p>
-        )}
-
-        {/* Meta tags */}
-        <div className="flex flex-wrap gap-3 text-xs text-gray-400 mb-8">
-          {photo.createdAt && <span>Published {formatDate(photo.createdAt)}</span>}
-          {photo.status && <span>Status: {photo.status}</span>}
-          {photo.license && <Link href="/license" className="hover:text-gray-600 underline">License: {photo.license}</Link>}
-          {photo.type && <span>Type: {photo.type}</span>}
+      {/* Below Photo: Featured in + Share */}
+      <div className="max-w-[1100px] mx-auto px-6">
+        <div className="flex items-center justify-between py-5">
+          {photo.type && (
+            <div>
+              <p className="text-xs text-gray-400">Featured in</p>
+              <p className="text-sm font-semibold text-gray-900">{photo.type}</p>
+            </div>
+          )}
+          <div className="flex items-center gap-2">
+            <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-gray-200 text-sm text-gray-600 hover:bg-gray-50 transition-colors">
+              <i className="bi bi-share" />
+              Share
+            </button>
+          </div>
         </div>
 
-        {/* Color Palette */}
-        {photo.allColors && (
-          <div className="flex gap-1.5 mb-8">
-            {photo.allColors.split(",").map((c) => c.trim()).filter(Boolean).map((color, index) => (
-              <div
-                key={index}
-                className="w-6 h-6 rounded-full border border-gray-200 cursor-pointer hover:scale-125 transition-transform"
-                style={{ backgroundColor: color }}
-                title={color}
-              />
-            ))}
-          </div>
+        {/* Title */}
+        <h1 className="text-lg font-bold text-gray-900 mb-2">{photo.title}</h1>
+
+        {/* Description */}
+        {photo.description && (
+          <p className="text-sm text-gray-600 leading-relaxed mb-5">{photo.description}</p>
         )}
+
+        {/* Published + License */}
+        <div className="space-y-1.5 mb-6">
+          {photo.createdAt && (
+            <div className="flex items-center gap-2 text-sm text-gray-400">
+              <i className="bi bi-calendar3" />
+              <span>Published {formatDate(photo.createdAt)}</span>
+            </div>
+          )}
+          {photo.license && (
+            <div className="flex items-center gap-2 text-sm text-gray-400">
+              <i className="bi bi-shield-check" />
+              <span>Licensed under the <Link href="/license" className="underline hover:text-gray-600">{photo.license}</Link></span>
+            </div>
+          )}
+        </div>
 
         {/* EXIF / Photo Details (collapsible) */}
         {(hasExifData || photo.width) && (
-          <details className="mb-8">
+          <details className="mb-6">
             <summary className="text-sm text-gray-500 cursor-pointer hover:text-gray-700 select-none">
               <i className="bi bi-camera mr-1.5" />Photo Details
             </summary>
@@ -310,20 +318,32 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
           </details>
         )}
 
+        {/* Color Palette */}
+        {photo.allColors && (
+          <div className="flex gap-1.5 mb-6">
+            {photo.allColors.split(",").map((c) => c.trim()).filter(Boolean).map((color, index) => (
+              <div
+                key={index}
+                className="w-6 h-6 rounded-full border border-gray-200 cursor-pointer hover:scale-125 transition-transform"
+                style={{ backgroundColor: color }}
+                title={color}
+              />
+            ))}
+          </div>
+        )}
+
         {/* Related Tags */}
         {relatedTags.length > 0 && (
-          <div className="mb-8">
-            <div className="flex flex-wrap gap-2">
-              {relatedTags.map((tag) => (
-                <Link
-                  key={tag}
-                  href={`/search?q=${encodeURIComponent(tag)}`}
-                  className="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-sm text-gray-600 transition-colors"
-                >
-                  {tag}
-                </Link>
-              ))}
-            </div>
+          <div className="flex flex-wrap gap-2 mb-10">
+            {relatedTags.map((tag) => (
+              <Link
+                key={tag}
+                href={`/search?q=${encodeURIComponent(tag)}`}
+                className="px-4 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-md text-sm text-gray-700 transition-colors"
+              >
+                {tag}
+              </Link>
+            ))}
           </div>
         )}
       </div>
@@ -331,8 +351,8 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
       {/* Similar Photos */}
       {relatedPhotos.length > 0 && (
         <div>
-          <div className="max-w-4xl mx-auto px-6 pt-8 pb-2">
-            <h3 className="text-lg font-semibold text-gray-900">Similar Photos</h3>
+          <div className="max-w-[1100px] mx-auto px-6 pt-6 pb-3">
+            <h3 className="text-xl font-bold text-gray-900">Similar Photos</h3>
           </div>
           <PhotoGrid
             photos={relatedPhotos}
