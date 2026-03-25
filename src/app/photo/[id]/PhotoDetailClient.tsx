@@ -264,25 +264,28 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
         />
       </div>
 
-      {/* Color Palette */}
-      {photo.allColors && (
-        <div className="flex gap-2 px-6 py-3 justify-center">
-          {photo.allColors.split(",").map((c) => c.trim()).filter(Boolean).map((color, index) => (
-            <ColorDot key={index} color={color} />
-          ))}
-        </div>
-      )}
-
-      {/* Below Photo: Info Section */}
+      {/* Featured in + Colors + Share */}
       <div className="mx-auto px-6">
-        <div className="flex items-center justify-between py-5">
+        <div className="flex items-center justify-between py-4">
+          {/* Left: Featured in */}
           {photo.type && (
-            <div>
+            <div className="flex-shrink-0">
               <p className="text-xs text-gray-400">Featured in</p>
               <p className="text-sm font-semibold text-gray-900">{photo.type}</p>
             </div>
           )}
-          <div className="flex items-center gap-2">
+
+          {/* Center: Color Palette */}
+          {photo.allColors && (
+            <div className="flex gap-2 justify-center flex-1 mx-4">
+              {photo.allColors.split(",").map((c) => c.trim()).filter(Boolean).map((color, index) => (
+                <ColorDot key={index} color={color} />
+              ))}
+            </div>
+          )}
+
+          {/* Right: Share */}
+          <div className="flex items-center gap-2 flex-shrink-0">
             <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-gray-200 text-sm text-gray-600 hover:bg-gray-50 transition-colors">
               <i className="bi bi-share" />
               Share
