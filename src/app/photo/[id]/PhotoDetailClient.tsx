@@ -190,46 +190,65 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
           </div>
         </Link>
 
-        <div className="flex items-center gap-2">
-          <button
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <div
+            role="button"
             onClick={handleLike}
-            className={`w-9 h-9 flex items-center justify-center rounded-lg border transition-colors ${
-              photo.isLiked
-                ? "bg-red-50 border-red-200 text-red-500"
-                : "border-gray-300 text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-            }`}
+            style={{
+              width: 36,
+              height: 36,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: 8,
+              border: photo.isLiked ? "1px solid #fecaca" : "1px solid #d1d5db",
+              backgroundColor: photo.isLiked ? "#fef2f2" : "transparent",
+              color: photo.isLiked ? "#ef4444" : "#4b5563",
+              cursor: "pointer",
+            }}
           >
-            <i className={`${photo.isLiked ? "bi bi-heart-fill" : "bi bi-heart"} text-lg`} />
-          </button>
+            <i className={photo.isLiked ? "bi bi-heart-fill" : "bi bi-heart"} style={{ fontSize: 16 }} />
+          </div>
 
-          <button
+          <div
+            role="button"
             onClick={() => (userId ? setShowCollectModal(true) : (window.location.href = "/signin"))}
-            className={`w-9 h-9 flex items-center justify-center rounded-lg border transition-colors ${
-              photo.isCollected
-                ? "bg-blue-50 border-blue-200 text-blue-500"
-                : "border-gray-300 text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-            }`}
+            style={{
+              width: 36,
+              height: 36,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: 8,
+              border: photo.isCollected ? "1px solid #bfdbfe" : "1px solid #d1d5db",
+              backgroundColor: photo.isCollected ? "#eff6ff" : "transparent",
+              color: photo.isCollected ? "#3b82f6" : "#4b5563",
+              cursor: "pointer",
+            }}
           >
-            <i className={`${photo.isCollected ? "bi bi-bookmark-fill" : "bi bi-plus-lg"} text-lg`} />
-          </button>
+            <i className={photo.isCollected ? "bi bi-bookmark-fill" : "bi bi-plus-lg"} style={{ fontSize: 16 }} />
+          </div>
 
-          {photo.allowDownload ? (
-            <button
-              onClick={handleDownload}
-              className="flex items-center gap-2 h-9 px-5 rounded-lg bg-gray-900 text-white text-sm font-medium hover:bg-gray-800 transition-colors"
-            >
-              <i className="bi bi-download text-sm" />
-              Download
-            </button>
-          ) : (
-            <button
-              className="flex items-center gap-2 h-9 px-5 rounded-lg bg-gray-200 text-gray-400 text-sm cursor-not-allowed"
-              disabled
-            >
-              <i className="bi bi-download text-sm" />
-              Download
-            </button>
-          )}
+          <div
+            role="button"
+            onClick={photo.allowDownload ? handleDownload : undefined}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+              height: 36,
+              padding: "0 20px",
+              borderRadius: 8,
+              backgroundColor: photo.allowDownload ? "#111827" : "#e5e7eb",
+              color: photo.allowDownload ? "#fff" : "#9ca3af",
+              fontSize: 14,
+              fontWeight: 500,
+              cursor: photo.allowDownload ? "pointer" : "not-allowed",
+            }}
+          >
+            <i className="bi bi-download" style={{ fontSize: 14 }} />
+            Download
+          </div>
         </div>
       </div>
 
