@@ -1,8 +1,20 @@
 "use client";
 
-import { useEffect, useRef, useMemo, useCallback } from "react";
+import { useEffect, useRef, useMemo, useCallback, useState } from "react";
 import { Photo } from "@/types";
 import PhotoCard from "./PhotoCard";
+
+// Seeded random for stable shuffle per session
+function seededShuffle(arr: Photo[], seed: number): Photo[] {
+  const result = [...arr];
+  let s = seed;
+  for (let i = result.length - 1; i > 0; i--) {
+    s = (s * 16807 + 0) % 2147483647;
+    const j = s % (i + 1);
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
+}
 
 interface PhotoGridProps {
   photos: Photo[];
@@ -59,6 +71,7 @@ export default function PhotoGrid({
 }: PhotoGridProps) {
   const sentinelRef = useRef<HTMLDivElement>(null);
   const columnsRef = useColumns();
+  const [seed] = useState(() => Math.floor(Math.random() * 2147483647));
 
   // Infinite scroll
   const handleIntersect = useCallback(
@@ -81,9 +94,14 @@ export default function PhotoGrid({
     return () => observer.disconnect();
   }, [handleIntersect]);
 
+  const shuffledPhotos = useMemo(
+    () => seededShuffle(photos, seed),
+    [photos, seed]
+  );
+
   const columns = useMemo(
-    () => distributeToColumns(photos, columnsRef.current),
-    [photos, columnsRef]
+    () => distributeToColumns(shuffledPhotos, columnsRef.current),
+    [shuffledPhotos, columnsRef]
   );
 
   if (!photos.length && loading) {
