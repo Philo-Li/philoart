@@ -298,6 +298,7 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
                 border: "1px solid #d1d5db",
                 color: "#4b5563",
                 fontSize: 14,
+                fontWeight: 600,
                 cursor: "pointer",
               }}
               onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#f9fafb")}
