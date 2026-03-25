@@ -29,7 +29,7 @@ const breakpointColumnsObj = {
 };
 
 export default function ProfileClient({ initialUser, username }: Props) {
-  const [key, setKey] = useState("photograph");
+  const [key, setKey] = useState("all");
   const [userNow, setUserNow] = useState(initialUser);
   const [follow, setFollow] = useState(Boolean(initialUser.isFollowed));
   const [followUser] = useMutation(FOLLOW_USER);
@@ -79,7 +79,7 @@ export default function ProfileClient({ initialUser, username }: Props) {
       case "drawing":
         return "Drawing";
       default:
-        return undefined;
+        return undefined; // "all", "collections", "likes"
     }
   }, [key]);
 
@@ -199,9 +199,17 @@ export default function ProfileClient({ initialUser, username }: Props) {
       <Tabs
         id="controlled-tab-example"
         activeKey={key}
-        onSelect={(k) => setKey(k || "photograph")}
+        onSelect={(k) => setKey(k || "all")}
         className="mb-3"
       >
+        <Tab eventKey="all" title="All">
+          <PhotoGrid
+            photos={photos}
+            loading={loading}
+            hasNextPage={hasNextPage}
+            onLoadMore={fetchMore}
+          />
+        </Tab>
         <Tab eventKey="photograph" title="Photograph">
           <PhotoGrid
             photos={filteredPhotos}
