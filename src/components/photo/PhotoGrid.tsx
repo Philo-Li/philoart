@@ -94,9 +94,18 @@ export default function PhotoGrid({
     return () => observer.disconnect();
   }, [handleIntersect]);
 
+  const uniquePhotos = useMemo(() => {
+    const seen = new Set<string>();
+    return photos.filter((p) => {
+      if (seen.has(p.id)) return false;
+      seen.add(p.id);
+      return true;
+    });
+  }, [photos]);
+
   const shuffledPhotos = useMemo(
-    () => seededShuffle(photos, seed),
-    [photos, seed]
+    () => seededShuffle(uniquePhotos, seed),
+    [uniquePhotos, seed]
   );
 
   const columns = useMemo(
