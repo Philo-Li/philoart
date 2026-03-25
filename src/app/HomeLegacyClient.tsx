@@ -106,36 +106,41 @@ export default function HomeLegacyClient() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative h-[70vh] min-h-[480px] max-h-[720px] overflow-hidden">
+      <section className="relative h-[75vh] min-h-[520px] max-h-[800px] overflow-hidden">
         <Image
           src="https://cdn.philoart.io/original/b/0yPxewc-t8bbaTS4.jpg"
           alt="PhiloArt Hero"
           fill
-          className="object-cover"
+          className="object-cover scale-105"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-4 tracking-tight">
-            Share your artworks<br className="hidden sm:block" /> with the world
-          </h1>
-          <p className="text-lg md:text-xl text-white/80 mb-8 max-w-xl">
-            Discover, create, and collect beautiful photography and art
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
+        <div className="absolute inset-0 flex flex-col items-center justify-end pb-20 md:pb-24 px-6 text-center">
+          <p className="text-sm md:text-base uppercase tracking-[0.3em] text-white/60 mb-4 font-light">
+            Photography &middot; Art &middot; Creation
           </p>
-          <form onSubmit={handleHeroSearch} className="w-full max-w-lg">
-            <div className="relative">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-white mb-5 tracking-wide leading-tight">
+            Share Your Art
+            <br />
+            <span className="italic font-normal">With the World</span>
+          </h1>
+          <p className="text-base md:text-lg text-white/70 mb-10 max-w-md font-light leading-relaxed">
+            Discover, create, and collect beautiful photography and art from artists around the globe
+          </p>
+          <form onSubmit={handleHeroSearch} className="w-full max-w-xl">
+            <div className="relative group">
               <input
                 type="text"
                 value={heroQuery}
                 onChange={(e) => setHeroQuery(e.target.value)}
                 placeholder="Search photos, art, artists..."
-                className="w-full px-6 py-4 pr-14 rounded-full bg-white/95 backdrop-blur text-gray-900 text-lg placeholder-gray-400 shadow-xl outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-7 py-4 pr-14 rounded-full bg-white/15 backdrop-blur-md text-white text-base placeholder-white/50 border border-white/25 outline-none focus:bg-white/25 focus:border-white/50 transition-all duration-300"
               />
               <button
                 type="submit"
-                className="absolute right-2 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-gray-900 hover:bg-gray-800 transition-colors"
+                className="absolute right-2 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
               >
-                <i className="bi bi-search text-white text-lg" />
+                <i className="bi bi-search text-white" />
               </button>
             </div>
           </form>
