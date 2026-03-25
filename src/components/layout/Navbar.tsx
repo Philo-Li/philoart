@@ -42,12 +42,12 @@ export default function Navbar() {
         {/* Search */}
         <form onSubmit={handleSearch} className="flex-1 max-w-md">
           <div className="relative">
-            <i className="bi bi-search absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm pointer-events-none" />
+            <i className="bi bi-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-xs pointer-events-none" />
             <input
               value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
               placeholder="Search photos..."
-              className="w-full pl-10 pr-4 py-2 text-sm bg-gray-50 border border-gray-200 rounded-full outline-none focus:bg-white focus:border-gray-300 transition-colors placeholder-gray-400"
+              className="w-full pl-11 pr-4 py-2 text-sm bg-gray-50 border border-gray-200 rounded-full outline-none focus:bg-white focus:border-gray-300 transition-colors placeholder-gray-400"
             />
           </div>
         </form>
