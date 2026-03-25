@@ -26,6 +26,7 @@ export const GET_PHOTOS = gql`
         node {
           id
           title
+          slug
           srcTiny
           srcSmall
           srcLarge
@@ -59,8 +60,8 @@ export const GET_PHOTOS = gql`
 `;
 
 export const GET_PHOTO = gql`
-  query getPhoto($id: ID!, $checkUserLike: ID, $checkUserCollect: ID) {
-    photo(id: $id) {
+  query getPhoto($id: ID, $slug: String, $checkUserLike: ID, $checkUserCollect: ID) {
+    photo(id: $id, slug: $slug) {
       ...photoDetails
       user {
         username

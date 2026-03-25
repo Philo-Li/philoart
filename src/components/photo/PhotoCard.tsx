@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { Photo } from "@/types";
+import { Photo, photoHref } from "@/types";
 import { LIKE_PHOTO, UNLIKE_PHOTO } from "@/graphql/mutations";
 
 interface PhotoCardProps {
@@ -72,7 +72,7 @@ export default function PhotoCard({ photo, onCollect, onDownload }: PhotoCardPro
 
   return (
     <Link
-      href={`/photo/${photo.id}`}
+      href={photoHref(photo)}
       className="block relative overflow-hidden cursor-pointer"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}

@@ -14,10 +14,14 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
 
+  // Determine if the param is an old-style ID or a new slug
+  const hasUpperCase = /[A-Z_]/.test(id);
+  const variables = hasUpperCase ? { id } : { slug: id };
+
   try {
     const { data } = await getClient().query({
       query: GET_PHOTO,
-      variables: { id },
+      variables,
     });
 
     const photo = data?.photo;
@@ -61,12 +65,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function PhotoPage({ params }: Props) {
   const { id } = await params;
 
+  const hasUpperCase = /[A-Z_]/.test(id);
+  const variables = hasUpperCase ? { id } : { slug: id };
+
   // Fetch photo data on server
   let photo = null;
   try {
     const { data } = await getClient().query({
       query: GET_PHOTO,
-      variables: { id },
+      variables,
     });
     photo = data?.photo;
   } catch (error) {

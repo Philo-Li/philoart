@@ -285,7 +285,7 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
           )}
 
           {/* Right: Share */}
-          <ShareButton photoId={photo.id} title={photo.title || ""} />
+          <ShareButton photoSlug={photo.slug} photoId={photo.id} title={photo.title || ""} />
         </div>
 
         {/* Title */}
@@ -433,11 +433,12 @@ function DetailItem({ icon, label, value }: { icon: string; label: string; value
   );
 }
 
-function ShareButton({ photoId, title }: { photoId: string; title: string }) {
+function ShareButton({ photoSlug, photoId, title }: { photoSlug?: string; photoId: string; title: string }) {
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const url = typeof window !== "undefined" ? `${window.location.origin}/photo/${photoId}` : "";
+  const photoPath = photoSlug ? `/photo/${photoSlug}` : `/photo/${photoId}`;
+  const url = typeof window !== "undefined" ? `${window.location.origin}${photoPath}` : "";
   const encodedUrl = encodeURIComponent(url);
   const encodedTitle = encodeURIComponent(title);
 

@@ -4,6 +4,7 @@ export const PHOTO_DETAILS = gql`
   fragment photoDetails on Photo {
     id
     title
+    slug
     year
     description
     tags

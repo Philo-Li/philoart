@@ -2,6 +2,7 @@
 export interface Photo {
   id: string;
   title: string;
+  slug?: string;
   year?: number;
   description?: string;
   tags?: string;
@@ -77,6 +78,11 @@ export interface Edge<T> {
 export interface Connection<T> {
   edges: Edge<T>[];
   pageInfo: PageInfo;
+}
+
+// URL helpers
+export function photoHref(photo: { id: string; slug?: string }): string {
+  return photo.slug ? `/photo/${photo.slug}` : `/photo/${photo.id}`;
 }
 
 // Auth types
