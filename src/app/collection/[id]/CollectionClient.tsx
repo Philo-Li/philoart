@@ -6,7 +6,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/navigation";
 import { GET_COLLECTION } from "@/graphql/queries";
 import { DELETE_COLLECTION, EDIT_COLLECTION } from "@/graphql/mutations";
-import { PhotoCard } from "@/components/photo";
+import { PhotoGrid } from "@/components/photo";
 import { Photo } from "@/types";
 
 interface Collection {
@@ -212,33 +212,12 @@ export default function CollectionClient({ initialCollection }: Props) {
       </div>
 
       {/* Photos Grid */}
-      {photos.length > 0 ? (
-        <>
-          <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4">
-            {photos.map((photo) => (
-              <div key={photo.id} className="break-inside-avoid">
-                <PhotoCard photo={photo} />
-              </div>
-            ))}
-          </div>
-
-          {hasNextPage && (
-            <div className="row-item-2">
-              <button
-                onClick={handleLoadMore}
-                disabled={loading}
-                className="more-photos-btn"
-              >
-                {loading ? "Loading..." : "More photos"}
-              </button>
-            </div>
-          )}
-        </>
-      ) : (
-        <div className="text-center py-12 text-gray-500">
-          No photos in this collection yet
-        </div>
-      )}
+      <PhotoGrid
+        photos={photos}
+        loading={loading}
+        hasNextPage={hasNextPage}
+        onLoadMore={handleLoadMore}
+      />
 
       {showEditModal && (
         <div className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center p-4">
