@@ -274,10 +274,13 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
           </div>
         )}
 
-        {/* EXIF / Photo Details */}
+        {/* EXIF / Photo Details (collapsible) */}
         {(hasExifData || photo.width) && (
-          <div className="border-t pt-6 mb-8">
-            <div className="flex flex-wrap gap-x-8 gap-y-3 text-sm">
+          <details className="mb-8">
+            <summary className="text-sm text-gray-500 cursor-pointer hover:text-gray-700 select-none">
+              <i className="bi bi-camera mr-1.5" />Photo Details
+            </summary>
+            <div className="flex flex-wrap gap-x-8 gap-y-3 text-sm mt-3">
               {photo.width && photo.height && (
                 <DetailItem icon="bi-aspect-ratio" label="Dimensions" value={`${photo.width} × ${photo.height}`} />
               )}
@@ -303,12 +306,12 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
                 <DetailItem icon="bi-calendar-event" label="Taken" value={formatDate(photo.dateTaken)} />
               )}
             </div>
-          </div>
+          </details>
         )}
 
         {/* Related Tags */}
         {relatedTags.length > 0 && (
-          <div className="border-t pt-6 mb-8">
+          <div className="mb-8">
             <div className="flex flex-wrap gap-2">
               {relatedTags.map((tag) => (
                 <Link
@@ -326,7 +329,7 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
 
       {/* Similar Photos */}
       {relatedPhotos.length > 0 && (
-        <div className="border-t">
+        <div>
           <div className="max-w-4xl mx-auto px-6 pt-8 pb-2">
             <h3 className="text-lg font-semibold text-gray-900">Similar Photos</h3>
           </div>
