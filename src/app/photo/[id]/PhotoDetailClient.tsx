@@ -270,8 +270,8 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
           {/* Left: Featured in */}
           {photo.type && (
             <div className="flex-shrink-0">
-              <p className="text-xs text-gray-400">Featured in</p>
-              <p className="text-sm font-semibold text-gray-900">{photo.type}</p>
+              <p className="text-xs text-gray-400 leading-none">Featured in</p>
+              <p className="text-sm font-semibold text-black leading-none mt-1">{photo.type}</p>
             </div>
           )}
 
