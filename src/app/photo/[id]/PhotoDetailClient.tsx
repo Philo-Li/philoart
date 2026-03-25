@@ -172,16 +172,16 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
 
   return (
     <div>
-      {/* Top Bar: Author + Actions */}
-      <div className="max-w-[1100px] mx-auto px-6 py-3 flex items-center justify-between">
+      {/* Author + Actions Bar */}
+      <div className="max-w-[1100px] mx-auto px-5 py-3 flex items-center justify-between">
         <Link href={`/${photo.user?.username}`} className="flex items-center gap-3 group">
           <img
             src={photo.user?.profileImage || defaultAvatar}
             alt="avatar"
-            className="w-9 h-9 rounded-full object-cover"
+            className="w-8 h-8 rounded-full object-cover"
           />
           <div>
-            <p className="font-semibold text-gray-900 group-hover:underline text-sm leading-tight">
+            <p className="font-semibold text-gray-900 group-hover:underline text-[13px] leading-tight">
               {photo.user?.firstName} {photo.user?.lastName || ""}
             </p>
             {photo.user?.description && (
@@ -190,51 +190,51 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
           </div>
         </Link>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5">
           <button
             onClick={handleLike}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md border text-sm transition-colors ${
+            className={`p-2 rounded-md border transition-colors ${
               photo.isLiked
-                ? "bg-red-50 border-red-200 text-red-600"
-                : "border-gray-200 text-gray-600 hover:bg-gray-50"
+                ? "bg-red-50 border-red-200 text-red-500"
+                : "border-gray-200 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
             }`}
           >
-            <i className={photo.isLiked ? "bi bi-heart-fill" : "bi bi-heart"} />
+            <i className={`${photo.isLiked ? "bi bi-heart-fill" : "bi bi-heart"} text-[15px]`} />
           </button>
 
           <button
             onClick={() => (userId ? setShowCollectModal(true) : (window.location.href = "/signin"))}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md border text-sm transition-colors ${
+            className={`p-2 rounded-md border transition-colors ${
               photo.isCollected
-                ? "bg-blue-50 border-blue-200 text-blue-600"
-                : "border-gray-200 text-gray-600 hover:bg-gray-50"
+                ? "bg-blue-50 border-blue-200 text-blue-500"
+                : "border-gray-200 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
             }`}
           >
-            <i className={photo.isCollected ? "bi bi-bookmark-fill" : "bi bi-bookmark"} />
+            <i className={`${photo.isCollected ? "bi bi-bookmark-fill" : "bi bi-plus-lg"} text-[15px]`} />
           </button>
 
           {photo.allowDownload ? (
             <button
               onClick={handleDownload}
-              className="flex items-center gap-1.5 px-4 py-1.5 rounded-md bg-gray-900 text-white text-sm hover:bg-gray-800 transition-colors"
+              className="flex items-center gap-1.5 px-4 py-2 rounded-md bg-gray-900 text-white text-sm hover:bg-gray-800 transition-colors ml-1"
             >
-              <i className="bi bi-download" />
+              <i className="bi bi-download text-xs" />
               Download
             </button>
           ) : (
             <button
-              className="flex items-center gap-1.5 px-4 py-1.5 rounded-md bg-gray-200 text-gray-400 text-sm cursor-not-allowed"
+              className="flex items-center gap-1.5 px-4 py-2 rounded-md bg-gray-200 text-gray-400 text-sm cursor-not-allowed ml-1"
               disabled
             >
-              <i className="bi bi-download" />
+              <i className="bi bi-download text-xs" />
               Download
             </button>
           )}
         </div>
       </div>
 
-      {/* Photo */}
-      <div className="w-full flex justify-center bg-gray-50 py-4">
+      {/* Photo — edge to edge */}
+      <div className="w-full flex justify-center">
         <Image
           src={photo.srcOriginal || photo.srcLarge || photo.srcSmall || ""}
           alt={photo.title || "Artwork"}
