@@ -282,7 +282,7 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
         </div>
 
         {/* Title */}
-        <h1 className="text-lg font-bold text-black mb-2">{photo.title}</h1>
+        <h1 className="text-xl font-bold text-black mb-2">{photo.title}</h1>
 
         {/* Description */}
         {photo.description && (
@@ -361,7 +361,7 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
               <Link
                 key={tag}
                 href={`/search?q=${encodeURIComponent(tag)}`}
-                className="px-4 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-md text-sm text-gray-700 transition-colors"
+                className="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-md text-sm text-black transition-colors"
               >
                 {tag}
               </Link>
