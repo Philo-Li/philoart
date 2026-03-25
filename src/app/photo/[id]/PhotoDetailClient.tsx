@@ -179,7 +179,7 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
           alt={photo.title || "Artwork"}
           width={photo.width || 1200}
           height={photo.height || 800}
-          className="max-w-[80%] max-h-[calc(100vh-80px)] object-contain"
+          className="max-w-[80%] max-h-[85vh] object-contain"
           priority
         />
       </div>
