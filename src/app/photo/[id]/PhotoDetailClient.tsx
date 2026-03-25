@@ -266,7 +266,7 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
 
       {/* Color Palette */}
       {photo.allColors && (
-        <div className="flex gap-2 px-6 py-3">
+        <div className="flex gap-2 px-6 py-3 justify-center">
           {photo.allColors.split(",").map((c) => c.trim()).filter(Boolean).map((color, index) => (
             <div
               key={index}
