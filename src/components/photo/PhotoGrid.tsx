@@ -121,7 +121,7 @@ export default function PhotoGrid({
   }
 
   return (
-    <div className="p-3">
+    <div className="p-3 max-w-[1360px] mx-auto">
       <div className="flex gap-3">
         {columns.map((column, colIndex) => (
           <div key={colIndex} className="flex-1 flex flex-col gap-3">
