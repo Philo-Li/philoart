@@ -67,6 +67,7 @@ export const GET_PHOTO = gql`
         firstName
         lastName
         profileImage
+        description
       }
       likeCount
       collectionCount

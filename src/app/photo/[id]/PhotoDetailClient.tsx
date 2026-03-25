@@ -184,6 +184,9 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
             <p className="font-semibold text-gray-900 group-hover:underline text-sm leading-tight">
               {photo.user?.firstName} {photo.user?.lastName || ""}
             </p>
+            {photo.user?.description && (
+              <p className="text-xs text-gray-400 leading-tight mt-0.5 line-clamp-1">{photo.user.description}</p>
+            )}
           </div>
         </Link>
 
