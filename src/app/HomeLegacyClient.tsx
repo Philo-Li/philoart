@@ -129,7 +129,7 @@ export default function HomeLegacyClient() {
                 value={heroQuery}
                 onChange={(e) => setHeroQuery(e.target.value)}
                 placeholder="Search photos, art, artists..."
-                className="w-full px-7 py-4 pr-14 rounded-full bg-white/15 backdrop-blur-md text-white text-base placeholder-white/50 border border-white/25 outline-none focus:bg-white/25 focus:border-white/50 transition-all duration-300"
+                className="w-full px-7 py-4 pr-14 rounded-full bg-transparent text-white text-base placeholder-white/40 border-b border-white/30 border-t-0 border-l-0 border-r-0 outline-none focus:bg-white/15 focus:border-b-white/60 focus:backdrop-blur-md transition-all duration-300"
               />
               <button
                 type="submit"
