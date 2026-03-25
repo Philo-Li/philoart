@@ -264,8 +264,8 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
         />
       </div>
 
-      {/* Below Photo: Featured in + Share */}
-      <div className="max-w-[1100px] mx-auto px-6">
+      {/* Below Photo: Info Section */}
+      <div className="mx-auto px-6">
         <div className="flex items-center justify-between py-5">
           {photo.type && (
             <div>
@@ -373,7 +373,7 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
       {/* Similar Photos */}
       {relatedPhotos.length > 0 && (
         <div>
-          <div className="max-w-[1100px] mx-auto px-6 pt-6 pb-3">
+          <div className="mx-auto px-6 pt-6 pb-3">
             <h3 className="text-xl font-bold text-gray-900">Similar Photos</h3>
           </div>
           <PhotoGrid
