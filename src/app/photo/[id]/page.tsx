@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { getClient } from "@/lib/apollo-client";
 import { GET_PHOTO } from "@/graphql/queries";
+import { parsePhotoIdFromParam } from "@/types";
 import PhotoDetailClient from "./PhotoDetailClient";
 
 // ISR: Revalidate every 60 seconds
@@ -10,13 +11,18 @@ interface Props {
   params: Promise<{ id: string }>;
 }
 
+function resolveVariables(rawParam: string) {
+  const extracted = parsePhotoIdFromParam(rawParam);
+  // If extraction found an ID (contains uppercase/underscore), query by id
+  // Otherwise treat the whole param as a slug (fallback to ID in backend)
+  const hasUpperCase = /[A-Z_]/.test(extracted);
+  return hasUpperCase ? { id: extracted } : { slug: rawParam };
+}
+
 // Generate dynamic metadata for SEO
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { id } = await params;
-
-  // Determine if the param is an old-style ID or a new slug
-  const hasUpperCase = /[A-Z_]/.test(id);
-  const variables = hasUpperCase ? { id } : { slug: id };
+  const { id: rawParam } = await params;
+  const variables = resolveVariables(rawParam);
 
   try {
     const { data } = await getClient().query({
@@ -63,10 +69,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function PhotoPage({ params }: Props) {
-  const { id } = await params;
-
-  const hasUpperCase = /[A-Z_]/.test(id);
-  const variables = hasUpperCase ? { id } : { slug: id };
+  const { id: rawParam } = await params;
+  const variables = resolveVariables(rawParam);
 
   // Fetch photo data on server
   let photo = null;

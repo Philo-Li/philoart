@@ -437,7 +437,7 @@ function ShareButton({ photoSlug, photoId, title }: { photoSlug?: string; photoI
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const photoPath = photoSlug ? `/photo/${photoSlug}` : `/photo/${photoId}`;
+  const photoPath = photoSlug ? `/photo/${photoSlug}-${photoId}` : `/photo/${photoId}`;
   const url = typeof window !== "undefined" ? `${window.location.origin}${photoPath}` : "";
   const encodedUrl = encodeURIComponent(url);
   const encodedTitle = encodeURIComponent(title);

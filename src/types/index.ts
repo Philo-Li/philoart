@@ -82,7 +82,30 @@ export interface Connection<T> {
 
 // URL helpers
 export function photoHref(photo: { id: string; slug?: string }): string {
-  return photo.slug ? `/photo/${photo.slug}` : `/photo/${photo.id}`;
+  return photo.slug ? `/photo/${photo.slug}-${photo.id}` : `/photo/${photo.id}`;
+}
+
+/**
+ * Extract photo ID from a URL param like "slug-PHOTOID" or just "PHOTOID".
+ * Slugs are all-lowercase (a-z0-9-), while photo IDs always contain
+ * uppercase letters or underscores (from nanoid alphabet).
+ */
+export function parsePhotoIdFromParam(param: string): string {
+  const parts = param.split('-');
+  // Scan from right to find where the ID starts (first part with uppercase/underscore)
+  let idStart = parts.length;
+  for (let i = parts.length - 1; i >= 0; i--) {
+    if (/[A-Z_]/.test(parts[i])) {
+      idStart = i;
+    } else {
+      break;
+    }
+  }
+  if (idStart < parts.length) {
+    return parts.slice(idStart).join('-');
+  }
+  // No uppercase found — treat the whole param as an ID or slug
+  return param;
 }
 
 // Auth types
