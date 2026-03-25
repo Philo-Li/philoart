@@ -286,7 +286,7 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
 
         {/* Description */}
         {photo.description && (
-          <p className="text-sm text-gray-500 leading-relaxed mb-5">{photo.description}</p>
+          <p className="text-sm text-black leading-relaxed mb-5">{photo.description}</p>
         )}
 
         {/* Published + License */}
