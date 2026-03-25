@@ -1,18 +1,22 @@
 "use client";
 
-import { FormEvent, MouseEvent, useMemo, useState } from "react";
+import { FormEvent, MouseEvent, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function Navbar() {
   const router = useRouter();
 
-  const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
-  const username = typeof window !== "undefined" ? localStorage.getItem("username") : null;
-
+  const [token, setToken] = useState<string | null>(null);
+  const [username, setUsername] = useState<string | null>(null);
   const [keyword, setKeyword] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const [accountOpen, setAccountOpen] = useState(false);
+
+  useEffect(() => {
+    setToken(localStorage.getItem("token"));
+    setUsername(localStorage.getItem("username"));
+  }, []);
 
   const profileHref = useMemo(() => (username ? `/${username}` : "/signin"), [username]);
 
