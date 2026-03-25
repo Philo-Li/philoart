@@ -173,7 +173,7 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
   return (
     <div>
       {/* Author + Actions Bar */}
-      <div className="max-w-[1100px] mx-auto px-5 py-3 flex items-center justify-between">
+      <div className="mx-auto py-3 flex items-center justify-between" style={{ maxWidth: "calc(100% - 48px)" }}>
         <Link href={`/${photo.user?.username}`} className="flex items-center gap-2.5 group">
           <img
             src={photo.user?.profileImage || defaultAvatar}
@@ -252,8 +252,8 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
         </div>
       </div>
 
-      {/* Photo — edge to edge */}
-      <div className="w-full flex justify-center">
+      {/* Photo */}
+      <div className="w-full flex justify-center px-6">
         <Image
           src={photo.srcOriginal || photo.srcLarge || photo.srcSmall || ""}
           alt={photo.title || "Artwork"}
