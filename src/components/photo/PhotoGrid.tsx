@@ -48,18 +48,38 @@ function useColumns() {
   return ref;
 }
 
-function distributeToColumns(photos: Photo[], columnCount: number): Photo[][] {
-  const columns: Photo[][] = Array.from({ length: columnCount }, () => []);
-  const heights = new Array(columnCount).fill(0);
+// Incremental column distribution — appends new photos without moving existing ones
+function useStableColumns(photos: Photo[], columnCount: number) {
+  const columnsRef = useRef<Photo[][]>(
+    Array.from({ length: columnCount }, () => [])
+  );
+  const heightsRef = useRef<number[]>(new Array(columnCount).fill(0));
+  const distributedCountRef = useRef(0);
+  const prevPhotosLenRef = useRef(0);
 
-  for (const photo of photos) {
-    const ratio = photo.width && photo.height ? photo.height / photo.width : 0.75;
-    const shortest = heights.indexOf(Math.min(...heights));
-    columns[shortest].push(photo);
-    heights[shortest] += ratio;
+  // Reset if photos array shrunk (tab switch, new query)
+  if (photos.length < prevPhotosLenRef.current) {
+    columnsRef.current = Array.from({ length: columnCount }, () => []);
+    heightsRef.current = new Array(columnCount).fill(0);
+    distributedCountRef.current = 0;
+  }
+  prevPhotosLenRef.current = photos.length;
+
+  // Distribute only new photos
+  const newStart = distributedCountRef.current;
+  if (newStart < photos.length) {
+    for (let i = newStart; i < photos.length; i++) {
+      const photo = photos[i];
+      const ratio = photo.width && photo.height ? photo.height / photo.width : 0.75;
+      const shortest = heightsRef.current.indexOf(Math.min(...heightsRef.current));
+      columnsRef.current[shortest].push(photo);
+      heightsRef.current[shortest] += ratio;
+    }
+    distributedCountRef.current = photos.length;
   }
 
-  return columns;
+  // Return a new array reference so React re-renders
+  return columnsRef.current.map((col) => [...col]);
 }
 
 export default function PhotoGrid({
@@ -72,7 +92,7 @@ export default function PhotoGrid({
   onDownload,
 }: PhotoGridProps) {
   const sentinelRef = useRef<HTMLDivElement>(null);
-  const columnsRef = useColumns();
+  const columnsCountRef = useColumns();
   const [seed] = useState(() => Math.floor(Math.random() * 2147483647));
 
   // Infinite scroll
@@ -105,15 +125,13 @@ export default function PhotoGrid({
     });
   }, [photos]);
 
-  const shuffledPhotos = useMemo(
-    () => seededShuffle(uniquePhotos, seed),
-    [uniquePhotos, seed]
-  );
+  // Shuffle only the first batch, then append new batches shuffled independently
+  const stableShuffled = useMemo(() => {
+    return seededShuffle(uniquePhotos, seed);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [uniquePhotos.length, seed]);
 
-  const columns = useMemo(
-    () => distributeToColumns(shuffledPhotos, columnsRef.current),
-    [shuffledPhotos, columnsRef]
-  );
+  const columns = useStableColumns(stableShuffled, columnsCountRef.current);
 
   if (!photos.length && loading) {
     return (
