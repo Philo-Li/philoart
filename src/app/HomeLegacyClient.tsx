@@ -117,11 +117,11 @@ export default function HomeLegacyClient() {
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
-        <div className="absolute inset-0 flex flex-col items-center justify-end pb-20 md:pb-24 px-6 text-center">
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-4 tracking-tight">
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
+          <h1 style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)", fontWeight: 800, color: "#fff", marginBottom: 16, letterSpacing: "-0.02em", lineHeight: 1.1 }}>
             Share your artworks<br className="hidden sm:block" /> with the world
           </h1>
-          <p className="text-base md:text-lg text-white/70 mb-10 max-w-md font-light leading-relaxed">
+          <p style={{ fontSize: "clamp(1rem, 1.5vw, 1.25rem)", color: "rgba(255,255,255,0.7)", marginBottom: 40, maxWidth: 480, fontWeight: 300, lineHeight: 1.6 }}>
             Discover, create, and collect beautiful photography and art from artists around the globe
           </p>
           <form onSubmit={handleHeroSearch} className="w-full max-w-xl">
