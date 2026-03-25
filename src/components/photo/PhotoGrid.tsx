@@ -21,6 +21,7 @@ interface PhotoGridProps {
   loading?: boolean;
   fetchingMore?: boolean;
   hasNextPage?: boolean;
+  shuffle?: boolean;
   onLoadMore?: () => void;
   onLike?: (photo: Photo) => void;
   onDownload?: (photo: Photo) => void;
@@ -87,13 +88,19 @@ export default function PhotoGrid({
   loading,
   fetchingMore,
   hasNextPage,
+  shuffle = false,
   onLoadMore,
   onLike,
   onDownload,
 }: PhotoGridProps) {
   const sentinelRef = useRef<HTMLDivElement>(null);
   const columnsCountRef = useColumns();
-  const [seed] = useState(() => Math.floor(Math.random() * 2147483647));
+
+  // Deterministic seed based on today's date — same on server and client
+  const seed = useMemo(() => {
+    const d = new Date();
+    return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+  }, []);
 
   // Infinite scroll
   const handleIntersect = useCallback(
@@ -125,11 +132,11 @@ export default function PhotoGrid({
     });
   }, [photos]);
 
-  // Shuffle only the first batch, then append new batches shuffled independently
   const stableShuffled = useMemo(() => {
+    if (!shuffle) return uniquePhotos;
     return seededShuffle(uniquePhotos, seed);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [uniquePhotos.length, seed]);
+  }, [uniquePhotos.length, seed, shuffle]);
 
   const columns = useStableColumns(stableShuffled, columnsCountRef.current);
 

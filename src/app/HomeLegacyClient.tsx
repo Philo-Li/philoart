@@ -46,6 +46,7 @@ function PhotosByType({ type }: { type?: string }) {
       loading={loading}
       fetchingMore={fetchingMore}
       hasNextPage={hasNextPage}
+      shuffle
       onLoadMore={fetchMore}
     />
   );
