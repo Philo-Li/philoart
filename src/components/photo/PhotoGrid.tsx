@@ -19,6 +19,7 @@ function seededShuffle(arr: Photo[], seed: number): Photo[] {
 interface PhotoGridProps {
   photos: Photo[];
   loading?: boolean;
+  fetchingMore?: boolean;
   hasNextPage?: boolean;
   onLoadMore?: () => void;
   onLike?: (photo: Photo) => void;
@@ -64,6 +65,7 @@ function distributeToColumns(photos: Photo[], columnCount: number): Photo[][] {
 export default function PhotoGrid({
   photos,
   loading,
+  fetchingMore,
   hasNextPage,
   onLoadMore,
   onLike,
@@ -149,7 +151,7 @@ export default function PhotoGrid({
       {/* Sentinel for infinite scroll */}
       <div ref={sentinelRef} className="h-1" />
 
-      {loading && (
+      {(fetchingMore || (loading && photos.length > 0)) && (
         <div className="flex justify-center py-8">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900" />
         </div>

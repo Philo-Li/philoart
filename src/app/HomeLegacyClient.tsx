@@ -33,7 +33,7 @@ const homeCategories = [
 function PhotosByType({ type }: { type?: string }) {
   const userId = typeof window !== "undefined" ? localStorage.getItem("userId") : null;
 
-  const { photos, loading, hasNextPage, fetchMore } = usePhotos({
+  const { photos, loading, fetchingMore, hasNextPage, fetchMore } = usePhotos({
     checkUserLike: userId || undefined,
     checkUserCollect: userId || undefined,
     first: 20,
@@ -44,6 +44,7 @@ function PhotosByType({ type }: { type?: string }) {
     <PhotoGrid
       photos={photos}
       loading={loading}
+      fetchingMore={fetchingMore}
       hasNextPage={hasNextPage}
       onLoadMore={fetchMore}
     />

@@ -1,6 +1,6 @@
 "use client";
 
-import { useQuery } from "@apollo/client";
+import { useQuery, NetworkStatus } from "@apollo/client";
 import { GET_PHOTOS } from "@/graphql/queries";
 import { Photo, Connection } from "@/types";
 
@@ -20,13 +20,16 @@ interface PhotosData {
 }
 
 export function usePhotos(variables: UsePhotosVariables = {}) {
-  const { data, fetchMore, refetch, loading, error } = useQuery<PhotosData>(GET_PHOTOS, {
+  const { data, fetchMore, refetch, loading, error, networkStatus } = useQuery<PhotosData>(GET_PHOTOS, {
     fetchPolicy: "cache-and-network",
+    notifyOnNetworkStatusChange: true,
     variables: {
       first: 20,
       ...variables,
     },
   });
+
+  const fetchingMore = networkStatus === NetworkStatus.fetchMore;
 
   const handleFetchMore = () => {
     const canFetchMore = !loading && data?.photos.pageInfo.hasNextPage;
@@ -65,6 +68,7 @@ export function usePhotos(variables: UsePhotosVariables = {}) {
     totalCount: data?.photos.pageInfo.totalCount ?? 0,
     refetch,
     loading,
+    fetchingMore,
     error,
   };
 }
