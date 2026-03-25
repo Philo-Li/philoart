@@ -270,8 +270,8 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
           {/* Left: Featured in */}
           {photo.type && (
             <div className="flex-shrink-0">
-              <p className="text-xs text-gray-400 leading-none">Featured in</p>
-              <p className="text-sm font-semibold text-black leading-none mt-1">{photo.type}</p>
+              <p style={{ fontSize: 12, color: "#9ca3af", lineHeight: 1, margin: 0 }}>Featured in</p>
+              <p style={{ fontSize: 14, fontWeight: 600, color: "#000", lineHeight: 1, margin: 0, marginTop: 4 }}>{photo.type}</p>
             </div>
           )}
 
@@ -311,11 +311,11 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
         </div>
 
         {/* Title */}
-        <h1 className="text-xl font-bold text-black mb-2">{photo.title}</h1>
+        <h1 style={{ fontSize: 20, fontWeight: 700, color: "#000", marginBottom: 8 }}>{photo.title}</h1>
 
         {/* Description */}
         {photo.description && (
-          <p className="text-sm text-black leading-relaxed mb-5">{photo.description}</p>
+          <p style={{ fontSize: 14, color: "#000", lineHeight: 1.6, marginBottom: 20 }}>{photo.description}</p>
         )}
 
         {/* Published + License */}
