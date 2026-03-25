@@ -3,7 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { useMutation } from "@apollo/client";
 import { Photo } from "@/types";
+import { LIKE_PHOTO, UNLIKE_PHOTO } from "@/graphql/mutations";
 
 interface PhotoCardProps {
   photo: Photo;
@@ -14,24 +16,48 @@ interface PhotoCardProps {
 
 const defaultAvatar = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
 
-export default function PhotoCard({ photo, onLike, onCollect, onDownload }: PhotoCardProps) {
+export default function PhotoCard({ photo, onCollect, onDownload }: PhotoCardProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [hovered, setHovered] = useState(false);
+  const [liked, setLiked] = useState(!!photo.isLiked);
+  const [collected, setCollected] = useState(!!photo.isCollected);
+
+  const [likePhotoMut] = useMutation(LIKE_PHOTO);
+  const [unlikePhotoMut] = useMutation(UNLIKE_PHOTO);
 
   if (!photo) return null;
 
   const bgColor = photo.color || "#84B0B3";
   const aspectRatio = photo.width && photo.height ? photo.width / photo.height : 4 / 3;
 
-  const handleLike = (e: React.MouseEvent) => {
+  const handleLike = async (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    onLike?.(photo);
+
+    const userId = localStorage.getItem("userId");
+    if (!userId) {
+      window.location.href = "/signin";
+      return;
+    }
+
+    const next = !liked;
+    setLiked(next);
+
+    try {
+      if (next) {
+        await likePhotoMut({ variables: { photoId: photo.id } });
+      } else {
+        await unlikePhotoMut({ variables: { photoId: photo.id } });
+      }
+    } catch {
+      setLiked(!next);
+    }
   };
 
   const handleCollect = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    setCollected(!collected);
     onCollect?.(photo);
   };
 
@@ -83,11 +109,11 @@ export default function PhotoCard({ photo, onLike, onCollect, onDownload }: Phot
         {/* Top right - Like, Collect */}
         <div className="absolute top-0 right-0 p-3 flex items-center" style={{ gap: 6 }}>
           <CardButton onClick={handleLike}>
-            <i className={`bi ${photo.isLiked ? "bi-heart-fill" : "bi-heart"}`} style={{ color: photo.isLiked ? "#f87171" : "#fff", fontSize: 16 }} />
+            <i className={`bi ${liked ? "bi-heart-fill" : "bi-heart"}`} style={{ color: liked ? "#f87171" : "#fff", fontSize: 16 }} />
           </CardButton>
 
           <CardButton onClick={handleCollect}>
-            <i className={`bi ${photo.isCollected ? "bi-bookmark-fill" : "bi-bookmark"}`} style={{ color: photo.isCollected ? "#facc15" : "#fff", fontSize: 16 }} />
+            <i className={`bi ${collected ? "bi-bookmark-fill" : "bi-bookmark"}`} style={{ color: collected ? "#facc15" : "#fff", fontSize: 16 }} />
           </CardButton>
         </div>
 
