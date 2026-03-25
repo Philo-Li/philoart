@@ -173,10 +173,7 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
   return (
     <div>
       {/* Full-width Photo */}
-      <div
-        className="w-full flex justify-center"
-        style={{ backgroundColor: photo.color || "#f3f4f6" }}
-      >
+      <div className="w-full flex justify-center">
         <Image
           src={photo.srcLarge || photo.srcSmall || ""}
           alt={photo.title || "Artwork"}
