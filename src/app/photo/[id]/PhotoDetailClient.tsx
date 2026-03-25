@@ -178,14 +178,14 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
           <img
             src={photo.user?.profileImage || defaultAvatar}
             alt="avatar"
-            className="w-8 h-8 rounded-full object-cover"
+            className="w-10 h-10 rounded-full object-cover"
           />
           <div>
-            <p className="font-semibold text-gray-900 group-hover:underline text-[13px] leading-tight">
+            <p className="font-semibold text-gray-900 group-hover:underline text-[13px] leading-none">
               {photo.user?.firstName} {photo.user?.lastName || ""}
             </p>
             {photo.user?.description && (
-              <p className="text-xs text-gray-500 mt-0.5 line-clamp-1">{photo.user.description}</p>
+              <p className="text-xs text-gray-500 leading-none mt-1 line-clamp-1">{photo.user.description}</p>
             )}
           </div>
         </Link>
