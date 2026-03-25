@@ -6,6 +6,7 @@ export const GET_PHOTOS = gql`
     $orderBy: AllPhotosOrderBy
     $orderDirection: OrderDirection
     $searchKeyword: String
+    $type: String
     $username: String
     $first: Int
     $after: String
@@ -16,6 +17,7 @@ export const GET_PHOTOS = gql`
       orderBy: $orderBy
       orderDirection: $orderDirection
       searchKeyword: $searchKeyword
+      type: $type
       username: $username
       first: $first
       after: $after

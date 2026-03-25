@@ -8,6 +8,7 @@ interface UsePhotosVariables {
   orderBy?: string;
   orderDirection?: string;
   searchKeyword?: string;
+  type?: string;
   username?: string;
   first?: number;
   after?: string;

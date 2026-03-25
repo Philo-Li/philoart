@@ -52,7 +52,7 @@ export default function ProfileClient({ initialUser, username }: Props) {
     username,
     first: 20,
     checkUserLike: userId || undefined,
-    searchKeyword: photoType || undefined,
+    type: photoType || undefined,
   });
 
   const {

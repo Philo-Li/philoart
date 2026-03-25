@@ -37,7 +37,7 @@ function PhotosByType({ type }: { type?: string }) {
     checkUserLike: userId || undefined,
     checkUserCollect: userId || undefined,
     first: 20,
-    searchKeyword: type || undefined,
+    type: type || undefined,
   });
 
   return (
