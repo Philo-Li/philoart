@@ -285,29 +285,7 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
           )}
 
           {/* Right: Share */}
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <div
-              role="button"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 6,
-                height: 36,
-                padding: "0 14px",
-                borderRadius: 8,
-                border: "1px solid #d1d5db",
-                color: "#4b5563",
-                fontSize: 14,
-                fontWeight: 600,
-                cursor: "pointer",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#f9fafb")}
-              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
-            >
-              <i className="bi bi-share" style={{ fontSize: 14 }} />
-              Share
-            </div>
-          </div>
+          <ShareButton photoId={photo.id} title={photo.title || ""} />
         </div>
 
         {/* Title */}
@@ -452,6 +430,132 @@ function DetailItem({ icon, label, value }: { icon: string; label: string; value
       <span className="text-gray-400 w-24">{label}</span>
       <span className="text-gray-700">{value}</span>
     </li>
+  );
+}
+
+function ShareButton({ photoId, title }: { photoId: string; title: string }) {
+  const [open, setOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const url = typeof window !== "undefined" ? `${window.location.origin}/photo/${photoId}` : "";
+  const encodedUrl = encodeURIComponent(url);
+  const encodedTitle = encodeURIComponent(title);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(url);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleShareVia = () => {
+    if (navigator.share) {
+      navigator.share({ title, url }).catch(() => {});
+    }
+    setOpen(false);
+  };
+
+  return (
+    <div style={{ position: "relative" }} className="flex-shrink-0">
+      <div
+        role="button"
+        onClick={() => setOpen(!open)}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 6,
+          height: 36,
+          padding: "0 14px",
+          borderRadius: 8,
+          border: "1px solid #d1d5db",
+          color: "#4b5563",
+          fontSize: 14,
+          fontWeight: 600,
+          cursor: "pointer",
+        }}
+        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#f9fafb")}
+        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
+      >
+        <i className="bi bi-send" style={{ fontSize: 14 }} />
+        Share
+      </div>
+
+      {open && (
+        <>
+          <div style={{ position: "fixed", inset: 0, zIndex: 40 }} onClick={() => setOpen(false)} />
+          <div
+            style={{
+              position: "absolute",
+              right: 0,
+              top: "calc(100% + 6px)",
+              backgroundColor: "#fff",
+              borderRadius: 12,
+              border: "1px solid #e5e7eb",
+              boxShadow: "0 8px 24px rgba(0,0,0,0.12)",
+              padding: "8px 0",
+              minWidth: 200,
+              zIndex: 50,
+            }}
+          >
+            <ShareItem
+              icon={<svg viewBox="0 0 24 24" width="18" height="18" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>}
+              label="Facebook"
+              onClick={() => { window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`, "_blank"); setOpen(false); }}
+            />
+            <ShareItem
+              icon={<svg viewBox="0 0 24 24" width="18" height="18" fill="#E60023"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/></svg>}
+              label="Pinterest"
+              onClick={() => { window.open(`https://pinterest.com/pin/create/button/?url=${encodedUrl}&description=${encodedTitle}`, "_blank"); setOpen(false); }}
+            />
+            <ShareItem
+              icon={<svg viewBox="0 0 24 24" width="18" height="18" fill="#000"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>}
+              label="Twitter"
+              onClick={() => { window.open(`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`, "_blank"); setOpen(false); }}
+            />
+            <ShareItem
+              icon={<i className="bi bi-envelope-fill" style={{ fontSize: 16, color: "#6b7280" }} />}
+              label="Email"
+              onClick={() => { window.open(`mailto:?subject=${encodedTitle}&body=${encodedUrl}`, "_self"); setOpen(false); }}
+            />
+            {typeof navigator !== "undefined" && !!navigator.share && (
+              <ShareItem
+                icon={<i className="bi bi-send" style={{ fontSize: 16, color: "#6b7280" }} />}
+                label="Share via..."
+                onClick={handleShareVia}
+              />
+            )}
+            <div style={{ borderTop: "1px solid #e5e7eb", margin: "4px 0" }} />
+            <ShareItem
+              icon={<i className="bi bi-link-45deg" style={{ fontSize: 18, color: "#6b7280" }} />}
+              label={copied ? "Copied!" : "Copy link"}
+              onClick={handleCopy}
+            />
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+function ShareItem({ icon, label, onClick }: { icon: React.ReactNode; label: string; onClick: () => void }) {
+  return (
+    <div
+      role="button"
+      onClick={onClick}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: 12,
+        padding: "10px 16px",
+        cursor: "pointer",
+        fontSize: 14,
+        color: "#111827",
+      }}
+      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#f3f4f6")}
+      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
+    >
+      <span style={{ width: 20, display: "flex", justifyContent: "center" }}>{icon}</span>
+      {label}
+    </div>
   );
 }
 
