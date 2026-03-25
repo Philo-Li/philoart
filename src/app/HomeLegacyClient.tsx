@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
-import Carousel from "react-bootstrap/Carousel";
+import { useRouter } from "next/navigation";
 import { useQuery } from "@apollo/client";
 import { GET_COLLECTIONS } from "@/graphql/queries";
 import { usePhotos } from "@/hooks";
@@ -94,48 +94,53 @@ function CollectionsTab() {
 
 export default function HomeLegacyClient() {
   const [key, setKey] = useState("freetouse");
+  const [heroQuery, setHeroQuery] = useState("");
+  const router = useRouter();
+
+  const handleHeroSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    const q = heroQuery.trim();
+    router.push(q ? `/search?q=${encodeURIComponent(q)}` : "/discover");
+  };
 
   return (
     <div>
-      <div>
-        <Carousel fade>
-          <Carousel.Item>
-            <div className="jumbotron-slice-1" />
-            <Carousel.Caption>
-              <form
-                className="searchbar"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  const form = e.currentTarget as HTMLFormElement;
-                  const input = form.elements.namedItem("q") as HTMLInputElement | null;
-                  const q = input?.value?.trim() || "";
-                  window.location.href = q ? `/search?q=${encodeURIComponent(q)}` : "/discover";
-                }}
+      {/* Hero */}
+      <section className="relative h-[70vh] min-h-[480px] max-h-[720px] overflow-hidden">
+        <Image
+          src="https://cdn.philoart.io/b/1200x1200/ejt2Vbza56UViZTf2vEHY.jpg"
+          alt="PhiloArt Hero"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
+          <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-4 tracking-tight">
+            Share your artworks<br className="hidden sm:block" /> with the world
+          </h1>
+          <p className="text-lg md:text-xl text-white/80 mb-8 max-w-xl">
+            Discover, create, and collect beautiful photography and art
+          </p>
+          <form onSubmit={handleHeroSearch} className="w-full max-w-lg">
+            <div className="relative">
+              <input
+                type="text"
+                value={heroQuery}
+                onChange={(e) => setHeroQuery(e.target.value)}
+                placeholder="Search photos, art, artists..."
+                className="w-full px-6 py-4 pr-14 rounded-full bg-white/95 backdrop-blur text-gray-900 text-lg placeholder-gray-400 shadow-xl outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <button
+                type="submit"
+                className="absolute right-2 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-gray-900 hover:bg-gray-800 transition-colors"
               >
-                <div className="container-row-searchbar">
-                  <input type="text" name="q" placeholder="Search photos..." />
-                </div>
-              </form>
-              <h3 className="jumbotron-header">Share your artworks with the world.</h3>
-              <p className="jumbotron-subheader">Create, and Post it</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <div className="jumbotron-slice-2" />
-            <Carousel.Caption>
-              <h3 className="jumbotron-header">Create, Mint, and Sell</h3>
-              <p className="jumbotron-subheader">Discover the best NFTs(Upcoming).</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <div className="jumbotron-slice-3" />
-            <Carousel.Caption>
-              <h3 className="jumbotron-header">Discover the best artworks.</h3>
-              <p className="jumbotron-subheader">Free for personal use and download.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-        </Carousel>
-      </div>
+                <i className="bi bi-search text-white text-lg" />
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 px-4 py-6">
         {homeCategories.map((collection) => (
