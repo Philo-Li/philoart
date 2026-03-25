@@ -116,10 +116,8 @@ export default function HomeLegacyClient() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
         <div className="absolute inset-0 flex flex-col items-center justify-end pb-20 md:pb-24 px-6 text-center">
-          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-5 tracking-wide leading-tight">
-            Share Your Art
-            <br />
-            <span className="italic">With the World</span>
+          <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-4 tracking-tight">
+            Share your artworks<br className="hidden sm:block" /> with the world
           </h1>
           <p className="text-base md:text-lg text-white/70 mb-10 max-w-md font-light leading-relaxed">
             Discover, create, and collect beautiful photography and art from artists around the globe
