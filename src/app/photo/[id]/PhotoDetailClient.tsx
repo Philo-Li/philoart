@@ -185,7 +185,7 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
               {photo.user?.firstName} {photo.user?.lastName || ""}
             </p>
             {photo.user?.description && (
-              <p className="text-xs text-gray-400 leading-tight mt-0.5 line-clamp-1">{photo.user.description}</p>
+              <p className="text-xs text-gray-500 mt-0.5 line-clamp-1">{photo.user.description}</p>
             )}
           </div>
         </Link>
