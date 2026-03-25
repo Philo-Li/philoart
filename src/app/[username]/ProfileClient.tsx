@@ -204,7 +204,7 @@ export default function ProfileClient({ initialUser, username }: Props) {
       >
         <Tab eventKey="photograph" title="Photograph">
           <PhotoGrid
-            photos={photos}
+            photos={filteredPhotos}
             loading={loading}
             hasNextPage={hasNextPage}
             onLoadMore={fetchMore}
