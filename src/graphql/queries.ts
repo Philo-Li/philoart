@@ -224,6 +224,12 @@ export const GET_COLLECTION = gql`
           node {
             photo {
               ...photoDetails
+              user {
+                username
+                firstName
+                lastName
+                profileImage
+              }
               isLiked(checkUserLike: $checkUserLike)
             }
           }
