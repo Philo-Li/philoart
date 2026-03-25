@@ -248,7 +248,7 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
       {/* Info Section */}
       <div className="max-w-4xl mx-auto px-6 py-6">
         {/* Title & Description */}
-        <h1 className="text-xl font-bold text-gray-900 mb-2">{photo.title}</h1>
+        <h1 className="text-base font-semibold text-gray-900 mb-2">{photo.title}</h1>
         {photo.description && (
           <p className="text-gray-600 leading-relaxed mb-4">{photo.description}</p>
         )}
@@ -256,7 +256,7 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
         {/* Meta tags */}
         <div className="flex flex-wrap gap-3 text-xs text-gray-400 mb-8">
           {photo.status && <span>Status: {photo.status}</span>}
-          {photo.license && <span>License: {photo.license}</span>}
+          {photo.license && <Link href="/license" className="hover:text-gray-600 underline">License: {photo.license}</Link>}
           {photo.type && <span>Type: {photo.type}</span>}
         </div>
 
