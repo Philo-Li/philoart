@@ -133,9 +133,9 @@ export default function HomeLegacyClient() {
               />
               <button
                 type="submit"
-                className="absolute right-3 top-1/2 -translate-y-1/2 px-5 py-2 rounded-full bg-white text-gray-900 text-sm font-medium hover:bg-white/90 active:scale-95 transition-all duration-200"
+                className="absolute right-2 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-white/10 hover:bg-white/25 active:scale-95 transition-all duration-200"
               >
-                Search
+                <i className="bi bi-search text-white" />
               </button>
             </div>
           </form>
