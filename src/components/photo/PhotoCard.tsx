@@ -68,8 +68,8 @@ export default function PhotoCard({ photo, onLike, onCollect, onDownload }: Phot
       </div>
 
       {/* Hover overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent transition-opacity duration-300 opacity-0 group-hover:opacity-100 pointer-events-none">
-        <div className="absolute bottom-0 left-0 right-0 p-3 flex items-end justify-between pointer-events-auto">
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent transition-opacity duration-300 opacity-0 group-hover:opacity-100">
+        <div className="absolute bottom-0 left-0 right-0 p-3 flex items-end justify-between">
           {/* Left - Author */}
           <div
             className="flex items-center gap-2 min-w-0"
