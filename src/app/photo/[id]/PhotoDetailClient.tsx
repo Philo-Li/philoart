@@ -175,11 +175,11 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
       {/* Full-width Photo */}
       <div className="w-full flex justify-center">
         <Image
-          src={photo.srcLarge || photo.srcSmall || ""}
+          src={photo.srcOriginal || photo.srcLarge || photo.srcSmall || ""}
           alt={photo.title || "Artwork"}
-          width={1200}
-          height={800}
-          className="w-auto max-w-full max-h-[85vh] object-contain"
+          width={photo.width || 1200}
+          height={photo.height || 800}
+          className="w-full max-h-[calc(100vh-64px)] object-contain"
           priority
         />
       </div>
