@@ -38,10 +38,21 @@ export default function ProfileClient({ initialUser, username }: Props) {
   const userId = typeof window !== "undefined" ? localStorage.getItem("userId") : null;
   const isFollowDisabled = Boolean(userNow && userId === userNow.id);
 
-  const { photos, loading, hasNextPage, fetchMore } = usePhotos({
+  const photoType = useMemo(() => {
+    switch (key) {
+      case "photograph": return "Photograph";
+      case "painting": return "Painting";
+      case "digitalart": return "Digital Art";
+      case "drawing": return "Drawing";
+      default: return undefined;
+    }
+  }, [key]);
+
+  const { photos, loading, fetchingMore, hasNextPage, fetchMore } = usePhotos({
     username,
     first: 20,
     checkUserLike: userId || undefined,
+    searchKeyword: photoType || undefined,
   });
 
   const {
@@ -67,23 +78,6 @@ export default function ProfileClient({ initialUser, username }: Props) {
     skip: key !== "likes",
     fetchPolicy: "cache-and-network",
   });
-
-  const photoType = useMemo(() => {
-    switch (key) {
-      case "photograph":
-        return "Photograph";
-      case "painting":
-        return "Painting";
-      case "digitalart":
-        return "Digital Art";
-      case "drawing":
-        return "Drawing";
-      default:
-        return undefined; // "all", "collections", "likes"
-    }
-  }, [key]);
-
-  const filteredPhotos = photoType ? photos.filter((p) => p.type === photoType) : photos;
   const collections: Collection[] =
     collectionsData?.collections?.edges?.map((edge: { node: Collection }) => edge.node) || [];
   const likes: Photo[] =
@@ -204,7 +198,7 @@ export default function ProfileClient({ initialUser, username }: Props) {
       >
         <Tab eventKey="photograph" title="Photograph">
           <PhotoGrid
-            photos={filteredPhotos}
+            photos={photos}
             loading={loading}
             hasNextPage={hasNextPage}
             onLoadMore={fetchMore}
@@ -212,7 +206,7 @@ export default function ProfileClient({ initialUser, username }: Props) {
         </Tab>
         <Tab eventKey="painting" title="Painting">
           <PhotoGrid
-            photos={filteredPhotos}
+            photos={photos}
             loading={loading}
             hasNextPage={hasNextPage}
             onLoadMore={fetchMore}
@@ -220,7 +214,7 @@ export default function ProfileClient({ initialUser, username }: Props) {
         </Tab>
         <Tab eventKey="digitalart" title="Digital Art">
           <PhotoGrid
-            photos={filteredPhotos}
+            photos={photos}
             loading={loading}
             hasNextPage={hasNextPage}
             onLoadMore={fetchMore}
@@ -228,7 +222,7 @@ export default function ProfileClient({ initialUser, username }: Props) {
         </Tab>
         <Tab eventKey="drawing" title="Drawing">
           <PhotoGrid
-            photos={filteredPhotos}
+            photos={photos}
             loading={loading}
             hasNextPage={hasNextPage}
             onLoadMore={fetchMore}
