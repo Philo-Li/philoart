@@ -318,13 +318,16 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
           <p style={{ fontSize: 14, color: "#000", lineHeight: 1.6, marginBottom: 20 }}>{photo.description}</p>
         )}
 
-        {/* Published + License */}
+        {/* Meta info */}
         <div style={{ display: "flex", flexDirection: "column", gap: 6, marginBottom: 24 }}>
           {photo.createdAt && (
             <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 14, color: "#6b7280" }}>
               <i className="bi bi-calendar3" />
               <span>Published {formatDate(photo.createdAt)}</span>
             </div>
+          )}
+          {(photo.cameraMake || photo.cameraModel) && (
+            <ExifLine photo={photo} />
           )}
           {photo.license && (
             <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 14, color: "#6b7280" }}>
@@ -334,40 +337,6 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
           )}
         </div>
 
-        {/* EXIF / Photo Details (collapsible) */}
-        {(hasExifData || photo.width) && (
-          <details style={{ marginBottom: 24 }}>
-            <summary style={{ fontSize: 14, color: "#6b7280", cursor: "pointer" }}>
-              <i className="bi bi-camera" style={{ marginRight: 6 }} />Photo Details
-            </summary>
-            <ul className="mt-3 space-y-2 text-sm">
-              {photo.width && photo.height && (
-                <DetailItem icon="bi-aspect-ratio" label="Dimensions" value={`${photo.width} × ${photo.height}`} />
-              )}
-              {(photo.cameraMake || photo.cameraModel) && (
-                <DetailItem icon="bi-camera" label="Camera" value={[photo.cameraMake, photo.cameraModel].filter(Boolean).join(" ")} />
-              )}
-              {photo.lens && (
-                <DetailItem icon="bi-circle" label="Lens" value={photo.lens} />
-              )}
-              {photo.focalLength && (
-                <DetailItem icon="bi-search" label="Focal Length" value={`${photo.focalLength}mm`} />
-              )}
-              {photo.aperture && (
-                <DetailItem icon="bi-record-circle" label="Aperture" value={`ƒ/${photo.aperture}`} />
-              )}
-              {photo.shutterSpeed && (
-                <DetailItem icon="bi-stopwatch" label="Shutter" value={photo.shutterSpeed} />
-              )}
-              {photo.iso && (
-                <DetailItem icon="bi-sun" label="ISO" value={String(photo.iso)} />
-              )}
-              {photo.dateTaken && (
-                <DetailItem icon="bi-calendar-event" label="Taken" value={formatDate(photo.dateTaken)} />
-              )}
-            </ul>
-          </details>
-        )}
 
 
         {/* Related Tags */}
@@ -483,6 +452,74 @@ function DetailItem({ icon, label, value }: { icon: string; label: string; value
       <span className="text-gray-400 w-24">{label}</span>
       <span className="text-gray-700">{value}</span>
     </li>
+  );
+}
+
+function ExifLine({ photo }: { photo: Photo }) {
+  const [show, setShow] = useState(false);
+  const cameraName = [photo.cameraMake, photo.cameraModel].filter(Boolean).join(", ");
+
+  return (
+    <div style={{ position: "relative", display: "inline-block" }}>
+      <div
+        role="button"
+        onClick={() => setShow(!show)}
+        onMouseEnter={() => setShow(true)}
+        onMouseLeave={() => setShow(false)}
+        style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 14, color: "#6b7280", cursor: "pointer" }}
+      >
+        <i className="bi bi-camera" />
+        <span>{cameraName}</span>
+      </div>
+      {show && (
+        <div
+          style={{
+            position: "absolute",
+            left: 0,
+            bottom: "calc(100% + 8px)",
+            backgroundColor: "#111827",
+            color: "#fff",
+            borderRadius: 10,
+            padding: "16px 20px",
+            minWidth: 280,
+            zIndex: 50,
+            fontSize: 14,
+            lineHeight: 1.6,
+            boxShadow: "0 8px 24px rgba(0,0,0,0.3)",
+          }}
+          onMouseEnter={() => setShow(true)}
+          onMouseLeave={() => setShow(false)}
+        >
+          <div style={{ color: "#9ca3af", fontSize: 12, marginBottom: 2 }}>Camera</div>
+          <div style={{ fontWeight: 600, marginBottom: 12 }}>{cameraName}</div>
+
+          {(photo.lens || photo.focalLength || photo.aperture || photo.shutterSpeed || photo.iso) && (
+            <>
+              <div style={{ color: "#9ca3af", fontSize: 12, marginBottom: 2 }}>Lens</div>
+              <div style={{ marginBottom: photo.width ? 12 : 0 }}>
+                {photo.lens && <div>{photo.lens}</div>}
+                {(photo.focalLength || photo.aperture) && (
+                  <div>
+                    {photo.focalLength ? `${photo.focalLength}mm` : ""}
+                    {photo.focalLength && photo.aperture ? " " : ""}
+                    {photo.aperture ? `ƒ/${photo.aperture}` : ""}
+                  </div>
+                )}
+                {photo.shutterSpeed && <div>{photo.shutterSpeed}</div>}
+                {photo.iso && <div>ISO {photo.iso}</div>}
+              </div>
+            </>
+          )}
+
+          {photo.width && photo.height && (
+            <>
+              <div style={{ color: "#9ca3af", fontSize: 12, marginBottom: 2 }}>Dimensions</div>
+              <div>{photo.width} × {photo.height}</div>
+            </>
+          )}
+        </div>
+      )}
+    </div>
   );
 }
 
