@@ -11,7 +11,7 @@ export interface Photo {
   srcOriginal?: string;
   srcYoutube?: string;
   color?: string;
-  allColors?: string[];
+  allColors?: string;
   license?: string;
   type?: string;
   status?: string;

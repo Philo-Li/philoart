@@ -272,9 +272,9 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
       </div>
 
       {/* Color Palette */}
-      {photo.allColors && photo.allColors.length > 0 && (
+      {photo.allColors && (
         <div className="flex gap-2 justify-center mb-8">
-          {photo.allColors.map((color, index) => (
+          {photo.allColors.split(",").map((c) => c.trim()).filter(Boolean).map((color, index) => (
             <div
               key={index}
               className="w-8 h-8 rounded-full border border-gray-200 cursor-pointer hover:scale-110 transition-transform"
