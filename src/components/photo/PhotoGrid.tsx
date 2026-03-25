@@ -15,12 +15,11 @@ interface PhotoGridProps {
 
 function useColumns() {
   const getColumns = () => {
-    if (typeof window === "undefined") return 4;
+    if (typeof window === "undefined") return 3;
     const w = window.innerWidth;
-    if (w < 640) return 1;
-    if (w < 1024) return 2;
-    if (w < 1280) return 3;
-    return 4;
+    if (w < 750) return 1;
+    if (w <= 1000) return 2;
+    return 3;
   };
 
   const ref = useRef(getColumns());
