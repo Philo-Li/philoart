@@ -255,6 +255,7 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
 
         {/* Meta tags */}
         <div className="flex flex-wrap gap-3 text-xs text-gray-400 mb-8">
+          {photo.createdAt && <span>Published {formatDate(photo.createdAt)}</span>}
           {photo.status && <span>Status: {photo.status}</span>}
           {photo.license && <Link href="/license" className="hover:text-gray-600 underline">License: {photo.license}</Link>}
           {photo.type && <span>Type: {photo.type}</span>}
