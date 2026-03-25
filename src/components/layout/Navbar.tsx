@@ -53,7 +53,7 @@ export default function Navbar() {
         </form>
 
         {/* Nav Links — desktop */}
-        <div className="hidden min-[750px]:flex items-center gap-1">
+        <div className="hidden min-[1000px]:flex items-center gap-1">
           <NavLink href="/discover">Discover</NavLink>
           <NavLink href="/artists">Artists</NavLink>
           <NavLink href="/blog">Blog</NavLink>
@@ -61,7 +61,7 @@ export default function Navbar() {
         </div>
 
         {/* Right side */}
-        <div className="flex items-center gap-2 ml-auto min-[750px]:ml-0">
+        <div className="flex items-center gap-2 ml-auto min-[1000px]:ml-0">
           {!token && (
             <>
               <Link href="/signin" className="text-sm text-gray-600 hover:text-gray-900 transition-colors hidden sm:block">
@@ -114,7 +114,7 @@ export default function Navbar() {
           {/* Mobile menu toggle */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="min-[750px]:hidden p-1.5 text-gray-600 hover:text-gray-900"
+            className="min-[1000px]:hidden p-1.5 text-gray-600 hover:text-gray-900"
           >
             <i className={`bi ${menuOpen ? "bi-x-lg" : "bi-list"} text-xl`} />
           </button>
@@ -123,7 +123,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="min-[750px]:hidden border-t border-gray-100 bg-white px-4 py-3 space-y-1">
+        <div className="min-[1000px]:hidden border-t border-gray-100 bg-white px-4 py-3 space-y-1">
           <MobileNavLink href="/discover" onClick={() => setMenuOpen(false)}>Discover</MobileNavLink>
           <MobileNavLink href="/artists" onClick={() => setMenuOpen(false)}>Artists</MobileNavLink>
           <MobileNavLink href="/blog" onClick={() => setMenuOpen(false)}>Blog</MobileNavLink>
