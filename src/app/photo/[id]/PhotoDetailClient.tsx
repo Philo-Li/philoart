@@ -174,18 +174,18 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
     <div>
       {/* Author + Actions Bar */}
       <div className="max-w-[1100px] mx-auto px-5 py-3 flex items-center justify-between">
-        <Link href={`/${photo.user?.username}`} className="flex items-center gap-3 group">
+        <Link href={`/${photo.user?.username}`} className="flex items-center gap-2.5 group">
           <img
             src={photo.user?.profileImage || defaultAvatar}
             alt="avatar"
-            className="w-10 h-10 rounded-full object-cover"
+            className="w-9 h-9 rounded-full object-cover"
           />
-          <div>
-            <p className="font-semibold text-gray-900 group-hover:underline text-[13px] leading-none">
+          <div className="flex flex-col justify-center">
+            <span className="font-semibold text-gray-900 group-hover:underline text-sm leading-4">
               {photo.user?.firstName} {photo.user?.lastName || ""}
-            </p>
+            </span>
             {photo.user?.description && (
-              <p className="text-xs text-gray-500 leading-none mt-0.5 line-clamp-1">{photo.user.description}</p>
+              <span className="text-xs text-gray-500 leading-4">{photo.user.description}</span>
             )}
           </div>
         </Link>
