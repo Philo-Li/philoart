@@ -84,24 +84,22 @@ export default function PhotoCard({ photo, onLike, onCollect, onDownload }: Phot
         <div className="absolute top-0 right-0 p-3 flex items-center gap-1.5">
           <button
             onClick={handleLike}
-            className="p-1.5 rounded-md transition-colors"
-            style={{ backgroundColor: "rgba(0,0,0,0.3)" }}
+            style={{ backgroundColor: "rgba(0,0,0,0.3)", borderRadius: 6, padding: "6px 8px" }}
             onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.5)")}
             onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.3)")}
             aria-label={photo.isLiked ? "Unlike" : "Like"}
           >
-            <i className={`bi ${photo.isLiked ? "bi-heart-fill" : "bi-heart"}`} style={{ color: photo.isLiked ? "#f87171" : "#fff", fontSize: "1rem" }} />
+            <i className={`bi ${photo.isLiked ? "bi-heart-fill" : "bi-heart"}`} style={{ color: photo.isLiked ? "#f87171" : "#fff", fontSize: 16 }} />
           </button>
 
           <button
             onClick={handleCollect}
-            className="p-1.5 rounded-md transition-colors"
-            style={{ backgroundColor: "rgba(0,0,0,0.3)" }}
+            style={{ backgroundColor: "rgba(0,0,0,0.3)", borderRadius: 6, padding: "6px 8px" }}
             onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.5)")}
             onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.3)")}
             aria-label={photo.isCollected ? "Uncollect" : "Collect"}
           >
-            <i className={`bi ${photo.isCollected ? "bi-bookmark-fill" : "bi-bookmark"}`} style={{ color: photo.isCollected ? "#facc15" : "#fff", fontSize: "1rem" }} />
+            <i className={`bi ${photo.isCollected ? "bi-bookmark-fill" : "bi-bookmark"}`} style={{ color: photo.isCollected ? "#facc15" : "#fff", fontSize: 16 }} />
           </button>
         </div>
 
@@ -131,13 +129,12 @@ export default function PhotoCard({ photo, onLike, onCollect, onDownload }: Phot
           {photo.allowDownload && (
             <button
               onClick={handleDownload}
-              className="p-1.5 rounded-md transition-colors"
-              style={{ backgroundColor: "rgba(0,0,0,0.3)" }}
+              style={{ backgroundColor: "rgba(0,0,0,0.3)", borderRadius: 6, padding: "6px 8px" }}
               onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.5)")}
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.3)")}
               aria-label="Download"
             >
-              <i className="bi bi-download" style={{ color: "#fff", fontSize: "1rem" }} />
+              <i className="bi bi-download" style={{ color: "#fff", fontSize: 16 }} />
             </button>
           )}
         </div>
