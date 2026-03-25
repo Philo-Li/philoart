@@ -280,7 +280,7 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
             <summary className="text-sm text-gray-500 cursor-pointer hover:text-gray-700 select-none">
               <i className="bi bi-camera mr-1.5" />Photo Details
             </summary>
-            <div className="flex flex-wrap gap-x-8 gap-y-3 text-sm mt-3">
+            <ul className="mt-3 space-y-2 text-sm">
               {photo.width && photo.height && (
                 <DetailItem icon="bi-aspect-ratio" label="Dimensions" value={`${photo.width} × ${photo.height}`} />
               )}
@@ -305,7 +305,7 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
               {photo.dateTaken && (
                 <DetailItem icon="bi-calendar-event" label="Taken" value={formatDate(photo.dateTaken)} />
               )}
-            </div>
+            </ul>
           </details>
         )}
 
@@ -419,10 +419,10 @@ export default function PhotoDetailClient({ initialPhoto }: Props) {
 
 function DetailItem({ icon, label, value }: { icon: string; label: string; value: string }) {
   return (
-    <div className="flex items-center gap-2 text-gray-500">
-      <i className={`bi ${icon} text-gray-400`} />
-      <span className="text-gray-400">{label}</span>
-      <span className="text-gray-900 font-medium">{value}</span>
-    </div>
+    <li className="flex items-center gap-2">
+      <i className={`bi ${icon} text-gray-400 w-4 text-center`} />
+      <span className="text-gray-400 w-24">{label}</span>
+      <span className="text-gray-700">{value}</span>
+    </li>
   );
 }
