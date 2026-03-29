@@ -114,7 +114,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ]);
 
   const photoPages: MetadataRoute.Sitemap = photos.map((photo) => ({
-    url: `${BASE_URL}/photo/${photo.slug ?? photo.id}`,
+    url: photo.slug
+      ? `${BASE_URL}/photo/${photo.slug}-${photo.id}`
+      : `${BASE_URL}/photo/${photo.id}`,
     lastModified: photo.createdAt ? new Date(photo.createdAt) : undefined,
     changeFrequency: "monthly",
     priority: 0.7,
