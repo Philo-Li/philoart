@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { ApolloWrapper } from "@/lib/apollo-provider";
 import { Navbar, Footer } from "@/components/layout";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -43,6 +44,7 @@ export default function RootLayout({
           <Footer />
         </ApolloWrapper>
       </body>
+      <GoogleAnalytics gaId="G-1966J4GV9R" />
     </html>
   );
 }
