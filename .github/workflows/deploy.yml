@@ -1,0 +1,68 @@
+name: deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  IMAGE: ghcr.io/philo-li/philoart-web:${{ github.sha }}
+  SERVICE: philoart-web_web
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ env.IMAGE }}
+          labels: org.opencontainers.image.source=https://github.com/${{ github.repository }}
+          cache-from: type=gha,scope=web
+          cache-to: type=gha,mode=max,scope=web
+          build-args: |
+            NEXT_PUBLIC_GRAPHQL_URI=https://api.philoart.io/graphql
+            NEXT_PUBLIC_REST_API=https://api.philoart.io/api
+            NEXT_PUBLIC_SITE_URL=https://philoart.io
+
+      - name: Deploy to Tokyo
+        env:
+          HOOK_SECRET: ${{ secrets.TOKYO_DEPLOY_HOOK_SECRET }}
+        run: |
+          ts=$(date +%s)
+          body=$(printf '{"service":"%s","image":"%s"}' "$SERVICE" "$IMAGE")
+          sig=$(printf '%s.%s' "$ts" "$body" | openssl dgst -sha256 -hmac "$HOOK_SECRET" -r | cut -d' ' -f1)
+          curl -sS --fail-with-body -m 660 -X POST \
+            -H 'content-type: application/json' \
+            -H "x-hook-timestamp: $ts" \
+            -H "x-hook-signature: $sig" \
+            -d "$body" https://tokyo-api.sharkpro.ai/_deploy
+
+      - name: Alert on failure
+        if: failure()
+        env:
+          ALERT_SECRET: ${{ secrets.INFRA_ALERT_SECRET }}
+        run: |
+          body=$(printf '{"title":"Actions Deploy Failed","repo":"%s","commit":"%s","run":"%s/%s/actions/runs/%s"}' \
+            "$GITHUB_REPOSITORY" "$GITHUB_SHA" "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_RUN_ID")
+          curl -sS -m 20 -X POST -H 'content-type: application/json' -H "x-alert-secret: $ALERT_SECRET" \
+            -d "$body" https://infra-alerts.philo-2e9.workers.dev/notify || true

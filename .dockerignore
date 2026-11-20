@@ -1,0 +1,8 @@
+.git
+.github
+.next
+.wrangler
+node_modules
+.env*
+*.tsbuildinfo
+Dockerfile

@@ -1,0 +1,45 @@
+# Next.js standalone server on the Tokyo swarm (sharkpro-tokyo). Copy to /opt/apps/philoart-web/stack.yml.
+# First deploy, on the host:
+#   IMAGE=ghcr.io/philo-li/philoart-web:<sha> docker stack deploy --with-registry-auth \
+#     -c /opt/apps/philoart-web/stack.yml philoart-web
+# After that, pushes to main deploy through the Tokyo deploy hook
+# (.github/workflows/deploy.yml). NEXT_PUBLIC_* are baked in at build time.
+# Pages render on the server from api.philoart.io (philoart_api on the same swarm).
+services:
+  web:
+    image: ${IMAGE}
+    networks:
+      - dokploy-network
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/robots.txt').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      start_period: 30s
+      retries: 3
+    deploy:
+      replicas: 1
+      update_config:
+        order: start-first
+        failure_action: rollback
+        monitor: 30s
+      rollback_config:
+        order: start-first
+      resources:
+        limits:
+          memory: 512M
+      labels:
+        deploy.hook.image: ghcr.io/philo-li/philoart-web
+        traefik.enable: "true"
+        traefik.swarm.network: dokploy-network
+        traefik.http.routers.philoart-web-http.rule: Host(`philoart.io`)
+        traefik.http.routers.philoart-web-http.entrypoints: web
+        traefik.http.routers.philoart-web-http.middlewares: redirect-to-https@file
+        traefik.http.routers.philoart-web.rule: Host(`philoart.io`)
+        traefik.http.routers.philoart-web.entrypoints: websecure
+        traefik.http.routers.philoart-web.tls.certresolver: letsencrypt
+        traefik.http.routers.philoart-web.service: philoart-web
+        traefik.http.services.philoart-web.loadbalancer.server.port: "3000"
+
+networks:
+  dokploy-network:
+    external: true
