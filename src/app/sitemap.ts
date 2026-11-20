@@ -4,6 +4,9 @@ import { getClient } from "@/lib/apollo-client";
 
 const BASE_URL = "https://philoart.io";
 
+// Otherwise it is rendered once at build time and new photos never show up
+export const revalidate = 3600;
+
 const SITEMAP_PHOTOS = gql`
   query sitemapPhotos($first: Int, $after: String) {
     photos(first: $first, after: $after) {
@@ -65,7 +68,8 @@ interface PageInfo {
 async function fetchAllPages<T>(
   query: ReturnType<typeof gql>,
   dataKey: string,
-  pageSize = 100,
+  // The API rejects first > 30
+  pageSize = 30,
 ): Promise<T[]> {
   const results: T[] = [];
   let after: string | null = null;
@@ -74,7 +78,8 @@ async function fetchAllPages<T>(
     try {
       const { data } = await getClient().query({
         query,
-        variables: { first: pageSize, after },
+        // The API rejects after: null, so leave it out on the first page
+        variables: after ? { first: pageSize, after } : { first: pageSize },
       });
 
       const connection = data?.[dataKey];
